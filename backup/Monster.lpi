@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="12"/>
+    <Version Value="11"/>
     <PathDelim Value="\"/>
     <General>
       <Flags>
@@ -10,12 +10,13 @@
         <MainUnitHasScaledStatement Value="False"/>
       </Flags>
       <SessionStorage Value="InProjectDir"/>
-      <Title Value="project1"/>
+      <MainUnit Value="0"/>
+      <Title Value="Monster"/>
       <UseAppBundle Value="False"/>
       <ResourceType Value="res"/>
     </General>
-    <BuildModes>
-      <Item Name="Default" Default="True"/>
+    <BuildModes Count="1">
+      <Item1 Name="Default" Default="True"/>
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
@@ -23,52 +24,49 @@
     </PublishOptions>
     <RunParams>
       <FormatVersion Value="2"/>
+      <Modes Count="0"/>
     </RunParams>
-    <Units>
-      <Unit>
-        <Filename Value="project1.pas"/>
+    <Units Count="4">
+      <Unit0>
+        <Filename Value="Monster.lpr"/>
         <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="..\Jeu\monsteu.pas"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="ihm.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Monsteu"/>
-      </Unit>
-      <Unit>
-        <Filename Value="unit2.pas"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="menu.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Unit2"/>
-      </Unit>
+      </Unit2>
+      <Unit3>
+        <Filename Value="logique.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit3>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="project1"/>
+      <Filename Value="Monster"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="..\Jeu"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
-    <Linking>
-      <Debugging>
-        <DebugInfoType Value="dsDwarf2Set"/>
-      </Debugging>
-    </Linking>
   </CompilerOptions>
   <Debugging>
-    <Exceptions>
-      <Item>
+    <Exceptions Count="3">
+      <Item1>
         <Name Value="EAbort"/>
-      </Item>
-      <Item>
+      </Item1>
+      <Item2>
         <Name Value="ECodetoolError"/>
-      </Item>
-      <Item>
+      </Item2>
+      <Item3>
         <Name Value="EFOpenError"/>
-      </Item>
+      </Item3>
     </Exceptions>
   </Debugging>
 </CONFIG>

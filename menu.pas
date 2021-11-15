@@ -1,33 +1,29 @@
-unit Unit2;
+unit menu;
 
-{$mode ObjFPC}{$H+}
+{$mode objfpc}{$H+}
 
 interface
 
-function menu() : integer;
-procedure start();
-procedure Quitter();
-function Histoire() : Integer;
-procedure perso();
-procedure luncher();
-function jeu() : Integer;
-procedure pieces();
-procedure chambre();
+function menuPrincipal() : Integer;
+procedure menuQuitter();
+function menuHistoire() : Integer;
+procedure menuPerso();
+procedure menuLauncher();
+procedure menuChambre();
+function menuJeu() : Integer;
 procedure forge();
 procedure marchand();
 procedure cantine();
 
-
-
 implementation
 uses
-  Classes, SysUtils, Monsteu;
+  Classes, SysUtils, ihm, logique;
 
 var
    pos : coordonnees;
    b : integer;
 
-function menu() : integer;
+function menuPrincipal() : integer;
 begin
   effacerEcran();
   dessinerCadreXY(28,13,90,21,simple,255,0);
@@ -85,7 +81,7 @@ begin
   pos.y := 20;
   ecrireEnPosition(pos, 'Choix : ');
   readln(b);
-  menu := b;
+  menuPrincipal := b;
 
 end;
  var
@@ -95,7 +91,7 @@ end;
     taille : real;
     poids : real;
 
-procedure perso();
+procedure menuPerso();
 begin
   effacerEcran();
   pos.x := 30;
@@ -162,25 +158,24 @@ begin
   pos.y := pos.y+1;
   ecrireEnPosition(pos, 'Poids (Kg): ');
   readln(poids);
-  luncher();
+  menuLauncher();
 end;
 
 var
    p: string;
 
-procedure luncher();
+procedure menuLauncher();
 begin
   pos.x := 14;
   pos.y := 6;
   ecrireEnPosition(pos, 'appuyer sur entree pour continuer : ');
   readln(p);
   pieces();
-
 end;
 
 var
    a : Integer;
-function Histoire() : Integer;
+function menuHistoire() : Integer;
 begin
 effacerEcran();
 dessinerCadreXY(10,7,110,20,simple,255,0);
@@ -215,12 +210,12 @@ pos.x := pos.x;
 pos.y := pos.y+4;
 ecrireEnPosition(pos,'1) Revenir au menu principale : ');
 readln(a);
-Histoire := a;
+menuHistoire := a;
 
 end;
 
 
-procedure Quitter();
+procedure menuQuitter();
 begin
 effacerEcran();
 dessinerCadreXY(28,13,90,15,simple,255,0);
@@ -229,21 +224,10 @@ pos.y := 14;
 ecrireEnPosition(pos, 'Bonne journee');
 end;
 
-
-procedure start();
-begin
-  case menu() of
-       1: perso();
-       2:if (Histoire() = 1) then start();
-       3: Quitter();
-  else start()
-  end;
-end;
-
 var
    c : integer;
 
-function jeu() : Integer;
+function menuJeu() : Integer;
 begin
   effacerEcran();
   dessinerCadreXY(2,2,27,4,simple,255,0);
@@ -267,10 +251,10 @@ begin
   pos.y := 13;
   ecrireEnPosition(pos, 'Choix : ');
   readln(c);
-  jeu := c;
+  menuJeu := c;
 end;
 
-procedure chambre();
+procedure menuChambre();
 begin
   effacerEcran();
   dessinerCadreXY(2,2,50,25,simple,255,0);
@@ -303,22 +287,5 @@ begin
 
 end;
 
-procedure pieces();
-begin
-  case jeu() of
-       1: chambre();
-       2: forge();
-       3: marchand();
-       4: cantine()
-  else pieces()
-  end;
-end;
-
-
-bite
-
-
 end.
-
-
 
