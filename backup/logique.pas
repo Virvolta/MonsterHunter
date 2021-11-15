@@ -5,6 +5,8 @@ unit logique;
 interface
 
 procedure start();
+procedure pieces();
+procedure chambre();
 
 implementation
 uses
@@ -28,6 +30,14 @@ begin
        3: marchand();
        4: cantine()
   else pieces()
+  end;
+end;
+procedure chambre();
+begin
+  case menuChambre() of
+       1: menuLit;
+       //2: menuArmoire;
+  else chambre()
   end;
 end;
 

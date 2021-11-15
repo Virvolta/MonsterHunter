@@ -9,11 +9,12 @@ procedure menuQuitter();
 function menuHistoire() : Integer;
 procedure menuPerso();
 procedure menuLauncher();
-procedure menuChambre();
+function menuChambre():Integer;
 function menuJeu() : Integer;
 procedure forge();
 procedure marchand();
 procedure cantine();
+procedure menuLit();
 
 implementation
 uses
@@ -251,10 +252,11 @@ begin
   pos.y := 13;
   ecrireEnPosition(pos, 'Choix : ');
   readln(c);
-  jeu := c;
+  menuJeu := c;
 end;
-
-procedure menuChambre();
+var
+   d : Integer;
+function menuChambre():Integer;
 begin
   effacerEcran();
   dessinerCadreXY(2,2,50,25,simple,255,0);
@@ -269,7 +271,22 @@ begin
   pos.x := 56;
   pos.y := 27;
   ecrireEnPosition(pos, 'Choix : ');
+  readln(d);
+  menuChambre := d;
 
+end;
+var
+   e:string;
+procedure menuLit();
+begin
+  effacerEcran();
+  dessinerCadreXY(38,2,86,25,simple,255,0);
+  pos.x := 52;
+  pos.y := 13;
+  ecrireEnPosition(pos, 'Bonne nuit');
+  readln(e);
+  if (e = '')then chambre()
+  else menuLit();
 end;
 
 procedure forge();
