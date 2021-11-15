@@ -276,7 +276,7 @@ begin
   dessinerCadreXY(2,2,50,25,simple,255,0);
   dessinerCadreXY(70,2,118,25,simple,255,0);
   dessinerCadreXY(2,26,118,28,simple,255,0);
-  pos.x := 25;
+  pos.x := 22;
   pos.y := 13;
   ecrireEnPosition(pos, '1)Lit');
   pos.x := 90;
