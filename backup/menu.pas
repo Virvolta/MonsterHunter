@@ -13,8 +13,9 @@ function menuChambre():Integer;
 function menuJeu() : Integer;
 procedure forge();
 procedure marchand();
-procedure cantine();
+function menuCantine():Integer;
 procedure menuLit();
+procedure menuArmoire();
 
 implementation
 uses
@@ -259,17 +260,21 @@ var
 function menuChambre():Integer;
 begin
   effacerEcran();
-  dessinerCadreXY(2,2,50,25,simple,255,0);
-  dessinerCadreXY(70,2,118,25,simple,255,0);
-  dessinerCadreXY(2,26,118,28,simple,255,0);
+  dessinerCadreXY(2,3,50,26,simple,255,0);
+  dessinerCadreXY(70,3,118,26,simple,255,0);
+  dessinerCadreXY(2,27,118,29,simple,255,0);
+  dessinerCadreXY(2,0,118,2,simple,255,0);
   pos.x := 22;
-  pos.y := 13;
+  pos.y := 14;
   ecrireEnPosition(pos, '1)Lit');
   pos.x := 90;
-  pos.y := 13;
+  pos.y := 14;
   ecrireEnPosition(pos, '2)Armoire');
+  pos.x := 50;
+  pos.y := 1;
+  ecrireEnPosition(pos, '3)Retour a la ville');
   pos.x := 56;
-  pos.y := 27;
+  pos.y := 28;
   ecrireEnPosition(pos, 'Choix : ');
   readln(d);
   menuChambre := d;
@@ -281,12 +286,26 @@ procedure menuLit();
 begin
   effacerEcran();
   dessinerCadreXY(38,2,86,25,simple,255,0);
-  pos.x := 52;
+  pos.x := 58;
   pos.y := 13;
   ecrireEnPosition(pos, 'Bonne nuit');
   readln(e);
   if (e = '')then chambre()
   else menuLit();
+end;
+
+procedure menuArmoire();
+begin
+  effacerEtColorierEcran(6);
+  dessinerCadreXY(2,2,50,25,simple,0,6);
+  dessinerCadreXY(70,2,118,25,simple,0,6);
+  dessinerCadreXY(2,27,118,29,simple,0,6);
+  pos.x := 50;
+  pos.y := 28;
+  ecrireEnPosition(pos, '1)Retour a la chambre : ');
+  readln(e);
+  if (e = '1')then chambre()
+  else menuArmoire();
 end;
 
 procedure forge();
@@ -298,10 +317,36 @@ procedure marchand();
 begin
 
 end;
+var
+   f:Integer;
 
-procedure cantine();
+function menuCantine():Integer;
 begin
-
+  effacerEcran();
+  dessinerCadreXY(40,5,80,25,simple,255,0);
+  pos.x := 50;
+  pos.y := 7;
+  ecrireEnPosition(pos, 'Que voulez-vous manger : ');
+  pos.x := 50;
+  pos.y := pos.y+2;
+  ecrireEnPosition(pos, '1)BOOST defense :''nom plat'' (prix)');
+  pos.x := 50;
+  pos.y := pos.y+2;
+  ecrireEnPosition(pos, '2)BOOST degats :''nom plat'' (prix)');
+  pos.x := 50;
+  pos.y := pos.y+2;
+  ecrireEnPosition(pos, '3)BOOST vie :''nom plat'' (prix)');
+  pos.x := 50;
+  pos.y := pos.y+2;
+  ecrireEnPosition(pos, '4)BOOST vitesse :''nom plat'' (prix)');
+  pos.x := 50;
+  pos.y := pos.y+2;
+  ecrireEnPosition(pos, '5)Retour a la ville : ');
+  pos.x := 50;
+  pos.y := 24;
+  ecrireEnPosition(pos, 'Choix : ');
+  readln(f);
+  menuCantine:=f;
 end;
 
 end.

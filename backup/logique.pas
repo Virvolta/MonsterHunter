@@ -7,6 +7,7 @@ interface
 procedure start();
 procedure pieces();
 procedure chambre();
+procedure cantine();
 
 implementation
 uses
@@ -25,7 +26,7 @@ end;
 procedure pieces();
 begin
   case menuJeu() of
-       1: menuChambre();
+       1: chambre();
        2: forge();
        3: marchand();
        4: cantine()
@@ -36,10 +37,22 @@ procedure chambre();
 begin
   case menuChambre() of
        1: menuLit;
-       //2: menuArmoire;
+       2: menuArmoire;
+       3: pieces();
   else chambre()
   end;
 end;
 
+procedure cantine();
+begin
+  case menuCantine() of
+       //1: defense;
+       //2: degats;
+       //3: vie;
+       //4: vitesse;
+       //5: pieces();
+  else cantine()
+  end;
+end;
 end.
 
