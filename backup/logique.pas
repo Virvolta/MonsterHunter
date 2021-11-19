@@ -8,6 +8,8 @@ procedure start();
 procedure pieces();
 procedure chambre();
 procedure cantine();
+procedure marchand();
+procedure vente();
 
 implementation
 uses
@@ -50,9 +52,28 @@ begin
        //2: degats;
        //3: vie;
        //4: vitesse;
-       //5: pieces();
-  else cantine()
+       5: pieces();
+  else cantine();
   end;
 end;
+procedure marchand();
+begin
+  case menuMarchand() of
+       1: menuAchat;
+       2: menuVente;
+       3: pieces();
+  else marchand()
+  end;
+end;
+procedure vente();
+begin
+  case menuVente() of
+       //1: menuInventaire();
+       //2: validationVente();
+       4: marchand();
+  else vente()
+  end;
+end;
+
 end.
 

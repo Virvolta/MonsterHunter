@@ -12,10 +12,12 @@ procedure menuLauncher();
 function menuChambre():Integer;
 function menuJeu() : Integer;
 procedure forge();
-procedure marchand();
+function menuMarchand(): Integer;
 function menuCantine():Integer;
 procedure menuLit();
 procedure menuArmoire();
+function menuVente():Integer;
+procedure menuAchat;
 
 implementation
 uses
@@ -96,6 +98,7 @@ end;
 procedure menuPerso();
 begin
   effacerEcran();
+  couleurTexte(4);
   pos.x := 5;
   pos.y := 1;
   ecrireEnPosition(pos, '  _____       __       _   _                   _');
@@ -116,17 +119,17 @@ begin
   ecrireEnPosition(pos,' \_____|_|  \___|\__,_|\__|_|\___/|_| |_|  \__,_|\__,_| | .__/ \___|_|  |___/\___/|_| |_|_| |_|\__,_|\__, |\___|');
   pos.x := 5;
   pos.y := pos.y+1;
-  ecrireEnPosition(pos,'                                                       | |                                           __/ | ');
+  ecrireEnPosition(pos,'                                                        | |                                           __/ | ');
   pos.x := 5;
   pos.y := pos.y+1;
-  ecrireEnPosition(pos,'                                                       |_|                                          |___/  ');
+  ecrireEnPosition(pos,'                                                        |_|                                          |___/  ');
 
 
-
+  couleurTexte(15);
   dessinerCadreXY(10,10,70,18,simple,255,0);
   pos.x := 14;
   pos.y := 11;
-  ecrireEnPosition(pos, 'Sexe : ');
+  ecrireEnPosition(pos, 'Sexe(M ou F) : ');
   readln(sex);
   pos.x := 14;
   pos.y := pos.y+1;
@@ -165,6 +168,27 @@ function menuHistoire() : Integer;
 begin
 effacerEcran();
 dessinerCadreXY(10,7,110,20,simple,255,0);
+couleurTexte(4);
+pos.x := 40;
+pos.y := 1;
+ecrireEnPosition(pos,' _____       __ _           _ ');
+pos.x := pos.x;
+pos.y := pos.y+1;
+ecrireEnPosition(pos,'|  __ \     /_/| |         | |');
+pos.x := pos.x;
+pos.y := pos.y+1;
+ecrireEnPosition(pos,'| |__) | __ ___| |_   _  __| | ___ ');
+pos.x := pos.x;
+pos.y := pos.y+1;
+ecrireEnPosition(pos,'|  ___/ ''__/ _ \ | | | |/ _` |/ _ \');
+pos.x := pos.x;
+pos.y := pos.y+1;
+ecrireEnPosition(pos,'| |   | | |  __/ | |_| | (_| |  __/');
+pos.x := pos.x;
+pos.y := pos.y+1;
+ecrireEnPosition(pos,'|_|   |_|  \___|_|\__,_|\__,_|\___|');
+
+couleurTexte(15);
 pos.x := 14;
 pos.y := 9;
 ecrireEnPosition(pos, 'La commission des chasseurs est une institution chargee d''etudier et de chasser les ');
@@ -297,10 +321,67 @@ begin
 
 end;
 
-procedure marchand();
+var
+   g: integer;
+
+function menuMarchand(): Integer;
+begin
+  effacerEcran();
+  dessinerCadreXY(2,3,50,26,simple,255,0);
+  dessinerCadreXY(70,3,118,26,simple,255,0);
+  dessinerCadreXY(2,27,118,29,simple,255,0);
+  dessinerCadreXY(2,0,118,2,simple,255,0);
+  pos.x := 22;
+  pos.y := 14;
+  ecrireEnPosition(pos, '1)Acheter');
+  pos.x := 90;
+  pos.y := 14;
+  ecrireEnPosition(pos, '2)Vendre');
+  pos.x := 50;
+  pos.y := 1;
+  ecrireEnPosition(pos, '3)Retour a la ville');
+  pos.x := 56;
+  pos.y := 28;
+  ecrireEnPosition(pos, 'Choix : ');
+  readln(g);
+  menuMarchand := g;
+end;
+
+var
+   h: integer;
+
+function menuVente():Integer;
+begin
+  effacerEcran();
+  dessinerCadreXY(2,3,50,26,simple,255,0);
+  dessinerCadreXY(70,3,118,26,simple,255,0);
+  dessinerCadreXY(2,27,118,29,simple,255,0);
+  dessinerCadreXY(2,0,118,2,simple,255,0);
+  pos.x := 50;
+  pos.y := 1;
+  ecrireEnPosition(pos, '3)Retour au menu marchand');
+  pos.x := 4;
+  pos.y := 4;
+  ecrireEnPosition(pos, 'Deposer un objet (sauf arme et armure)');
+  dessinerCadreXY(16,12,35,18,simple,255,0);
+  pos.x := 17;
+  pos.y := 19;
+  ecrireEnPosition(pos, 'Appyuer sur 1 pour ');
+  pos.X := 14;
+  pos.y :=20;
+  ecrireEnPosition(pos, 'entrer dans l''inventaire ');
+  pos.x := 56;
+  pos.y := 28;
+  ecrireEnPosition(pos, 'Choix : ');
+  readln(h);
+  menuVente :=h;
+
+end;
+procedure menuAchat;
 begin
 
 end;
+
 var
    f:Integer;
 
