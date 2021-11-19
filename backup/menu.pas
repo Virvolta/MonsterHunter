@@ -96,52 +96,36 @@ end;
 procedure menuPerso();
 begin
   effacerEcran();
-  pos.x := 30;
-  pos.y := 16;
-  ecrireEnPosition(pos, ' /\  /\');
-  pos.x := pos.x;
+  pos.x := 5;
+  pos.y := 1;
+  ecrireEnPosition(pos, '  _____       __       _   _                   _');
+  pos.x := 5;
   pos.y := pos.y+1;
-  ecrireEnPosition(pos, '//\\//\\');
-  pos.x := pos.x;
+  ecrireEnPosition(pos,' / ____|     /_/      | | (_)                 | |');
+  pos.x := 5;
   pos.y := pos.y+1;
-  ecrireEnPosition(pos, '\ ^  ^ /');
-  pos.x := pos.x;
+  ecrireEnPosition(pos,'| |     _ __ ___  __ _| |_ _  ___  _ __     __| |_   _   _ __   ___ _ __ ___  ___  _ __  _ __   __ _  __ _  ___');
+  pos.x := 5;
   pos.y := pos.y+1;
-  ecrireEnPosition(pos, '( 0  0 )');
-  pos.x := pos.x;
+  ecrireEnPosition(pos,'| |    | ''__/ _ \/ _` | __| |/ _ \| ''_ \   / _` | | | | | ''_ \ / _ \ ''__/ __|/ _ \| ''_ \| ''_ \ / _` |/ _` |/ _ \');
+  pos.x := 5;
   pos.y := pos.y+1;
-  ecrireEnPosition(pos, '|  \/  |');
-  pos.x := pos.x;
+  ecrireEnPosition(pos,'| |____| | |  __/ (_| | |_| | (_) | | | | | (_| | |_| | | |_) |  __/ |  \__ \ (_) | | | | | | | (_| | (_| |  __/');
+  pos.x := 5;
   pos.y := pos.y+1;
-  ecrireEnPosition(pos, '( [--] )');
-  pos.x := 29;
+  ecrireEnPosition(pos,' \_____|_|  \___|\__,_|\__|_|\___/|_| |_|  \__,_|\__,_| | .__/ \___|_|  |___/\___/|_| |_|_| |_|\__,_|\__, |\___|');
+  pos.x := 5;
   pos.y := pos.y+1;
-  ecrireEnPosition(pos,'  \____/ ');
-  pos.x := pos.x;
+  ecrireEnPosition(pos,'                                                       | |                                           __/ | ');
+  pos.x := 5;
   pos.y := pos.y+1;
-  ecrireEnPosition(pos, ' __|  |__ ' );
-  pos.x := pos.x;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos,'/__    __\ ');
- pos.x := 27;
- pos.y := pos.y+1;
- ecrireEnPosition(pos,'{-/ /    \ \-}');
-  pos.x := pos.x+4;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos,  '|----|');
-  pos.x := pos.x;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos,  '||\/||');
-  pos.x := pos.x-1;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos, '_||  ||_');
-  pos.x := pos.x-1;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos,'/__\  /__\');
+  ecrireEnPosition(pos,'                                                       |_|                                          |___/  ');
 
-  dessinerCadreXY(10,7,70,15,simple,255,0);
+
+
+  dessinerCadreXY(10,10,70,18,simple,255,0);
   pos.x := 14;
-  pos.y := 9;
+  pos.y := 11;
   ecrireEnPosition(pos, 'Sexe : ');
   readln(sex);
   pos.x := 14;
@@ -169,7 +153,7 @@ var
 procedure menuLauncher();
 begin
   pos.x := 14;
-  pos.y := 6;
+  pos.y := 19;
   ecrireEnPosition(pos, 'appuyer sur entree pour continuer : ');
   readln(p);
   pieces();
@@ -324,22 +308,22 @@ function menuCantine():Integer;
 begin
   effacerEcran();
   dessinerCadreXY(40,5,80,25,simple,255,0);
-  pos.x := 50;
+  pos.x := 45;
   pos.y := 7;
   ecrireEnPosition(pos, 'Que voulez-vous manger : ');
-  pos.x := 50;
+  pos.x := pos.x;
   pos.y := pos.y+2;
   ecrireEnPosition(pos, '1)BOOST defense :''nom plat'' (prix)');
-  pos.x := 50;
+  pos.x := pos.x;
   pos.y := pos.y+2;
   ecrireEnPosition(pos, '2)BOOST degats :''nom plat'' (prix)');
-  pos.x := 50;
+  pos.x := pos.x;
   pos.y := pos.y+2;
   ecrireEnPosition(pos, '3)BOOST vie :''nom plat'' (prix)');
-  pos.x := 50;
+  pos.x := pos.x;
   pos.y := pos.y+2;
   ecrireEnPosition(pos, '4)BOOST vitesse :''nom plat'' (prix)');
-  pos.x := 50;
+  pos.x := pos.x;
   pos.y := pos.y+2;
   ecrireEnPosition(pos, '5)Retour a la ville : ');
   pos.x := 50;
@@ -348,6 +332,7 @@ begin
   readln(f);
   menuCantine:=f;
 end;
+
 
 end.
 
