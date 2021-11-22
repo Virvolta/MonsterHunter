@@ -9,7 +9,7 @@
         <Filename Value="Monster.lpr"/>
         <IsPartOfProject Value="True"/>
         <CursorPos X="24" Y="3"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -18,26 +18,26 @@
         <EditorIndex Value="3"/>
         <TopLine Value="66"/>
         <CursorPos X="25" Y="68"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="menu.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="310"/>
-        <CursorPos X="25" Y="321"/>
-        <UsageCount Value="29"/>
+        <TopLine Value="421"/>
+        <CursorPos X="21" Y="434"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="logique.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="39"/>
-        <CursorPos X="22" Y="50"/>
-        <UsageCount Value="28"/>
+        <TopLine Value="64"/>
+        <CursorPos X="8" Y="79"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>

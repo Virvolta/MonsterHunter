@@ -76,7 +76,7 @@ end;
 procedure vente();
 begin
   case menuVente() of
-       //1: menuInventaire();
+       1: menuInventaire();
        //2: validationVente();
        3: marchand();
   else vente()

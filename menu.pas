@@ -18,6 +18,7 @@ procedure menuLit();
 function menuArmoire():Integer;
 function menuVente():Integer;
 procedure menuAchat;
+procedure menuInventaire();
 
 implementation
 uses
@@ -419,7 +420,47 @@ begin
   readln(f);
   menuCantine:=f;
 end;
+procedure menuInventaire();
+begin
+  effacerEcran();
+  dessinerCadreXY(30,1,100,30,simple,255,0);
+  pos.x := 38;
+  pos.y := 5;
+  ecrireEnPosition(pos, '1');
+  dessinerCadreXY(40,3,50,7,simple,255,0);
+  dessinerCadreXY(51,3,61,7,simple,255,0);
+  dessinerCadreXY(62,3,72,7,simple,255,0);
+  dessinerCadreXY(73,3,83,7,simple,255,0);
+  dessinerCadreXY(84,3,94,7,simple,255,0);
 
+  pos.x := 38;
+  pos.y := 15;
+  ecrireEnPosition(pos, '6');
+  dessinerCadreXY(40,13,50,17,simple,255,0);
+  dessinerCadreXY(51,13,61,17,simple,255,0);
+  dessinerCadreXY(62,13,72,17,simple,255,0);
+  dessinerCadreXY(73,13,83,17,simple,255,0);
+  dessinerCadreXY(84,13,94,17,simple,255,0);
+
+  pos.x := 38;
+  pos.y := 20;
+  ecrireEnPosition(pos, '11');
+  dessinerCadreXY(40,18,50,22,simple,255,0);
+  dessinerCadreXY(51,18,61,22,simple,255,0);
+  dessinerCadreXY(62,18,72,22,simple,255,0);
+  dessinerCadreXY(73,18,83,22,simple,255,0);
+  dessinerCadreXY(84,18,94,22,simple,255,0);
+
+  pos.x := 38;
+  pos.y := 25;
+  ecrireEnPosition(pos, '16');
+  dessinerCadreXY(40,23,50,27,simple,255,0);
+  dessinerCadreXY(51,23,61,27,simple,255,0);
+  dessinerCadreXY(62,23,72,27,simple,255,0);
+  dessinerCadreXY(73,23,83,27,simple,255,0);
+  dessinerCadreXY(84,23,94,27,simple,255,0);
+
+end;
 
 end.
 
