@@ -10,6 +10,7 @@ procedure chambre();
 procedure cantine();
 procedure marchand();
 procedure vente();
+procedure armoire();
 
 implementation
 uses
@@ -45,6 +46,13 @@ begin
   end;
 end;
 
+procedure armoire();
+begin
+  case menuArmoire() of
+       1: menuChambre();
+  end;
+end;
+
 procedure cantine();
 begin
   case menuCantine() of
@@ -60,7 +68,7 @@ procedure marchand();
 begin
   case menuMarchand() of
        1: menuAchat;
-       2: menuVente;
+       2: vente();
        3: pieces();
   else marchand()
   end;
@@ -70,7 +78,7 @@ begin
   case menuVente() of
        //1: menuInventaire();
        //2: validationVente();
-       4: marchand();
+       3: marchand();
   else vente()
   end;
 end;

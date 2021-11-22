@@ -15,7 +15,7 @@ procedure forge();
 function menuMarchand(): Integer;
 function menuCantine():Integer;
 procedure menuLit();
-procedure menuArmoire();
+function menuArmoire():Integer;
 function menuVente():Integer;
 procedure menuAchat;
 
@@ -301,19 +301,25 @@ begin
   if (e = '')then chambre()
   else menuLit();
 end;
-
-procedure menuArmoire();
+var
+   i:Integer;
+function menuArmoire():Integer;
 begin
   effacerEtColorierEcran(6);
   dessinerCadreXY(2,2,50,25,simple,0,6);
   dessinerCadreXY(70,2,118,25,simple,0,6);
   dessinerCadreXY(2,27,118,29,simple,0,6);
+  pos.x := 20;
+  pos.y := 1;
+  ecrireEnPosition(pos, 'Stockage ');
+  pos.x := 90;
+  pos.y := 1;
+  ecrireEnPosition(pos, 'Inventaire');
   pos.x := 50;
   pos.y := 28;
   ecrireEnPosition(pos, '1)Retour a la chambre : ');
-  readln(e);
-  if (e = '1')then chambre()
-  else menuArmoire();
+  readln(b);
+  b:=menuArmoire;
 end;
 
 procedure forge();
@@ -374,7 +380,7 @@ begin
   pos.y := 28;
   ecrireEnPosition(pos, 'Choix : ');
   readln(h);
-  menuVente :=h;
+  menuVente := h;
 
 end;
 procedure menuAchat;
