@@ -16,7 +16,7 @@ function menuInventaire():integer;
 
 implementation
 uses
-  Classes, SysUtils, ihm, logique;
+  Classes, SysUtils, ihm, logique, personnage;
 
 var
    pos : coordonnees;
@@ -88,12 +88,73 @@ end;
 
 
 procedure menuPerso();
+
 var
-   nom : string;
-   prenom : string;
-   sexe : string[1];
-   taille : real;
-   poids : real;
+    nom : string;
+    selectsexe : char;
+    taille : Integer;
+    poids : Integer;
+    pos : coordonnees;
+
+begin
+  effacerEcran();
+  couleurTexte(4);
+  pos.x := 5;
+  pos.y := 1;
+  ecrireEnPosition(pos, '  _____       __       _   _                   _');
+  pos.x := 5;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos,' / ____|     /_/      | | (_)                 | |');
+  pos.x := 5;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos,'| |     _ __ ___  __ _| |_ _  ___  _ __     __| |_   _   _ __   ___ _ __ ___  ___  _ __  _ __   __ _  __ _  ___');
+  pos.x := 5;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos,'| |    | ''__/ _ \/ _` | __| |/ _ \| ''_ \   / _` | | | | | ''_ \ / _ \ ''__/ __|/ _ \| ''_ \| ''_ \ / _` |/ _` |/ _ \');
+  pos.x := 5;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos,'| |____| | |  __/ (_| | |_| | (_) | | | | | (_| | |_| | | |_) |  __/ |  \__ \ (_) | | | | | | | (_| | (_| |  __/');
+  pos.x := 5;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos,' \_____|_|  \___|\__,_|\__|_|\___/|_| |_|  \__,_|\__,_| | .__/ \___|_|  |___/\___/|_| |_|_| |_|\__,_|\__, |\___|');
+  pos.x := 5;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos,'                                                        | |                                           __/ | ');
+  pos.x := 5;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos,'                                                        |_|                                          |___/  ');
+
+  couleurTexte(15);
+  dessinerCadreXY(10,10,70,18,simple,255,0);
+  pos.x := 14;
+  pos.y := 11;
+  ecrireEnPosition(pos, 'Sexe(m ou f) : ');
+  readln(selectsexe);
+  setSexeChar(selectsexe);
+  pos.x := 14;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos, 'Pseudo : ');
+  readln(nom);
+  setPseudo(nom);
+  pos.x := 14;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos, 'Taille (cm): ');
+  readln(taille);
+  setTaille(taille);
+  pos.x := 14;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos, 'Poids (Kg): ');
+  readln(poids);
+  setPoid(poids);
+  menuLauncher();
+end;
+
+
+
+procedure menuLauncher();
+var
+   p: string;
+   pos : coordonnees;
 begin
   effacerEcran();
   couleurTexte(4);
@@ -127,31 +188,16 @@ begin
   dessinerCadreXY(10,10,70,18,simple,255,0);
   pos.x := 14;
   pos.y := 11;
-  ecrireEnPosition(pos, 'Sexe(M ou F) : ');
-  readln(sexe);
+  ecrireEnPosition(pos, concat('Votre sexe : ', getSexeString()));
   pos.x := 14;
   pos.y := pos.y+1;
-  ecrireEnPosition(pos, 'Nom : ');
-  readln(nom);
+  ecrireEnPosition(pos, concat('Votre Pseudo : ', getPseudo()));
   pos.x := 14;
   pos.y := pos.y+1;
-  ecrireEnPosition(pos, 'Prenom : ');
-  readln(prenom);
+  ecrireEnPosition(pos, concat('Votre Taille : ', IntToStr(getTaille()), ' cm'));
   pos.x := 14;
   pos.y := pos.y+1;
-  ecrireEnPosition(pos, 'Taille (cm): ');
-  readln(taille);
-  pos.x := 14;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos, 'Poids (Kg): ');
-  readln(poids);
-  menuLauncher();
-end;
-
-procedure menuLauncher();
-var
-   p: string;
-begin
+  ecrireEnPosition(pos, concat('Votre Poid : ', IntToStr(getPoid()), ' kg'));
   pos.x := 14;
   pos.y := 19;
   ecrireEnPosition(pos, 'appuyer sur entree pour continuer : ');
