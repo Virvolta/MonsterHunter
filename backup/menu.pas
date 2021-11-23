@@ -11,15 +11,12 @@ procedure menuPerso();
 procedure menuLauncher();
 function menuJeu() : Integer;
 procedure forge();
-function menuMarchand(): Integer;
-function menuVente():Integer;
-procedure menuAchat;
 function menuInventaire():integer;
 
 
 implementation
 uses
-  Classes, SysUtils, ihm, logique;
+  Classes, SysUtils, ihm, logique, personnage, controle;
 
 var
    pos : coordonnees;
@@ -88,15 +85,96 @@ begin
   menuPrincipal := b;
 
 end;
+{function menuPrincipal() : integer;
+var
+  ch : char;
+begin;
+  {repeat
+    ch:=ReadKey;
+    case ch of
+     #0 : begin
+            ch:=ReadKey; {Read ScanCode}
+            case ch of
+             #75 : WriteLn('Left');
+             #77 : WriteLn('Right');
+            end;
+          end;
+    #27 : WriteLn('ESC');
+    end;
+  until ch=#27 {Esc}}
 
+  readln();
+  menuPrincipal := 1;
+end;}
 
 procedure menuPerso();
+
 var
-   nom : string;
-   prenom : string;
-   sexe : string[1];
-   taille : real;
-   poids : real;
+    nom : string;
+    selectsexe : char;
+    taille : Integer;
+    poids : Integer;
+    pos : coordonnees;
+
+begin
+  effacerEcran();
+  couleurTexte(4);
+  pos.x := 5;
+  pos.y := 1;
+  ecrireEnPosition(pos, '  _____       __       _   _                   _');
+  pos.x := 5;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos,' / ____|     /_/      | | (_)                 | |');
+  pos.x := 5;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos,'| |     _ __ ___  __ _| |_ _  ___  _ __     __| |_   _   _ __   ___ _ __ ___  ___  _ __  _ __   __ _  __ _  ___');
+  pos.x := 5;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos,'| |    | ''__/ _ \/ _` | __| |/ _ \| ''_ \   / _` | | | | | ''_ \ / _ \ ''__/ __|/ _ \| ''_ \| ''_ \ / _` |/ _` |/ _ \');
+  pos.x := 5;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos,'| |____| | |  __/ (_| | |_| | (_) | | | | | (_| | |_| | | |_) |  __/ |  \__ \ (_) | | | | | | | (_| | (_| |  __/');
+  pos.x := 5;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos,' \_____|_|  \___|\__,_|\__|_|\___/|_| |_|  \__,_|\__,_| | .__/ \___|_|  |___/\___/|_| |_|_| |_|\__,_|\__, |\___|');
+  pos.x := 5;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos,'                                                        | |                                           __/ | ');
+  pos.x := 5;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos,'                                                        |_|                                          |___/  ');
+
+  couleurTexte(15);
+  dessinerCadreXY(10,10,70,18,simple,255,0);
+  pos.x := 14;
+  pos.y := 11;
+  ecrireEnPosition(pos, 'Sexe(m ou f) : ');
+  readln(selectsexe);
+  setSexeChar(selectsexe);
+  pos.x := 14;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos, 'Pseudo : ');
+  readln(nom);
+  setPseudo(nom);
+  pos.x := 14;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos, 'Taille (cm): ');
+  readln(taille);
+  setTaille(taille);
+  pos.x := 14;
+  pos.y := pos.y+1;
+  ecrireEnPosition(pos, 'Poids (Kg): ');
+  readln(poids);
+  setPoid(poids);
+  menuLauncher();
+end;
+
+
+
+procedure menuLauncher();
+var
+   p: string;
+   pos : coordonnees;
 begin
   effacerEcran();
   couleurTexte(4);
@@ -130,31 +208,16 @@ begin
   dessinerCadreXY(10,10,70,18,simple,255,0);
   pos.x := 14;
   pos.y := 11;
-  ecrireEnPosition(pos, 'Sexe(M ou F) : ');
-  readln(sexe);
+  ecrireEnPosition(pos, concat('Votre sexe : ', getSexeString()));
   pos.x := 14;
   pos.y := pos.y+1;
-  ecrireEnPosition(pos, 'Nom : ');
-  readln(nom);
+  ecrireEnPosition(pos, concat('Votre Pseudo : ', getPseudo()));
   pos.x := 14;
   pos.y := pos.y+1;
-  ecrireEnPosition(pos, 'Prenom : ');
-  readln(prenom);
+  ecrireEnPosition(pos, concat('Votre Taille : ', IntToStr(getTaille()), ' cm'));
   pos.x := 14;
   pos.y := pos.y+1;
-  ecrireEnPosition(pos, 'Taille (cm): ');
-  readln(taille);
-  pos.x := 14;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos, 'Poids (Kg): ');
-  readln(poids);
-  menuLauncher();
-end;
-
-procedure menuLauncher();
-var
-   p: string;
-begin
+  ecrireEnPosition(pos, concat('Votre Poid : ', IntToStr(getPoid()), ' kg'));
   pos.x := 14;
   pos.y := 19;
   ecrireEnPosition(pos, 'appuyer sur entree pour continuer : ');
@@ -271,65 +334,6 @@ begin
 
 end;
 
-function menuMarchand(): Integer;
-var
-   g: integer;
-begin
-  effacerEcran();
-  dessinerCadreXY(2,3,50,26,simple,255,0);
-  dessinerCadreXY(70,3,118,26,simple,255,0);
-  dessinerCadreXY(2,27,118,29,simple,255,0);
-  dessinerCadreXY(2,0,118,2,simple,255,0);
-  pos.x := 22;
-  pos.y := 14;
-  ecrireEnPosition(pos, '1)Acheter');
-  pos.x := 90;
-  pos.y := 14;
-  ecrireEnPosition(pos, '2)Vendre');
-  pos.x := 50;
-  pos.y := 1;
-  ecrireEnPosition(pos, '3)Retour a la ville');
-  pos.x := 56;
-  pos.y := 28;
-  ecrireEnPosition(pos, 'Choix : ');
-  readln(g);
-  menuMarchand := g;
-end;
-
-function menuVente():Integer;
-var
-   h: integer;
-begin
-  effacerEcran();
-  dessinerCadreXY(2,3,50,26,simple,255,0);
-  dessinerCadreXY(70,3,118,26,simple,255,0);
-  dessinerCadreXY(2,27,118,29,simple,255,0);
-  dessinerCadreXY(2,0,118,2,simple,255,0);
-  pos.x := 50;
-  pos.y := 1;
-  ecrireEnPosition(pos, '3)Retour au menu marchand');
-  pos.x := 4;
-  pos.y := 4;
-  ecrireEnPosition(pos, 'Deposer un objet (sauf arme et armure)');
-  dessinerCadreXY(16,12,35,18,simple,255,0);
-  pos.x := 17;
-  pos.y := 19;
-  ecrireEnPosition(pos, 'Appyuer sur 1 pour ');
-  pos.X := 14;
-  pos.y :=20;
-  ecrireEnPosition(pos, 'entrer dans l''inventaire ');
-  pos.x := 56;
-  pos.y := 28;
-  ecrireEnPosition(pos, 'Choix : ');
-  readln(h);
-  menuVente := h;
-
-end;
-procedure menuAchat;
-begin
-
-end;
-
 function menuInventaire():integer;
 var
    j:integer;
@@ -381,6 +385,8 @@ begin
   readln(j);
   menuInventaire:=j;
 end;
+
+
 
 
 end.

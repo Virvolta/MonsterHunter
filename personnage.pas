@@ -4,17 +4,25 @@ unit personnage;
 
 interface
 
+const
+  NOMBRE_INV_JEU = 10;
+
 type
   TypeSexe = (m, f);
+  TypeEquipement = Array[1..4] of Integer;
+  TypeInventaire = Array[1..NOMBRE_INV_JEU] of Integer;
 
 function getPseudo() : String;
 procedure setPseudo(n : String);
+
 function getSexe() : TypeSexe;
 function getSexeString() : String;
 procedure setSexeChar(n : Char);
 procedure setSexe(n : TypeSexe);
+
 function getTaille() :Integer;
 procedure setTaille(n :Integer);
+
 function getPoid() :Integer;
 procedure setPoid(n :Integer);
 
@@ -24,18 +32,48 @@ procedure addMoney(m : Integer);
 procedure delMoney(m : Integer);
 function hasMoney(m : Integer) : boolean;
 
+function getInventory() : TypeInventaire;
+function getEquipement() : TypeEquipement;
+
 implementation
 
 uses
   Classes, SysUtils;
-
-
 
 var
    pseudo : String;
    sexe : TypeSexe;
    taille, poid :Integer;
    money : Integer;
+   equipement : TypeEquipement;
+   inventaire : TypeInventaire;
+
+function getEquipement() : TypeEquipement;
+begin
+  getEquipement := equipement;
+end;
+
+function getInventory() : TypeInventaire;
+begin
+  getInventory := inventaire;
+end;
+
+{
+procedure addItemInventory();
+begin
+
+end;
+
+procedure removeItemInventory();
+begin
+
+end;
+
+procedure setItemInventory();
+begin
+
+end;
+}
 
 function getMoney() : Integer;
 

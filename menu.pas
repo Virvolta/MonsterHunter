@@ -16,7 +16,7 @@ function menuInventaire():integer;
 
 implementation
 uses
-  Classes, SysUtils, ihm, logique, personnage;
+  Classes, SysUtils, ihm, logique, personnage, controle;
 
 var
    pos : coordonnees;
@@ -85,7 +85,27 @@ begin
   menuPrincipal := b;
 
 end;
+{function menuPrincipal() : integer;
+var
+  ch : char;
+begin;
+  {repeat
+    ch:=ReadKey;
+    case ch of
+     #0 : begin
+            ch:=ReadKey; {Read ScanCode}
+            case ch of
+             #75 : WriteLn('Left');
+             #77 : WriteLn('Right');
+            end;
+          end;
+    #27 : WriteLn('ESC');
+    end;
+  until ch=#27 {Esc}}
 
+  readln();
+  menuPrincipal := 1;
+end;}
 
 procedure menuPerso();
 
@@ -365,6 +385,8 @@ begin
   readln(j);
   menuInventaire:=j;
 end;
+
+
 
 
 end.
