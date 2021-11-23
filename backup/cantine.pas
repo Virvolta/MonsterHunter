@@ -5,14 +5,19 @@ unit cantine;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils,ihm,logique;
 
 procedure defense();
 procedure degats();
 procedure vie();
 procedure vitesse();
+function menuCantine():Integer;
 
 implementation
+
+var
+   pos : coordonnees;
+
 function menuCantine():Integer;
 var
    f:Integer;
@@ -54,7 +59,7 @@ begin
   pos.y := 13;
   ecrireEnPosition(pos, 'Vous avez un boost de 5 en defense ');
   readln(k);
-  if (k = '')then cantine()
+  if (k = '')then cantine.
   else defense();
 end;
 

@@ -1,11 +1,11 @@
-unit cantine;
+unit uniteCantine;
 
 {$mode ObjFPC}{$H+}
 
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils,ihm,logique;
 
 procedure defense();
 procedure degats();
@@ -14,6 +14,10 @@ procedure vitesse();
 function menuCantine():Integer;
 
 implementation
+
+var
+   pos : coordonnees;
+
 function menuCantine():Integer;
 var
    f:Integer;

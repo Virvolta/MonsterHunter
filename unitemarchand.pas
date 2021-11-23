@@ -1,17 +1,20 @@
-unit marchand;
+unit uniteMarchand;
 
 {$mode ObjFPC}{$H+}
 
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils,ihm,logique;
 
 function menuMarchand(): Integer;
 function menuVente():Integer;
 procedure menuAchat;
 
 implementation
+
+var
+   pos : coordonnees;
 
 function menuMarchand(): Integer;
 var

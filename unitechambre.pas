@@ -1,17 +1,20 @@
-unit chambre;
+unit uniteChambre;
 
 {$mode ObjFPC}{$H+}
 
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils,ihm,logique;
 
 function menuChambre():Integer;
 procedure menuLit();
 function menuArmoire():Integer;
 
 implementation
+
+var
+   pos : coordonnees;
 
 function menuChambre():Integer;
 var

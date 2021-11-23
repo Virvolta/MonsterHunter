@@ -15,7 +15,7 @@ procedure inventaire();
 
 implementation
 uses
-  Classes, SysUtils, menu;
+  Classes, SysUtils, menu,uniteCantine,uniteChambre,uniteMarchand;
 
 procedure start();
 begin

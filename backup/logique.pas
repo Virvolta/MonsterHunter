@@ -15,7 +15,7 @@ procedure inventaire();
 
 implementation
 uses
-  Classes, SysUtils, menu;
+  Classes, SysUtils, menu,uniteCantine,uniteChambre,uniteMarchand;
 
 procedure start();
 begin
@@ -59,9 +59,9 @@ procedure cantine();
 begin
   case menuCantine() of
        1: defense;
-       //2: degats;
-       //3: vie;
-       //4: vitesse;
+       2: degats;
+       3: vie;
+       4: vitesse;
        5: pieces();
   else cantine();
   end;
@@ -80,7 +80,7 @@ begin
   case menuVente() of
        1: inventaire();
        //2: validationVente();
-       3: marchand();
+       3: uniteMarchand();
   else vente()
   end;
 end;

@@ -25,7 +25,7 @@
     <RunParams>
       <FormatVersion Value="2"/>
     </RunParams>
-    <Units Count="4">
+    <Units Count="7">
       <Unit0>
         <Filename Value="Monster.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -42,6 +42,21 @@
         <Filename Value="logique.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="unitecantine.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uniteCantine"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="unitechambre.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uniteChambre"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="unitemarchand.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uniteMarchand"/>
+      </Unit6>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

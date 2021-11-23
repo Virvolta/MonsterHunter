@@ -1,6 +1,6 @@
 program Monster;
 
-uses menu, IHM, logique;
+uses menu, IHM, logique, uniteCantine, uniteChambre, uniteMarchand;
 
 begin
   start();
