@@ -11,6 +11,7 @@ procedure cantine();
 procedure marchand();
 procedure vente();
 procedure armoire();
+procedure inventaire();
 
 implementation
 uses
@@ -32,7 +33,8 @@ begin
        1: chambre();
        2: forge();
        3: marchand();
-       4: cantine()
+       4: cantine();
+       //5: chasser();
   else pieces()
   end;
 end;
@@ -56,7 +58,7 @@ end;
 procedure cantine();
 begin
   case menuCantine() of
-       //1: defense;
+       1: defense;
        //2: degats;
        //3: vie;
        //4: vitesse;
@@ -76,10 +78,17 @@ end;
 procedure vente();
 begin
   case menuVente() of
-       //1: menuInventaire();
+       1: inventaire();
        //2: validationVente();
        3: marchand();
   else vente()
+  end;
+end;
+procedure inventaire();
+begin
+  case menuInventaire of
+       21: vente();
+  else inventaire()
   end;
 end;
 

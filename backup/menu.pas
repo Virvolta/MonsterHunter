@@ -18,7 +18,11 @@ procedure menuLit();
 function menuArmoire():Integer;
 function menuVente():Integer;
 procedure menuAchat;
-procedure menuInventaire();
+function menuInventaire():integer;
+procedure defense();
+procedure degats();
+procedure vie();
+procedure vitesse();
 
 implementation
 uses
@@ -26,9 +30,11 @@ uses
 
 var
    pos : coordonnees;
-   b : integer;
+
 
 function menuPrincipal() : integer;
+var
+    b : integer;
 begin
   effacerEcran();
   dessinerCadreXY(28,13,90,21,simple,255,0);
@@ -89,14 +95,15 @@ begin
   menuPrincipal := b;
 
 end;
- var
-    nom : string;
-    prenom : string;
-    sex : string;
-    taille : real;
-    poids : real;
+
 
 procedure menuPerso();
+var
+   nom : string;
+   prenom : string;
+   sexe : string[1];
+   taille : real;
+   poids : real;
 begin
   effacerEcran();
   couleurTexte(4);
@@ -131,7 +138,7 @@ begin
   pos.x := 14;
   pos.y := 11;
   ecrireEnPosition(pos, 'Sexe(M ou F) : ');
-  readln(sex);
+  readln(sexe);
   pos.x := 14;
   pos.y := pos.y+1;
   ecrireEnPosition(pos, 'Nom : ');
@@ -151,10 +158,11 @@ begin
   menuLauncher();
 end;
 
-var
-   p: string;
+
 
 procedure menuLauncher();
+var
+   p: string;
 begin
   pos.x := 14;
   pos.y := 19;
@@ -163,9 +171,10 @@ begin
   pieces();
 end;
 
+
+function menuHistoire() : Integer;
 var
    a : Integer;
-function menuHistoire() : Integer;
 begin
 effacerEcran();
 dessinerCadreXY(10,7,110,20,simple,255,0);
@@ -235,10 +244,10 @@ pos.y := 14;
 ecrireEnPosition(pos, 'Bonne journee');
 end;
 
-var
-   c : integer;
 
 function menuJeu() : Integer;
+var
+   c : integer;
 begin
   effacerEcran();
   dessinerCadreXY(2,2,27,4,simple,255,0);
@@ -259,14 +268,20 @@ begin
   pos.y := 23;
   ecrireEnPosition(pos, '4)Aller a la cantine');
   pos.x := 53;
+  pos.y := 3;
+  ecrireEnPosition(pos, '5)Chasser ');
+  pos.x := 53;
   pos.y := 13;
   ecrireEnPosition(pos, 'Choix : ');
+
   readln(c);
   menuJeu := c;
 end;
+
+
+function menuChambre():Integer;
 var
    d : Integer;
-function menuChambre():Integer;
 begin
   effacerEcran();
   dessinerCadreXY(2,3,50,26,simple,255,0);
@@ -289,9 +304,10 @@ begin
   menuChambre := d;
 
 end;
+
+procedure menuLit();
 var
    e:string;
-procedure menuLit();
 begin
   effacerEcran();
   dessinerCadreXY(38,2,86,25,simple,255,0);
@@ -302,9 +318,11 @@ begin
   if (e = '')then chambre()
   else menuLit();
 end;
+
+
+function menuArmoire():Integer;
 var
    i:Integer;
-function menuArmoire():Integer;
 begin
   effacerEtColorierEcran(6);
   dessinerCadreXY(2,2,50,25,simple,0,6);
@@ -328,10 +346,10 @@ begin
 
 end;
 
-var
-   g: integer;
 
 function menuMarchand(): Integer;
+var
+   g: integer;
 begin
   effacerEcran();
   dessinerCadreXY(2,3,50,26,simple,255,0);
@@ -354,10 +372,10 @@ begin
   menuMarchand := g;
 end;
 
-var
-   h: integer;
 
 function menuVente():Integer;
+var
+   h: integer;
 begin
   effacerEcran();
   dessinerCadreXY(2,3,50,26,simple,255,0);
@@ -389,28 +407,28 @@ begin
 
 end;
 
-var
-   f:Integer;
 
 function menuCantine():Integer;
+var
+   f:Integer;
 begin
   effacerEcran();
-  dessinerCadreXY(40,5,80,25,simple,255,0);
-  pos.x := 45;
+  dessinerCadreXY(40,5,100,25,simple,255,0);
+  pos.x := 41;
   pos.y := 7;
   ecrireEnPosition(pos, 'Que voulez-vous manger : ');
   pos.x := pos.x;
   pos.y := pos.y+2;
-  ecrireEnPosition(pos, '1)BOOST defense :''nom plat'' (prix)');
+  ecrireEnPosition(pos, '1)BOOST defense : Risoto au champi vitalis : 15');
   pos.x := pos.x;
   pos.y := pos.y+2;
-  ecrireEnPosition(pos, '2)BOOST degats :''nom plat'' (prix)');
+  ecrireEnPosition(pos, '2)BOOST degats : soupe de corne de dragon : 20');
   pos.x := pos.x;
   pos.y := pos.y+2;
-  ecrireEnPosition(pos, '3)BOOST vie :''nom plat'' (prix)');
+  ecrireEnPosition(pos, '3)BOOST vie : viande grillee : 12');
   pos.x := pos.x;
   pos.y := pos.y+2;
-  ecrireEnPosition(pos, '4)BOOST vitesse :''nom plat'' (prix)');
+  ecrireEnPosition(pos, '4)BOOST vitesse : saute de pimants : 10');
   pos.x := pos.x;
   pos.y := pos.y+2;
   ecrireEnPosition(pos, '5)Retour a la ville : ');
@@ -420,7 +438,10 @@ begin
   readln(f);
   menuCantine:=f;
 end;
-procedure menuInventaire();
+
+function menuInventaire():integer;
+var
+   j:integer;
 begin
   effacerEcran();
   dessinerCadreXY(30,1,100,30,simple,255,0);
@@ -429,9 +450,9 @@ begin
   ecrireEnPosition(pos, '1');
   dessinerCadreXY(40,3,50,7,simple,255,0);
   dessinerCadreXY(51,3,61,7,simple,255,0);
-  dessinerCadreXY(61,3,71,7,simple,255,0);
-  dessinerCadreXY(71,3,81,7,simple,255,0);
-  dessinerCadreXY(81,3,91,7,simple,255,0);
+  dessinerCadreXY(62,3,72,7,simple,255,0);
+  dessinerCadreXY(73,3,83,7,simple,255,0);
+  dessinerCadreXY(84,3,94,7,simple,255,0);
 
   pos.x := 38;
   pos.y := 15;
@@ -460,7 +481,71 @@ begin
   dessinerCadreXY(73,23,83,27,simple,255,0);
   dessinerCadreXY(84,23,94,27,simple,255,0);
 
+  pos.x := 31;
+  pos.y := 29;
+  ecrireEnPosition(pos, '21)Retourner au menu vente');
+  pos.x := 31;
+  pos.y := 2;
+  ecrireEnPosition(pos, 'choix : ');
+  readln(j);
+  menuInventaire:=j;
 end;
 
+procedure defense();
+var
+   k:string;
+begin
+  effacerEcran();
+  dessinerCadreXY(38,2,86,25,simple,255,0);
+  pos.x := 45;
+  pos.y := 13;
+  ecrireEnPosition(pos, 'Vous avez un boost de 5 en defense ');
+  readln(k);
+  if (k = '')then cantine()
+  else defense();
+end;
+
+procedure degats();
+var
+   k:string;
+begin
+  effacerEcran();
+  dessinerCadreXY(38,2,86,25,simple,255,0);
+  pos.x := 45;
+  pos.y := 13;
+  ecrireEnPosition(pos, 'Vous avez un boost de 3 en degats ');
+  readln(k);
+  if (k = '')then cantine()
+  else degats();
+end;
+procedure vie();
+var
+   k:string;
+begin
+  effacerEcran();
+  dessinerCadreXY(38,2,86,25,simple,255,0);
+  pos.x := 48;
+  pos.y := 13;
+  ecrireEnPosition(pos, 'Vous avez un coeur en plus ');
+  readln(k);
+  if (k = '')then cantine()
+  else vie();
+end;
+procedure vitesse();
+var
+   k:string;
+begin
+  effacerEcran();
+  dessinerCadreXY(38,2,86,25,simple,255,0);
+  pos.x := 40;
+  pos.y := 13;
+  ecrireEnPosition(pos, 'Vous pouvez vous deplasser 1,5 fois plus vite ');
+  pos.x := 50;
+  pos.y := 14;
+  ecrireEnPosition(pos, 'pendant 2 minutes ');
+  readln(k);
+  if (k = '')then cantine()
+  else vitesse();
+end;
 end.
 
