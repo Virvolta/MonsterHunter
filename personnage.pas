@@ -4,13 +4,16 @@ unit personnage;
 
 interface
 
+uses
+  Classes, SysUtils, uniteforge;
+
 const
   NOMBRE_INV_JEU = 10;
 
 type
   TypeSexe = (m, f);
-  TypeEquipement = Array[1..4] of Integer;
-  TypeInventaire = Array[1..NOMBRE_INV_JEU] of Integer;
+  TypeEquipement = Array[1..4] of Item;
+  TypeInventaire = Array[1..NOMBRE_INV_JEU] of Item;
 
 function getPseudo() : String;
 procedure setPseudo(n : String);
@@ -37,8 +40,7 @@ function getEquipement() : TypeEquipement;
 
 implementation
 
-uses
-  Classes, SysUtils;
+
 
 var
    pseudo : String;
@@ -58,13 +60,12 @@ begin
   getInventory := inventaire;
 end;
 
-{
-procedure addItemInventory();
+procedure removeItemInventory();
 begin
-
+  writeln(length(inventaire));
 end;
 
-procedure removeItemInventory();
+{procedure addItemInventory();
 begin
 
 end;

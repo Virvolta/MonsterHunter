@@ -1,6 +1,6 @@
 program Monster;
 
-uses menu, IHM, logique, uniteCantine, uniteChambre, uniteMarchand, controller,
+uses menu, IHM, logique, uniteCantine, uniteChambre, uniteMarchand,
   controle, uniteforge;
 
 var
@@ -8,6 +8,7 @@ var
 
 begin
   start();
+  removeItemInventory();
   readln();
 end.
 

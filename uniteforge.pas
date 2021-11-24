@@ -63,11 +63,11 @@ begin
 
   //Epee bois
   if (
-  (item1.id = 4 and item1.count >= 3)
+  ((item1.id = 4) and (item1.count >= 3))
   or
-  (item2.id = 4 and item2.count >= 3)
+  ((item2.id = 4) and (item2.count >= 3))
   or
-  (item1.id = 4 and item2.id = 4 and item1.count + item2.count >= 3)
+  ((item1.id = 4) and (item2.id = 4) and (item1.count + item2.count >= 3))
   )
   then
   begin
@@ -75,8 +75,13 @@ begin
      itemResult.count:=1;
   end
   //Epee fer
-  if ((item1.id = 4 and item1.count >= 1)) or (item2.id = 4 and item2.count >= 1))
-  and ((item1.id = 2 and item1.count >= 2) or (item2.id = 2 and item2.count >= 2))
+  else if (
+  ((item1.id = 4) and (item1.count >= 1))
+  or
+  ((item2.id = 4) and (item2.count >= 1))
+  and
+  (((item1.id = 2) and (item1.count >= 2)) or ((item2.id = 2) and (item2.count >= 2)))
+  )
   then
   begin
      itemResult.id:=50;
