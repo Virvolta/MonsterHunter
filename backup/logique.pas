@@ -12,6 +12,8 @@ procedure marchand();
 procedure vente();
 procedure armoire();
 procedure inventaire();
+procedure achat();
+procedure validationAchat();
 
 implementation
 uses
@@ -38,6 +40,7 @@ begin
   else pieces()
   end;
 end;
+
 procedure chambre();
 begin
   case menuChambre() of
@@ -66,24 +69,51 @@ begin
   else cantine();
   end;
 end;
+
 procedure marchand();
 begin
   case menuMarchand() of
-       1: menuAchat;
+       1: achat;
        2: vente();
        3: pieces();
   else marchand()
   end;
 end;
+
+procedure achat();
+begin
+  case menuAchat() of
+       1: validationAchat();
+       2: validationAchat();
+       3: potion();
+       4: potion();
+       5: potion();
+       6: potion();
+       7: potion();
+       8: marchand();
+  else achat()
+  end;
+end;
+
+procedure validationAchat();
+begin
+  case potion() of
+       1: Oui();
+       2: achat();
+  else validationAchat()
+  end;
+end;
+
 procedure vente();
 begin
   case menuVente() of
        1: inventaire();
        //2: validationVente();
-       3: uniteMarchand();
+       3: marchand();
   else vente()
   end;
 end;
+
 procedure inventaire();
 begin
   case menuInventaire of

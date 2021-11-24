@@ -8,7 +8,6 @@ var
 
 begin
   start();
-  removeItemInventory();
   readln();
 end.
 
