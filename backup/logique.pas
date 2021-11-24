@@ -85,11 +85,11 @@ begin
   case menuAchat() of
        1: validationAchat();
        2: validationAchat();
-       3: potion();
-       4: potion();
-       5: potion();
-       6: potion();
-       7: potion();
+       3: validationAchat();
+       4: validationAchat();
+       5: validationAchat();
+       6: validationAchat();
+       7: validationAchat();
        8: marchand();
   else achat()
   end;
