@@ -10,7 +10,6 @@ function menuHistoire() : Integer;
 procedure menuPerso();
 procedure menuLauncher();
 function menuJeu() : Integer;
-procedure forge();
 function menuInventaire():integer;
 
 
@@ -327,11 +326,6 @@ begin
 
   readln(c);
   menuJeu := c;
-end;
-
-procedure forge();
-begin
-
 end;
 
 function menuInventaire():integer;

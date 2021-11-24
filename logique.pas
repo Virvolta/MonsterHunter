@@ -33,7 +33,7 @@ procedure pieces();
 begin
   case menuJeu() of
        1: chambre();
-       2: forge();
+       //2: forge();
        3: marchand();
        4: cantine();
        //5: chasser();
