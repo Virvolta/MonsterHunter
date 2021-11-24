@@ -11,6 +11,7 @@ type
   item=record
     id: Integer;
     count:Integer;
+    unique:Boolean;
   end;
 
 function getCraftResult(item1,item2:item):item;

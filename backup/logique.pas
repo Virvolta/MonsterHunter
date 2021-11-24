@@ -80,7 +80,7 @@ begin
   case menuVente() of
        1: inventaire();
        //2: validationVente();
-       3: uniteMarchand();
+       3: marchand();
   else vente()
   end;
 end;
