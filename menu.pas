@@ -171,10 +171,11 @@ procedure menuPerso();
 
 var
     nom : string;
-    selectsexe : char;
-    taille : Integer;
-    poids : Integer;
+    selectsexe : string;
+    taille : string;
+    poids : string;
     pos : coordonnees;
+    b : boolean;
 
 begin
   effacerEcran();
@@ -210,7 +211,7 @@ begin
   pos.y := 11;
   ecrireEnPosition(pos, 'Sexe(m ou f) : ');
   readln(selectsexe);
-  setSexeChar(selectsexe);
+  setSexeChar(selectsexe[1]);
   pos.x := 14;
   pos.y := pos.y+1;
   ecrireEnPosition(pos, 'Pseudo : ');
@@ -220,12 +221,38 @@ begin
   pos.y := pos.y+1;
   ecrireEnPosition(pos, 'Taille (cm): ');
   readln(taille);
-  setTaille(taille);
+  //setTaille(taille);
+  b := false;
+  repeat
+    try
+       setTaille(StrToInt(taille));
+       b := true;
+    except
+          on Exception : EConvertError do
+          begin
+              ecrireEnPosition(pos, 'Taille (cm): ');
+              readln(taille);
+          end;
+  end;
+  until b;
   pos.x := 14;
   pos.y := pos.y+1;
   ecrireEnPosition(pos, 'Poids (Kg): ');
   readln(poids);
-  setPoid(poids);
+  //setPoid(poids);
+  b := false;
+  repeat
+    try
+       setPoid(StrToInt(poids));
+       b := true;
+    except
+          on Exception : EConvertError do
+          begin
+              ecrireEnPosition(pos, 'Poids (Kg): ');
+              readln(poids);
+          end;
+  end;
+  until b;
   menuLauncher();
 end;
 
