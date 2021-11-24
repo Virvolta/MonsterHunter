@@ -288,12 +288,40 @@ end;
 function menuHistoire() : Integer;
 var
    a : Integer;
+   i : Integer;
+   c : Integer;
 begin
 effacerEcran();
-dessinerCadreXY(10,7,110,20,simple,255,0);
-couleurTexte(4);
+for i := 0 to 29 do
+      if (i >= 15) then
+          begin
+          if (i >= 20) then
+              begin
+                   ColorierZone(14,14,10,107,i);
+                   ColorierZone(10,10,0,9,i);
+                   ColorierZone(10,10,108,119,i);
+              end
+          else
+              begin
+                   ColorierZone(14,14,10,107,i);
+                   ColorierZone(3,3,0,9,i);
+                   ColorierZone(3,3,108,119,i);
+              end;
+
+          end
+      else
+          begin
+          c := (19 - i) * 3;
+          ColorierZone(14,14,c - 10,129-c,i);
+          ColorierZone(3,3,0,c - 11,i);
+          ColorierZone(3,3,128-c,119,i);
+          end
+
+  ;
+
+  couleurs(0,14);
 pos.x := 40;
-pos.y := 1;
+pos.y := 5;
 ecrireEnPosition(pos,' _____       __ _           _ ');
 pos.x := pos.x;
 pos.y := pos.y+1;
@@ -311,9 +339,8 @@ pos.x := pos.x;
 pos.y := pos.y+1;
 ecrireEnPosition(pos,'|_|   |_|  \___|_|\__,_|\__,_|\___|');
 
-couleurTexte(15);
-pos.x := 14;
-pos.y := 9;
+pos.x := 15;
+pos.y := 16;
 ecrireEnPosition(pos, 'La commission des chasseurs est une institution chargee d''etudier et de chasser les ');
 pos.x := pos.x;
 pos.y := pos.y+1;
