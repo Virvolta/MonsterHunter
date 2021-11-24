@@ -14,6 +14,7 @@ procedure armoire();
 procedure inventaire();
 procedure achat();
 procedure validationAchat();
+procedure forge();
 
 implementation
 uses
@@ -33,7 +34,7 @@ procedure pieces();
 begin
   case menuJeu() of
        1: chambre();
-       2: forge();
+       //2: forge();
        3: marchand();
        4: cantine();
        //5: chasser();
@@ -120,6 +121,46 @@ begin
        21: vente();
   else inventaire()
   end;
+end;
+
+procedure forge();
+var
+
+  item1,item2:item;
+  i:integer;
+  j:integer;
+  k:integer;
+  m:integer;
+
+begin
+
+  for i:=1 to 4 do
+    for m:=1 to 4 do
+      for j:=1 to 8 do
+          for k:=1 to 8 do
+            begin
+              item1.id:=i;
+              item1.count:=j;
+              item2.id:=m;
+              item2.count:=k;
+
+              writeln(item1.id,' (',item1.count,')','  +  ',item2.id,' (',item2.count,') ',' = ', getCraftResult(item1,item2).id);
+
+            end;
+
+  {item1.id:=1;
+  item1.count:=1;
+  item2.id:=1;
+  item2.count:=1;
+
+  res.id:=getCraftResult(item1,item2).id;
+  res.count:=getCraftResult(item1,item2).count;
+  writeln(getCraftResult(item1,item2).id);}
+
+  {case menuForge() of
+       1: menuInventaire();
+       2: getCraftResult(item1,item2);
+  end;}
 end;
 
 end.

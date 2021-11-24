@@ -2,13 +2,13 @@
 <CONFIG>
   <ProjectSession>
     <PathDelim Value="\"/>
-    <Version Value="12"/>
+    <Version Value="11"/>
     <BuildModes Active="Default"/>
     <Units Count="27">
       <Unit0>
         <Filename Value="Monster.lpr"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="11" Y="10"/>
+        <CursorPos X="3" Y="7"/>
         <UsageCount Value="80"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -24,9 +24,7 @@
       <Unit2>
         <Filename Value="menu.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="151"/>
         <CursorPos Y="161"/>
         <UsageCount Value="80"/>
         <Loaded Value="True"/>
@@ -35,7 +33,8 @@
         <Filename Value="logique.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="10" Y="36"/>
+        <TopLine Value="142"/>
+        <CursorPos X="77" Y="21"/>
         <UsageCount Value="79"/>
         <Loaded Value="True"/>
       </Unit3>
@@ -64,7 +63,6 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="uniteMarchand"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="52"/>
         <CursorPos X="14" Y="150"/>
         <UsageCount Value="68"/>
         <Loaded Value="True"/>
@@ -88,18 +86,20 @@
       <Unit9>
         <Filename Value="uniteforge.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <CursorPos X="8" Y="78"/>
+        <TopLine Value="124"/>
+        <CursorPos X="20" Y="14"/>
         <UsageCount Value="63"/>
         <Loaded Value="True"/>
       </Unit9>
       <Unit10>
-        <Filename Value="R:\dijon\enseignement\etudiants\INFO-DIJ\BUT-INFO-DIJ-1\!CommunROnly\Semestre 1\S1_01 - Implémentation d&apos;un besoin client\TD - Interface graphique\BlackJack\GestionEcran.pas"/>
+        <Filename Value="R:\dijon\enseignement\etudiants\INFO-DIJ\BUT-INFO-DIJ-1\!CommunROnly\Semestre 1\S1_01 - Implémentation d'un besoin client\TD - Interface graphique\BlackJack\GestionEcran.pas"/>
         <EditorIndex Value="-1"/>
         <UsageCount Value="6"/>
       </Unit10>
       <Unit11>
-        <Filename Value="R:\dijon\enseignement\etudiants\INFO-DIJ\BUT-INFO-DIJ-1\!CommunROnly\Semestre 1\S1_01 - Implémentation d&apos;un besoin client\TD - Interface graphique\BlackJack\unitblackjackihm.pas"/>
+        <Filename Value="R:\dijon\enseignement\etudiants\INFO-DIJ\BUT-INFO-DIJ-1\!CommunROnly\Semestre 1\S1_01 - Implémentation d'un besoin client\TD - Interface graphique\BlackJack\unitblackjackihm.pas"/>
         <UnitName Value="unitBlackJackIHM"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
@@ -144,7 +144,8 @@
       <Unit17>
         <Filename Value="personnage.pas"/>
         <EditorIndex Value="8"/>
-        <CursorPos X="32" Y="8"/>
+        <TopLine Value="141"/>
+        <CursorPos X="58" Y="142"/>
         <UsageCount Value="33"/>
         <Loaded Value="True"/>
       </Unit17>
@@ -205,134 +206,138 @@
         <UsageCount Value="6"/>
       </Unit25>
       <Unit26>
-        <Filename Value="..\..\..\..\Desktop\I.U.T\Semestre 1\S1_01 - Implémentation d&apos;un besoin client\Sujet\GestionEcran.pas"/>
+        <Filename Value="..\..\..\..\Desktop\I.U.T\Semestre 1\S1_01 - Implémentation d'un besoin client\Sujet\GestionEcran.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="300"/>
         <CursorPos X="5" Y="332"/>
         <UsageCount Value="6"/>
       </Unit26>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="personnage.pas"/>
-        <Caret Line="58" Column="15" TopLine="41"/>
-      </Position1>
-      <Position2>
-        <Filename Value="controle.pas"/>
-        <Caret Line="25" Column="86"/>
-      </Position2>
-      <Position3>
-        <Filename Value="menu.pas"/>
-        <Caret Line="19" Column="56"/>
-      </Position3>
-      <Position4>
         <Filename Value="ihm.pas"/>
         <Caret Line="23" Column="15" TopLine="19"/>
-      </Position4>
-      <Position5>
+      </Position1>
+      <Position2>
         <Filename Value="uniteforge.pas"/>
         <Caret Line="12" Column="16"/>
+      </Position2>
+      <Position3>
+        <Filename Value="uniteforge.pas"/>
+        <Caret Line="187" Column="25" TopLine="171"/>
+      </Position3>
+      <Position4>
+        <Filename Value="Monster.lpr"/>
+        <Caret Line="11" Column="25"/>
+      </Position4>
+      <Position5>
+        <Filename Value="personnage.pas"/>
+        <Caret Line="8" Column="32"/>
       </Position5>
       <Position6>
         <Filename Value="uniteforge.pas"/>
-        <Caret Line="187" Column="25" TopLine="171"/>
+        <Caret Line="72" Column="49" TopLine="53"/>
       </Position6>
       <Position7>
-        <Filename Value="Monster.lpr"/>
-        <Caret Line="11" Column="25"/>
+        <Filename Value="uniteforge.pas"/>
+        <Caret Line="66" Column="40" TopLine="53"/>
       </Position7>
       <Position8>
-        <Filename Value="personnage.pas"/>
-        <Caret Line="8" Column="32"/>
+        <Filename Value="uniteforge.pas"/>
+        <Caret Line="78" Column="42" TopLine="46"/>
       </Position8>
       <Position9>
         <Filename Value="uniteforge.pas"/>
-        <Caret Line="72" Column="49" TopLine="53"/>
+        <Caret Line="83" Column="37" TopLine="53"/>
       </Position9>
       <Position10>
         <Filename Value="uniteforge.pas"/>
-        <Caret Line="66" Column="40" TopLine="53"/>
+        <Caret Line="79" Column="92" TopLine="53"/>
       </Position10>
       <Position11>
         <Filename Value="uniteforge.pas"/>
-        <Caret Line="78" Column="42" TopLine="46"/>
+        <Caret Line="83" Column="86" TopLine="57"/>
       </Position11>
       <Position12>
         <Filename Value="uniteforge.pas"/>
-        <Caret Line="83" Column="37" TopLine="53"/>
+        <Caret Line="78" Column="8" TopLine="58"/>
       </Position12>
       <Position13>
-        <Filename Value="uniteforge.pas"/>
-        <Caret Line="79" Column="92" TopLine="53"/>
-      </Position13>
-      <Position14>
-        <Filename Value="uniteforge.pas"/>
-        <Caret Line="83" Column="86" TopLine="57"/>
-      </Position14>
-      <Position15>
-        <Filename Value="uniteforge.pas"/>
-        <Caret Line="78" Column="8" TopLine="58"/>
-      </Position15>
-      <Position16>
         <Filename Value="unitemarchand.pas"/>
         <Caret Line="86" Column="45" TopLine="36"/>
+      </Position13>
+      <Position14>
+        <Filename Value="unitemarchand.pas"/>
+        <Caret Line="73" Column="29" TopLine="72"/>
+      </Position14>
+      <Position15>
+        <Filename Value="logique.pas"/>
+        <Caret Line="84" Column="15" TopLine="66"/>
+      </Position15>
+      <Position16>
+        <Filename Value="logique.pas"/>
+        <Caret Line="82" Column="10" TopLine="66"/>
       </Position16>
       <Position17>
         <Filename Value="unitemarchand.pas"/>
-        <Caret Line="73" Column="29" TopLine="72"/>
+        <Caret Line="118" Column="15" TopLine="115"/>
       </Position17>
       <Position18>
-        <Filename Value="logique.pas"/>
-        <Caret Line="84" Column="15" TopLine="66"/>
+        <Filename Value="unitemarchand.pas"/>
+        <Caret Line="13" Column="12"/>
       </Position18>
       <Position19>
-        <Filename Value="logique.pas"/>
-        <Caret Line="82" Column="10" TopLine="66"/>
+        <Filename Value="unitemarchand.pas"/>
+        <Caret Line="118" Column="17" TopLine="115"/>
       </Position19>
       <Position20>
         <Filename Value="unitemarchand.pas"/>
-        <Caret Line="118" Column="15" TopLine="115"/>
+        <Caret Line="120" Column="18" TopLine="109"/>
       </Position20>
       <Position21>
         <Filename Value="unitemarchand.pas"/>
-        <Caret Line="13" Column="12"/>
+        <Caret Line="149" Column="11" TopLine="129"/>
       </Position21>
       <Position22>
         <Filename Value="unitemarchand.pas"/>
-        <Caret Line="118" Column="17" TopLine="115"/>
+        <Caret Line="121" Column="14" TopLine="108"/>
       </Position22>
       <Position23>
         <Filename Value="unitemarchand.pas"/>
-        <Caret Line="120" Column="18" TopLine="109"/>
+        <Caret Line="128" Column="43" TopLine="119"/>
       </Position23>
       <Position24>
-        <Filename Value="unitemarchand.pas"/>
-        <Caret Line="149" Column="11" TopLine="129"/>
-      </Position24>
-      <Position25>
-        <Filename Value="unitemarchand.pas"/>
-        <Caret Line="121" Column="14" TopLine="108"/>
-      </Position25>
-      <Position26>
-        <Filename Value="unitemarchand.pas"/>
-        <Caret Line="128" Column="43" TopLine="119"/>
-      </Position26>
-      <Position27>
         <Filename Value="logique.pas"/>
         <Caret Line="101" Column="12" TopLine="89"/>
+      </Position24>
+      <Position25>
+        <Filename Value="logique.pas"/>
+        <Caret Line="102" Column="11" TopLine="89"/>
+      </Position25>
+      <Position26>
+        <Filename Value="logique.pas"/>
+        <Caret Line="100" Column="15" TopLine="86"/>
+      </Position26>
+      <Position27>
+        <Filename Value="Monster.lpr"/>
+        <Caret Line="7" Column="5"/>
       </Position27>
       <Position28>
         <Filename Value="logique.pas"/>
-        <Caret Line="102" Column="11" TopLine="89"/>
+        <Caret Line="129" Column="25" TopLine="118"/>
       </Position28>
       <Position29>
         <Filename Value="logique.pas"/>
-        <Caret Line="100" Column="15" TopLine="86"/>
+        <Caret Line="21" Column="77" TopLine="2"/>
       </Position29>
+      <Position30>
+        <Filename Value="uniteforge.pas"/>
+        <Caret Line="14" Column="20"/>
+      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
-      <Modes ActiveMode=""/>
+      <Modes Count="0" ActiveMode=""/>
     </RunParams>
   </ProjectSession>
 </CONFIG>
