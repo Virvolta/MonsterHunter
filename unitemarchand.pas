@@ -9,9 +9,7 @@ uses
 
 function menuMarchand(): Integer;
 function menuVente():Integer;
-function menuAchat():Integer;
-function potion() : Integer;
-procedure Oui();
+procedure menuAchat;
 
 implementation
 
@@ -72,87 +70,10 @@ begin
   menuVente := h;
 
 end;
-
-function menuAchat():Integer;
-var
-   a:integer;
+procedure menuAchat;
 begin
-  effacerEcran();
-  dessinerCadreXY(20,3,100,26,simple,255,0);
-  dessinerCadreXY(2,27,118,29,simple,255,0);
-  dessinerCadreXY(2,0,118,2,simple,255,0);
-  pos.x := 50;
-  pos.y := 1;
-  ecrireEnPosition(pos, '8)Retour au menu marchand');
-  pos.x := 52;
-  pos.y := 4;
-  ecrireEnPosition(pos, 'Acheter des objets : ');
-  pos.x := 35;
-  pos.y := 9;
-  ecrireEnPosition(pos, '1) Potion de vie : 15');
-  pos.x := 35;
-  pos.y := 11;
-  ecrireEnPosition(pos, '2) Potion de vie : (prix)');
-  pos.x := 35;
-  pos.y := 13;
-  ecrireEnPosition(pos, '3) Potion de vie : (prix)');
-  pos.x := 35;
-  pos.y := 15;
-  ecrireEnPosition(pos, '4) Potion de vie : (prix)');
-  pos.x := 35;
-  pos.y := 17;
-  ecrireEnPosition(pos, '5) Potion de vie : (prix)');
-  pos.x := 35;
-  pos.y := 19;
-  ecrireEnPosition(pos, '6) Potion de vie : (prix)');
-  pos.x := 35;
-  pos.y := 21;
-  ecrireEnPosition(pos, '7) Potion de vie : (prix)');
-
-  pos.x := 56;
-  pos.y := 28;
-  ecrireEnPosition(pos, 'Choix : ');
-  readln(a);
-  menuAchat := a;
 
 end;
 
-function potion() : Integer;
-var
-   p:Integer;
-begin
-  effacerEcran();
-  dessinerCadreXY(2,14,118,16,simple,255,0);
-  dessinerCadreXY(2,27,118,29,simple,255,0);
-  pos.x := 40;
-  pos.y := 15;
-  ecrireEnPosition(pos, 'Voulez vous vraiment acheter cette objet');
-  pos.x := 30;
-  pos.y := 28;
-  ecrireEnPosition(pos, '1) Oui');
-  pos.x := 80;
-  pos.y := 28;
-  ecrireEnPosition(pos, '2) Non');
-  pos.x := 55;
-  pos.y := 28;
-  ecrireEnPosition(pos, 'choix : ');
-  readln(p);
-  potion := p;
-
-end;
-
-procedure Oui();
-var
-   e:string;
-begin
-  effacerEcran();
-  dessinerCadreXY(38,2,86,25,simple,255,0);
-  pos.x := 43;
-  pos.y := 13;
-  ecrireEnPosition(pos, 'votre objet est dans votre inventaire');
-  readln(e);
-  if (e = '')then achat()
-  else Oui();
-end;
 end.
 

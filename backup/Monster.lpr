@@ -1,6 +1,6 @@
 program Monster;
 
-uses menu, IHM, logique, uniteCantine, uniteChambre, uniteMarchand,
+uses menu, IHM, logique, uniteCantine, uniteChambre, uniteMarchand, controller,
   controle, uniteforge;
 
 var
