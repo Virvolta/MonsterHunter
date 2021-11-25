@@ -18,7 +18,7 @@ procedure forge();
 
 implementation
 uses
-  Classes, SysUtils, menu,uniteCantine,uniteChambre,uniteMarchand;
+  Classes, SysUtils, menu,uniteCantine,uniteChambre,uniteMarchand,uniteforge;
 
 procedure start();
 begin

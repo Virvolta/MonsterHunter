@@ -6,7 +6,7 @@ interface
 
 function menuPrincipal() : Integer;
 procedure menuQuitter();
-function menuHistoire() : Integer;
+procedure menuHistoire();
 procedure menuPerso();
 procedure menuLauncher();
 function menuJeu() : Integer;
@@ -96,12 +96,13 @@ begin;
   pos.x := 50;
   pos.y := 17;
   ecrireEnPosition(pos, 'Quitter');
+  pos.x := 30;
+  pos.y := 20;
+  ecrireEnPosition(pos,'- appuyer sur espace pour selectionner');
   deplacerCurseurXY(0,0);
   select := 1;
   repeat
     ch:=ReadKey;
-    if (ch = '') then
-        writeln('good');
     case ch of
          'P' :
              begin
@@ -221,7 +222,6 @@ begin
   pos.y := pos.y+1;
   ecrireEnPosition(pos, 'Taille (cm): ');
   readln(taille);
-  //setTaille(taille);
   b := false;
   repeat
     try
@@ -233,8 +233,10 @@ begin
               ecrireEnPosition(pos, 'Taille (cm): ');
               readln(taille);
           end;
-  end;
+
+    end;
   until b;
+  //setTaille(taille);
   pos.x := 14;
   pos.y := pos.y+1;
   ecrireEnPosition(pos, 'Poids (Kg): ');
@@ -307,16 +309,17 @@ begin
   ecrireEnPosition(pos, concat('Votre Poid : ', IntToStr(getPoid()), ' kg'));
   pos.x := 14;
   pos.y := 19;
-  ecrireEnPosition(pos, 'appuyer sur entree pour continuer : ');
+  ecrireEnPosition(pos, '- appuyer sur espace pour continuer');
   readln(p);
   pieces();
 end;
 
-function menuHistoire() : Integer;
+procedure menuHistoire();
 var
    a : Integer;
    i : Integer;
    c : Integer;
+   ch : char;
 begin
 effacerEcran();
 for i := 0 to 29 do
@@ -395,10 +398,10 @@ pos.y := pos.y+1;
 ecrireEnPosition(pos,'d''Aeternum.');
 pos.x := pos.x;
 pos.y := pos.y+4;
-ecrireEnPosition(pos,'1) Revenir au menu principale : ');
-readln(a);
-menuHistoire := a;
-
+ecrireEnPosition(pos,'appuyer sur espace pour revenir au menu principale : ');
+repeat
+    ch:=ReadKey;
+until ch= ' ';
 end;
 
 procedure menuQuitter();

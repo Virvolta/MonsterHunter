@@ -24,7 +24,11 @@ procedure start();
 begin
   case menuPrincipal() of
        1: menuPerso();
-       2:if (menuHistoire() = 1) then start();
+       2:
+         begin
+           menuHistoire();
+           start();
+         end;
        3: menuQuitter();
   else start()
   end;

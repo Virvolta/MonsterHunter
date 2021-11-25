@@ -6,11 +6,10 @@ interface
 
 function menuPrincipal() : Integer;
 procedure menuQuitter();
-function menuHistoire() : Integer;
+procedure menuHistoire();
 procedure menuPerso();
 procedure menuLauncher();
 function menuJeu() : Integer;
-procedure forge();
 function menuInventaire():integer;
 
 
@@ -21,14 +20,34 @@ uses
 var
    pos : coordonnees;
 
-
 function menuPrincipal() : integer;
 var
-    b : integer;
-begin
+  ch : char;
+  i : Integer;
+  select : Integer;
+begin;
   effacerEcran();
-  dessinerCadreXY(28,13,90,21,simple,255,0);
-  couleurTexte(4);
+  for i := 0 to 29 do
+      if (i <= 15) then
+          ColorierZone(3,3,0,119,i)
+      else
+          if (i = 16) then
+              begin
+                   ColorierZone(10,10,6,113,i);
+                   ColorierZone(3,3,0,5,i);
+                   ColorierZone(3,3,114,119,i);
+              end
+          else if (i = 17) then
+              begin
+                   ColorierZone(10,10,3,116,i);
+                   ColorierZone(3,3,0,2,i);
+                   ColorierZone(3,3,117,119,i);
+              end
+          else
+              ColorierZone(10,10,0,119,i)
+
+  ;
+  couleurs(15,3);
   pos.x := 25;
   pos.y := 0;
   ecrireEnPosition(pos, ' __  __                 _              _    _             _ ');
@@ -47,8 +66,6 @@ begin
   pos.x := pos.x;
   pos.y := pos.y+1;
   ecrireEnPosition(pos, '|_|  |_|\___/|_| |_|___/\__\___|_|    |_|  |_|\__,_|_| |_|\__\___|_|');
-
-
   pos.x := 33;
   pos.y := pos.y+1;
   ecrireEnPosition(pos,  ' _   _                                    _     _');
@@ -67,54 +84,99 @@ begin
   pos.x := 33;
   pos.y := pos.y+1;
   ecrireEnPosition(pos, '|_| \_|\___| \_/\_/     \_/\_/ \___/|_|  |_|\__,_|');
-
-  couleurTexte(15);
+  dessinerCadreXY(28,13,90,21,simple,6,6);
+  couleurs(0,15);
   pos.x := 50;
   pos.y := 15;
-  ecrireEnPosition(pos, '1) Nouvelle partie');
+  ecrireEnPosition(pos, 'Nouvelle partie');
+  couleurs(0,6);
   pos.x := 50;
   pos.y := 16;
-  ecrireEnPosition(pos, '2) Histoire du jeu');
+  ecrireEnPosition(pos, 'Histoire du jeu');
   pos.x := 50;
   pos.y := 17;
-  ecrireEnPosition(pos, '3) Quitter');
-  pos.x := 50;
+  ecrireEnPosition(pos, 'Quitter');
+  pos.x := 30;
   pos.y := 20;
-  ecrireEnPosition(pos, 'Choix : ');
-  readln(b);
-  menuPrincipal := b;
-
-end;
-{function menuPrincipal() : integer;
-var
-  ch : char;
-begin;
-  {repeat
+  ecrireEnPosition(pos,'appuyer sur espace pour selectionner : ');
+  deplacerCurseurXY(0,0);
+  select := 1;
+  repeat
     ch:=ReadKey;
     case ch of
-     #0 : begin
-            ch:=ReadKey; {Read ScanCode}
-            case ch of
-             #75 : WriteLn('Left');
-             #77 : WriteLn('Right');
-            end;
-          end;
-    #27 : WriteLn('ESC');
+         'P' :
+             begin
+                  select := select+1;
+                  if (select >= 4) then
+                     select := 1;
+             end;
+         'H' :
+             begin
+              select := select-1;
+              if (select <= 0) then
+                      select := 3;
+             end;
     end;
-  until ch=#27 {Esc}}
-
-  readln();
-  menuPrincipal := 1;
-end;}
+    case select of
+         1:
+           begin
+                couleurs(0,15);
+                pos.x := 50;
+                pos.y := 15;
+                ecrireEnPosition(pos, 'Nouvelle partie');
+                couleurs(0,6);
+                pos.x := 50;
+                pos.y := 16;
+                ecrireEnPosition(pos, 'Histoire du jeu');
+                pos.x := 50;
+                pos.y := 17;
+                ecrireEnPosition(pos, 'Quitter');
+                deplacerCurseurXY(0,0);
+           end;
+         2:
+           begin
+                couleurs(0,15);
+                pos.x := 50;
+                pos.y := 16;
+                ecrireEnPosition(pos, 'Histoire du jeu');
+                couleurs(0,6);
+                pos.x := 50;
+                pos.y := 15;
+                ecrireEnPosition(pos, 'Nouvelle partie');
+                pos.x := 50;
+                pos.y := 17;
+                ecrireEnPosition(pos, 'Quitter');
+                deplacerCurseurXY(0,0);
+           end;
+         3:
+           begin
+                couleurs(0,15);
+                pos.x := 50;
+                pos.y := 17;
+                ecrireEnPosition(pos, 'Quitter');
+                couleurs(0,6);
+                pos.x := 50;
+                pos.y := 16;
+                ecrireEnPosition(pos, 'Histoire du jeu');
+                pos.x := 50;
+                pos.y := 15;
+                ecrireEnPosition(pos, 'Nouvelle partie');
+                deplacerCurseurXY(0,0);
+           end;
+    end;
+  until ch= ' ';
+  menuPrincipal := select;
+end;
 
 procedure menuPerso();
 
 var
     nom : string;
-    selectsexe : char;
-    taille : Integer;
-    poids : Integer;
+    selectsexe : string;
+    taille : string;
+    poids : string;
     pos : coordonnees;
+    b : boolean;
 
 begin
   effacerEcran();
@@ -150,7 +212,7 @@ begin
   pos.y := 11;
   ecrireEnPosition(pos, 'Sexe(m ou f) : ');
   readln(selectsexe);
-  setSexeChar(selectsexe);
+  setSexeChar(selectsexe[1]);
   pos.x := 14;
   pos.y := pos.y+1;
   ecrireEnPosition(pos, 'Pseudo : ');
@@ -160,12 +222,39 @@ begin
   pos.y := pos.y+1;
   ecrireEnPosition(pos, 'Taille (cm): ');
   readln(taille);
-  setTaille(taille);
+  b := false;
+  repeat
+    try
+       setTaille(StrToInt(taille));
+       b := true;
+    except
+          on Exception : EConvertError do
+          begin
+              ecrireEnPosition(pos, 'Taille (cm): ');
+              readln(taille);
+          end;
+
+    end;
+  until b;
+  //setTaille(taille);
   pos.x := 14;
   pos.y := pos.y+1;
   ecrireEnPosition(pos, 'Poids (Kg): ');
   readln(poids);
-  setPoid(poids);
+  //setPoid(poids);
+  b := false;
+  repeat
+    try
+       setPoid(StrToInt(poids));
+       b := true;
+    except
+          on Exception : EConvertError do
+          begin
+              ecrireEnPosition(pos, 'Poids (Kg): ');
+              readln(poids);
+          end;
+  end;
+  until b;
   menuLauncher();
 end;
 
@@ -225,15 +314,44 @@ begin
   pieces();
 end;
 
-function menuHistoire() : Integer;
+procedure menuHistoire();
 var
    a : Integer;
+   i : Integer;
+   c : Integer;
+   ch : char;
 begin
 effacerEcran();
-dessinerCadreXY(10,7,110,20,simple,255,0);
-couleurTexte(4);
+for i := 0 to 29 do
+      if (i >= 15) then
+          begin
+          if (i >= 20) then
+              begin
+                   ColorierZone(14,14,10,107,i);
+                   ColorierZone(10,10,0,9,i);
+                   ColorierZone(10,10,108,119,i);
+              end
+          else
+              begin
+                   ColorierZone(14,14,10,107,i);
+                   ColorierZone(3,3,0,9,i);
+                   ColorierZone(3,3,108,119,i);
+              end;
+
+          end
+      else
+          begin
+          c := (19 - i) * 3;
+          ColorierZone(14,14,c - 10,129-c,i);
+          ColorierZone(3,3,0,c - 11,i);
+          ColorierZone(3,3,128-c,119,i);
+          end
+
+  ;
+
+  couleurs(0,14);
 pos.x := 40;
-pos.y := 1;
+pos.y := 5;
 ecrireEnPosition(pos,' _____       __ _           _ ');
 pos.x := pos.x;
 pos.y := pos.y+1;
@@ -251,9 +369,8 @@ pos.x := pos.x;
 pos.y := pos.y+1;
 ecrireEnPosition(pos,'|_|   |_|  \___|_|\__,_|\__,_|\___|');
 
-couleurTexte(15);
-pos.x := 14;
-pos.y := 9;
+pos.x := 15;
+pos.y := 16;
 ecrireEnPosition(pos, 'La commission des chasseurs est une institution chargee d''etudier et de chasser les ');
 pos.x := pos.x;
 pos.y := pos.y+1;
@@ -281,10 +398,10 @@ pos.y := pos.y+1;
 ecrireEnPosition(pos,'d''Aeternum.');
 pos.x := pos.x;
 pos.y := pos.y+4;
-ecrireEnPosition(pos,'1) Revenir au menu principale : ');
-readln(a);
-menuHistoire := a;
-
+ecrireEnPosition(pos,'appuyer sur espace pour revenir au menu principale : ');
+repeat
+    ch:=ReadKey;
+until ch= ' ';
 end;
 
 procedure menuQuitter();
@@ -327,11 +444,6 @@ begin
 
   readln(c);
   menuJeu := c;
-end;
-
-procedure forge();
-begin
-
 end;
 
 function menuInventaire():integer;
@@ -385,9 +497,6 @@ begin
   readln(j);
   menuInventaire:=j;
 end;
-
-
-
 
 end.
 
