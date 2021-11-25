@@ -25,7 +25,7 @@
     <RunParams>
       <FormatVersion Value="2"/>
     </RunParams>
-    <Units Count="10">
+    <Units Count="11">
       <Unit0>
         <Filename Value="Monster.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -69,6 +69,11 @@
         <Filename Value="uniteforge.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit9>
+      <Unit10>
+        <Filename Value="unitechasse.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uniteChasse"/>
+      </Unit10>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

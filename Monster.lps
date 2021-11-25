@@ -4,21 +4,21 @@
     <PathDelim Value="\"/>
     <Version Value="12"/>
     <BuildModes Active="Default"/>
-    <Units Count="27">
+    <Units Count="28">
       <Unit0>
         <Filename Value="Monster.lpr"/>
         <IsPartOfProject Value="True"/>
         <CursorPos Y="9"/>
-        <UsageCount Value="83"/>
+        <UsageCount Value="85"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="ihm.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="9"/>
-        <TopLine Value="41"/>
-        <CursorPos X="96" Y="22"/>
-        <UsageCount Value="83"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="21"/>
+        <CursorPos X="51" Y="34"/>
+        <UsageCount Value="85"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
@@ -27,16 +27,16 @@
         <EditorIndex Value="2"/>
         <TopLine Value="459"/>
         <CursorPos X="32" Y="20"/>
-        <UsageCount Value="83"/>
+        <UsageCount Value="85"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="logique.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="111"/>
-        <CursorPos X="22" Y="117"/>
-        <UsageCount Value="82"/>
+        <TopLine Value="36"/>
+        <CursorPos X="8" Y="46"/>
+        <UsageCount Value="84"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -44,9 +44,9 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="uniteCantine"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="52"/>
-        <CursorPos X="54" Y="8"/>
-        <UsageCount Value="71"/>
+        <TopLine Value="13"/>
+        <CursorPos X="3" Y="26"/>
+        <UsageCount Value="73"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
@@ -54,20 +54,18 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="uniteChambre"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="41"/>
-        <CursorPos X="6" Y="39"/>
-        <UsageCount Value="71"/>
+        <CursorPos X="23" Y="17"/>
+        <UsageCount Value="73"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="unitemarchand.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uniteMarchand"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
         <TopLine Value="202"/>
-        <CursorPos X="14" Y="215"/>
-        <UsageCount Value="71"/>
+        <CursorPos X="56" Y="217"/>
+        <UsageCount Value="73"/>
         <Loaded Value="True"/>
       </Unit6>
       <Unit7>
@@ -76,23 +74,24 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="195"/>
         <CursorPos X="27" Y="215"/>
-        <UsageCount Value="68"/>
+        <UsageCount Value="70"/>
       </Unit7>
       <Unit8>
         <Filename Value="controle.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="192"/>
         <CursorPos X="33" Y="211"/>
-        <UsageCount Value="67"/>
+        <UsageCount Value="69"/>
         <Loaded Value="True"/>
       </Unit8>
       <Unit9>
         <Filename Value="uniteforge.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="3"/>
+        <TopLine Value="16"/>
         <CursorPos X="64" Y="146"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="68"/>
         <Loaded Value="True"/>
       </Unit9>
       <Unit10>
@@ -145,8 +144,8 @@
       </Unit16>
       <Unit17>
         <Filename Value="personnage.pas"/>
-        <EditorIndex Value="8"/>
-        <TopLine Value="155"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="10"/>
         <CursorPos X="58" Y="142"/>
         <UsageCount Value="34"/>
         <Loaded Value="True"/>
@@ -214,127 +213,138 @@
         <CursorPos X="5" Y="332"/>
         <UsageCount Value="6"/>
       </Unit26>
+      <Unit27>
+        <Filename Value="unitechasse.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uniteChasse"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="20"/>
+        <CursorPos X="15" Y="24"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit27>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="unitemarchand.pas"/>
-        <Caret Line="118" Column="17" TopLine="115"/>
+        <Filename Value="logique.pas"/>
+        <Caret Line="101" Column="12" TopLine="89"/>
       </Position1>
       <Position2>
-        <Filename Value="unitemarchand.pas"/>
-        <Caret Line="120" Column="18" TopLine="109"/>
+        <Filename Value="logique.pas"/>
+        <Caret Line="102" Column="11" TopLine="89"/>
       </Position2>
       <Position3>
-        <Filename Value="unitemarchand.pas"/>
-        <Caret Line="149" Column="11" TopLine="129"/>
+        <Filename Value="logique.pas"/>
+        <Caret Line="100" Column="15" TopLine="86"/>
       </Position3>
       <Position4>
-        <Filename Value="unitemarchand.pas"/>
-        <Caret Line="121" Column="14" TopLine="108"/>
+        <Filename Value="Monster.lpr"/>
+        <Caret Line="7" Column="5"/>
       </Position4>
       <Position5>
-        <Filename Value="unitemarchand.pas"/>
-        <Caret Line="128" Column="43" TopLine="119"/>
+        <Filename Value="logique.pas"/>
+        <Caret Line="129" Column="25" TopLine="118"/>
       </Position5>
       <Position6>
         <Filename Value="logique.pas"/>
-        <Caret Line="101" Column="12" TopLine="89"/>
+        <Caret Line="21" Column="77" TopLine="2"/>
       </Position6>
       <Position7>
-        <Filename Value="logique.pas"/>
-        <Caret Line="102" Column="11" TopLine="89"/>
-      </Position7>
-      <Position8>
-        <Filename Value="logique.pas"/>
-        <Caret Line="100" Column="15" TopLine="86"/>
-      </Position8>
-      <Position9>
-        <Filename Value="Monster.lpr"/>
-        <Caret Line="7" Column="5"/>
-      </Position9>
-      <Position10>
-        <Filename Value="logique.pas"/>
-        <Caret Line="129" Column="25" TopLine="118"/>
-      </Position10>
-      <Position11>
-        <Filename Value="logique.pas"/>
-        <Caret Line="21" Column="77" TopLine="2"/>
-      </Position11>
-      <Position12>
         <Filename Value="uniteforge.pas"/>
         <Caret Line="14" Column="20"/>
+      </Position7>
+      <Position8>
+        <Filename Value="menu.pas"/>
+        <Caret Line="223" Column="62" TopLine="201"/>
+      </Position8>
+      <Position9>
+        <Filename Value="menu.pas"/>
+        <Caret Line="100" Column="14" TopLine="73"/>
+      </Position9>
+      <Position10>
+        <Filename Value="menu.pas"/>
+        <Caret Line="255" Column="28" TopLine="228"/>
+      </Position10>
+      <Position11>
+        <Filename Value="menu.pas"/>
+        <Caret Line="225" Column="20" TopLine="205"/>
+      </Position11>
+      <Position12>
+        <Filename Value="menu.pas"/>
+        <Caret Line="223" Column="6" TopLine="218"/>
       </Position12>
       <Position13>
         <Filename Value="menu.pas"/>
-        <Caret Line="223" Column="62" TopLine="201"/>
+        <Caret Line="227" Column="27" TopLine="209"/>
       </Position13>
       <Position14>
-        <Filename Value="menu.pas"/>
-        <Caret Line="100" Column="14" TopLine="73"/>
+        <Filename Value="Monster.lpr"/>
+        <Caret Line="9" Column="11"/>
       </Position14>
       <Position15>
         <Filename Value="menu.pas"/>
-        <Caret Line="255" Column="28" TopLine="228"/>
+        <Caret Line="229" Column="6" TopLine="212"/>
       </Position15>
       <Position16>
         <Filename Value="menu.pas"/>
-        <Caret Line="225" Column="20" TopLine="205"/>
+        <Caret Line="399" Column="5" TopLine="381"/>
       </Position16>
       <Position17>
-        <Filename Value="menu.pas"/>
-        <Caret Line="223" Column="6" TopLine="218"/>
+        <Filename Value="logique.pas"/>
+        <Caret Line="28" Column="15"/>
       </Position17>
       <Position18>
-        <Filename Value="menu.pas"/>
-        <Caret Line="227" Column="27" TopLine="209"/>
+        <Filename Value="unitemarchand.pas"/>
+        <Caret Line="161" Column="45" TopLine="143"/>
       </Position18>
       <Position19>
-        <Filename Value="Monster.lpr"/>
-        <Caret Line="9" Column="11"/>
+        <Filename Value="unitemarchand.pas"/>
+        <Caret Line="171" Column="5" TopLine="151"/>
       </Position19>
       <Position20>
-        <Filename Value="menu.pas"/>
-        <Caret Line="229" Column="6" TopLine="212"/>
+        <Filename Value="unitemarchand.pas"/>
+        <Caret Line="172" Column="6" TopLine="155"/>
       </Position20>
       <Position21>
-        <Filename Value="menu.pas"/>
-        <Caret Line="399" Column="5" TopLine="381"/>
+        <Filename Value="unitemarchand.pas"/>
+        <Caret Line="158" Column="35" TopLine="152"/>
       </Position21>
       <Position22>
         <Filename Value="logique.pas"/>
-        <Caret Line="28" Column="15"/>
+        <Caret Line="116" Column="27" TopLine="105"/>
       </Position22>
       <Position23>
         <Filename Value="unitemarchand.pas"/>
-        <Caret Line="161" Column="45" TopLine="143"/>
+        <Caret Line="169" Column="3" TopLine="150"/>
       </Position23>
       <Position24>
-        <Filename Value="unitemarchand.pas"/>
-        <Caret Line="171" Column="5" TopLine="151"/>
+        <Filename Value="logique.pas"/>
+        <Caret Line="116" Column="22" TopLine="109"/>
       </Position24>
       <Position25>
         <Filename Value="unitemarchand.pas"/>
-        <Caret Line="172" Column="6" TopLine="155"/>
+        <Caret Line="164" Column="14" TopLine="153"/>
       </Position25>
       <Position26>
-        <Filename Value="unitemarchand.pas"/>
-        <Caret Line="158" Column="35" TopLine="152"/>
+        <Filename Value="unitechasse.pas"/>
+        <Caret Line="12" Column="17" TopLine="5"/>
       </Position26>
       <Position27>
-        <Filename Value="logique.pas"/>
-        <Caret Line="116" Column="27" TopLine="105"/>
+        <Filename Value="unitechasse.pas"/>
+        <Caret Line="14" Column="18" TopLine="3"/>
       </Position27>
       <Position28>
-        <Filename Value="unitemarchand.pas"/>
-        <Caret Line="169" Column="3" TopLine="150"/>
+        <Filename Value="unitechasse.pas"/>
+        <Caret Line="10" Column="30" TopLine="3"/>
       </Position28>
       <Position29>
-        <Filename Value="logique.pas"/>
-        <Caret Line="116" Column="22" TopLine="109"/>
+        <Filename Value="unitechasse.pas"/>
+        <Caret Line="8" Column="32" TopLine="4"/>
       </Position29>
       <Position30>
-        <Filename Value="unitemarchand.pas"/>
-        <Caret Line="164" Column="14" TopLine="153"/>
+        <Filename Value="unitechasse.pas"/>
+        <Caret Line="23" Column="67" TopLine="15"/>
       </Position30>
     </JumpHistory>
     <RunParams>

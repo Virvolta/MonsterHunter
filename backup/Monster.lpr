@@ -4,8 +4,7 @@ uses menu, IHM, logique, uniteCantine, uniteChambre, uniteMarchand,
   controle, uniteforge, personnage;
 
 begin
-  //start();
-  forge();
+  start();
   readln();
 end.
 

@@ -19,7 +19,8 @@ procedure valideVente();
 
 implementation
 uses
-  Classes, SysUtils, menu,uniteCantine,uniteChambre,uniteMarchand,uniteforge;
+  Classes, SysUtils, menu,uniteCantine,uniteChambre,uniteMarchand,uniteforge
+  ,uniteChasse;
 
 procedure start();
 begin
@@ -42,7 +43,7 @@ begin
        //2: forge();
        3: marchand();
        4: cantine();
-       //5: chasser();
+       5: chasser();
   else pieces()
   end;
 end;
