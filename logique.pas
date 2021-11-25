@@ -15,6 +15,7 @@ procedure inventaire();
 procedure achat();
 procedure validationAchat();
 procedure forge();
+procedure valideVente();
 
 implementation
 uses
@@ -113,9 +114,18 @@ procedure vente();
 begin
   case menuVente() of
        1: inventaire();
-       //2: validationVente();
+       2: valideVente();
        3: marchand();
   else vente()
+  end;
+end;
+
+procedure valideVente();
+begin
+  case validationVente() of
+       4: UI;
+       5: vente();
+  else valideVente()
   end;
 end;
 
