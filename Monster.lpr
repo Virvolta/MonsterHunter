@@ -4,7 +4,8 @@ uses menu, IHM, logique, uniteCantine, uniteChambre, uniteMarchand,
   controle, uniteforge, personnage, uniteChasse, outils;
 
 begin
-  start();
+  //start();
+  menuJeu();
   readln();
 end.
 

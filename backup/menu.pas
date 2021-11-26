@@ -360,14 +360,138 @@ function menuJeu(): integer;
 var
   c: integer;
   ch: char;
+  select : Integer;
+  pos: coordonnees;
 begin
   effacerEcran();
   ascii('village', 0, 0);
-  animationdeplacement(51,13,60,13);
-
+  couleurs(3, 0);
+  pos.x := 46;
+  pos.y := 14;
+  deplacerCurseurXY(pos.x, pos.y);
+  write(char(219),char(219));
+  //animationdeplacement(46, 14, -11, 0);
+  // 1 = menu 2 = forge 3 = cantine 4 = shop 5 = interchassechambre 6 = chasse 7 = chambre
+  select := 1;
   repeat
     ch := ReadKey;
+    case ch of
+      'P':
+      begin
+        case select of
+             1:
+             begin
+             select := 3;
+             animationdeplacement(pos.x, pos.y, 0, 2);
+             pos.y := pos.y + 4;
+             end;
+             4:
+             begin
+             select := 1;
+             animationdeplacement(pos.x, pos.y, 0, 2);
+             pos.y := pos.y + 4;
+             end;
+             6:
+             begin
+             select := 5;
+             animationdeplacement(pos.x, pos.y, 0, 2);
+             pos.y := pos.y + 4;
+             end;
+        end;
+      end;
+      'H':
+      begin
+
+        case select of
+             1:
+             begin
+             select := 4;
+             animationdeplacement(pos.x, pos.y, 0, -2);
+             pos.y := pos.y - 4;
+             end;
+             3:
+             begin
+             select := 1;
+             animationdeplacement(pos.x, pos.y, 0, -2);
+             pos.y := pos.y - 4;
+             end;
+             5:
+             begin
+             select := 6;
+             animationdeplacement(pos.x, pos.y, 0, -2);
+             pos.y := pos.y - 4;
+             end;
+        end;
+      end;
+      'M':
+      begin
+        case select of
+             1:
+             begin
+             select := 5;
+             animationdeplacement(pos.x, pos.y, 16, 0);
+             pos.x := pos.x + 32;
+             end;
+             2:
+             begin
+             select := 1;
+             animationdeplacement(pos.x, pos.y, 11, 0);
+             pos.x := pos.x + 22;
+             end;
+             5:
+             begin
+             select := 7;
+             animationdeplacement(pos.x, pos.y, 6, 0);
+             pos.x := pos.x + 12;
+             end;
+        end;
+      end;
+      'K':
+      begin
+        case select of
+             1:
+             begin
+             select := 2;
+             animationdeplacement(pos.x, pos.y, -11, 0);
+             pos.x := pos.x - 22;
+             end;
+             5:
+             begin
+             select := 1;
+             animationdeplacement(pos.x, pos.y, -16, 0);
+             pos.x := pos.x + -32;
+             end;
+             7:
+             begin
+             select := 5;
+             animationdeplacement(pos.x, pos.y, -6, 0);
+             pos.x := pos.x - 12;
+             end;
+        end;
+      end;
+
+    end;
+    //writeln(select);
+    {case select of
+      1:
+      begin
+        ascii('boy', 89, 3);
+        deplacerCurseurXY(0, 0);
+      end;
+      2:
+      begin
+        ascii('girl', 89, 3);
+        deplacerCurseurXY(0, 0);
+      end;
+    end;
+    writeln(select);}
   until ch = ' ';
+  menuLauncher();
+  //animationdeplacement(51,13,60,13);
+
+  {repeat
+    ch := ReadKey;
+  until ch = ' ';}
   //format(
 
   {dessinerCadreXY(2,2,27,4,simple,255,0);

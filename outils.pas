@@ -39,55 +39,46 @@ procedure ascii(nom : string; x, y : integer);
 
 procedure animationdeplacement(x, y, x2, y2 : integer);
 var
-   hr, min, sec, ms: Word;
    contsec: string;
    ch : char;
    anime : boolean;
-   time2 : Integer;
    move : Integer;
    pos: coordonnees;
 begin
-  time2 := 0;
-  anime := false;
+  x2 := x + (x2 *2);
+  y2 := y + (y2 *2);
+  anime := true;
   contsec := '-1';
-
-  if (x = x2) then
-      move := 1
-  else
-      move := 2;
   repeat
-    DecodeTime(Time,hr, min, sec, ms);
-    if (format('%d',[sec]) <> contsec) then
-    begin
-            couleurs(15, 0);
-            pos.x := x + ((time2) * 8);
-            pos.y := y;
-            ecrireEnPosition(pos, '       ');
-            pos.y := pos.y + 1;
-            ecrireEnPosition(pos, '       ');
-            pos.y := pos.y + 1;
-            ecrireEnPosition(pos, '       ');
-            time2 := time2+1;
-            contsec :=format('%d',[sec]);
-            if (anime = true) then
-            begin
-                 if (move = 1) then
-                    ascii('deplacement', x, y + (time2 * 8))
-                 else
-                    ascii('deplacement', x + (time2 * 8), y);
-                 anime := false;
-            end
-            else
-            begin
-                 if (move = 1) then
-                    ascii('deplacement2', x, y + (time2 * 8))
-                 else
-                    ascii('deplacement2', x + (time2 * 8), y);
-                 anime := true;
-            end;
-    end;
+    attendre(50);
 
-  until time2 = 4;
+    couleurs(15, 0);
+    deplacerCurseurXY(x, y);
+    write(char(176),char(176));
+    if ((x = x2) and (y = y2)) then
+       begin
+         anime := false;
+       end
+    else if (x = x2) then
+       begin
+            if (y > y2) then
+               y := y - 2
+            else
+                y := y + 2;
+       end
+    else
+        begin
+             if (x > x2) then
+                x := x - 2
+             else
+                 x := x + 2;
+       end;
+    ;
+    couleurs(3, 0);
+    deplacerCurseurXY(x, y);
+    write(char(219),char(219));
+
+  until anime = false;
 end;
 
 end.

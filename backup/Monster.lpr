@@ -5,7 +5,6 @@ uses menu, IHM, logique, uniteCantine, uniteChambre, uniteMarchand,
 
 begin
   //start();
-  pieces;
   readln();
 end.
 
