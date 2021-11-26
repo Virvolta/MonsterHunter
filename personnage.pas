@@ -20,7 +20,6 @@ procedure setPseudo(n : String);
 
 function getSexe() : TypeSexe;
 function getSexeString() : String;
-procedure setSexeChar(n : Char);
 procedure setSexe(n : TypeSexe);
 
 function getTaille() :Integer;
@@ -219,16 +218,6 @@ end;
 procedure setSexe(n : TypeSexe);
 begin
    sexe := n;
-end;
-
-procedure setSexeChar(n : Char);
-
-begin
-  if (LowerCase(n) = 'm') then
-     sexe := m
-  else
-     sexe := f
-  ;
 end;
 
 function getTaille() :Integer;

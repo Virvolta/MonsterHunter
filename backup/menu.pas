@@ -4,257 +4,236 @@ unit menu;
 
 interface
 
-function menuPrincipal() : Integer;
+function menuPrincipal(): integer;
 procedure menuQuitter();
 procedure menuHistoire();
 procedure menuPerso();
 procedure menuLauncher();
-function menuJeu() : Integer;
-function menuInventaire():integer;
+function menuJeu(): integer;
+function menuInventaire(): integer;
 
 
 implementation
+
 uses
-  Classes, SysUtils, ihm, logique, personnage, controle;
+  Classes, SysUtils, ihm, logique, personnage, controle, outils;
 
 var
-   pos : coordonnees;
+  pos: coordonnees;
 
-function menuPrincipal() : integer;
+function menuPrincipal(): integer;
 var
-  ch : char;
-  i : Integer;
-  select : Integer;
-begin;
-  effacerEcran();
-  for i := 0 to 29 do
-      if (i <= 15) then
-          ColorierZone(3,3,0,119,i)
-      else
-          if (i = 16) then
-              begin
-                   ColorierZone(10,10,6,113,i);
-                   ColorierZone(3,3,0,5,i);
-                   ColorierZone(3,3,114,119,i);
-              end
-          else if (i = 17) then
-              begin
-                   ColorierZone(10,10,3,116,i);
-                   ColorierZone(3,3,0,2,i);
-                   ColorierZone(3,3,117,119,i);
-              end
-          else
-              ColorierZone(10,10,0,119,i)
-
+  ch: char;
+  i: integer;
+  select: integer;
+begin
   ;
-  couleurs(15,3);
-  pos.x := 25;
-  pos.y := 0;
-  ecrireEnPosition(pos, ' __  __                 _              _    _             _ ');
-  pos.x := pos.x;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos, '|  \/  |               | |            | |  | |           | |');
-  pos.x := pos.x;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos, '| \  / | ___  _ __  ___| |_ ___ _ __  | |__| |_   _ _ __ | |_ ___ _ __');
-  pos.x := pos.x;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos, '| |\/| |/ _ \| ''_ \/ __| __/ _ \ ''__| |  __  | | | | ''_ \| __/ _ \ ''__|');
-  pos.x := pos.x;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos, '| |  | | (_) | | | \__ \ ||  __/ |    | |  | | |_| | | | | ||  __/ |');
-  pos.x := pos.x;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos, '|_|  |_|\___/|_| |_|___/\__\___|_|    |_|  |_|\__,_|_| |_|\__\___|_|');
-  pos.x := 33;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos,  ' _   _                                    _     _');
-  pos.x := 33;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos, '| \ | |                                  | |   | |');
-  pos.x := 33;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos, '|  \| | _____      __ __      _____  _ __| | __| |');
-  pos.x := 33;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos, '| . ` |/ _ \ \ /\ / / \ \ /\ / / _ \| ''__| |/ _` |');
-  pos.x := 33;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos, '| |\  |  __/\ V  V /   \ V  V / (_) | |  | | (_| |');
-  pos.x := 33;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos, '|_| \_|\___| \_/\_/     \_/\_/ \___/|_|  |_|\__,_|');
-  dessinerCadreXY(28,13,90,21,simple,6,6);
-  couleurs(0,15);
-  pos.x := 50;
-  pos.y := 15;
+  effacerEcran();
+  ascii('start', 0, 0);
+  couleurs(0, 15);
+  pos.x := 54;
+  pos.y := 19;
   ecrireEnPosition(pos, 'Nouvelle partie');
-  couleurs(0,6);
-  pos.x := 50;
-  pos.y := 16;
+  couleurs(15, 0);
+  pos.x := 54;
+  pos.y := 23;
   ecrireEnPosition(pos, 'Histoire du jeu');
-  pos.x := 50;
-  pos.y := 17;
+  pos.x := 54;
+  pos.y := 26;
   ecrireEnPosition(pos, 'Quitter');
-  pos.x := 30;
-  pos.y := 20;
-  ecrireEnPosition(pos,'appuyer sur espace pour selectionner : ');
-  deplacerCurseurXY(0,0);
+  pos.x := 1;
+  pos.y := 28;
+  ecrireEnPosition(pos, 'appuyer sur espace pour selectionner');
+  deplacerCurseurXY(0, 0);
   select := 1;
   repeat
-    ch:=ReadKey;
+    ch := ReadKey;
     case ch of
-         'P' :
-             begin
-                  select := select+1;
-                  if (select >= 4) then
-                     select := 1;
-             end;
-         'H' :
-             begin
-              select := select-1;
-              if (select <= 0) then
-                      select := 3;
-             end;
+      'P':
+      begin
+        select := select + 1;
+        if (select >= 4) then
+          select := 1;
+      end;
+      'H':
+      begin
+        select := select - 1;
+        if (select <= 0) then
+          select := 3;
+      end;
     end;
     case select of
-         1:
-           begin
-                couleurs(0,15);
-                pos.x := 50;
-                pos.y := 15;
-                ecrireEnPosition(pos, 'Nouvelle partie');
-                couleurs(0,6);
-                pos.x := 50;
-                pos.y := 16;
-                ecrireEnPosition(pos, 'Histoire du jeu');
-                pos.x := 50;
-                pos.y := 17;
-                ecrireEnPosition(pos, 'Quitter');
-                deplacerCurseurXY(0,0);
-           end;
-         2:
-           begin
-                couleurs(0,15);
-                pos.x := 50;
-                pos.y := 16;
-                ecrireEnPosition(pos, 'Histoire du jeu');
-                couleurs(0,6);
-                pos.x := 50;
-                pos.y := 15;
-                ecrireEnPosition(pos, 'Nouvelle partie');
-                pos.x := 50;
-                pos.y := 17;
-                ecrireEnPosition(pos, 'Quitter');
-                deplacerCurseurXY(0,0);
-           end;
-         3:
-           begin
-                couleurs(0,15);
-                pos.x := 50;
-                pos.y := 17;
-                ecrireEnPosition(pos, 'Quitter');
-                couleurs(0,6);
-                pos.x := 50;
-                pos.y := 16;
-                ecrireEnPosition(pos, 'Histoire du jeu');
-                pos.x := 50;
-                pos.y := 15;
-                ecrireEnPosition(pos, 'Nouvelle partie');
-                deplacerCurseurXY(0,0);
-           end;
+      1:
+      begin
+        couleurs(0, 15);
+        pos.x := 54;
+        pos.y := 19;
+        ecrireEnPosition(pos, 'Nouvelle partie');
+        couleurs(15, 0);
+        pos.x := 54;
+        pos.y := 23;
+        ecrireEnPosition(pos, 'Histoire du jeu');
+        pos.x := 54;
+        pos.y := 26;
+        ecrireEnPosition(pos, 'Quitter');
+        deplacerCurseurXY(0, 0);
+      end;
+      2:
+      begin
+        couleurs(0, 15);
+        pos.x := 54;
+        pos.y := 23;
+        ecrireEnPosition(pos, 'Histoire du jeu');
+        couleurs(15, 0);
+        pos.x := 54;
+        pos.y := 19;
+        ecrireEnPosition(pos, 'Nouvelle partie');
+        pos.x := 54;
+        pos.y := 26;
+        ecrireEnPosition(pos, 'Quitter');
+        deplacerCurseurXY(0, 0);
+      end;
+      3:
+      begin
+        couleurs(0, 15);
+        pos.x := 54;
+        pos.y := 26;
+        ecrireEnPosition(pos, 'Quitter');
+        couleurs(15, 0);
+        pos.x := 54;
+        pos.y := 23;
+        ecrireEnPosition(pos, 'Histoire du jeu');
+        pos.x := 54;
+        pos.y := 19;
+        ecrireEnPosition(pos, 'Nouvelle partie');
+        deplacerCurseurXY(0, 0);
+      end;
     end;
-  until ch= ' ';
+  until ch = ' ';
   menuPrincipal := select;
 end;
 
 procedure menuPerso();
 
 var
-    nom : string;
-    selectsexe : string;
-    taille : string;
-    poids : string;
-    pos : coordonnees;
-    b : boolean;
+  nom: string;
+  selectsexe: string;
+  taille: string;
+  poids: string;
+  pos: coordonnees;
+  b: boolean;
+  select: integer;
+  ch: char;
 
 begin
   effacerEcran();
-  couleurTexte(4);
-  pos.x := 5;
-  pos.y := 1;
-  ecrireEnPosition(pos, '  _____       __       _   _                   _');
-  pos.x := 5;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos,' / ____|     /_/      | | (_)                 | |');
-  pos.x := 5;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos,'| |     _ __ ___  __ _| |_ _  ___  _ __     __| |_   _   _ __   ___ _ __ ___  ___  _ __  _ __   __ _  __ _  ___');
-  pos.x := 5;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos,'| |    | ''__/ _ \/ _` | __| |/ _ \| ''_ \   / _` | | | | | ''_ \ / _ \ ''__/ __|/ _ \| ''_ \| ''_ \ / _` |/ _` |/ _ \');
-  pos.x := 5;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos,'| |____| | |  __/ (_| | |_| | (_) | | | | | (_| | |_| | | |_) |  __/ |  \__ \ (_) | | | | | | | (_| | (_| |  __/');
-  pos.x := 5;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos,' \_____|_|  \___|\__,_|\__|_|\___/|_| |_|  \__,_|\__,_| | .__/ \___|_|  |___/\___/|_| |_|_| |_|\__,_|\__, |\___|');
-  pos.x := 5;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos,'                                                        | |                                           __/ | ');
-  pos.x := 5;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos,'                                                        |_|                                          |___/  ');
+  ascii('personnage', 0, 0);
 
-  couleurTexte(15);
-  dessinerCadreXY(10,10,70,18,simple,255,0);
-  pos.x := 14;
-  pos.y := 11;
-  ecrireEnPosition(pos, 'Sexe(m ou f) : ');
-  readln(selectsexe);
-  setSexeChar(selectsexe[1]);
-  pos.x := 14;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos, 'Pseudo : ');
+  deplacerCurseurXY(0, 0);
+  pos.x := 13;
+  pos.y := 3;
+  ecrireEnPosition(pos, 'Entrer votre pseudo : ');
   readln(nom);
   setPseudo(nom);
-  pos.x := 14;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos, 'Taille (cm): ');
+  pos.x := 13;
+  pos.y := 5;
+  ecrireEnPosition(pos, 'Entrer votre taille(cm) : ');
   readln(taille);
-  b := false;
+  b := False;
   repeat
     try
-       setTaille(StrToInt(taille));
-       b := true;
+      setTaille(StrToInt(taille));
+      b := True;
     except
-          on Exception : EConvertError do
-          begin
-              ecrireEnPosition(pos, 'Taille (cm): ');
-              readln(taille);
-          end;
+      on Exception: EConvertError do
+      begin
+        couleurs(4, 0);
+        pos.x := 13;
+        pos.y := 9;
+        ecrireEnPosition(pos,
+          'Veuillez mettre uniquement des chiffres               ');
+        couleurs(15, 0);
+        pos.x := 13;
+        pos.y := 5;
+        ecrireEnPosition(pos,
+          'Entrer votre taille(cm) :                             ');
+        ecrireEnPosition(pos, 'Entrer votre taille(cm) : ');
+        readln(taille);
+      end;
 
     end;
   until b;
-  //setTaille(taille);
-  pos.x := 14;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos, 'Poids (Kg): ');
+  pos.x := 13;
+  pos.y := 9;
+  ecrireEnPosition(pos, '                                                      ');
+  pos.x := 13;
+  pos.y := 7;
+  ecrireEnPosition(pos, 'Entrer votre poid(kg) : ');
   readln(poids);
-  //setPoid(poids);
-  b := false;
+  b := False;
   repeat
     try
-       setPoid(StrToInt(poids));
-       b := true;
+      setPoid(StrToInt(poids));
+      b := True;
     except
-          on Exception : EConvertError do
-          begin
-              ecrireEnPosition(pos, 'Poids (Kg): ');
-              readln(poids);
-          end;
-  end;
+      on Exception: EConvertError do
+      begin
+        couleurs(4, 0);
+        pos.x := 13;
+        pos.y := 9;
+        ecrireEnPosition(pos,
+          'Veuillez mettre uniquement des chiffres               ');
+        couleurs(15, 0);
+        pos.x := 13;
+        pos.y := 7;
+        ecrireEnPosition(pos,
+          'Entrer votre poid(kg) :                               ');
+        ecrireEnPosition(pos, 'Entrer votre poid(kg) : ');
+        readln(poids);
+      end;
+    end;
   until b;
+  ascii('boy', 89, 3);
+  pos.x := 13;
+  pos.y := 9;
+  ecrireEnPosition(pos, 'Pour change le personnage(les fleches directionnelle)');
+  pos.x := 1;
+  pos.y := 28;
+  ecrireEnPosition(pos, 'appuyer sur espace pour selectionner');
+  select := 1;
+  repeat
+    ch := ReadKey;
+    case ch of
+      'M':
+      begin
+        select := select + 1;
+        if (select >= 3) then
+          select := 1;
+      end;
+      'K':
+      begin
+        select := select - 1;
+        if (select <= 0) then
+          select := 2;
+      end;
+    end;
+    case select of
+      1:
+      begin
+        ascii('boy', 89, 3);
+        deplacerCurseurXY(0, 0);
+      end;
+      2:
+      begin
+        ascii('girl', 89, 3);
+        deplacerCurseurXY(0, 0);
+      end;
+    end;
+  until ch = ' ';
+  if (select = 1) then
+    setSexe(m)
+  else
+    setSexe(f);
   menuLauncher();
 end;
 
@@ -262,163 +241,136 @@ end;
 
 procedure menuLauncher();
 var
-   p: string;
-   pos : coordonnees;
+  p: string;
+  pos: coordonnees;
+  ch: char;
+  select: integer;
 begin
   effacerEcran();
-  couleurTexte(4);
-  pos.x := 5;
+  ascii('personnage2', 0, 0);
+  if (getSexe() = m) then
+    ascii('boy', 1, 2)
+  else
+    ascii('girl', 1, 2);
+  pos.x := 30;
   pos.y := 1;
-  ecrireEnPosition(pos, '  _____       __       _   _                   _');
-  pos.x := 5;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos,' / ____|     /_/      | | (_)                 | |');
-  pos.x := 5;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos,'| |     _ __ ___  __ _| |_ _  ___  _ __     __| |_   _   _ __   ___ _ __ ___  ___  _ __  _ __   __ _  __ _  ___');
-  pos.x := 5;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos,'| |    | ''__/ _ \/ _` | __| |/ _ \| ''_ \   / _` | | | | | ''_ \ / _ \ ''__/ __|/ _ \| ''_ \| ''_ \ / _` |/ _` |/ _ \');
-  pos.x := 5;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos,'| |____| | |  __/ (_| | |_| | (_) | | | | | (_| | |_| | | |_) |  __/ |  \__ \ (_) | | | | | | | (_| | (_| |  __/');
-  pos.x := 5;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos,' \_____|_|  \___|\__,_|\__|_|\___/|_| |_|  \__,_|\__,_| | .__/ \___|_|  |___/\___/|_| |_|_| |_|\__,_|\__, |\___|');
-  pos.x := 5;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos,'                                                        | |                                           __/ | ');
-  pos.x := 5;
-  pos.y := pos.y+1;
-  ecrireEnPosition(pos,'                                                        |_|                                          |___/  ');
-
-
-  couleurTexte(15);
-  dessinerCadreXY(10,10,70,18,simple,255,0);
-  pos.x := 14;
-  pos.y := 11;
   ecrireEnPosition(pos, concat('Votre sexe : ', getSexeString()));
-  pos.x := 14;
-  pos.y := pos.y+1;
+  pos.x := 30;
+  pos.y := pos.y + 1;
   ecrireEnPosition(pos, concat('Votre Pseudo : ', getPseudo()));
-  pos.x := 14;
-  pos.y := pos.y+1;
+  pos.x := 30;
+  pos.y := pos.y + 1;
   ecrireEnPosition(pos, concat('Votre Taille : ', IntToStr(getTaille()), ' cm'));
-  pos.x := 14;
-  pos.y := pos.y+1;
+  pos.x := 30;
+  pos.y := pos.y + 1;
   ecrireEnPosition(pos, concat('Votre Poid : ', IntToStr(getPoid()), ' kg'));
-  pos.x := 14;
+  pos.x := 30;
   pos.y := 19;
-  ecrireEnPosition(pos, 'appuyer sur entree pour continuer : ');
-  readln(p);
-  pieces();
+  ecrireEnPosition(pos, 'Etes vous sure de vos choix');
+  pos.x := 30;
+  pos.y := 21;
+  ecrireEnPosition(pos, 'Oui');
+  couleurs(0, 15);
+  pos.x := 35;
+  pos.y := 21;
+  ecrireEnPosition(pos, 'Non');
+  couleurs(15, 0);
+  pos.x := 1;
+  pos.y := 28;
+  ecrireEnPosition(pos, 'appuyer sur espace pour selectionner');
+  deplacerCurseurXY(0, 0);
+  select := 1;
+  repeat
+    ch := ReadKey;
+    case ch of
+      'M':
+      begin
+        select := select + 1;
+        if (select >= 3) then
+          select := 1;
+      end;
+      'K':
+      begin
+        select := select - 1;
+        if (select <= 0) then
+          select := 2;
+      end;
+    end;
+    case select of
+      1:
+      begin
+        couleurs(0, 15);
+        pos.x := 35;
+        pos.y := 21;
+        ecrireEnPosition(pos, 'Non');
+        couleurs(15, 0);
+        pos.x := 30;
+        pos.y := 21;
+        ecrireEnPosition(pos, 'Oui');
+        deplacerCurseurXY(0, 0);
+      end;
+      2:
+      begin
+        couleurs(0, 15);
+        pos.x := 30;
+        pos.y := 21;
+        ecrireEnPosition(pos, 'Oui');
+        couleurs(15, 0);
+        pos.x := 35;
+        pos.y := 21;
+        ecrireEnPosition(pos, 'Non');
+        deplacerCurseurXY(0, 0);
+      end;
+    end;
+  until ch = ' ';
+  if (select = 1) then
+    menuPerso()
+  else
+    pieces();
 end;
 
 procedure menuHistoire();
 var
-   a : Integer;
-   i : Integer;
-   c : Integer;
-   ch : char;
+  a: integer;
+  i: integer;
+  c: integer;
+  ch: char;
 begin
-effacerEcran();
-for i := 0 to 29 do
-      if (i >= 15) then
-          begin
-          if (i >= 20) then
-              begin
-                   ColorierZone(14,14,10,107,i);
-                   ColorierZone(10,10,0,9,i);
-                   ColorierZone(10,10,108,119,i);
-              end
-          else
-              begin
-                   ColorierZone(14,14,10,107,i);
-                   ColorierZone(3,3,0,9,i);
-                   ColorierZone(3,3,108,119,i);
-              end;
-
-          end
-      else
-          begin
-          c := (19 - i) * 3;
-          ColorierZone(14,14,c - 10,129-c,i);
-          ColorierZone(3,3,0,c - 11,i);
-          ColorierZone(3,3,128-c,119,i);
-          end
-
-  ;
-
-  couleurs(0,14);
-pos.x := 40;
-pos.y := 5;
-ecrireEnPosition(pos,' _____       __ _           _ ');
-pos.x := pos.x;
-pos.y := pos.y+1;
-ecrireEnPosition(pos,'|  __ \     /_/| |         | |');
-pos.x := pos.x;
-pos.y := pos.y+1;
-ecrireEnPosition(pos,'| |__) | __ ___| |_   _  __| | ___ ');
-pos.x := pos.x;
-pos.y := pos.y+1;
-ecrireEnPosition(pos,'|  ___/ ''__/ _ \ | | | |/ _` |/ _ \');
-pos.x := pos.x;
-pos.y := pos.y+1;
-ecrireEnPosition(pos,'| |   | | |  __/ | |_| | (_| |  __/');
-pos.x := pos.x;
-pos.y := pos.y+1;
-ecrireEnPosition(pos,'|_|   |_|  \___|_|\__,_|\__,_|\___|');
-
-pos.x := 15;
-pos.y := 16;
-ecrireEnPosition(pos, 'La commission des chasseurs est une institution chargee d''etudier et de chasser les ');
-pos.x := pos.x;
-pos.y := pos.y+1;
-ecrireEnPosition(pos,'grands monstres qui peuplent le monde. Lors de la cinquieme expedition envoyee dans le ');
-pos.x := pos.x;
-pos.y := pos.y+1;
-ecrireEnPosition(pos,'nouveau monde, la commission des chasseurs a decouvert l''existence d''une ile mysterieuse : ');
-pos.x := pos.x;
-pos.y := pos.y+1;
-ecrireEnPosition(pos,'Aeternum, protegee par un etrange brouillard magique empechant les navires de s''y rendre ');
-pos.x := pos.x;
-pos.y := pos.y+1;
-ecrireEnPosition(pos,'mais qui semble jouer un role important dans le cycle de migration des grands monstres. ');
-pos.x := pos.x;
-pos.y := pos.y+1;
-ecrireEnPosition(pos,'Apres de nombreuses recherches, la commission a mis la main sur un artefact magique ');
-pos.x := pos.x;
-pos.y := pos.y+1;
-ecrireEnPosition(pos,'ressemblant a une boussole, cense permettre d''acceder a l''ile. Vous faites partie de ');
-pos.x := pos.x;
-pos.y := pos.y+1;
-ecrireEnPosition(pos,'la sixieme grande expedition de chasseurs dont l''objectif est de decouvrir les secret');
-pos.x := pos.x;
-pos.y := pos.y+1;
-ecrireEnPosition(pos,'d''Aeternum.');
-pos.x := pos.x;
-pos.y := pos.y+4;
-ecrireEnPosition(pos,'appuyer sur espace pour revenir au menu principale : ');
-repeat
-    ch:=ReadKey;
-until ch= ' ';
+  effacerEcran();
+  ascii('prelude', 0, 0);
+  pos.x := 1;
+  pos.y := 28;
+  ecrireEnPosition(pos, 'appuyer sur espace pour revenir au menu principale');
+  deplacerCurseurXY(0, 0);
+  repeat
+    ch := ReadKey;
+  until ch = ' ';
 end;
 
 procedure menuQuitter();
 begin
-effacerEcran();
-dessinerCadreXY(28,13,90,15,simple,255,0);
-pos.x := 52;
-pos.y := 14;
-ecrireEnPosition(pos, 'Bonne journee');
+  effacerEcran();
+  dessinerCadreXY(28, 13, 90, 15, simple, 255, 0);
+  pos.x := 52;
+  pos.y := 14;
+  ecrireEnPosition(pos, 'Bonne journee');
 end;
 
-function menuJeu() : Integer;
+function menuJeu(): integer;
 var
-   c : integer;
+  c: integer;
+  ch: char;
 begin
   effacerEcran();
-  dessinerCadreXY(2,2,27,4,simple,255,0);
+  ascii('village', 0, 0);
+  animationdeplacement(51,13,60,13);
+
+  repeat
+    ch := ReadKey;
+  until ch = ' ';
+  //format(
+
+  {dessinerCadreXY(2,2,27,4,simple,255,0);
   dessinerCadreXY(2,22,27,24,simple,255,0);
   dessinerCadreXY(92,2,118,4,simple,255,0);
   dessinerCadreXY(92,22,118,24,simple,255,0);
@@ -440,53 +392,53 @@ begin
   ecrireEnPosition(pos, '5)Chasser ');
   pos.x := 53;
   pos.y := 13;
-  ecrireEnPosition(pos, 'Choix : ');
+  ecrireEnPosition(pos, 'Choix : ');}
 
   readln(c);
   menuJeu := c;
 end;
 
-function menuInventaire():integer;
+function menuInventaire(): integer;
 var
-   j:integer;
+  j: integer;
 begin
   effacerEcran();
-  dessinerCadreXY(30,1,100,30,simple,255,0);
+  dessinerCadreXY(30, 1, 100, 30, simple, 255, 0);
   pos.x := 38;
   pos.y := 5;
   ecrireEnPosition(pos, '1');
-  dessinerCadreXY(40,3,50,7,simple,255,0);
-  dessinerCadreXY(51,3,61,7,simple,255,0);
-  dessinerCadreXY(62,3,72,7,simple,255,0);
-  dessinerCadreXY(73,3,83,7,simple,255,0);
-  dessinerCadreXY(84,3,94,7,simple,255,0);
+  dessinerCadreXY(40, 3, 50, 7, simple, 255, 0);
+  dessinerCadreXY(51, 3, 61, 7, simple, 255, 0);
+  dessinerCadreXY(62, 3, 72, 7, simple, 255, 0);
+  dessinerCadreXY(73, 3, 83, 7, simple, 255, 0);
+  dessinerCadreXY(84, 3, 94, 7, simple, 255, 0);
 
   pos.x := 38;
   pos.y := 15;
   ecrireEnPosition(pos, '6');
-  dessinerCadreXY(40,13,50,17,simple,255,0);
-  dessinerCadreXY(51,13,61,17,simple,255,0);
-  dessinerCadreXY(62,13,72,17,simple,255,0);
-  dessinerCadreXY(73,13,83,17,simple,255,0);
-  dessinerCadreXY(84,13,94,17,simple,255,0);
+  dessinerCadreXY(40, 13, 50, 17, simple, 255, 0);
+  dessinerCadreXY(51, 13, 61, 17, simple, 255, 0);
+  dessinerCadreXY(62, 13, 72, 17, simple, 255, 0);
+  dessinerCadreXY(73, 13, 83, 17, simple, 255, 0);
+  dessinerCadreXY(84, 13, 94, 17, simple, 255, 0);
 
   pos.x := 38;
   pos.y := 20;
   ecrireEnPosition(pos, '11');
-  dessinerCadreXY(40,18,50,22,simple,255,0);
-  dessinerCadreXY(51,18,61,22,simple,255,0);
-  dessinerCadreXY(62,18,72,22,simple,255,0);
-  dessinerCadreXY(73,18,83,22,simple,255,0);
-  dessinerCadreXY(84,18,94,22,simple,255,0);
+  dessinerCadreXY(40, 18, 50, 22, simple, 255, 0);
+  dessinerCadreXY(51, 18, 61, 22, simple, 255, 0);
+  dessinerCadreXY(62, 18, 72, 22, simple, 255, 0);
+  dessinerCadreXY(73, 18, 83, 22, simple, 255, 0);
+  dessinerCadreXY(84, 18, 94, 22, simple, 255, 0);
 
   pos.x := 38;
   pos.y := 25;
   ecrireEnPosition(pos, '16');
-  dessinerCadreXY(40,23,50,27,simple,255,0);
-  dessinerCadreXY(51,23,61,27,simple,255,0);
-  dessinerCadreXY(62,23,72,27,simple,255,0);
-  dessinerCadreXY(73,23,83,27,simple,255,0);
-  dessinerCadreXY(84,23,94,27,simple,255,0);
+  dessinerCadreXY(40, 23, 50, 27, simple, 255, 0);
+  dessinerCadreXY(51, 23, 61, 27, simple, 255, 0);
+  dessinerCadreXY(62, 23, 72, 27, simple, 255, 0);
+  dessinerCadreXY(73, 23, 83, 27, simple, 255, 0);
+  dessinerCadreXY(84, 23, 94, 27, simple, 255, 0);
 
   pos.x := 31;
   pos.y := 29;
@@ -495,8 +447,7 @@ begin
   pos.y := 2;
   ecrireEnPosition(pos, 'choix : ');
   readln(j);
-  menuInventaire:=j;
+  menuInventaire := j;
 end;
 
 end.
-

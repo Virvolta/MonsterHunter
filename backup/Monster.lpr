@@ -1,10 +1,11 @@
 program Monster;
 
 uses menu, IHM, logique, uniteCantine, uniteChambre, uniteMarchand,
-  controle, uniteforge, personnage;
+  controle, uniteforge, personnage, uniteChasse, outils;
 
 begin
-  start();
+  //start();
+  pieces;
   readln();
 end.
 
