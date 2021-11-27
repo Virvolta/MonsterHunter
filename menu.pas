@@ -363,18 +363,21 @@ var
   select : Integer;
   pos: coordonnees; 
   pos2: coordonnees;
+  b : boolean;
 begin
   effacerEcran();
+  b := false;
+  couleurs(15, 0);
   ascii('village', 0, 0);
-  couleurs(3, 0);
   pos.x := 1;
   pos.y := 28;
   ecrireEnPosition(pos, 'appuyer sur espace pour selectionner');
   pos.x := 46;
   pos.y := 14;
   deplacerCurseurXY(pos.x, pos.y);
+  couleurs(3, 0);
   write(char(219),char(219));
-  //animationdeplacement(46, 14, -11, 0);
+  couleurs(15, 0);
   // 1 = menu 2 = forge 3 = cantine 4 = shop 5 = interchassechambre 6 = chasse 7 = chambre
   select := 1;
   repeat
@@ -384,13 +387,21 @@ begin
       begin
         if ((select = 1) or (select = 5)) then
           begin
-          pos2.x := 1;
-          pos2.y := 26;
-          ecrireEnPosition(pos, 'Veuillez selectionner un emplacement');
-          end;
+          couleurs(4, 0);
+          pos2.x := 77;
+          pos2.y := 28;
+          ecrireEnPosition(pos2, 'Veuillez selectionner un emplacement valide');
+          couleurs(15,0);
+          end
+        else
+            b := true;
+        deplacerCurseurXY(0, 0);
       end;
       'P':
       begin
+        pos2.x := 77;
+        pos2.y := 28;
+        ecrireEnPosition(pos2, '                                           ');
         case select of
              1:
              begin
@@ -411,10 +422,13 @@ begin
              pos.y := pos.y + 4;
              end;
         end;
+        deplacerCurseurXY(0, 0);
       end;
       'H':
       begin
-
+        pos2.x := 77;
+        pos2.y := 28;
+        ecrireEnPosition(pos2, '                                           ');
         case select of
              1:
              begin
@@ -435,9 +449,13 @@ begin
              pos.y := pos.y - 4;
              end;
         end;
+        deplacerCurseurXY(0, 0);
       end;
       'M':
       begin
+        pos2.x := 77;
+        pos2.y := 28;
+        ecrireEnPosition(pos2, '                                           ');
         case select of
              1:
              begin
@@ -458,9 +476,13 @@ begin
              pos.x := pos.x + 12;
              end;
         end;
+        deplacerCurseurXY(0, 0);
       end;
       'K':
       begin
+        pos2.x := 77;
+        pos2.y := 28;
+        ecrireEnPosition(pos2, '                                           ');
         case select of
              1:
              begin
@@ -481,58 +503,12 @@ begin
              pos.x := pos.x - 12;
              end;
         end;
+        deplacerCurseurXY(0, 0);
       end;
 
     end;
-    //writeln(select);
-    {case select of
-      1:
-      begin
-        ascii('boy', 89, 3);
-        deplacerCurseurXY(0, 0);
-      end;
-      2:
-      begin
-        ascii('girl', 89, 3);
-        deplacerCurseurXY(0, 0);
-      end;
-    end;
-    writeln(select);}
-  until ch = ' ';
-  menuLauncher();
-  //animationdeplacement(51,13,60,13);
-
-  {repeat
-    ch := ReadKey;
-  until ch = ' ';}
-  //format(
-
-  {dessinerCadreXY(2,2,27,4,simple,255,0);
-  dessinerCadreXY(2,22,27,24,simple,255,0);
-  dessinerCadreXY(92,2,118,4,simple,255,0);
-  dessinerCadreXY(92,22,118,24,simple,255,0);
-  dessinerCadreXY(52,12,65,14,simple,255,0);
-  pos.x := 3;
-  pos.y := 3;
-  ecrireEnPosition(pos, '1)Aller dans la chambre');
-  pos.x := 3;
-  pos.y := 23;
-  ecrireEnPosition(pos, '2)Aller a la forge');
-  pos.x := 93;
-  pos.y := 3;
-  ecrireEnPosition(pos, '3)Aller chez le marchand');
-  pos.x := 93;
-  pos.y := 23;
-  ecrireEnPosition(pos, '4)Aller a la cantine');
-  pos.x := 53;
-  pos.y := 3;
-  ecrireEnPosition(pos, '5)Chasser ');
-  pos.x := 53;
-  pos.y := 13;
-  ecrireEnPosition(pos, 'Choix : ');}
-
-  readln(c);
-  menuJeu := c;
+  until ((ch = ' ') and (b = true));
+  menuJeu := select;
 end;
 
 function menuInventaire(): integer;

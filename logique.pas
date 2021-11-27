@@ -39,11 +39,11 @@ end;
 procedure pieces();
 begin
   case menuJeu() of
-       1: chambre();
+       7: chambre();
        //2: forge();
-       3: marchand();
-       4: cantine();
-       5: chasser();
+       4: marchand();
+       3: cantine();
+       6: chasser();
   else pieces()
   end;
 end;

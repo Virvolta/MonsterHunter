@@ -8,17 +8,17 @@
       <Unit0>
         <Filename Value="Monster.lpr"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="117" Y="11"/>
-        <UsageCount Value="107"/>
+        <CursorPos X="5" Y="8"/>
+        <UsageCount Value="154"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="ihm.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="11"/>
-        <TopLine Value="26"/>
-        <CursorPos X="15" Y="46"/>
-        <UsageCount Value="107"/>
+        <TopLine Value="60"/>
+        <CursorPos X="58" Y="73"/>
+        <UsageCount Value="154"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
@@ -26,17 +26,18 @@
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="364"/>
-        <CursorPos X="70" Y="389"/>
-        <UsageCount Value="107"/>
+        <TopLine Value="489"/>
+        <CursorPos X="21" Y="484"/>
+        <UsageCount Value="154"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="logique.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="43" Y="37"/>
-        <UsageCount Value="106"/>
+        <TopLine Value="35"/>
+        <CursorPos X="38" Y="61"/>
+        <UsageCount Value="153"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -46,7 +47,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="35"/>
         <CursorPos X="3" Y="26"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="142"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
@@ -55,7 +56,7 @@
         <UnitName Value="uniteChambre"/>
         <EditorIndex Value="6"/>
         <CursorPos X="23" Y="17"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="142"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
@@ -65,7 +66,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="184"/>
         <CursorPos X="56" Y="217"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="142"/>
         <Loaded Value="True"/>
       </Unit6>
       <Unit7>
@@ -74,7 +75,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="195"/>
         <CursorPos X="27" Y="215"/>
-        <UsageCount Value="92"/>
+        <UsageCount Value="139"/>
       </Unit7>
       <Unit8>
         <Filename Value="controle.pas"/>
@@ -82,7 +83,7 @@
         <EditorIndex Value="9"/>
         <TopLine Value="69"/>
         <CursorPos X="80" Y="69"/>
-        <UsageCount Value="91"/>
+        <UsageCount Value="138"/>
         <Loaded Value="True"/>
       </Unit8>
       <Unit9>
@@ -90,7 +91,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
         <CursorPos X="64" Y="146"/>
-        <UsageCount Value="90"/>
+        <UsageCount Value="137"/>
         <Loaded Value="True"/>
       </Unit9>
       <Unit10>
@@ -99,7 +100,7 @@
         <UnitName Value="uniteChasse"/>
         <EditorIndex Value="8"/>
         <CursorPos X="44" Y="24"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="91"/>
         <Loaded Value="True"/>
       </Unit10>
       <Unit11>
@@ -108,13 +109,13 @@
         <EditorIndex Value="3"/>
         <TopLine Value="46"/>
         <CursorPos X="20" Y="64"/>
-        <UsageCount Value="42"/>
+        <UsageCount Value="89"/>
         <Loaded Value="True"/>
       </Unit11>
       <Unit12>
         <Filename Value="R:\dijon\enseignement\etudiants\INFO-DIJ\BUT-INFO-DIJ-1\!CommunROnly\Semestre 1\S1_01 - Implémentation d'un besoin client\TD - Interface graphique\BlackJack\GestionEcran.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="0"/>
       </Unit12>
       <Unit13>
         <Filename Value="R:\dijon\enseignement\etudiants\INFO-DIJ\BUT-INFO-DIJ-1\!CommunROnly\Semestre 1\S1_01 - Implémentation d'un besoin client\TD - Interface graphique\BlackJack\unitblackjackihm.pas"/>
@@ -122,20 +123,20 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
         <CursorPos Y="9"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="0"/>
       </Unit13>
       <Unit14>
         <Filename Value="..\R1_01 - Initiation au développement\Chap. 4 - Ss Programmes\TP0.4\interro\sapin.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="72"/>
         <CursorPos X="10" Y="48"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="0"/>
       </Unit14>
       <Unit15>
         <Filename Value=".petmp65DEBA\Jeu\monsteu.pas"/>
         <UnitName Value="Monsteu"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="0"/>
       </Unit15>
       <Unit16>
         <Filename Value=".petmp65DEBA\Jeu\TEST\unit2.pas"/>
@@ -143,34 +144,34 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="65"/>
         <CursorPos X="23" Y="198"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="0"/>
       </Unit16>
       <Unit17>
         <Filename Value="TEST\unit2.pas"/>
         <UnitName Value="Unit2"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="21" Y="15"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="0"/>
       </Unit17>
       <Unit18>
         <Filename Value="..\MonsterHunter - 2\menu.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="199"/>
         <CursorPos X="5" Y="213"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="0"/>
       </Unit18>
       <Unit19>
         <Filename Value="personnage.pas"/>
         <EditorIndex Value="10"/>
         <TopLine Value="2"/>
         <CursorPos X="5" Y="221"/>
-        <UsageCount Value="46"/>
+        <UsageCount Value="69"/>
         <Loaded Value="True"/>
       </Unit19>
       <Unit20>
         <Filename Value="..\..\..\..\Desktop\monsterHunter-main\monsterHunter-main\codeSource\monsterHunter.lpr"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="0"/>
       </Unit20>
       <Unit21>
         <Filename Value="..\..\..\..\Desktop\monsterHunter-main\monsterHunter-main\codeSource\monsterhunterarmesetarmures.pas"/>
@@ -178,27 +179,27 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="56"/>
         <CursorPos X="83" Y="76"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="5"/>
       </Unit21>
       <Unit22>
         <Filename Value="..\..\R1_01 - Initiation au développement\chap6\unit1.pas"/>
         <UnitName Value="Unit1"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="175"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="0"/>
       </Unit22>
       <Unit23>
         <Filename Value="..\..\R1_01 - Initiation au développement\Chap. 5 - Tableaux et Ch. de Car\TP\lib.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="7"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="19"/>
       </Unit23>
       <Unit24>
         <Filename Value="..\..\..\..\Desktop\monsterHunter-main\monsterHunter-main\codeSource\monsterhunterjoueur.pas"/>
         <UnitName Value="monsterHunterJoueur"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="32" Y="24"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="5"/>
       </Unit24>
       <Unit25>
         <Filename Value="..\..\..\..\Desktop\monsterHunter-main\monsterHunter-main\codeSource\monsterhuntermenuihm.pas"/>
@@ -206,7 +207,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="186"/>
         <CursorPos X="66" Y="200"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="0"/>
       </Unit25>
       <Unit26>
         <Filename Value="..\..\..\..\Desktop\monsterHunter-main\monsterHunter-main\codeSource\monsterhunterihm.pas"/>
@@ -214,171 +215,171 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="278"/>
         <CursorPos X="32" Y="12"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="0"/>
       </Unit26>
       <Unit27>
         <Filename Value="..\..\..\..\Desktop\monsterHunter-main\monsterHunter-main\codeSource\GestionEcran.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="352"/>
         <CursorPos Y="3"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="5"/>
       </Unit27>
       <Unit28>
         <Filename Value="..\..\..\..\Desktop\I.U.T\Semestre 1\S1_01 - Implémentation d'un besoin client\Sujet\GestionEcran.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="300"/>
         <CursorPos X="5" Y="332"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="0"/>
       </Unit28>
       <Unit29>
         <Filename Value="..\..\..\..\Desktop\monsterHunter-main (2)\monsterHunter-main\codeSource\GestionEcran.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="215"/>
         <CursorPos X="89" Y="230"/>
-        <UsageCount Value="18"/>
+        <UsageCount Value="13"/>
       </Unit29>
       <Unit30>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\objpas\sysutils\sysstrh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="108"/>
         <CursorPos X="10" Y="128"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="5"/>
       </Unit30>
       <Unit31>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\objpas\sysutils\datih.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="102"/>
         <CursorPos X="11" Y="122"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="5"/>
       </Unit31>
       <Unit32>
         <Filename Value="..\..\..\..\Desktop\monsterHunter-main\monsterHunter-main\codeSource\monsterhuntercombatihm.pas"/>
         <UnitName Value="monsterHunterCombatIHM"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="80"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="5"/>
       </Unit32>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="menu.pas"/>
-        <Caret Line="365" Column="26" TopLine="346"/>
+        <Filename Value="outils.pas"/>
+        <Caret Line="68" Column="9" TopLine="32"/>
       </Position1>
       <Position2>
         <Filename Value="outils.pas"/>
-        <Caret Line="51" Column="33" TopLine="27"/>
+        <Caret Line="71" Column="27" TopLine="33"/>
       </Position2>
       <Position3>
         <Filename Value="outils.pas"/>
-        <Caret Line="61" Column="37" TopLine="26"/>
+        <Caret Line="83" Column="18" TopLine="48"/>
       </Position3>
       <Position4>
         <Filename Value="outils.pas"/>
-        <Caret Line="8" Column="40"/>
+        <Caret Line="48" Column="21" TopLine="29"/>
       </Position4>
       <Position5>
         <Filename Value="outils.pas"/>
-        <Caret Line="68" Column="9" TopLine="32"/>
+        <Caret Line="70" Column="43" TopLine="49"/>
       </Position5>
       <Position6>
         <Filename Value="outils.pas"/>
-        <Caret Line="71" Column="27" TopLine="33"/>
+        <Caret Line="64" Column="28" TopLine="50"/>
       </Position6>
       <Position7>
-        <Filename Value="outils.pas"/>
-        <Caret Line="83" Column="18" TopLine="48"/>
+        <Filename Value="menu.pas"/>
+        <Caret Line="384" Column="7" TopLine="361"/>
       </Position7>
       <Position8>
-        <Filename Value="outils.pas"/>
-        <Caret Line="48" Column="21" TopLine="29"/>
+        <Filename Value="Monster.lpr"/>
+        <Caret Line="8" Column="13"/>
       </Position8>
       <Position9>
-        <Filename Value="outils.pas"/>
-        <Caret Line="70" Column="43" TopLine="49"/>
+        <Filename Value="menu.pas"/>
+        <Caret Line="369" Column="19" TopLine="346"/>
       </Position9>
       <Position10>
-        <Filename Value="outils.pas"/>
-        <Caret Line="64" Column="28" TopLine="50"/>
+        <Filename Value="menu.pas"/>
+        <Caret Line="402" TopLine="379"/>
       </Position10>
       <Position11>
         <Filename Value="menu.pas"/>
-        <Caret Line="384" Column="7" TopLine="361"/>
+        <Caret Line="405" Column="7" TopLine="381"/>
       </Position11>
       <Position12>
         <Filename Value="Monster.lpr"/>
         <Caret Line="8" Column="13"/>
       </Position12>
       <Position13>
-        <Filename Value="menu.pas"/>
-        <Caret Line="369" Column="19" TopLine="346"/>
+        <Filename Value="outils.pas"/>
+        <Caret Line="52" Column="13" TopLine="43"/>
       </Position13>
       <Position14>
-        <Filename Value="menu.pas"/>
-        <Caret Line="402" TopLine="379"/>
+        <Filename Value="outils.pas"/>
+        <Caret Line="55" Column="31" TopLine="38"/>
       </Position14>
       <Position15>
         <Filename Value="menu.pas"/>
-        <Caret Line="405" Column="7" TopLine="381"/>
+        <Caret Line="370" Column="32" TopLine="351"/>
       </Position15>
       <Position16>
-        <Filename Value="Monster.lpr"/>
-        <Caret Line="8" Column="13"/>
+        <Filename Value="outils.pas"/>
+        <Caret Line="74" Column="14" TopLine="36"/>
       </Position16>
       <Position17>
         <Filename Value="outils.pas"/>
-        <Caret Line="52" Column="13" TopLine="43"/>
+        <Caret Line="56" Column="24" TopLine="37"/>
       </Position17>
       <Position18>
         <Filename Value="outils.pas"/>
-        <Caret Line="55" Column="31" TopLine="38"/>
+        <Caret Line="62" Column="21" TopLine="38"/>
       </Position18>
       <Position19>
-        <Filename Value="menu.pas"/>
-        <Caret Line="370" Column="32" TopLine="351"/>
+        <Filename Value="outils.pas"/>
+        <Caret Line="61" Column="21" TopLine="37"/>
       </Position19>
       <Position20>
         <Filename Value="outils.pas"/>
-        <Caret Line="74" Column="14" TopLine="36"/>
+        <Caret Line="64" Column="21" TopLine="36"/>
       </Position20>
       <Position21>
         <Filename Value="outils.pas"/>
-        <Caret Line="56" Column="24" TopLine="37"/>
+        <Caret Line="71" Column="29" TopLine="35"/>
       </Position21>
       <Position22>
         <Filename Value="outils.pas"/>
-        <Caret Line="62" Column="21" TopLine="38"/>
+        <Caret Line="57" Column="24" TopLine="43"/>
       </Position22>
       <Position23>
-        <Filename Value="outils.pas"/>
-        <Caret Line="61" Column="21" TopLine="37"/>
+        <Filename Value="menu.pas"/>
+        <Caret Line="370" Column="5" TopLine="352"/>
       </Position23>
       <Position24>
         <Filename Value="outils.pas"/>
-        <Caret Line="64" Column="21" TopLine="36"/>
+        <Caret Line="64" Column="20" TopLine="46"/>
       </Position24>
       <Position25>
-        <Filename Value="outils.pas"/>
-        <Caret Line="71" Column="29" TopLine="35"/>
+        <Filename Value="menu.pas"/>
+        <Caret Line="401" Column="30" TopLine="377"/>
       </Position25>
       <Position26>
-        <Filename Value="outils.pas"/>
-        <Caret Line="57" Column="24" TopLine="43"/>
+        <Filename Value="menu.pas"/>
+        <Caret Line="385" Column="27" TopLine="361"/>
       </Position26>
       <Position27>
-        <Filename Value="menu.pas"/>
-        <Caret Line="370" Column="5" TopLine="352"/>
+        <Filename Value="Monster.lpr"/>
+        <Caret Line="7" Column="5"/>
       </Position27>
       <Position28>
-        <Filename Value="outils.pas"/>
-        <Caret Line="64" Column="20" TopLine="46"/>
+        <Filename Value="menu.pas"/>
+        <Caret Line="393" Column="22" TopLine="363"/>
       </Position28>
       <Position29>
         <Filename Value="menu.pas"/>
-        <Caret Line="401" Column="30" TopLine="377"/>
+        <Caret Line="504" Column="36" TopLine="340"/>
       </Position29>
       <Position30>
         <Filename Value="menu.pas"/>
-        <Caret Line="385" Column="27" TopLine="361"/>
+        <Caret Line="391" Column="23" TopLine="365"/>
       </Position30>
     </JumpHistory>
     <RunParams>
