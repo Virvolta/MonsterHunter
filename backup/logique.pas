@@ -43,7 +43,7 @@ begin
        //2: forge();
        3: marchand();
        4: cantine();
-       //5: chasser();
+       5: chasser();
   else pieces()
   end;
 end;
