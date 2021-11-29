@@ -25,23 +25,6 @@ Function RemapScanCode (ScanCode: byte; CtrlKeyState: byte; keycode:longint): by
 var
   AltKey, CtrlKey, ShiftKey: boolean;
 const
-  {
-    Keypad key scancodes:
-      Ctrl Norm
-      $77  $47 - Home
-      $8D  $48 - Up arrow
-      $84  $49 - PgUp
-      $8E  $4A - -
-      $73  $4B - Left Arrow
-      $8F  $4C - 5
-      $74  $4D - Right arrow
-      $4E  $4E - +
-      $75  $4F - End
-      $91  $50 - Down arrow
-      $76  $51 - PgDn
-      $92  $52 - Ins
-      $93  $53 - Del
-  }
   CtrlKeypadKeys: array[$47..$53] of byte =
     ($77, $8D, $84, $8E, $73, $8F, $74, $4E, $75, $91, $76, $92, $93);
 

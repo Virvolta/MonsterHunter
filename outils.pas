@@ -8,22 +8,27 @@ uses
   fpjson, jsonparser;
 
 type
-  item=record
+  produit=record
     id:Integer;
     nom:String;
     prixAchat:Integer;
     prixVente:Integer;
   end;
+
   equipment=record
     id:Integer;
     nom:String;
     stat:Integer;
+    slot:Integer;
   end;
 
 var
 
-  tabItems : array [0..6] of item;
+  tabProduits : array [0..6] of produit;
   tabEquipments : array [0..17] of equipment;
+
+  tabIdProduits : array [0..6] of integer;
+  tabIdEquipments : array [0..17] of integer;
 
 procedure displayData(data : TJSONData; ObjName : String);
 procedure DoParse(Parseur : TJSONParser ; ObjName : String);
@@ -123,21 +128,22 @@ begin
      for i:=0 to tab.Count-1 do
      begin
        obj:= tab.Objects[i];
-       tabItems[i].id:=StrToInt(obj.Strings['id']);
-       tabItems[i].nom:=obj.Strings['nom'];
-       tabItems[i].prixAchat:=StrToInt(obj.Strings['prixAchat']);
-       tabItems[i].prixVente:=StrToInt(obj.Strings['prixVente']);
+       tabProduits[i].id:=StrToInt(obj.Strings['id']);
+       tabProduits[i].nom:=obj.Strings['nom'];
+       tabProduits[i].prixAchat:=StrToInt(obj.Strings['prixAchat']);
+       tabProduits[i].prixVente:=StrToInt(obj.Strings['prixVente']);
+       tabIdProduits[StrToInt(obj.Strings['id'])] := i;
      end;
 
      for i:=0 to tab.Count-1 do
      begin
-       write('id : ',tabItems[i].id);
+       write('id : ',tabProduits[i].id);
        write(' / ');
-       write('nom : ',tabItems[i].nom);
+       write('nom : ',tabProduits[i].nom);
        write(' / ');
-       write('prixAchat : ',tabItems[i].prixAchat);
+       write('prixAchat : ',tabProduits[i].prixAchat);
        write(' / ');
-       writeln('prixVente : ',tabItems[i].prixVente);
+       writeln('prixVente : ',tabProduits[i].prixVente);
      end;
   end
   else if ObjName='equipements' then
@@ -149,6 +155,8 @@ begin
        tabEquipments[i].id:=StrToInt(obj.Strings['id']);
        tabEquipments[i].nom:=obj.Strings['nom'];
        tabEquipments[i].stat:=StrToInt(obj.Strings['stat']);
+       tabEquipments[i].slot:=StrToInt(obj.Strings['slot']);
+       tabIdEquipments[StrToInt(obj.Strings['id'])] := i;
      end;
 
      for i:=0 to tab.Count-1 do
@@ -157,7 +165,9 @@ begin
        write(' / ');
        write('nom : ',tabEquipments[i].nom);
        write(' / ');
-       writeln('stat : ',tabEquipments[i].stat);
+       write('stat : ',tabEquipments[i].stat);
+       write(' / ');
+       writeln('slot : ',tabEquipments[i].slot);
      end;
   end
   else

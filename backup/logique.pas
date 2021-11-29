@@ -24,6 +24,8 @@ uses
 
 procedure start();
 begin
+  ParseFile('json/objets.json','objets');
+  ParseFile('json/equipements.json','equipements');
   case menuPrincipal() of
        1: menuPerso();
        2:
@@ -133,7 +135,7 @@ end;
 procedure inventaire();
 begin
   case menuInventaire of
-       21: vente();
+       21: vente(0);
   else inventaire()
   end;
 end;

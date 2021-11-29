@@ -20,10 +20,12 @@ procedure valideVente(index:integer);
 implementation
 uses
   Classes, SysUtils, menu,uniteCantine,uniteChambre,uniteMarchand,uniteforge
-  ,uniteChasse;
+  ,uniteChasse, outils;
 
 procedure start();
 begin
+  ParseFile('json/objets.json','objets');
+  ParseFile('json/equipements.json','equipements');
   case menuPrincipal() of
        1: menuPerso();
        2:

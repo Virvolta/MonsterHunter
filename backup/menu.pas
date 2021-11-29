@@ -43,7 +43,7 @@ begin
   ecrireEnPosition(pos, 'Quitter');
   pos.x := 1;
   pos.y := 28;
-  ecrireEnPosition(pos, 'appuyer sur espace pour selectionner');
+  ecrireEnPosition(pos, 'appuyer sur entrer pour selectionner');
   deplacerCurseurXY(0, 0);
   select := 1;
   repeat
@@ -109,7 +109,7 @@ begin
         deplacerCurseurXY(0, 0);
       end;
     end;
-  until ch = ' ';
+  until ch = #13;
   menuPrincipal := select;
 end;
 
@@ -168,7 +168,7 @@ begin
   until b;
   pos.x := 13;
   pos.y := 9;
-  ecrireEnPosition(pos, '                                                      ');
+  ecrireEnPosition(pos, 'appuyer sur entrer pour valider                       ');
   pos.x := 13;
   pos.y := 7;
   ecrireEnPosition(pos, 'Entrer votre poid(kg) : ');
@@ -202,7 +202,7 @@ begin
   ecrireEnPosition(pos, 'Pour change le personnage(les fleches directionnelle)');
   pos.x := 1;
   pos.y := 28;
-  ecrireEnPosition(pos, 'appuyer sur espace pour selectionner');
+  ecrireEnPosition(pos, 'appuyer sur entrer pour selectionner');
   select := 1;
   repeat
     ch := ReadKey;
@@ -232,7 +232,7 @@ begin
         deplacerCurseurXY(0, 0);
       end;
     end;
-  until ch = ' ';
+  until ch = #13;
   if (select = 1) then
     setSexe(m)
   else
@@ -280,7 +280,7 @@ begin
   couleurs(15, 0);
   pos.x := 1;
   pos.y := 28;
-  ecrireEnPosition(pos, 'appuyer sur espace pour selectionner');
+  ecrireEnPosition(pos, 'appuyer sur entrer pour selectionner');
   deplacerCurseurXY(0, 0);
   select := 1;
   repeat
@@ -325,7 +325,7 @@ begin
         deplacerCurseurXY(0, 0);
       end;
     end;
-  until ch = ' ';
+  until ch = #13;
   if (select = 1) then
     menuPerso()
   else
@@ -343,11 +343,11 @@ begin
   ascii('prelude', 0, 0);
   pos.x := 1;
   pos.y := 28;
-  ecrireEnPosition(pos, 'appuyer sur espace pour revenir au menu principale');
+  ecrireEnPosition(pos, 'appuyer sur entrer pour revenir au menu principale');
   deplacerCurseurXY(0, 0);
   repeat
     ch := ReadKey;
-  until ch = ' ';
+  until ch = #13;
 end;
 
 procedure menuQuitter();
@@ -374,7 +374,7 @@ begin
   ascii('village', 0, 0);
   pos.x := 1;
   pos.y := 28;
-  ecrireEnPosition(pos, 'appuyer sur espace pour selectionner');
+  ecrireEnPosition(pos, 'appuyer sur entrer pour selectionner');
   pos.x := 46;
   pos.y := 14;
   deplacerCurseurXY(pos.x, pos.y);
@@ -510,7 +510,7 @@ begin
       end;
 
     end;
-  until ((ch = ' ') and (b = true));
+  until ((ch = #13) and (b = true));
   menuJeu := select;
 end;
 

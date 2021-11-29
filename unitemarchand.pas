@@ -94,31 +94,31 @@ begin
   pos.x := 35;
   pos.y := 9;
   deplacerCurseur(pos);
-  write(tabItems[0].nom,' : ', tabItems[0].prixAchat);
+  write(tabProduits[0].nom,' : ', tabProduits[0].prixAchat);
   pos.x := 35;
   pos.y := 11;
   deplacerCurseur(pos);
-  write(tabItems[1].nom,' : ', tabItems[1].prixAchat);
+  write(tabProduits[1].nom,' : ', tabProduits[1].prixAchat);
   pos.x := 35;
   pos.y := 13;
   deplacerCurseur(pos);
-  write(tabItems[2].nom,' : ', tabItems[2].prixAchat);
+  write(tabProduits[2].nom,' : ', tabProduits[2].prixAchat);
   pos.x := 35;
   pos.y := 15;
   deplacerCurseur(pos);
-  write(tabItems[3].nom,' : ', tabItems[3].prixAchat);
+  write(tabProduits[3].nom,' : ', tabProduits[3].prixAchat);
   pos.x := 35;
   pos.y := 17;
   deplacerCurseur(pos);
-  write(tabItems[4].nom,' : ', tabItems[4].prixAchat);
+  write(tabProduits[4].nom,' : ', tabProduits[4].prixAchat);
   pos.x := 35;
   pos.y := 19;
   deplacerCurseur(pos);
-  write(tabItems[5].nom,' : ', tabItems[5].prixAchat);
+  write(tabProduits[5].nom,' : ', tabProduits[5].prixAchat);
   pos.x := 35;
   pos.y := 21;
   deplacerCurseur(pos);
-  write(tabItems[6].nom,' : ', tabItems[6].prixAchat);
+  write(tabProduits[6].nom,' : ', tabProduits[6].prixAchat);
 
   pos.x := 56;
   pos.y := 28;
@@ -138,7 +138,7 @@ begin
   pos.x := 40;
   pos.y := 15;
   deplacerCurseur(pos);
-  write('Voulez vous vraiment acheter cette ', tabItems[index].nom);
+  write('Voulez vous vraiment acheter cette ', tabProduits[index].nom);
   pos.x := 30;
   pos.y := 28;
   ecrireEnPosition(pos, '1) Oui');
@@ -158,13 +158,13 @@ var
    e:string;
 begin
   effacerEcran();
-  if hasMoney(tabItems[index].prixAchat) then
+  if hasMoney(tabProduits[index].prixAchat) then
   begin
     dessinerCadreXY(38,2,86,25,simple,255,0);
     pos.x := 43;
     pos.y := 13;
     ecrireEnPosition(pos, 'votre objet est dans votre inventaire');
-    delMoney(tabItems[index].prixAchat);
+    delMoney(tabProduits[index].prixAchat);
   end
   else
   begin
@@ -212,11 +212,11 @@ begin
   pos.x := 82;
   pos.y := 5;
   deplacerCurseur(pos);
-  write(tabItems[index].nom);
+  write(tabProduits[index].nom);
   pos.x := 85;
   pos.y := 15;
   deplacerCurseur(pos);
-  write('Son prix est de ', tabItems[index].prixVente);
+  write('Son prix est de ', tabProduits[index].prixVente);
   pos.x := 71;
   pos.y := 25;
   ecrireEnPosition(pos, '4)Oui');
@@ -240,7 +240,7 @@ begin
   pos.x := 50;
   pos.y := 13;
   ecrireEnPosition(pos, 'votre objet est bien vendu');
-  addMoney(tabItems[index].prixVente);
+  addMoney(tabProduits[index].prixVente);
   readln(e);
   if (e = '')then vente(index)
   else UI(index);

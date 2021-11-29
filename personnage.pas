@@ -5,14 +5,14 @@ unit personnage;
 interface
 
 uses
-  Classes, SysUtils, uniteforge;
+  Classes, SysUtils, uniteforge, outils;
 
 const
   NOMBRE_INV_JEU = 10;
 
 type
   TypeSexe = (m, f);
-  TypeEquipement = Array[1..5] of Item;
+  TypeEquipement = Array[1..6] of Item;
   TypeInventaire = Array[1..NOMBRE_INV_JEU] of Item;
 
 function getPseudo() : String;
@@ -36,6 +36,10 @@ function hasMoney(m : Integer) : boolean;
 
 function getInventory() : TypeInventaire;
 function getEquipement() : TypeEquipement;
+
+procedure removeItemEquipement(i : integer);
+function getItemEquipement(i : integer) : Item;
+function addItemEquipement(i : Item) : Item;
 
 procedure removeItemInventory(id,count : integer);
 function getSlotItemNullInventory() : Integer;
@@ -66,14 +70,24 @@ end;
 procedure removeItemEquipement(i : integer);
 
 begin
-  equipement[i].count := 0;
   equipement[i].id := 0;
+  equipement[i].count := 0;
 end;
 
-function geItemEquipement(i : integer) : Item;
+function getItemEquipement(i : integer) : Item;
 
 begin
-  geItemEquipement := equipement[i];
+  getItemEquipement := equipement[i];
+end;
+
+function addItemEquipement(i : Item) : Item;
+
+var
+   slot : Integer;
+begin
+  slot := tabEquipments[tabIdEquipments[i.id]].slot;
+  addItemInventory(i);
+  inventaire[slot] := i;
 end;
 
 procedure removeItemInventory(id,count : integer);
@@ -150,7 +164,12 @@ var
 
 begin
   b := true;
-  for n := 1 to length(inventaire) do
+  if ((i.id <= 0) or (i.count <= 0)) then
+     b := false
+  ;
+
+  if (b = true) then
+     for n := 1 to length(inventaire) do
       begin
         if ((inventaire[n].id = i.id) and (inventaire[n].unique = false))then
            begin
@@ -159,6 +178,7 @@ begin
              break;
            end;
       end;
+  ;
   if (b = true) then
      inventaire[getSlotItemNullInventory()] := i
   ;
