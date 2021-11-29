@@ -63,6 +63,19 @@ begin
   getInventory := inventaire;
 end;
 
+procedure removeItemEquipement(i : integer);
+
+begin
+  equipement[i].count := 0;
+  equipement[i].id := 0;
+end;
+
+function geItemEquipement(i : integer) : Item;
+
+begin
+  geItemEquipement := equipement[i];
+end;
+
 procedure removeItemInventory(id,count : integer);
 
 var
@@ -82,6 +95,7 @@ begin
           else
               count := count - inventaire[i].count;
               inventaire[i].count := 0;
+              inventaire[i].id := 0;
           ;
         end;
       end;

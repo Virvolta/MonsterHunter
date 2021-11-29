@@ -128,6 +128,9 @@ var
 begin
   effacerEcran();
   ascii('personnage', 0, 0);
+  pos.x := 13;
+  pos.y := 9;
+  ecrireEnPosition(pos, 'appuyer sur entrer pour valider');
 
   deplacerCurseurXY(0, 0);
   pos.x := 13;
@@ -388,8 +391,8 @@ begin
         if ((select = 1) or (select = 5)) then
           begin
           couleurs(4, 0);
-          pos2.x := 75;
-          pos2.y := 30;
+          pos2.x := 77;
+          pos2.y := 28;
           ecrireEnPosition(pos2, 'Veuillez selectionner un emplacement valide');
           couleurs(15,0);
           end
@@ -399,8 +402,8 @@ begin
       end;
       'P':
       begin
-        pos2.x := 75;
-        pos2.y := 30;
+        pos2.x := 77;
+        pos2.y := 28;
         ecrireEnPosition(pos2, '                                           ');
         case select of
              1:
@@ -426,8 +429,8 @@ begin
       end;
       'H':
       begin
-        pos2.x := 75;
-        pos2.y := 30;
+        pos2.x := 77;
+        pos2.y := 28;
         ecrireEnPosition(pos2, '                                           ');
         case select of
              1:
@@ -453,8 +456,8 @@ begin
       end;
       'M':
       begin
-        pos2.x := 75;
-        pos2.y := 30;
+        pos2.x := 77;
+        pos2.y := 28;
         ecrireEnPosition(pos2, '                                           ');
         case select of
              1:
@@ -480,8 +483,8 @@ begin
       end;
       'K':
       begin
-        pos2.x := 75;
-        pos2.y := 30;
+        pos2.x := 77;
+        pos2.y := 28;
         ecrireEnPosition(pos2, '                                           ');
         case select of
              1:

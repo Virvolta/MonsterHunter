@@ -1,0 +1,8 @@
+{
+	// 1 = helmet, 2 = plastron, 3 = leggings, 4 = Boots, 5 = gloves, 5 = hand
+	//id [slot,]
+	14 : {
+		"slot" : 5
+	}
+	//TODO
+}

@@ -128,6 +128,9 @@ var
 begin
   effacerEcran();
   ascii('personnage', 0, 0);
+  pos.x := 13;
+  pos.y := 9;
+  ecrireEnPosition(pos, 'appuyer sur entrer pour valider');
 
   deplacerCurseurXY(0, 0);
   pos.x := 13;
@@ -165,7 +168,7 @@ begin
   until b;
   pos.x := 13;
   pos.y := 9;
-  ecrireEnPosition(pos, '                                                      ');
+  ecrireEnPosition(pos, 'appuyer sur entrer pour valider                       ');
   pos.x := 13;
   pos.y := 7;
   ecrireEnPosition(pos, 'Entrer votre poid(kg) : ');
