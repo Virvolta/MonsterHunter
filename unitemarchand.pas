@@ -5,7 +5,7 @@ unit uniteMarchand;
 interface
 
 uses
-  Classes, SysUtils,ihm,logique,uniteObjets,outils,personnage;
+  Classes, SysUtils,ihm,logique,uniteObjets,outils,personnage, controle;
 
 function menuMarchand(): Integer;
 function menuVente():Integer;
@@ -22,27 +22,100 @@ var
 
 function menuMarchand(): Integer;
 var
-   g: integer;
+   select : integer;
+   ch : char;
 begin
   effacerEcran();
-  dessinerCadreXY(2,3,50,26,simple,255,0);
-  dessinerCadreXY(70,3,118,26,simple,255,0);
-  dessinerCadreXY(2,27,118,29,simple,255,0);
-  dessinerCadreXY(2,0,118,2,simple,255,0);
-  pos.x := 22;
-  pos.y := 14;
-  ecrireEnPosition(pos, '1)Acheter');
+  couleurs(15, 0);
+  ascii('marchant', 0, 0);
+  couleurs(0, 15);
+  pos.x := 23;
+  pos.y := 23;
+  ecrireEnPosition(pos, 'Vendre');
+  couleurs(15, 0);
   pos.x := 90;
-  pos.y := 14;
-  ecrireEnPosition(pos, '2)Vendre');
-  pos.x := 50;
-  pos.y := 1;
-  ecrireEnPosition(pos, '3)Retour a la ville');
-  pos.x := 56;
+  pos.y := 23;
+  ecrireEnPosition(pos, 'Acheter');
+  pos.x := 58;
+  pos.y := 27;
+  ecrireEnPosition(pos, 'Menu');
+  pos.x := 1;
   pos.y := 28;
-  ecrireEnPosition(pos, 'Choix : ');
-  readln(g);
-  menuMarchand := g;
+  ecrireEnPosition(pos, 'appuyer sur entrer pour valider');
+  deplacerCurseurXY(0, 0);
+  select := 1;
+  repeat
+    ch := ReadKey;
+    case ch of
+      'K':
+      begin
+        select := 1;
+      end;
+      'M':
+      begin
+        select := 2;
+      end;
+      'P':
+      begin
+        if (select <> 3) then
+           select := 3;
+      end;
+      'H':
+      begin
+        if (select = 3) then
+           select := 1;
+      end;
+    end;
+    case select of
+      1:
+      begin
+           couleurs(0, 15);
+           pos.x := 23;
+           pos.y := 23;
+           ecrireEnPosition(pos, 'Vendre');
+           couleurs(15, 0);
+           pos.x := 90;
+           pos.y := 23;
+           ecrireEnPosition(pos, 'Acheter');
+           pos.x := 58;
+           pos.y := 27;
+           ecrireEnPosition(pos, 'Menu');
+           deplacerCurseurXY(0, 0);
+      end;
+      2:
+      begin
+           couleurs(0, 15);
+           pos.x := 90;
+           pos.y := 23;
+           ecrireEnPosition(pos, 'Acheter');
+           couleurs(15, 0);
+           pos.x := 23;
+           pos.y := 23;
+           ecrireEnPosition(pos, 'Vendre');
+
+           pos.x := 58;
+           pos.y := 27;
+           ecrireEnPosition(pos, 'Menu');
+           deplacerCurseurXY(0, 0);
+      end;
+      3:
+      begin
+           couleurs(0, 15);
+           pos.x := 58;
+           pos.y := 27;
+           ecrireEnPosition(pos, 'Menu');
+           couleurs(15, 0);
+           pos.x := 23;
+           pos.y := 23;
+           ecrireEnPosition(pos, 'Vendre');
+           pos.x := 90;
+           pos.y := 23;
+           ecrireEnPosition(pos, 'Acheter');
+           deplacerCurseurXY(0, 0);
+      end;
+    end;
+  until ch = #13;
+  menuMarchand := select;
 end;
 
 function menuVente():Integer;

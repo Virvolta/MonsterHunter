@@ -9,6 +9,7 @@ uses
 
 const
   NOMBRE_INV_JEU = 10;
+  MAX_HEART = 200;
 
 type
   TypeSexe = (m, f);
@@ -56,6 +57,7 @@ var
    money : Integer;
    equipement : TypeEquipement;
    inventaire : TypeInventaire;
+   heart : integer;
 
 function getEquipement() : TypeEquipement;
 begin
@@ -274,6 +276,26 @@ end;
 procedure setPoid(n :Integer);
 begin
    poid := n;
+end;
+
+procedure addHeart(amount : Integer);
+
+begin
+  if (heart + amount > MAX_HEART) then
+     heart := MAX_HEART
+  else
+      heart := heart + amount
+  ;
+end;
+
+procedure removeHeart(amount : Integer);
+
+begin
+  if (heart - amount < 0) then
+     heart := 0
+  else
+      heart := heart - amount
+  ;
 end;
 
 end.
