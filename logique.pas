@@ -9,13 +9,13 @@ procedure pieces();
 procedure chambre();
 procedure cantine();
 procedure marchand();
-procedure vente();
+procedure vente(index:integer);
 procedure armoire();
 procedure inventaire();
 procedure achat();
-procedure validationAchat();
+procedure validationAchat(index:integer);
 procedure forge();
-procedure valideVente();
+procedure valideVente(index:integer);
 
 implementation
 uses
@@ -81,7 +81,7 @@ procedure marchand();
 begin
   case menuMarchand() of
        1: achat;
-       2: vente();
+       2: vente(0);
        3: pieces();
   else marchand()
   end;
@@ -90,50 +90,50 @@ end;
 procedure achat();
 begin
   case menuAchat() of
-       1: validationAchat();
-       2: validationAchat();
-       3: validationAchat();
-       4: validationAchat();
-       5: validationAchat();
-       6: validationAchat();
-       7: validationAchat();
+       1: validationAchat(0);
+       2: validationAchat(1);
+       3: validationAchat(2);
+       4: validationAchat(3);
+       5: validationAchat(4);
+       6: validationAchat(5);
+       7: validationAchat(6);
        8: marchand();
   else achat()
   end;
 end;
 
-procedure validationAchat();
+procedure validationAchat(index:integer);
 begin
-  case potion() of
-       1: Oui();
+  case potion(index) of
+       1: Oui(index);
        2: achat();
-  else validationAchat()
+  else validationAchat(index)
   end;
 end;
 
-procedure vente();
+procedure vente(index:integer);
 begin
   case menuVente() of
        1: inventaire();
-       2: valideVente();
+       2: valideVente(index);
        3: marchand();
-  else vente()
+  else vente(index)
   end;
 end;
 
-procedure valideVente();
+procedure valideVente(index:integer);
 begin
-  case validationVente() of
-       4: UI;
-       5: vente();
-  else valideVente()
+  case validationVente(index) of
+       4: UI(index);
+       5: vente(index);
+  else valideVente(index)
   end;
 end;
 
 procedure inventaire();
 begin
   case menuInventaire of
-       21: vente();
+       21: vente(0);
   else inventaire()
   end;
 end;

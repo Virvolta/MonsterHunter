@@ -2,13 +2,13 @@
 <CONFIG>
   <ProjectSession>
     <PathDelim Value="\"/>
-    <Version Value="11"/>
+    <Version Value="12"/>
     <BuildModes Active="Default"/>
-    <Units Count="15">
+    <Units Count="16">
       <Unit0>
         <Filename Value="Monster.lpr"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="5" Y="8"/>
+        <CursorPos X="13" Y="11"/>
         <UsageCount Value="216"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -16,8 +16,8 @@
         <Filename Value="ihm.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="11"/>
-        <TopLine Value="60"/>
-        <CursorPos X="58" Y="73"/>
+        <TopLine Value="26"/>
+        <CursorPos X="30" Y="31"/>
         <UsageCount Value="216"/>
         <Loaded Value="True"/>
       </Unit1>
@@ -25,7 +25,7 @@
         <Filename Value="menu.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="529"/>
+        <TopLine Value="527"/>
         <CursorPos X="11" Y="168"/>
         <UsageCount Value="216"/>
         <Loaded Value="True"/>
@@ -34,8 +34,8 @@
         <Filename Value="logique.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="35"/>
-        <CursorPos X="38" Y="61"/>
+        <TopLine Value="125"/>
+        <CursorPos X="19" Y="136"/>
         <UsageCount Value="215"/>
         <Loaded Value="True"/>
       </Unit3>
@@ -44,8 +44,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="uniteCantine"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="35"/>
-        <CursorPos X="3" Y="26"/>
+        <TopLine Value="137"/>
+        <CursorPos X="18" Y="150"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
       </Unit4>
@@ -54,6 +54,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="uniteChambre"/>
         <EditorIndex Value="6"/>
+        <TopLine Value="58"/>
         <CursorPos X="23" Y="17"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
@@ -62,9 +63,10 @@
         <Filename Value="unitemarchand.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uniteMarchand"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="184"/>
-        <CursorPos X="56" Y="217"/>
+        <TopLine Value="201"/>
+        <CursorPos X="14" Y="212"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
       </Unit6>
@@ -80,7 +82,7 @@
         <Filename Value="controle.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="9"/>
-        <TopLine Value="69"/>
+        <TopLine Value="209"/>
         <CursorPos X="80" Y="69"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -100,166 +102,171 @@
         <UnitName Value="uniteChasse"/>
         <EditorIndex Value="8"/>
         <CursorPos X="44" Y="24"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="156"/>
         <Loaded Value="True"/>
       </Unit10>
       <Unit11>
         <Filename Value="outils.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="46"/>
-        <CursorPos X="20" Y="64"/>
-        <UsageCount Value="152"/>
+        <TopLine Value="134"/>
+        <CursorPos X="29" Y="154"/>
+        <UsageCount Value="154"/>
         <Loaded Value="True"/>
       </Unit11>
       <Unit12>
-        <Filename Value="personnage.pas"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="10"/>
-        <TopLine Value="75"/>
-        <CursorPos X="5" Y="102"/>
-        <UsageCount Value="101"/>
-        <Loaded Value="True"/>
+        <Filename Value="uniteobjets.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="uniteObjets"/>
+        <UsageCount Value="22"/>
       </Unit12>
       <Unit13>
+        <Filename Value="personnage.pas"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="179"/>
+        <CursorPos X="54" Y="179"/>
+        <UsageCount Value="101"/>
+        <Loaded Value="True"/>
+      </Unit13>
+      <Unit14>
         <Filename Value="..\..\R1_01 - Initiation au développement\Chap. 5 - Tableaux et Ch. de Car\TP\lib.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="7"/>
         <UsageCount Value="13"/>
-      </Unit13>
-      <Unit14>
+      </Unit14>
+      <Unit15>
         <Filename Value="..\..\..\..\Desktop\monsterHunter-main (2)\monsterHunter-main\codeSource\GestionEcran.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="215"/>
         <CursorPos X="89" Y="230"/>
         <UsageCount Value="7"/>
-      </Unit14>
+      </Unit15>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="outils.pas"/>
-        <Caret Line="71" Column="27" TopLine="33"/>
+        <Filename Value="menu.pas"/>
+        <Caret Line="370" Column="32" TopLine="351"/>
       </Position1>
       <Position2>
         <Filename Value="outils.pas"/>
-        <Caret Line="83" Column="18" TopLine="48"/>
+        <Caret Line="74" Column="14" TopLine="36"/>
       </Position2>
       <Position3>
         <Filename Value="outils.pas"/>
-        <Caret Line="48" Column="21" TopLine="29"/>
+        <Caret Line="56" Column="24" TopLine="37"/>
       </Position3>
       <Position4>
         <Filename Value="outils.pas"/>
-        <Caret Line="70" Column="43" TopLine="49"/>
+        <Caret Line="62" Column="21" TopLine="38"/>
       </Position4>
       <Position5>
         <Filename Value="outils.pas"/>
-        <Caret Line="64" Column="28" TopLine="50"/>
+        <Caret Line="61" Column="21" TopLine="37"/>
       </Position5>
       <Position6>
-        <Filename Value="menu.pas"/>
-        <Caret Line="384" Column="7" TopLine="361"/>
+        <Filename Value="outils.pas"/>
+        <Caret Line="64" Column="21" TopLine="36"/>
       </Position6>
       <Position7>
-        <Filename Value="Monster.lpr"/>
-        <Caret Line="8" Column="13"/>
+        <Filename Value="outils.pas"/>
+        <Caret Line="71" Column="29" TopLine="35"/>
       </Position7>
       <Position8>
-        <Filename Value="menu.pas"/>
-        <Caret Line="369" Column="19" TopLine="346"/>
+        <Filename Value="outils.pas"/>
+        <Caret Line="57" Column="24" TopLine="43"/>
       </Position8>
       <Position9>
         <Filename Value="menu.pas"/>
-        <Caret Line="402" TopLine="379"/>
+        <Caret Line="370" Column="5" TopLine="352"/>
       </Position9>
       <Position10>
-        <Filename Value="menu.pas"/>
-        <Caret Line="405" Column="7" TopLine="381"/>
+        <Filename Value="outils.pas"/>
+        <Caret Line="64" Column="20" TopLine="46"/>
       </Position10>
       <Position11>
-        <Filename Value="Monster.lpr"/>
-        <Caret Line="8" Column="13"/>
+        <Filename Value="menu.pas"/>
+        <Caret Line="401" Column="30" TopLine="377"/>
       </Position11>
       <Position12>
-        <Filename Value="outils.pas"/>
-        <Caret Line="52" Column="13" TopLine="43"/>
+        <Filename Value="menu.pas"/>
+        <Caret Line="385" Column="27" TopLine="361"/>
       </Position12>
       <Position13>
-        <Filename Value="outils.pas"/>
-        <Caret Line="55" Column="31" TopLine="38"/>
+        <Filename Value="Monster.lpr"/>
+        <Caret Line="7" Column="5"/>
       </Position13>
       <Position14>
         <Filename Value="menu.pas"/>
-        <Caret Line="370" Column="32" TopLine="351"/>
+        <Caret Line="393" Column="22" TopLine="363"/>
       </Position14>
       <Position15>
-        <Filename Value="outils.pas"/>
-        <Caret Line="74" Column="14" TopLine="36"/>
-      </Position15>
-      <Position16>
-        <Filename Value="outils.pas"/>
-        <Caret Line="56" Column="24" TopLine="37"/>
-      </Position16>
-      <Position17>
-        <Filename Value="outils.pas"/>
-        <Caret Line="62" Column="21" TopLine="38"/>
-      </Position17>
-      <Position18>
-        <Filename Value="outils.pas"/>
-        <Caret Line="61" Column="21" TopLine="37"/>
-      </Position18>
-      <Position19>
-        <Filename Value="outils.pas"/>
-        <Caret Line="64" Column="21" TopLine="36"/>
-      </Position19>
-      <Position20>
-        <Filename Value="outils.pas"/>
-        <Caret Line="71" Column="29" TopLine="35"/>
-      </Position20>
-      <Position21>
-        <Filename Value="outils.pas"/>
-        <Caret Line="57" Column="24" TopLine="43"/>
-      </Position21>
-      <Position22>
-        <Filename Value="menu.pas"/>
-        <Caret Line="370" Column="5" TopLine="352"/>
-      </Position22>
-      <Position23>
-        <Filename Value="outils.pas"/>
-        <Caret Line="64" Column="20" TopLine="46"/>
-      </Position23>
-      <Position24>
-        <Filename Value="menu.pas"/>
-        <Caret Line="401" Column="30" TopLine="377"/>
-      </Position24>
-      <Position25>
-        <Filename Value="menu.pas"/>
-        <Caret Line="385" Column="27" TopLine="361"/>
-      </Position25>
-      <Position26>
-        <Filename Value="Monster.lpr"/>
-        <Caret Line="7" Column="5"/>
-      </Position26>
-      <Position27>
-        <Filename Value="menu.pas"/>
-        <Caret Line="393" Column="22" TopLine="363"/>
-      </Position27>
-      <Position28>
         <Filename Value="menu.pas"/>
         <Caret Line="504" Column="36" TopLine="340"/>
-      </Position28>
-      <Position29>
+      </Position15>
+      <Position16>
         <Filename Value="menu.pas"/>
         <Caret Line="391" Column="23" TopLine="365"/>
-      </Position29>
-      <Position30>
+      </Position16>
+      <Position17>
         <Filename Value="personnage.pas"/>
         <Caret Line="76" Column="3" TopLine="50"/>
+      </Position17>
+      <Position18>
+        <Filename Value="personnage.pas"/>
+        <Caret Line="102" Column="5" TopLine="89"/>
+      </Position18>
+      <Position19>
+        <Filename Value="unitemarchand.pas"/>
+        <Caret Line="157" Column="16" TopLine="141"/>
+      </Position19>
+      <Position20>
+        <Filename Value="Monster.lpr"/>
+        <Caret Line="11" Column="13"/>
+      </Position20>
+      <Position21>
+        <Filename Value="unitemarchand.pas"/>
+        <Caret Line="14" Column="28" TopLine="3"/>
+      </Position21>
+      <Position22>
+        <Filename Value="unitemarchand.pas"/>
+        <Caret Line="8" Column="62"/>
+      </Position22>
+      <Position23>
+        <Filename Value="unitemarchand.pas"/>
+        <Caret Line="170" Column="17" TopLine="153"/>
+      </Position23>
+      <Position24>
+        <Filename Value="logique.pas"/>
+        <Caret Line="108" Column="20" TopLine="97"/>
+      </Position24>
+      <Position25>
+        <Filename Value="logique.pas"/>
+        <Caret Line="107" Column="20" TopLine="95"/>
+      </Position25>
+      <Position26>
+        <Filename Value="unitemarchand.pas"/>
+        <Caret Line="13" Column="22" TopLine="2"/>
+      </Position26>
+      <Position27>
+        <Filename Value="logique.pas"/>
+        <Caret Line="12" Column="30"/>
+      </Position27>
+      <Position28>
+        <Filename Value="logique.pas"/>
+        <Caret Line="127" Column="20" TopLine="109"/>
+      </Position28>
+      <Position29>
+        <Filename Value="unitemarchand.pas"/>
+        <Caret Line="241" Column="30" TopLine="224"/>
+      </Position29>
+      <Position30>
+        <Filename Value="logique.pas"/>
+        <Caret Line="84" Column="18" TopLine="73"/>
       </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
-      <Modes Count="0" ActiveMode=""/>
+      <Modes ActiveMode=""/>
     </RunParams>
   </ProjectSession>
 </CONFIG>

@@ -5,15 +5,15 @@ unit uniteMarchand;
 interface
 
 uses
-  Classes, SysUtils,ihm,logique;
+  Classes, SysUtils,ihm,logique,uniteObjets,outils,personnage;
 
 function menuMarchand(): Integer;
 function menuVente():Integer;
 function menuAchat():Integer;
-function potion() : Integer;
-procedure Oui();
-function validationVente():Integer;
-procedure UI();
+function potion(index:integer) : Integer;
+procedure Oui(index:integer);
+function validationVente(index:integer):Integer;
+procedure UI(index:integer);
 
 implementation
 
@@ -93,25 +93,32 @@ begin
   ecrireEnPosition(pos, 'Acheter des objets : ');
   pos.x := 35;
   pos.y := 9;
-  ecrireEnPosition(pos, '1) Potion de vie : 15');
+  deplacerCurseur(pos);
+  write(tabItems[0].nom,' : ', tabItems[0].prixAchat);
   pos.x := 35;
   pos.y := 11;
-  ecrireEnPosition(pos, '2) Potion de vie : (prix)');
+  deplacerCurseur(pos);
+  write(tabItems[1].nom,' : ', tabItems[1].prixAchat);
   pos.x := 35;
   pos.y := 13;
-  ecrireEnPosition(pos, '3) Potion de vie : (prix)');
+  deplacerCurseur(pos);
+  write(tabItems[2].nom,' : ', tabItems[2].prixAchat);
   pos.x := 35;
   pos.y := 15;
-  ecrireEnPosition(pos, '4) Potion de vie : (prix)');
+  deplacerCurseur(pos);
+  write(tabItems[3].nom,' : ', tabItems[3].prixAchat);
   pos.x := 35;
   pos.y := 17;
-  ecrireEnPosition(pos, '5) Potion de vie : (prix)');
+  deplacerCurseur(pos);
+  write(tabItems[4].nom,' : ', tabItems[4].prixAchat);
   pos.x := 35;
   pos.y := 19;
-  ecrireEnPosition(pos, '6) Potion de vie : (prix)');
+  deplacerCurseur(pos);
+  write(tabItems[5].nom,' : ', tabItems[5].prixAchat);
   pos.x := 35;
   pos.y := 21;
-  ecrireEnPosition(pos, '7) Potion de vie : (prix)');
+  deplacerCurseur(pos);
+  write(tabItems[6].nom,' : ', tabItems[6].prixAchat);
 
   pos.x := 56;
   pos.y := 28;
@@ -121,7 +128,7 @@ begin
 
 end;
 
-function potion() : Integer;
+function potion(index:integer) : Integer;
 var
    p:Integer;
 begin
@@ -130,7 +137,8 @@ begin
   dessinerCadreXY(2,27,118,29,simple,255,0);
   pos.x := 40;
   pos.y := 15;
-  ecrireEnPosition(pos, 'Voulez vous vraiment acheter cette objet');
+  deplacerCurseur(pos);
+  write('Voulez vous vraiment acheter cette ', tabItems[index].nom);
   pos.x := 30;
   pos.y := 28;
   ecrireEnPosition(pos, '1) Oui');
@@ -145,21 +153,32 @@ begin
 
 end;
 
-procedure Oui();
+procedure Oui(index:integer);
 var
    e:string;
 begin
   effacerEcran();
-  dessinerCadreXY(38,2,86,25,simple,255,0);
-  pos.x := 43;
-  pos.y := 13;
-  ecrireEnPosition(pos, 'votre objet est dans votre inventaire');
+  if hasMoney(tabItems[index].prixAchat) then
+  begin
+    dessinerCadreXY(38,2,86,25,simple,255,0);
+    pos.x := 43;
+    pos.y := 13;
+    ecrireEnPosition(pos, 'votre objet est dans votre inventaire');
+    delMoney(tabItems[index].prixAchat);
+  end
+  else
+  begin
+    pos.x := 54;
+    pos.y := 13;
+    deplacerCurseurXY(pos.x, pos.y);
+    write('vous n''avez que ', getMoney);
+  end;
   readln(e);
   if (e = '')then achat()
-  else Oui();
+  else Oui(index);
 end;
 
-function validationVente():Integer;
+function validationVente(index:integer):Integer;
 var
    v:Integer;
 begin
@@ -186,12 +205,18 @@ begin
 
 
   dessinerCadreXY(70,3,118,26,simple,255,0);
-  pos.x := 75;
+  pos.x := 78;
   pos.y := 4;
-  ecrireEnPosition(pos, 'Voulez vous vraiment vendre cette objet');
+  deplacerCurseur(pos);
+  write('Voulez vous vraiment vendre cette ');
+  pos.x := 82;
+  pos.y := 5;
+  deplacerCurseur(pos);
+  write(tabItems[index].nom);
   pos.x := 85;
   pos.y := 15;
-  ecrireEnPosition(pos, 'Son prix est de (prix)');
+  deplacerCurseur(pos);
+  write('Son prix est de ', tabItems[index].prixVente);
   pos.x := 71;
   pos.y := 25;
   ecrireEnPosition(pos, '4)Oui');
@@ -206,7 +231,7 @@ begin
 
 end;
 
-procedure UI();
+procedure UI(index:integer);
 var
    e:string;
 begin
@@ -215,9 +240,10 @@ begin
   pos.x := 50;
   pos.y := 13;
   ecrireEnPosition(pos, 'votre objet est bien vendu');
+  addMoney(tabItems[index].prixVente);
   readln(e);
-  if (e = '')then vente()
-  else UI();
+  if (e = '')then vente(index)
+  else UI(index);
 end;
 
 end.

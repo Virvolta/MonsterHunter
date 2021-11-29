@@ -22,7 +22,7 @@ type
 
 var
 
-  tabItems : array [0..5] of item;
+  tabItems : array [0..6] of item;
   tabEquipments : array [0..17] of equipment;
 
 procedure displayData(data : TJSONData; ObjName : String);
@@ -129,7 +129,7 @@ begin
        tabItems[i].prixVente:=StrToInt(obj.Strings['prixVente']);
      end;
 
-     for i:=0 to Length(tabItems) do
+     for i:=0 to tab.Count-1 do
      begin
        write('id : ',tabItems[i].id);
        write(' / ');
@@ -137,7 +137,7 @@ begin
        write(' / ');
        write('prixAchat : ',tabItems[i].prixAchat);
        write(' / ');
-       writeln('prixVente : ',tabItems[i].prixAchat);
+       writeln('prixVente : ',tabItems[i].prixVente);
      end;
   end
   else if ObjName='equipements' then
@@ -151,7 +151,7 @@ begin
        tabEquipments[i].stat:=StrToInt(obj.Strings['stat']);
      end;
 
-     for i:=0 to Length(tabEquipments) do
+     for i:=0 to tab.Count-1 do
      begin
        write('id : ',tabEquipments[i].id);
        write(' / ');

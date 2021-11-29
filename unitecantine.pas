@@ -5,7 +5,7 @@ unit uniteCantine;
 interface
 
 uses
-  Classes, SysUtils,ihm,logique;
+  Classes, SysUtils,ihm,logique,personnage;
 
 procedure defense();
 procedure degats();
@@ -55,9 +55,22 @@ var
 begin
   effacerEcran();
   dessinerCadreXY(38,2,86,25,simple,255,0);
-  pos.x := 45;
-  pos.y := 13;
-  ecrireEnPosition(pos, 'Vous avez un boost de 5 en defense ');
+
+  if hasMoney(15) then
+  begin
+    pos.x := 45;
+    pos.y := 13;
+    ecrireEnPosition(pos, 'Vous avez un boost de 5 en defense ');
+    delMoney(15);
+  end
+  else
+  begin
+    pos.x := 54;
+    pos.y := 13;
+    deplacerCurseurXY(pos.x, pos.y);
+    write('vous n''avez que ', getMoney);
+  end;
+
   readln(k);
   if (k = '')then cantine()
   else defense();
@@ -69,9 +82,22 @@ var
 begin
   effacerEcran();
   dessinerCadreXY(38,2,86,25,simple,255,0);
-  pos.x := 45;
-  pos.y := 13;
-  ecrireEnPosition(pos, 'Vous avez un boost de 3 en degats ');
+
+  if hasMoney(20) then
+  begin
+    pos.x := 45;
+    pos.y := 13;
+    ecrireEnPosition(pos, 'Vous avez un boost de 3 en degats ');
+    delMoney(20);
+  end
+  else
+  begin
+    pos.x := 54;
+    pos.y := 13;
+    deplacerCurseurXY(pos.x, pos.y);
+    write('vous n''avez que ', getMoney);
+  end;
+
   readln(k);
   if (k = '')then cantine()
   else degats();
@@ -83,9 +109,22 @@ var
 begin
   effacerEcran();
   dessinerCadreXY(38,2,86,25,simple,255,0);
-  pos.x := 48;
-  pos.y := 13;
-  ecrireEnPosition(pos, 'Vous avez un coeur en plus ');
+
+  if hasMoney(12) then
+  begin
+    pos.x := 48;
+    pos.y := 13;
+    ecrireEnPosition(pos, 'Vous avez un coeur en plus ');
+    delMoney(12);
+  end
+  else
+  begin
+    pos.x := 54;
+    pos.y := 13;
+    deplacerCurseurXY(pos.x, pos.y);
+    write('vous n''avez que ', getMoney);
+  end;
+
   readln(k);
   if (k = '')then cantine()
   else vie();
@@ -97,12 +136,25 @@ var
 begin
   effacerEcran();
   dessinerCadreXY(38,2,86,25,simple,255,0);
-  pos.x := 40;
-  pos.y := 13;
-  ecrireEnPosition(pos, 'Vous pouvez vous deplasser 1,5 fois plus vite ');
-  pos.x := 50;
-  pos.y := 14;
-  ecrireEnPosition(pos, 'pendant 2 minutes ');
+
+  if hasMoney(12) then
+  begin
+    pos.x := 40;
+    pos.y := 13;
+    ecrireEnPosition(pos, 'Vous pouvez vous deplasser 1,5 fois plus vite ');
+    pos.x := 50;
+    pos.y := 14;
+    ecrireEnPosition(pos, 'pendant 2 minutes ');
+    delMoney(12);
+  end
+  else
+  begin
+    pos.x := 54;
+    pos.y := 13;
+    deplacerCurseurXY(pos.x, pos.y);
+    write('vous n''avez que ', getMoney);
+  end;
+
   readln(k);
   if (k = '')then cantine()
   else vitesse();
