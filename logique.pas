@@ -22,6 +22,7 @@ uses
   Classes, SysUtils, menu,uniteCantine,uniteChambre,uniteMarchand,uniteforge
   ,uniteChasse, outils, personnage;
 
+// cette procedure fait marché tout le jeu
 procedure start();
 begin
   ParseFile('json/objets.json','objets');
@@ -39,6 +40,7 @@ begin
   end;
 end;
 
+// cette procedure permet de choir dans quel pieces ont veut aller
 procedure pieces();
 begin
   setHeart(200);
@@ -52,6 +54,7 @@ begin
   end;
 end;
 
+// c'est la chambre
 procedure chambre();
 begin
   case menuChambre() of
@@ -62,6 +65,7 @@ begin
   end;
 end;
 
+// c'est l'armoire
 procedure armoire();
 begin
   case menuArmoire() of
@@ -69,6 +73,7 @@ begin
   end;
 end;
 
+// c'est la cantine
 procedure cantine();
 begin
   case menuCantine() of
@@ -81,6 +86,7 @@ begin
   end;
 end;
 
+// c'est le marchand
 procedure marchand();
 begin
   case menuMarchand() of
@@ -91,6 +97,7 @@ begin
   end;
 end;
 
+// permet d'acheter des objets
 procedure achat();
 begin
   case menuAchat() of
@@ -106,6 +113,7 @@ begin
   end;
 end;
 
+// confirmer l'achat
 procedure validationAchat(index:integer);
 begin
   case potion(index) of
@@ -115,6 +123,7 @@ begin
   end;
 end;
 
+// vendre des objets
 procedure vente(index:integer);
 begin
   case menuVente() of
@@ -125,6 +134,7 @@ begin
   end;
 end;
 
+// confirmer la vente
 procedure valideVente(index:integer);
 begin
   case validationVente(index) of
@@ -134,6 +144,7 @@ begin
   end;
 end;
 
+// c'est l'inventaire
 procedure inventaire();
 begin
   case menuInventaire of
@@ -142,6 +153,7 @@ begin
   end;
 end;
 
+// c'est la forge
 procedure forge();
 var
 

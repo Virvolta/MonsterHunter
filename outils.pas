@@ -37,13 +37,10 @@ var
   tabProduits : array [0..12] of produit;
   tabEquipments : array [0..17] of equipment;
 
-  tabMonstre : array [0..2] of monstre;
-
   tabIdProduits : array [0..12] of integer;
   tabIdEquipments : array [0..17] of integer;
 
 procedure importObjData(data : TJSONData; ObjName : String);
-procedure importMonsterData(data : TJSONData; ObjName : String);
 procedure DoParse(Parseur : TJSONParser ; ObjName : String);
 procedure ParseFile(FileName, ObjName : String);
 
@@ -54,6 +51,7 @@ implementation
 uses
   Classes, SysUtils, ihm;
 
+// cette procedure nous permet d'utiliser les fichers ascii
 procedure ascii(nom : string; x, y : integer);
     var
        fichier : textFile;
@@ -80,6 +78,7 @@ procedure ascii(nom : string; x, y : integer);
       closeFile(fichier);
     end;
 
+// cette procedure permet de faire ce deplacer un petit carré bleu pour simuler le deplacement du joueur
 procedure animationdeplacement(x, y, x2, y2 : integer);
 var
    contsec: string;
@@ -124,6 +123,7 @@ begin
   until anime = false;
 end;
 
+// cette procedure nous permet d'utiliser des fichier json
 procedure importObjData(data : TJSONData ; ObjName : String);
  var
    obj : TJSONObject;
@@ -134,7 +134,7 @@ begin
   obj :=TJSONObject(data);
   {writeln('Les caracteristiques du langage : '+obj.Strings['langage']);
   writeln('Date de creation : ',lang.Integers['annee_creation']);}
-  //writeln('------------- Les objets disponibles ---------------- ');
+  writeln('------------- Les objets disponibles ---------------- ');
   if ObjName='objets' then
   begin
      tab:=obj.Arrays[ObjName];
@@ -185,66 +185,19 @@ begin
   end
   else
       writeln('Aucun objet de ce type dans le fichier JSON');
-  //writeln('---------------------------------------');
+  writeln('---------------------------------------');
 end;
 
-procedure importMonsterData(data : TJSONData; ObjName : String);
-
-var
-
-   obj : TJSONObject;
-   tab : TJSONArray;
-   i : byte;
-
-begin
-  obj :=TJSONObject(data);
-  {writeln('Les caracteristiques du langage : '+obj.Strings['langage']);
-  writeln('Date de creation : ',lang.Integers['annee_creation']);}
-  //writeln('------------- Les monstres disponibles ---------------- ');
-  tab:=obj.Arrays[ObjName];
-  for i:=0 to tab.Count-1 do
-  begin
-    obj:= tab.Objects[i];
-    tabMonstre[i].niveau:=StrToInt(obj.Strings['niveau']);
-    tabMonstre[i].nom:=obj.Strings['nom'];
-    tabMonstre[i].hp:=StrToInt(obj.Strings['HP']);
-    tabMonstre[i].degatmin:=StrToInt(obj.Strings['degatmin']);
-    tabMonstre[i].degatmax:=StrToInt(obj.Strings['degatmin']);
-    tabMonstre[i].defensemin:=StrToInt(obj.Strings['defensemin']);
-    tabMonstre[i].defensemax:=StrToInt(obj.Strings['defensemax']);
-  end;
-
-  {for i:=0 to tab.Count-1 do
-  begin
-    write('niveau : ',tabMonstre[i].niveau);
-    write(' / ');
-    write('nom : ',tabMonstre[i].nom);
-    write(' / ');
-    write('HP : ',tabMonstre[i].hp);
-    write(' / ');
-    write('degatmin : ',tabMonstre[i].degatmin);
-    write(' / ');
-    write('degatmax : ',tabMonstre[i].degatmax);
-    write(' / ');
-    write('defensemin : ',tabMonstre[i].defensemin);
-    write(' / ');
-    writeln('defensemax : ',tabMonstre[i].defensemax);
-  end;
-  //writeln('---------------------------------------');}
-end;
-
-
+// cette procedure affiche les données json
 Procedure DoParse(Parseur : TJSONParser ; ObjName : String);
 Var
   js : TJSONData;
 begin
   js:=parseur.Parse;
-  if (ObjName='objets') or (ObjName='equipements') then
-     importObjData(js,ObjName)
-  else
-      importMonsterData(js,ObjName);
+  importObjData(js,ObjName);
 end;
 
+// cette procedure créé des parties dans les fichiers json
 Procedure ParseFile (FileName, ObjName : String);
 Var
   flux : TFileStream;
