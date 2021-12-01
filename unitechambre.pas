@@ -16,6 +16,7 @@ implementation
 var
    pos : coordonnees;
 
+// cette fonction sert a afficher la chambre
 function menuChambre():Integer;
 var
    select : Integer;
@@ -113,6 +114,7 @@ begin
   menuChambre := select;
 end;
 
+// cette procedure permet au personnage de se reposer
 procedure menuLit();
 var
    e:string;
@@ -127,6 +129,7 @@ begin
   else menuLit();
 end;
 
+// cette fonction affiche l'armoire de la chambre
 function menuArmoire():Integer;
 var
    i:Integer;
