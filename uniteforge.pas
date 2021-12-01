@@ -18,7 +18,6 @@ function getCraftResult(item1,item2:item):item;
 
 implementation
 
-// cette fonction donne tout les crafts possible
 function getCraftResult(item1,item2:item):item;
 
 var

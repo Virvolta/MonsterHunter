@@ -11,7 +11,7 @@ function chasser():Integer;
 procedure menucombat(monster:monstre);
 function quiAttaque(monster:monstre):monstre;
 procedure drawHP(monster:monstre);
-procedure drawTour();
+procedure drawTour(monster:monstre);
 function aleaDegat(monster:monstre):Integer;
 
 implementation
@@ -20,13 +20,11 @@ var
    pos : coordonnees;
    atk: Integer;
 
-// cette fonction demande au joueur de choisir quel monstre il veut combatre
 function chasser():Integer;
 
 var
 
    select:Integer;
-   monster:monstre;
 
 begin
   effacerEcran();
@@ -54,37 +52,15 @@ begin
   readln(select);
   if select=1 then
      begin
-            monster.niveau:=1;
-            monster.nom:='Billy';
-            monster.hp:=150;
-            monster.degatmin:=10;
-            monster.degatmax:=20;
-            monster.defensemin:=20;
-            monster.defensemax:=30;
-
-            menucombat(monster);
+            menucombat(tabMonstre[0]);
      end
   else if select=2 then
      begin
-            monster.niveau:=2;
-            monster.nom:='Bobby';
-            monster.hp:=250;
-            monster.degatmin:=20;
-            monster.degatmax:=30;
-            monster.defensemin:=30;
-            monster.defensemax:=40;
-            menucombat(monster);
+            menucombat(tabMonstre[1]);
      end
   else if select=3 then
      begin
-            monster.niveau:=3;
-            monster.nom:='Lilian';
-            monster.hp:=700;
-            monster.degatmin:=50;
-            monster.degatmax:=60;
-            monster.defensemin:=50;
-            monster.defensemax:=60;
-            menucombat(monster);
+            menucombat(tabMonstre[2]);
      end
   else if select=4 then
      begin
@@ -93,7 +69,6 @@ begin
 
 end;
 
-// cette procedure permet au joueur de combatre
 procedure menucombat(monster:monstre);
 
 var
@@ -163,9 +138,17 @@ begin
             monster:=quiAttaque(monster);
        end;
 
-  until ((getHeart()=0) or (monster.hp=0));
+  until ((getHeart=0) or (monster.hp<=0));
 
-  drawHP(monster);
+  if monster.hp<=0 then
+     begin
+            monster.hp:=0;
+            drawHP(monster);
+     end
+  else if (getHeart=0) then
+      begin
+           drawHP(monster);
+      end;
 
   pos.x:=53;
   pos.y:=12;
@@ -173,15 +156,17 @@ begin
   if getHeart()=0 then
      begin
           ecrireEnPosition(pos,'Vous avez perdu');
+          readln;
      end
   else if monster.hp=0 then
      begin
           ecrireEnPosition(pos,'Vous avez gagne');
+          readln;
+          pieces();
      end;
 
 end;
 
-// cette fonction choisi qui attaque en premier et veille a ce que les combatant joue chacun leur tour
 function quiAttaque(monster:monstre):monstre;
 
 var
@@ -194,7 +179,7 @@ begin
   if atk=0 then
      begin
 
-          drawTour();
+          drawTour(monster);
 
           readln(choix);
               if choix=1 then
@@ -207,7 +192,7 @@ begin
                  begin
                           removeHeart(aleaDegat(monster) div 2);
                           atk:=1;
-                          drawTour();
+                          drawTour(monster);
                           atk:=0;
                           quiAttaque:=monster;
                  end
@@ -229,7 +214,7 @@ begin
      end
   else if atk=1 then
      begin
-          drawTour();
+          drawTour(monster);
           removeHeart(aleaDegat(monster));
           atk:=0;
           quiAttaque:=monster;
@@ -237,7 +222,6 @@ begin
 
 end;
 
-// cette procedure dessine les HP du joueur et du monstre
 procedure drawHP(monster:monstre);
 
 var
@@ -257,7 +241,6 @@ begin
 
 end;
 
-// cette fonction genere des degats aleatoir pour le monstre en degatmin et degatmax
 function aleaDegat(monster:monstre):Integer;
 
 var
@@ -277,8 +260,7 @@ begin
 
 end;
 
-// cette procedure affiche qui doit jouer
-procedure drawTour();
+procedure drawTour(monster:monstre);
 
 begin
 
@@ -286,14 +268,14 @@ begin
 
   if atk=0 then
      begin
-          writeln('Tour de ', getPseudo);
+          writeln('Tour de ', getPseudo(),'                ');
           writeln('Choisissez : ');
           write('             ');
           deplacerCurseurXY(0,2);
      end
   else if atk=1 then
      begin
-          writeln('Tour de Monstre');
+          writeln('Tour du ', monster.nom,'                 ');
           writeln('               ');
           writeln('              ');
           attendre(600);

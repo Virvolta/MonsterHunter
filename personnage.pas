@@ -69,25 +69,21 @@ var
    armoire : TypeArmoire;
    heart : integer;
 
-// cette fonction montre l'equipement du joueur
 function getEquipement() : TypeEquipement;
 begin
   getEquipement := equipement;
 end;
 
-// cette fonction montre l'inventaire du joueur
 function getInventory() : TypeInventaire;
 begin
   getInventory := inventaire;
 end;
 
-// cette fonction montre l'armoire
 function getArmoire() : TypeArmoire;
 begin
   getArmoire := armoire;
 end;
 
-// cette procedure enleve un item de l'inventaire
 procedure removeItemEquipement(i : integer);
 
 begin
@@ -95,14 +91,12 @@ begin
   equipement[i].count := 0;
 end;
 
-// cette fonction montre les equipements
 function getItemEquipement(i : integer) : Item;
 
 begin
   getItemEquipement := equipement[i];
 end;
 
-// cette procedure ajoute un item dans equipement
 procedure addItemEquipement(i : Item);
 
 var
@@ -112,7 +106,6 @@ begin
   equipement[slot] := i;
 end;
 
-// cette procedure enleve un item de l'inventaire
 procedure removeItemInventory(id,count : integer);
 
 var
@@ -143,7 +136,6 @@ begin
   until (b = true) or (i >= length(inventaire));
 end;
 
-// cette fonction verifie si vous avez l'objet dans votre inventaire ou non
 function hasItemInventory(id,count : integer) : boolean;
 
 var
@@ -166,7 +158,6 @@ begin
   hasItemInventory := b;
 end;
 
-// cette fonction permet de regarder quel slot est libre dans l'inventaire
 function getSlotItemNullInventory() : Integer;
 
 var
@@ -188,7 +179,6 @@ begin
   getSlotItemNullInventory := c;
 end;
 
-// cette fonction ajoute un item dans l'inventaire
 function addItemInventory(i : Item) : boolean;
 
 var
@@ -227,47 +217,40 @@ begin
   addItemInventory := b;
 end;
 
-// cette procedure permet de mettre de force un objet dans l'inventaire
 procedure setItemInventory(slot : Integer; i : Item);
 begin
    inventaire[slot] := i;
 end;
 
-// cette fonction permet de vous donnez un item en fonction d'un slot dans l'inventaire
 function getItemInventory(slot : Integer) : Item;
 begin
    getItemInventory := inventaire[slot];
 end;
 
-// cette fonction permet d'afficher la money disponible par le joueur
 function getMoney() : Integer;
 
 begin
   getMoney := money;
 end;
 
-// cette procedure permet de definire de force combient d'argent à le joueur
 procedure setMoney(m : Integer);
 
 begin
   money := m;
 end;
 
-// cette procedure permet d'ajouter de l'argent au joueur
 procedure addMoney(m : Integer);
 
 begin
   money := money + m;
 end;
 
-// cette procedure permet de supprimer de l'argent au joueur
 procedure delMoney(m : Integer);
 
 begin
   money := money - m;
 end;
 
-// cette fonction permet de verifier si le joueur a l'argent disponible
 function hasMoney(m : Integer) : boolean;
 
 begin
@@ -278,27 +261,23 @@ begin
   ;
 end;
 
-// cette fonction permet d'afficher le pseudo du joueur
 function getPseudo() : String;
 
 begin
    getPseudo := pseudo;
 end;
 
-// cette procedure permet d'enregistrer le pseudi du joueur
 procedure setPseudo(n : String);
 begin
    pseudo := n;
 end;
 
-// cette function permet de connaitre le sexe du joueur
 function getSexe() : TypeSexe;
 
 begin
    getSexe := sexe;
 end;
 
-// cette function permet de focer l'utilisateur de choisir entre homme et femme
 function getSexeString() : String;
 
 begin
@@ -308,46 +287,39 @@ begin
        getSexeString := 'femme';
 end;
 
-// cette procedure enregistre le sexe du joueur
 procedure setSexe(n : TypeSexe);
 begin
    sexe := n;
 end;
 
-// cette fonction demande a l'utilisteur de rentrer la taille du perso
 function getTaille() :Integer;
 
 begin
    getTaille := taille;
 end;
 
-// cette procedure permet d'enregistrer la taille du joueur
 procedure setTaille(n :Integer);
 begin
    taille := n;
 end;
 
-// cette fonction demande a l'utilisateur de rentrer le poid de son perso
 function getPoid() :Integer;
 
 begin
    getPoid:= poid;
 end;
 
-// cette procedure enregistre le poid du perso
 procedure setPoid(n :Integer);
 begin
    poid := n;
 end;
 
-// cette procedure defini les HP du joueur
 procedure setHeart(amount : Integer);
 
 begin
   heart := amount;
 end;
 
-// cette procedure permet d'ajouter des HP au joueur
 procedure addHeart(amount : Integer);
 
 begin
@@ -358,7 +330,6 @@ begin
   ;
 end;
 
-// cette procedure permet d'enlever des HP au joueur
 procedure removeHeart(amount : Integer);
 
 begin
@@ -369,7 +340,6 @@ begin
   ;
 end;
 
-// cette fonction permet de montre les HP du joueur
 function getHeart():Integer;
 
 begin
