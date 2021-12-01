@@ -23,7 +23,7 @@ var
    f:Integer;
 begin
   effacerEcran();
-  dessinerCadreXY(30,5,85,25,simple,255,0);
+  dessinerCadreXY(30,5,85,25,double,255,0);
   pos.x := 35;
   pos.y := 7;
   ecrireEnPosition(pos, 'Que voulez-vous manger : ');
