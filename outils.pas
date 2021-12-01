@@ -54,6 +54,7 @@ implementation
 uses
   Classes, SysUtils, ihm;
 
+// cette procedure nous permet d'utiliser les fichers ascii
 procedure ascii(nom : string; x, y : integer);
     var
        fichier : textFile;
@@ -80,6 +81,7 @@ procedure ascii(nom : string; x, y : integer);
       closeFile(fichier);
     end;
 
+// cette procedure permet de faire ce deplacer un petit carré bleu pour simuler le deplacement du joueur
 procedure animationdeplacement(x, y, x2, y2 : integer);
 var
    contsec: string;
@@ -124,6 +126,7 @@ begin
   until anime = false;
 end;
 
+// cette procedure nous permet d'utiliser des fichier json
 procedure importObjData(data : TJSONData ; ObjName : String);
  var
    obj : TJSONObject;
@@ -233,7 +236,7 @@ begin
   //writeln('---------------------------------------');}
 end;
 
-
+// cette procedure affiche les données json
 Procedure DoParse(Parseur : TJSONParser ; ObjName : String);
 Var
   js : TJSONData;
@@ -245,6 +248,7 @@ begin
       importMonsterData(js,ObjName);
 end;
 
+// cette procedure créé des parties dans les fichiers json
 Procedure ParseFile (FileName, ObjName : String);
 Var
   flux : TFileStream;

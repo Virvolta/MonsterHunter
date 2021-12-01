@@ -18,6 +18,8 @@ implementation
 var
    pos : coordonnees;
 
+
+// cette fonction montre ce que le joueur peut acheter et lui demande de choisir ce qu'il veut
 function menuCantine():Integer;
 var
    f:Integer;
@@ -49,6 +51,7 @@ begin
   menuCantine:=f;
 end;
 
+// cette procedure donne un boost au joueur et lui retire des sous si il les a
 procedure defense();
 var
    k:string;
@@ -76,6 +79,7 @@ begin
   else defense();
 end;
 
+// cette procedure donne un boost au joueur et lui retire des sous si il les a
 procedure degats();
 var
    k:string;
@@ -103,6 +107,7 @@ begin
   else degats();
 end;
 
+// cette procedure donne un boost au joueur et lui retire des sous si il les a
 procedure vie();
 var
    k:string;
@@ -130,6 +135,7 @@ begin
   else vie();
 end;
 
+// cette procedure donne un boost au joueur et lui retire des sous si il les a
 procedure vitesse();
 var
    k:string;

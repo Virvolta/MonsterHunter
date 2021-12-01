@@ -21,6 +21,7 @@ uses
 var
   pos: coordonnees;
 
+// cette fonction affiche le menu principal et demande a l'utilisateur de choisir ce qu'il veut faire
 function menuPrincipal(): integer;
 var
   ch: char;
@@ -113,6 +114,7 @@ begin
   menuPrincipal := select;
 end;
 
+// cette procedure lance la personalisation du perso
 procedure menuPerso();
 
 var
@@ -240,8 +242,7 @@ begin
   menuLauncher();
 end;
 
-
-
+// cette procedure afiiche les caracteristiques du perso et lui demande si il veut entrer dans la ville
 procedure menuLauncher();
 var
   p: string;
@@ -332,6 +333,7 @@ begin
     pieces();
 end;
 
+// cette procedure affiche le prelude du jeu
 procedure menuHistoire();
 var
   a: integer;
@@ -350,6 +352,7 @@ begin
   until ch = #13;
 end;
 
+// cette procedure permet de quitter
 procedure menuQuitter();
 begin
   effacerEcran();
@@ -359,6 +362,7 @@ begin
   ecrireEnPosition(pos, 'Bonne journee');
 end;
 
+// cette fonction nous permet de lancer la ville
 function menuJeu(): integer;
 var
   c: integer;
@@ -514,6 +518,7 @@ begin
   menuJeu := select;
 end;
 
+// cette fonction permet de lancer l'inventaire
 function menuInventaire(): integer;
 var
   j: integer;
