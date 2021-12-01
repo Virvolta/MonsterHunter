@@ -26,6 +26,7 @@ procedure start();
 begin
   ParseFile('json/objets.json','objets');
   ParseFile('json/equipements.json','equipements');
+  ParseFile('json/monstre.json','monstres');
   case menuPrincipal() of
        1: menuPerso();
        2:
