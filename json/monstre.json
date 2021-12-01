@@ -1,0 +1,7 @@
+{
+   "monstres" :[
+      {"niveau" : 1,"nom" : "Poulpe", "HP" : 150, "degatmin" : 10, "degatmax" : 20, "defensemin" : 5, "defensemax" : 15},
+      {"niveau" : 2,"nom" : "Centaure", "HP" : 275, "degatmin" : 30, "degatmax" : 40, "defensemin" : 15, "defensemax" : 25},
+      {"niveau" : 3,"nom" : "Dragon", "HP" : 400, "degatmin" : 50, "degatmax" : 60, "defensemin" : 20, "defensemax" : 30}
+   ]
+}

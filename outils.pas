@@ -22,6 +22,16 @@ type
     slot:Integer;
   end;
 
+  monstre=record
+    niveau:Integer;
+    nom:String;
+    hp:Integer;
+    degatmin:Integer;
+    degatmax:Integer;
+    defensemin:Integer;
+    defensemax:Integer;
+  end;
+
 var
 
   tabProduits : array [0..6] of produit;
@@ -135,7 +145,7 @@ begin
        tabIdProduits[StrToInt(obj.Strings['id'])] := i;
      end;
 
-     for i:=0 to tab.Count-1 do
+     {for i:=0 to tab.Count-1 do
      begin
        write('id : ',tabProduits[i].id);
        write(' / ');
@@ -144,7 +154,7 @@ begin
        write('prixAchat : ',tabProduits[i].prixAchat);
        write(' / ');
        writeln('prixVente : ',tabProduits[i].prixVente);
-     end;
+     end;}
   end
   else if ObjName='equipements' then
   begin
@@ -159,7 +169,7 @@ begin
        tabIdEquipments[StrToInt(obj.Strings['id'])] := i;
      end;
 
-     for i:=0 to tab.Count-1 do
+     {for i:=0 to tab.Count-1 do
      begin
        write('id : ',tabEquipments[i].id);
        write(' / ');
@@ -168,7 +178,7 @@ begin
        write('stat : ',tabEquipments[i].stat);
        write(' / ');
        writeln('slot : ',tabEquipments[i].slot);
-     end;
+     end;}
   end
   else
       writeln('Aucun objet de ce type dans le fichier JSON');

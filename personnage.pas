@@ -48,6 +48,11 @@ procedure addItemInventory(i : Item);
 procedure setItemInventory(slot : Integer; i : Item);
 function hasItemInventory(id,count : integer) : boolean;
 
+procedure addHeart(amount : Integer);
+procedure removeHeart(amount : Integer);
+procedure setHeart(amount : Integer);
+function getHeart():Integer;
+
 implementation
 
 var
@@ -296,6 +301,20 @@ begin
   else
       heart := heart - amount
   ;
+end;
+
+function getHeart():Integer;
+
+begin
+
+  getHeart:=heart;
+
+end;
+
+procedure setHeart(amount : Integer);
+
+begin
+  heart := amount;
 end;
 
 end.
