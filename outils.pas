@@ -34,10 +34,10 @@ type
 
 var
 
-  tabProduits : array [0..6] of produit;
+  tabProduits : array [0..12] of produit;
   tabEquipments : array [0..17] of equipment;
 
-  tabIdProduits : array [0..6] of integer;
+  tabIdProduits : array [0..12] of integer;
   tabIdEquipments : array [0..17] of integer;
 
 procedure displayData(data : TJSONData; ObjName : String);

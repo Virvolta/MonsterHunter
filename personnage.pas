@@ -9,12 +9,14 @@ uses
 
 const
   NOMBRE_INV_JEU = 10;
+  NOMBRE_ARMOIRE_JEU = 10;
   MAX_HEART = 200;
 
 type
   TypeSexe = (m, f);
   TypeEquipement = Array[1..6] of Item;
   TypeInventaire = Array[1..NOMBRE_INV_JEU] of Item;
+  TypeArmoire = Array[1..NOMBRE_ARMOIRE_JEU] of Item;
 
 function getPseudo() : String;
 procedure setPseudo(n : String);
@@ -37,15 +39,17 @@ function hasMoney(m : Integer) : boolean;
 
 function getInventory() : TypeInventaire;
 function getEquipement() : TypeEquipement;
+function getArmoire() : TypeArmoire;
 
 procedure removeItemEquipement(i : integer);
 function getItemEquipement(i : integer) : Item;
-function addItemEquipement(i : Item) : Item;
+procedure addItemEquipement(i : Item);
 
 procedure removeItemInventory(id,count : integer);
 function getSlotItemNullInventory() : Integer;
-procedure addItemInventory(i : Item);
+function addItemInventory(i : Item) : boolean;
 procedure setItemInventory(slot : Integer; i : Item);
+function getItemInventory(slot : Integer) : Item;
 function hasItemInventory(id,count : integer) : boolean;
 
 procedure addHeart(amount : Integer);
@@ -62,6 +66,7 @@ var
    money : Integer;
    equipement : TypeEquipement;
    inventaire : TypeInventaire;
+   armoire : TypeArmoire;
    heart : integer;
 
 function getEquipement() : TypeEquipement;
@@ -72,6 +77,11 @@ end;
 function getInventory() : TypeInventaire;
 begin
   getInventory := inventaire;
+end;
+
+function getArmoire() : TypeArmoire;
+begin
+  getArmoire := armoire;
 end;
 
 procedure removeItemEquipement(i : integer);
@@ -87,39 +97,43 @@ begin
   getItemEquipement := equipement[i];
 end;
 
-function addItemEquipement(i : Item) : Item;
+procedure addItemEquipement(i : Item);
 
 var
    slot : Integer;
 begin
   slot := tabEquipments[tabIdEquipments[i.id]].slot;
-  addItemInventory(i);
-  inventaire[slot] := i;
+  equipement[slot] := i;
 end;
 
 procedure removeItemInventory(id,count : integer);
 
 var
    i : Integer;
+   b : boolean;
 
 begin
-  for i := 1 to length(inventaire) do
-      begin
-        if ((inventaire[i].id = id) or (inventaire[i].count = count)) then
+  i := 1;
+  b := false;
+  repeat
+    if (inventaire[i].id = id) then
         begin
           if (inventaire[i].count >= count) then
             begin
               inventaire[i].count := inventaire[i].count - count;
               inventaire[i].id := 0;
-              break;
+              b := true;
             end
           else
-              count := count - inventaire[i].count;
-              inventaire[i].count := 0;
-              inventaire[i].id := 0;
+              begin
+                 count := count - inventaire[i].count;
+                 inventaire[i].count := 0;
+                 inventaire[i].id := 0;
+              end
           ;
         end;
-      end;
+    i := i +1;
+  until (b = true) or (i >= length(inventaire));
 end;
 
 function hasItemInventory(id,count : integer) : boolean;
@@ -129,21 +143,18 @@ var
    b : boolean;
 
 begin
-  b:= false;
-  for i := 1 to length(inventaire) do
-      begin
-        if ((inventaire[i].id = id) or (inventaire[i].count = count)) then
+  i := 1;
+  b := false;
+  repeat
+    if ((inventaire[i].id = id)) then
         begin
           if (inventaire[i].count >= count) then
             begin
               b := true;
-              break;
-            end
-          else
-              count := count - inventaire[i].count;
-          ;
+            end;
         end;
-      end;
+    i := i +1;
+  until (b = true) or (i >= length(inventaire));
   hasItemInventory := b;
 end;
 
@@ -151,21 +162,26 @@ function getSlotItemNullInventory() : Integer;
 
 var
    i : Integer;
+   c : Integer;
+   b : boolean;
 begin
-  for i := 1 to length(inventaire) do
-      begin
-        if ((inventaire[i].id <= 0) or (inventaire[i].count <= 0)) then
+  i := 1;
+  c := -1;
+  b := false;
+  repeat
+   if ((inventaire[i].id <= 0) or (inventaire[i].count <= 0)) then
            begin
-             getSlotItemNullInventory := i;
-             break;
+             c := i;
+             b := true;
            end;
-      end;
+    i := i +1;
+  until (b = true) or (i >= length(inventaire));
+  getSlotItemNullInventory := c;
 end;
 
-procedure addItemInventory(i : Item);
+function addItemInventory(i : Item) : boolean;
 
 var
-   slot : Integer;
    n : Integer;
    b : boolean;
 
@@ -173,27 +189,42 @@ begin
   b := true;
   if ((i.id <= 0) or (i.count <= 0)) then
      b := false
-  ;
-
-  if (b = true) then
-     for n := 1 to length(inventaire) do
-      begin
-        if ((inventaire[n].id = i.id) and (inventaire[n].unique = false))then
-           begin
-             inventaire[n].count := inventaire[n].count + i.count;
-             b:=false;
-             break;
-           end;
-      end;
-  ;
-  if (b = true) then
-     inventaire[getSlotItemNullInventory()] := i
-  ;
+  else
+     begin
+        n := 1;
+        b := false;
+        repeat
+           if ((inventaire[n].id = i.id) and (inventaire[n].unique = false))then
+             begin
+                  inventaire[n].count := inventaire[n].count + i.count;
+                  b:= true;
+             end;
+            n := n + 1;
+        until (b = true) or (n > high(inventaire))
+     end;
+  if (b = false) then
+    begin
+     n := getSlotItemNullInventory();
+     if (getSlotItemNullInventory() > 0) then
+       begin
+          inventaire[n] := i;
+          b := true;
+       end
+     else
+         b:= false
+     ;
+    end;
+  addItemInventory := b;
 end;
 
 procedure setItemInventory(slot : Integer; i : Item);
 begin
    inventaire[slot] := i;
+end;
+
+function getItemInventory(slot : Integer) : Item;
+begin
+   getItemInventory := inventaire[slot];
 end;
 
 function getMoney() : Integer;
@@ -283,6 +314,12 @@ begin
    poid := n;
 end;
 
+procedure setHeart(amount : Integer);
+
+begin
+  heart := amount;
+end;
+
 procedure addHeart(amount : Integer);
 
 begin
@@ -309,12 +346,6 @@ begin
 
   getHeart:=heart;
 
-end;
-
-procedure setHeart(amount : Integer);
-
-begin
-  heart := amount;
 end;
 
 end.

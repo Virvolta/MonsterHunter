@@ -5,7 +5,7 @@ unit uniteChambre;
 interface
 
 uses
-  Classes, SysUtils,ihm,logique, outils, controle;
+  Classes, SysUtils,ihm,logique, outils, controle, personnage, uniteforge;
 
 function menuChambre():Integer;
 procedure menuLit();
@@ -118,9 +118,9 @@ var
    e:string;
 begin
   effacerEcran();
-  ascii('lit', 0, 0);
-  pos.x := 52;
-  pos.y := 3;
+  dessinerCadreXY(38,2,86,25,double,255,0);
+  pos.x := 58;
+  pos.y := 13;
   ecrireEnPosition(pos, 'Bonne nuit');
   readln(e);
   if (e = '')then chambre()
@@ -130,22 +130,36 @@ end;
 function menuArmoire():Integer;
 var
    i:Integer;
+   inv : TypeInventaire;
+   pos : coordonnees;
+   it : Item;
+   select : Integer;
+   ch : char;
 begin
-  effacerEtColorierEcran(6);
-  dessinerCadreXY(2,2,50,25,simple,0,6);
-  dessinerCadreXY(70,2,118,25,simple,0,6);
-  dessinerCadreXY(2,27,118,29,simple,0,6);
-  pos.x := 20;
+  effacerEcran();
+  couleurs(15, 0);
+  ascii('armoire', 0, 0);
+  pos.x := 3;
   pos.y := 1;
-  ecrireEnPosition(pos, 'Stockage ');
-  pos.x := 90;
-  pos.y := 1;
-  ecrireEnPosition(pos, 'Inventaire');
-  pos.x := 50;
-  pos.y := 28;
-  ecrireEnPosition(pos, '1)Retour a la chambre : ');
-  readln(i);
-  menuArmoire:=i;
+  inv := getInventory();
+  for i := Low(inv) to High(inv) do
+      begin
+        it := getItemInventory(i);
+        if ((it.id > 0) or (it.count > 0)) then
+           begin
+              ecrireEnPosition(pos, concat(tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
+              pos.y := pos.y + 1;
+           end;
+      end;
+  pos.x := 58;
+  pos.y := 27;
+  ecrireEnPosition(pos, 'Menu');
+  deplacerCurseurXY(0, 0);
+  select := 1;
+  repeat
+    ch := ReadKey;
+  until ch = #13;
+  menuArmoire:=select;
 end;
 
 end.

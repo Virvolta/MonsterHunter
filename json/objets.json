@@ -1,5 +1,9 @@
 {
    "objets" :[
+      {"id" : 1, "nom" : "Cuir", "prixAchat" : -1, "prixVente" : 4},
+      {"id" : 2, "nom" : "Fer", "prixAchat" : -1, "prixVente" : 7},
+      {"id" : 3, "nom" : "Aeter", "prixAchat" : -1, "prixVente" : 12},
+      {"id" : 4, "nom" : "Bois", "prixAchat" : -1, "prixVente" : 2},
       {"id" : 100, "nom" : "Potion de regeneration", "prixAchat" : 25, "prixVente" : 20},
       {"id" : 101, "nom" : "Potion de force", "prixAchat" : 15, "prixVente" : 10},
       {"id" : 102, "nom" : "Potion de resistance", "prixAchat" : 25, "prixVente" : 20},
