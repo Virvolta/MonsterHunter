@@ -20,12 +20,13 @@ procedure valideVente(index:integer);
 implementation
 uses
   Classes, SysUtils, menu,uniteCantine,uniteChambre,uniteMarchand,uniteforge
-  ,uniteChasse, outils;
+  ,uniteChasse, outils, personnage;
 
 procedure start();
 begin
   ParseFile('json/objets.json','objets');
   ParseFile('json/equipements.json','equipements');
+  setHeart(MAX_HEART);
   case menuPrincipal() of
        1: menuPerso();
        2:
@@ -40,6 +41,7 @@ end;
 
 procedure pieces();
 begin
+  setHeart(200);
   case menuJeu() of
        7: chambre();
        //2: forge();

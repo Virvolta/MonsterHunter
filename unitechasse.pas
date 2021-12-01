@@ -8,7 +8,7 @@ uses
   Classes, SysUtils,ihm,logique,personnage,outils,menu;
 
 function chasser():Integer;
-function menucombat(monster:monstre):Integer;
+procedure menucombat(monster:monstre);
 function quiAttaque(monster:monstre):monstre;
 procedure drawHP(monster:monstre);
 procedure drawTour();
@@ -21,6 +21,12 @@ var
    atk: Integer;
 
 function chasser():Integer;
+
+var
+
+   select:Integer;
+   monster:monstre;
+
 begin
   effacerEcran();
   dessinerCadreXY(30,3,90,25,double,255,0);
@@ -44,9 +50,49 @@ begin
   pos.y := 24;
   ecrireEnPosition(pos, 'Choix : ');
 
+  readln(select);
+  if select=1 then
+     begin
+            monster.niveau:=1;
+            monster.nom:='Billy';
+            monster.hp:=150;
+            monster.degatmin:=10;
+            monster.degatmax:=20;
+            monster.defensemin:=20;
+            monster.defensemax:=30;
+
+            menucombat(monster);
+     end
+  else if select=2 then
+     begin
+            monster.niveau:=2;
+            monster.nom:='Bobby';
+            monster.hp:=250;
+            monster.degatmin:=20;
+            monster.degatmax:=30;
+            monster.defensemin:=30;
+            monster.defensemax:=40;
+            menucombat(monster);
+     end
+  else if select=3 then
+     begin
+            monster.niveau:=3;
+            monster.nom:='Lilian';
+            monster.hp:=700;
+            monster.degatmin:=50;
+            monster.degatmax:=60;
+            monster.defensemin:=50;
+            monster.defensemax:=60;
+            menucombat(monster);
+     end
+  else if select=4 then
+     begin
+            pieces();
+     end;
+
 end;
 
-function menucombat(monster:monstre):Integer;
+procedure menucombat(monster:monstre);
 
 var
 
@@ -54,6 +100,12 @@ var
 
 begin
 
+  effacerEcran();
+  deplacerCurseurXY(45,12);
+  writeln('Vous rencontrez un ',monster.nom,' sauvage.');
+  ReadLn;
+
+  effacerEcran();
   dessinerCadreXY(2,19,42,28,simple,White,Black);
 
   deplacerCurseurXY(4,20);
@@ -119,12 +171,10 @@ begin
   if getHeart()=0 then
      begin
           ecrireEnPosition(pos,'Vous avez perdu');
-          menucombat:=1;
      end
   else if monster.hp=0 then
      begin
           ecrireEnPosition(pos,'Vous avez gagne');
-          menucombat:=0;
      end;
 
 end;
@@ -153,7 +203,9 @@ begin
               else if choix=2 then
                  begin
                           removeHeart(aleaDegat(monster) div 2);
-                          deplacerCurseurXY(0,0);
+                          atk:=1;
+                          drawTour();
+                          atk:=0;
                           quiAttaque:=monster;
                  end
               else if choix=3 then
@@ -197,7 +249,7 @@ begin
   hp_monstre.y:=1;
 
   ecrireEnPosition(hp_joueur,IntToStr(getHeart()) + '  ');
-  ecrireEnPosition(hp_monstre,IntToStr(monster.hp) + '  ');
+  ecrireEnPosition(hp_monstre,IntToStr(monster.hp) + '  ' + monster.nom + '   ');
 
 end;
 
@@ -238,7 +290,7 @@ begin
           writeln('Tour : Monstre');
           writeln('               ');
           writeln('              ');
-          attendre(1000);
+          attendre(600);
      end;
 
 end;
