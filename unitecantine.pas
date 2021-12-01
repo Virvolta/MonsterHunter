@@ -114,7 +114,7 @@ begin
   begin
     pos.x := 48;
     pos.y := 13;
-    ecrireEnPosition(pos, 'Vous avez un coeur en plus ');
+    ecrireEnPosition(pos, 'Vous avez de la vie en plus ');
     delMoney(12);
   end
   else

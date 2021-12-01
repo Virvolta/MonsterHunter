@@ -5,7 +5,7 @@ unit uniteMarchand;
 interface
 
 uses
-  Classes, SysUtils,ihm,logique,uniteObjets,outils,personnage, controle;
+  Classes, SysUtils,ihm,logique,uniteObjets,outils,personnage, controle,uniteforge;
 
 function menuMarchand(): Integer;
 function menuVente():Integer;
@@ -31,11 +31,11 @@ begin
   couleurs(0, 15);
   pos.x := 23;
   pos.y := 23;
-  ecrireEnPosition(pos, 'Vendre');
+  ecrireEnPosition(pos, 'Acheter');
   couleurs(15, 0);
   pos.x := 90;
   pos.y := 23;
-  ecrireEnPosition(pos, 'Acheter');
+  ecrireEnPosition(pos, 'Vendre');
   pos.x := 58;
   pos.y := 27;
   ecrireEnPosition(pos, 'Menu');
@@ -72,11 +72,11 @@ begin
            couleurs(0, 15);
            pos.x := 23;
            pos.y := 23;
-           ecrireEnPosition(pos, 'Vendre');
+           ecrireEnPosition(pos, 'Acheter');
            couleurs(15, 0);
            pos.x := 90;
            pos.y := 23;
-           ecrireEnPosition(pos, 'Acheter');
+           ecrireEnPosition(pos, 'Vendre');
            pos.x := 58;
            pos.y := 27;
            ecrireEnPosition(pos, 'Menu');
@@ -87,11 +87,11 @@ begin
            couleurs(0, 15);
            pos.x := 90;
            pos.y := 23;
-           ecrireEnPosition(pos, 'Acheter');
+           ecrireEnPosition(pos, 'Vendre');
            couleurs(15, 0);
            pos.x := 23;
            pos.y := 23;
-           ecrireEnPosition(pos, 'Vendre');
+           ecrireEnPosition(pos, 'Acheter');
 
            pos.x := 58;
            pos.y := 27;
@@ -107,10 +107,10 @@ begin
            couleurs(15, 0);
            pos.x := 23;
            pos.y := 23;
-           ecrireEnPosition(pos, 'Vendre');
+           ecrireEnPosition(pos, 'Acheter');
            pos.x := 90;
            pos.y := 23;
-           ecrireEnPosition(pos, 'Acheter');
+           ecrireEnPosition(pos, 'Vendre');
            deplacerCurseurXY(0, 0);
       end;
     end;
@@ -229,6 +229,7 @@ end;
 procedure Oui(index:integer);
 var
    e:string;
+   i:item;
 begin
   effacerEcran();
   if hasMoney(tabProduits[index].prixAchat) then
@@ -237,6 +238,9 @@ begin
     pos.x := 43;
     pos.y := 13;
     ecrireEnPosition(pos, 'votre objet est dans votre inventaire');
+    i.id := tabProduits[index].id;
+    i.count := 1;
+    addItemInventory(i);
     delMoney(tabProduits[index].prixAchat);
   end
   else
@@ -314,6 +318,7 @@ begin
   pos.y := 13;
   ecrireEnPosition(pos, 'votre objet est bien vendu');
   addMoney(tabProduits[index].prixVente);
+  removeItemInventory(tabProduits[index].id, 1);
   readln(e);
   if (e = '')then vente(index)
   else UI(index);

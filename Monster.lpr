@@ -8,7 +8,7 @@ var
   mon:monstre;
 
 begin
-  //start();
+  start();
   setHeart(MAX_HEART);
   mon.niveau:=1;
   mon.nom:='Billy';
