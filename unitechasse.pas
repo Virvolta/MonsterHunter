@@ -20,6 +20,7 @@ var
    pos : coordonnees;
    atk: Integer;
 
+// cette fonction demande au joueur de choisir quel monstre il veut combatre
 function chasser():Integer;
 
 var
@@ -92,6 +93,7 @@ begin
 
 end;
 
+// cette procedure permet au joueur de combatre
 procedure menucombat(monster:monstre);
 
 var
@@ -179,6 +181,7 @@ begin
 
 end;
 
+// cette fonction choisi qui attaque en premier et veille a ce que les combatant joue chacun leur tour
 function quiAttaque(monster:monstre):monstre;
 
 var
@@ -234,6 +237,7 @@ begin
 
 end;
 
+// cette procedure dessine les HP du joueur et du monstre
 procedure drawHP(monster:monstre);
 
 var
@@ -253,6 +257,7 @@ begin
 
 end;
 
+// cette fonction genere des degats aleatoir pour le monstre en degatmin et degatmax
 function aleaDegat(monster:monstre):Integer;
 
 var
@@ -272,6 +277,7 @@ begin
 
 end;
 
+// cette procedure affiche qui doit jouer
 procedure drawTour();
 
 begin
@@ -280,14 +286,14 @@ begin
 
   if atk=0 then
      begin
-          writeln('Tour : Joueur ');
+          writeln('Tour de ', getPseudo);
           writeln('Choisissez : ');
           write('             ');
           deplacerCurseurXY(0,2);
      end
   else if atk=1 then
      begin
-          writeln('Tour : Monstre');
+          writeln('Tour de Monstre');
           writeln('               ');
           writeln('              ');
           attendre(600);

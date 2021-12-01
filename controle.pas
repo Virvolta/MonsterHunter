@@ -1,3 +1,4 @@
+// cette unite nous permet de nous deplacer a l'aide des flèches directionel
 unit controle;
 
 {$mode objfpc}{$H+}

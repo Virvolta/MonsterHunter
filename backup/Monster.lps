@@ -2,13 +2,13 @@
 <CONFIG>
   <ProjectSession>
     <PathDelim Value="\"/>
-    <Version Value="11"/>
+    <Version Value="12"/>
     <BuildModes Active="Default"/>
     <Units Count="15">
       <Unit0>
         <Filename Value="Monster.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
+        <TopLine Value="6"/>
         <CursorPos X="26" Y="28"/>
         <UsageCount Value="216"/>
         <Loaded Value="True"/>
@@ -44,8 +44,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="uniteCantine"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="23"/>
-        <CursorPos X="36" Y="26"/>
+        <CursorPos X="79" Y="137"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
       </Unit4>
@@ -54,8 +53,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="uniteChambre"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="126"/>
-        <CursorPos X="16" Y="152"/>
+        <TopLine Value="38"/>
+        <CursorPos X="86" Y="142"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
       </Unit5>
@@ -64,8 +63,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="uniteMarchand"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="288"/>
-        <CursorPos X="42" Y="110"/>
+        <CursorPos X="93" Y="23"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
       </Unit6>
@@ -89,7 +87,7 @@
         <Filename Value="uniteforge.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="170"/>
+        <TopLine Value="145"/>
         <CursorPos X="86" Y="34"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -98,10 +96,11 @@
         <Filename Value="unitechasse.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uniteChasse"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="116"/>
-        <CursorPos Y="42"/>
-        <UsageCount Value="184"/>
+        <TopLine Value="284"/>
+        <CursorPos X="51" Y="296"/>
+        <UsageCount Value="185"/>
         <Loaded Value="True"/>
       </Unit10>
       <Unit11>
@@ -110,14 +109,14 @@
         <EditorIndex Value="3"/>
         <TopLine Value="68"/>
         <CursorPos X="98" Y="79"/>
-        <UsageCount Value="182"/>
+        <UsageCount Value="183"/>
         <Loaded Value="True"/>
       </Unit11>
       <Unit12>
         <Filename Value="personnage.pas"/>
         <EditorIndex Value="10"/>
-        <TopLine Value="312"/>
-        <CursorPos X="5" Y="349"/>
+        <TopLine Value="17"/>
+        <CursorPos X="19" Y="21"/>
         <UsageCount Value="101"/>
         <Loaded Value="True"/>
       </Unit12>
@@ -259,7 +258,7 @@
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
-      <Modes Count="0" ActiveMode=""/>
+      <Modes ActiveMode=""/>
     </RunParams>
   </ProjectSession>
 </CONFIG>
