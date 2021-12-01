@@ -20,6 +20,7 @@ implementation
 var
    pos : coordonnees;
 
+// cette fonction affiche le menu marchand et nous permet de choisir entre vendre et acheter
 function menuMarchand(): Integer;
 var
    select : integer;
@@ -118,6 +119,7 @@ begin
   menuMarchand := select;
 end;
 
+// cette fonction sert a afficher le menu vente
 function menuVente():Integer;
 var
    h: integer;
@@ -150,6 +152,7 @@ begin
 
 end;
 
+// cette fonction liste tout les objets que le joueur peux acheter
 function menuAchat():Integer;
 var
    a:integer;
@@ -201,6 +204,7 @@ begin
 
 end;
 
+// cette fonction demande à l'utilisateur si il veut vraiment acheter l'objet
 function potion(index:integer) : Integer;
 var
    p:Integer;
@@ -226,6 +230,7 @@ begin
 
 end;
 
+// procedure qui confirme l'achat d'un objet et l'ajoute dans l'inventaire
 procedure Oui(index:integer);
 var
    e:string;
@@ -255,6 +260,7 @@ begin
   else Oui(index);
 end;
 
+// fonction qui sert à valider la vente de l'objet
 function validationVente(index:integer):Integer;
 var
    v:Integer;
@@ -308,6 +314,7 @@ begin
 
 end;
 
+// procedure qui retourne que l'objet est vendu et le retire de l'inventaire
 procedure UI(index:integer);
 var
    e:string;

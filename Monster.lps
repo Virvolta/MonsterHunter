@@ -2,13 +2,12 @@
 <CONFIG>
   <ProjectSession>
     <PathDelim Value="\"/>
-    <Version Value="11"/>
+    <Version Value="12"/>
     <BuildModes Active="Default"/>
     <Units Count="15">
       <Unit0>
         <Filename Value="Monster.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <CursorPos X="26" Y="28"/>
         <UsageCount Value="216"/>
         <Loaded Value="True"/>
@@ -53,9 +52,10 @@
         <Filename Value="unitechambre.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uniteChambre"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="126"/>
-        <CursorPos X="16" Y="152"/>
+        <TopLine Value="113"/>
+        <CursorPos X="20" Y="117"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
       </Unit5>
@@ -64,8 +64,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="uniteMarchand"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="288"/>
-        <CursorPos X="42" Y="110"/>
+        <CursorPos X="93" Y="23"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
       </Unit6>
@@ -259,7 +258,7 @@
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
-      <Modes Count="0" ActiveMode=""/>
+      <Modes ActiveMode=""/>
     </RunParams>
   </ProjectSession>
 </CONFIG>
