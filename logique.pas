@@ -20,7 +20,7 @@ procedure valideVente(index:integer);
 implementation
 uses
   Classes, SysUtils, menu,uniteCantine,uniteChambre,uniteMarchand,uniteforge
-  ,uniteChasse, outils;
+  ,uniteChasse, outils, personnage;
 
 procedure start();
 begin
@@ -40,6 +40,7 @@ end;
 
 procedure pieces();
 begin
+  setHeart(200);
   case menuJeu() of
        7: chambre();
        //2: forge();

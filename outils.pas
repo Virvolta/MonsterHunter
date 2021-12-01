@@ -40,7 +40,7 @@ var
   tabIdProduits : array [0..12] of integer;
   tabIdEquipments : array [0..17] of integer;
 
-procedure displayData(data : TJSONData; ObjName : String);
+procedure importObjData(data : TJSONData; ObjName : String);
 procedure DoParse(Parseur : TJSONParser ; ObjName : String);
 procedure ParseFile(FileName, ObjName : String);
 
@@ -121,7 +121,7 @@ begin
   until anime = false;
 end;
 
-procedure displayData(data : TJSONData ; ObjName : String);
+procedure importObjData(data : TJSONData ; ObjName : String);
  var
    obj : TJSONObject;
    tab : TJSONArray;
@@ -190,7 +190,7 @@ Var
   js : TJSONData;
 begin
   js:=parseur.Parse;
-  displayData(js,ObjName);
+  importObjData(js,ObjName);
 end;
 
 Procedure ParseFile (FileName, ObjName : String);

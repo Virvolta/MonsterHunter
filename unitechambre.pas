@@ -118,9 +118,9 @@ var
    e:string;
 begin
   effacerEcran();
-  dessinerCadreXY(38,2,86,25,double,255,0);
-  pos.x := 58;
-  pos.y := 13;
+  ascii('lit', 0, 0);
+  pos.x := 52;
+  pos.y := 3;
   ecrireEnPosition(pos, 'Bonne nuit');
   readln(e);
   if (e = '')then chambre()
