@@ -250,7 +250,9 @@ begin
 
 
 
-
+  effacerEcran;
+  couleurs(15,0);
+  ascii('marchand_achat',0, 0);
 
   pos.x:=53;
   pos.y:=12;
@@ -578,6 +580,9 @@ var
 begin
 
   Randomize;
+  effacerEcran;
+  couleurs(15,0);
+  ascii('marchand_achat',0,0);
 
   if monster.niveau=1 then
      begin
@@ -594,13 +599,17 @@ begin
                          begin
                              obj.id:=tabProduits[0].id;
                              obj.count:=countobj;
-                             writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[0].nom);
+                             deplacerCurseurXY(40,11);
+                             write('Vous avez obtenu ', obj.count, ' ', tabProduits[0].nom);
+                             deplacerCurseurXY(0,0);
                          end;
                        2:
                          begin
                              obj.id:=tabProduits[3].id;
                              obj.count:=countobj;
-                             writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[1].nom);
+                             deplacerCurseurXY(40,13);
+                             write('Vous avez obtenu ', obj.count, ' ', tabProduits[1].nom);
+                             deplacerCurseurXY(0,0);
                          end;
                   end;
                   addItemInventory(obj);
@@ -612,19 +621,22 @@ begin
                   countobj:=random(3)+1;
                   obj.count:=countobj;
                   addItemInventory(obj);
-
-                  writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[0].nom);
+                  deplacerCurseurXY(40,11);
+                  write('Vous avez obtenu ', obj.count, ' ', tabProduits[0].nom);
 
                   obj.id:=tabProduits[3].id;
                   countobj:=random(3)+1;
                   obj.count:=countobj;
                   addItemInventory(obj);
+                  deplacerCurseurXY(40,13);
+                  write('Vous avez obtenu ', obj.count, ' ', tabProduits[3].nom);
 
-                  writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[3].nom);
              end;
           randomMoney:=random(7)+1;
           addMoney(randomMoney);
+          deplacerCurseurXY(40,15);
           writeln('Vous avez trouve ', randomMoney, ' sous sur le monstre.');
+          deplacerCurseurXY(0,0);
      end
   else if monster.niveau=2 then
      begin
@@ -632,26 +644,28 @@ begin
           countobj:=random(3)+1;
           obj.count:=countobj;
           addItemInventory(obj);
-
-          writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[0].nom);
+          deplacerCurseurXY(40,9);
+          write('Vous avez obtenu ', obj.count, ' ', tabProduits[0].nom);
 
           obj.id:=tabProduits[3].id;
           countobj:=random(3)+1;
           obj.count:=countobj;
           addItemInventory(obj);
-
-          writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[3].nom);
+          deplacerCurseurXY(40,11);
+          write('Vous avez obtenu ', obj.count, ' ', tabProduits[3].nom);
 
           obj.id:=tabProduits[1].id;
           countobj:=random(3)+1;
           obj.count:=countobj;
           addItemInventory(obj);
-
-          writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[1].nom);
+          deplacerCurseurXY(40,13);
+          write('Vous avez obtenu ', obj.count, ' ', tabProduits[1].nom);
 
           randomMoney:=random(14)+1;
           addMoney(randomMoney);
-          writeln('Vous avez trouve ', randomMoney, ' sous sur le monstre.');
+          deplacerCurseurXY(40,15);
+          write('Vous avez trouve ', randomMoney, ' sous sur le monstre.');
+          deplacerCurseurXY(0,0);
      end
   else
       begin
@@ -659,33 +673,35 @@ begin
           countobj:=random(3)+1;
           obj.count:=countobj;
           addItemInventory(obj);
-
-          writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[0].nom);
+          deplacerCurseurXY(40,9);
+          write('Vous avez obtenu ', obj.count, ' ', tabProduits[0].nom);
 
           obj.id:=tabProduits[3].id;
           countobj:=random(3)+1;
           obj.count:=countobj;
           addItemInventory(obj);
-
-          writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[3].nom);
+          deplacerCurseurXY(40,11);
+          write('Vous avez obtenu ', obj.count, ' ', tabProduits[3].nom);
 
           obj.id:=tabProduits[1].id;
           countobj:=random(3)+1;
           obj.count:=countobj;
           addItemInventory(obj);
-
-          writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[1].nom);
+          deplacerCurseurXY(40,13);
+          write('Vous avez obtenu ', obj.count, ' ', tabProduits[1].nom);
 
           obj.id:=tabProduits[2].id;
           countobj:=random(3)+1;
           obj.count:=countobj;
           addItemInventory(obj);
-
+          deplacerCurseurXY(40,15);
           writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[2].nom);
 
           randomMoney:=random(21)+1;
           addMoney(randomMoney);
-          writeln('Vous avez trouve ', randomMoney, ' sous sur le monstre.');
+          deplacerCurseurXY(40,17);
+          write('Vous avez trouve ', randomMoney, ' sous sur le monstre.');
+          deplacerCurseurXY(0,0);
       end;
   readln;
 
