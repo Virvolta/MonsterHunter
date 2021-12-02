@@ -5,7 +5,7 @@ unit uniteforge;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, outils;
 
 type
   item=record
@@ -14,12 +14,12 @@ type
     unique:Boolean;
   end;
 
-function getCraftResult(item1,item2:item):item;
+procedure getCraftResult(item1,item2:item);
 
 implementation
 
 // cette fonction donne tout les crafts possible
-function getCraftResult(item1,item2:item):item;
+procedure getCraftResult(item1,item2:item);
 
 var
 
@@ -203,7 +203,7 @@ begin
             itemResult.count:=1;
           end
      end;
-  getCraftResult:=itemResult;
+  //addItemInventory(itemResult);
 end;
 
 end.

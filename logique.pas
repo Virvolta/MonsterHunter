@@ -179,7 +179,7 @@ begin
               item2.id:=m;
               item2.count:=k;
 
-              writeln(item1.id,' (',item1.count,')','  +  ',item2.id,' (',item2.count,') ',' = ', getCraftResult(item1,item2).id);
+              //writeln(item1.id,' (',item1.count,')','  +  ',item2.id,' (',item2.count,') ',' = ', getCraftResult(item1,item2).id);
 
             end;
 
