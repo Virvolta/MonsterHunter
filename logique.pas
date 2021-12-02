@@ -132,9 +132,9 @@ end;
 procedure vente(index:integer);
 begin
   case menuVente() of
-       1: inventaire();
-       2: valideVente(index);
-       3: marchand();
+       1: marchand();
+       2: inventaire();
+       3: valideVente(index);
   else vente(index)
   end;
 end;

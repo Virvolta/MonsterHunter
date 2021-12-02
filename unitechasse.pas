@@ -43,14 +43,14 @@ begin
   couleurs(0, 15);
   pos.x := 45;
   pos.y := 12;
-  ecrireEnPosition(pos, 'Niveau de dificulte : *');
+  ecrireEnPosition(pos, 'Niveau de difficulte : *');
   couleurs(15, 0);
   pos.x := 45;
   pos.y := 14;
-  ecrireEnPosition(pos, 'Niveau de dificulte : **');
+  ecrireEnPosition(pos, 'Niveau de difficulte : **');
   pos.x := 45;
   pos.y := 16;
-  ecrireEnPosition(pos, 'Niveau de dificulte : BOSS');
+  ecrireEnPosition(pos, 'Niveau de difficulte : BOSS');
   pos.x := 45;
   pos.y := 18;
   ecrireEnPosition(pos, 'Retour a la ville ');
@@ -79,14 +79,14 @@ begin
         couleurs(0, 15);
         pos.x := 45;
         pos.y := 12;
-        ecrireEnPosition(pos, 'Niveau de dificulte : *');
+        ecrireEnPosition(pos, 'Niveau de difficulte : *');
         couleurs(15, 0);
         pos.x := 45;
         pos.y := 14;
-        ecrireEnPosition(pos, 'Niveau de dificulte : **');
+        ecrireEnPosition(pos, 'Niveau de difficulte : **');
         pos.x := 45;
         pos.y := 16;
-        ecrireEnPosition(pos, 'Niveau de dificulte : BOSS');
+        ecrireEnPosition(pos, 'Niveau de difficulte : BOSS');
         pos.x := 45;
         pos.y := 18;
         ecrireEnPosition(pos, 'Retour a la ville ');
@@ -97,17 +97,17 @@ begin
         couleurs(0, 15);
         pos.x := 45;
         pos.y := 14;
-        ecrireEnPosition(pos, 'Niveau de dificulte : **');
+        ecrireEnPosition(pos, 'Niveau de difficulte : **');
         couleurs(15, 0);
         pos.x := 45;
         pos.y := 16;
-        ecrireEnPosition(pos, 'Niveau de dificulte : BOSS');
+        ecrireEnPosition(pos, 'Niveau de difficulte : BOSS');
         pos.x := 45;
         pos.y := 18;
         ecrireEnPosition(pos, 'Retour a la ville');
         pos.x := 45;
         pos.y := 12;
-        ecrireEnPosition(pos, 'Niveau de dificulte : *');
+        ecrireEnPosition(pos, 'Niveau de difficulte : *');
         deplacerCurseurXY(0, 0);
       end;
       3 :
@@ -115,17 +115,17 @@ begin
         couleurs(0, 15);
         pos.x := 45;
         pos.y := 16;
-        ecrireEnPosition(pos, 'Niveau de dificulte : BOSS');
+        ecrireEnPosition(pos, 'Niveau de difficulte : BOSS');
         couleurs(15, 0);
         pos.x := 45;
         pos.y := 18;
         ecrireEnPosition(pos, 'Retour a la ville');
         pos.x := 45;
         pos.y := 12;
-        ecrireEnPosition(pos, 'Niveau de dificulte : *');
+        ecrireEnPosition(pos, 'Niveau de difficulte : *');
         pos.x := 45;
         pos.y := 14;
-        ecrireEnPosition(pos, 'Niveau de dificulte : **');
+        ecrireEnPosition(pos, 'Niveau de difficulte : **');
         deplacerCurseurXY(0, 0);
       end;
       4 :
@@ -137,13 +137,13 @@ begin
         couleurs(15, 0);
         pos.x := 45;
         pos.y := 12;
-        ecrireEnPosition(pos, 'Niveau de dificulte : *');
+        ecrireEnPosition(pos, 'Niveau de difficulte : *');
         pos.x := 45;
         pos.y := 14;
-        ecrireEnPosition(pos, 'Niveau de dificulte : **');
+        ecrireEnPosition(pos, 'Niveau de difficulte : **');
         pos.x := 45;
         pos.y := 16;
-        ecrireEnPosition(pos, 'Niveau de dificulte : BOSS');
+        ecrireEnPosition(pos, 'Niveau de difficulte : BOSS');
         deplacerCurseurXY(0, 0);
       end;
     end;
@@ -166,8 +166,6 @@ function menucombat(monster:monstre):integer;
 var
 
    first:byte;
-   select:integer;
-
 
 begin
 
@@ -178,7 +176,6 @@ begin
   couleurs(15,0);
   writeln('Vous rencontrez un ',monster.nom,' sauvage.');
   deplacerCurseurXY(0, 0);
-  select:=1;
   ReadLn;
 
   effacerEcran();
@@ -254,7 +251,7 @@ begin
   couleurs(15,0);
   ascii('marchand_achat',0, 0);
 
-  pos.x:=53;
+  pos.x:=48;
   pos.y:=12;
 
   if getHeart()=0 then
@@ -277,7 +274,6 @@ function quiAttaque(monster:monstre):monstre;
 
 var
 
-   choix:Integer;
    fuir:Integer;
    select: integer;
    ch: char;
@@ -324,7 +320,6 @@ begin
              end;
              end;
       end;
-
 
     end;
     case select of
@@ -576,6 +571,9 @@ var
    obj:item;
    countobj:Integer;
    randomMoney:Integer;
+   fin:integer;
+   select: integer;
+   ch: char;
 
 begin
 
@@ -705,7 +703,73 @@ begin
       end;
   readln;
 
-  pieces();
+  effacerEcran;
+  couleurs(15,0);
+  ascii('marchand_achat',0,0);
+  pos.x := 40;
+  pos.y := 2 ;
+  ecrireEnPosition(pos, 'Voulez-vous refaire une chasse ?');
+  couleurs(0,15);
+  pos.x := 40;
+  pos.y := 12;
+  ecrireEnPosition(pos, 'Chasser a nouveau');
+  couleurs(15,0);
+  pos.x := 40;
+  pos.y := 14;
+  ecrireEnPosition(pos,'Retourner a la ville');
+  deplacerCurseurXY(0, 0);
+  select := 1;
+
+  repeat
+    ch := ReadKey;
+    case ch of
+      'H':
+      begin
+        select := select + 1;
+        if (select >= 2) then
+          select := 1;
+      end;
+      'P':
+      begin
+        select := select - 1;
+        if (select <= 0) then
+          select := 2;
+      end;
+    end;
+    case select of
+      1:
+      begin
+        couleurs(0,15);
+        pos.x := 40;
+        pos.y := 12;
+        ecrireEnPosition(pos, 'Chasser a nouveau');
+        couleurs(15,0);
+        pos.x := 40;
+        pos.y := 14;
+        ecrireEnPosition(pos, 'Retourner a la ville');
+        deplacerCurseurXY(0, 0);
+      end;
+      2:
+      begin
+        couleurs(0,15);
+        pos.x := 40;
+        pos.y := 14;
+        ecrireEnPosition(pos, 'Retourner a la ville');
+        couleurs(15,0);
+        pos.x := 40;
+        pos.y := 12;
+        ecrireEnPosition(pos, 'Chasser a nouveau');
+        deplacerCurseurXY(0, 0);
+      end;
+    end;
+  until ch = #13;
+  fin := select;
+
+  case fin of
+    1 : chasser();
+    2 : pieces();
+  end;
+
 
 end;
 
