@@ -11,8 +11,10 @@ function chasser():Integer;
 procedure menucombat(monster:monstre);
 function quiAttaque(monster:monstre):monstre;
 procedure drawHP(monster:monstre);
+procedure drawHPBar(monster:monstre);
 procedure drawTour(monster:monstre);
 function aleaDegat(monster:monstre):Integer;
+procedure reward(monster:monstre);
 
 implementation
 
@@ -85,42 +87,38 @@ begin
   ReadLn;
 
   effacerEcran();
-  dessinerCadreXY(2,19,42,28,simple,White,Black);
+  dessinerCadreXY(2,19,46,28,simple,White,Black);
 
   deplacerCurseurXY(4,20);
   WriteLn('HP : ');
-  ColorierZone(Green,Black,4,40,21);
 
-  dessinerCadreXY(4,22,21,24,simple,White,Black);
-  pos.x:=9;
+  dessinerCadreXY(6,22,23,24,simple,White,Black);
+  pos.x:=11;
   pos.y:=23;
   ecrireEnPosition(pos,'Attaquer');
-  Write('');
 
-  dessinerCadreXY(23,22,40,24,simple,White,Black);
-  pos.x:=28;
+  dessinerCadreXY(25,22,42,24,simple,White,Black);
+  pos.x:=30;
   pos.y:=23;
   ecrireEnPosition(pos,'Defendre');
 
-  dessinerCadreXY(4,25,21,27,simple,White,Black);
-  pos.x:=8;
+  dessinerCadreXY(6,25,23,27,simple,White,Black);
+  pos.x:=10;
   pos.y:=26;
   ecrireEnPosition(pos,'Inventaire');
 
-  dessinerCadreXY(23,25,40,27,simple,White,Black);
-  pos.x:=30;
+  dessinerCadreXY(25,25,42,27,simple,White,Black);
+  pos.x:=32;
   pos.y:=26;
   ecrireEnPosition(pos,'Fuir');
 
   deplacerCurseurXY(68,1);
   WriteLn('HP : ');
-  ColorierZone(Magenta,Black,54,90,2);
 
+  drawHP(monster);
 
   randomize();
   first:=Random(2);
-
-  drawHP(monster);
 
   if first=0 then
      monster:=quiAttaque(monster)
@@ -164,7 +162,7 @@ begin
      begin
           ecrireEnPosition(pos,'Vous avez gagne');
           readln;
-          pieces();
+          reward(monster);
      end;
 
 end;
@@ -242,7 +240,38 @@ begin
 
   ecrireEnPosition(hp_joueur,IntToStr(getHeart()) + '  ');
   ecrireEnPosition(hp_monstre,IntToStr(monster.hp) + '  ' + monster.nom + '   ');
+  drawHPBar(monster);
 
+end;
+
+procedure drawHPBar(monster:monstre);
+
+var
+
+   i,j:Integer;
+
+begin
+
+  i:= round((getHeart / MAX_HEART) * 40)+4;
+  j := round((monster.hp/tabMonstre[monster.niveau-1].hp)*50)+50;
+  if getHeart=MAX_HEART then
+     ColorierZone(Green,Black,4,44,21)
+  else if getHeart<=(MAX_HEART/2) then
+     begin
+          ColorierZone(Red,Black,4,23,21);
+          ColorierZone(LightGray,Black,i, 44,21);
+     end
+  else
+      ColorierZone(LightGray,Black,i, 44,21);
+  if monster.hp=tabMonstre[monster.niveau-1].hp then
+     ColorierZone(Magenta,Black,50,100,2)
+  else if monster.hp<=(tabMonstre[monster.niveau-1].hp/2) then
+     begin
+          ColorierZone(LightMagenta,Black, 50, 76,2);
+          ColorierZone(LightGray,Black,j, 100,2);
+     end
+  else
+    ColorierZone(LightGray,Black,j, 100,2);
 end;
 
 // cette fonction genere des degats aleatoire pour le monstre en degatmin et degatmax
@@ -286,6 +315,153 @@ begin
           writeln('              ');
           attendre(600);
      end;
+
+end;
+
+procedure reward(monster:monstre);
+
+var
+
+   nbobj:Integer;
+   obj1,obj2,obj3,obj4:Integer;
+
+begin
+
+  if monster.niveau=1 then
+     begin
+          obj1:=0;
+          obj2:=3;
+     end
+  else if monster.niveau=2 then
+     begin
+          obj1:=0;
+          obj2:=3;
+          obj3:=1;
+     end
+  else
+      begin
+        obj1:=0;
+        obj2:=3;
+        obj3:=1;
+        obj4:=2;
+      end;
+
+
+  Randomize;
+  nbobj:=random(3);
+
+  case nbobj of
+               0:
+                 begin
+                 if monster.niveau=1 then
+                    begin
+                         addItemInventory(tabProduits[obj1]);
+
+                         addItemInventory(tabProduits[obj2]);
+                    end;
+                 if monster.niveau=2 then
+                    begin
+                         addItemInventory(tabProduits[obj1]);
+
+                         addItemInventory(tabProduits[obj2]);
+
+                         addItemInventory(tabProduits[obj3]);
+                    end;
+                 if monster.niveau=3 then
+                    begin
+                         addItemInventory(tabProduits[obj1]);
+
+                         addItemInventory(tabProduits[obj2]);
+
+                         addItemInventory(tabProduits[obj3]);
+
+                         addItemInventory(tabProduits[obj4]);
+                    end;
+                 end;
+               1:
+                 begin
+                 if monster.niveau=1 then
+                    begin
+                         addItemInventory(tabProduits[obj1]);
+                         addItemInventory(tabProduits[obj1]);
+
+                         addItemInventory(tabProduits[obj2]);
+                         addItemInventory(tabProduits[obj2]);
+                    end;
+                 if monster.niveau=2 then
+                    begin
+                         addItemInventory(tabProduits[obj1]);
+                         addItemInventory(tabProduits[obj1]);
+
+                         addItemInventory(tabProduits[obj2]);
+                         addItemInventory(tabProduits[obj2]);
+
+                         addItemInventory(tabProduits[obj3]);
+                         addItemInventory(tabProduits[obj3]);
+                    end;
+                 else
+                    begin
+                         addItemInventory(tabProduits[obj1]);
+                         addItemInventory(tabProduits[obj1]);
+
+                         addItemInventory(tabProduits[obj2]);
+                         addItemInventory(tabProduits[obj2]);
+
+                         addItemInventory(tabProduits[obj3]);
+                         addItemInventory(tabProduits[obj3]);
+
+                         addItemInventory(tabProduits[obj4]);
+                         addItemInventory(tabProduits[obj4]);
+                    end;
+                 end;
+               2:
+                 begin
+                 if monster.niveau=1 then
+                    begin
+                         addItemInventory(tabProduits[obj1]);
+                         addItemInventory(tabProduits[obj1]);
+                         addItemInventory(tabProduits[obj1]);
+
+                         addItemInventory(tabProduits[obj2]);
+                         addItemInventory(tabProduits[obj2]);
+                         addItemInventory(tabProduits[obj2]);
+                    end
+                 else if monster.niveau=2 then
+                    begin
+                         addItemInventory(tabProduits[obj1]);
+                         addItemInventory(tabProduits[obj1]);
+                         addItemInventory(tabProduits[obj2]);
+
+                         addItemInventory(tabProduits[obj2]);
+                         addItemInventory(tabProduits[obj2]);
+                         addItemInventory(tabProduits[obj2]);
+
+                         addItemInventory(tabProduits[obj3]);
+                         addItemInventory(tabProduits[obj3]);
+                         addItemInventory(tabProduits[obj3]);
+                    end
+                 else
+                    begin
+                         addItemInventory(tabProduits[obj1])
+                         addItemInventory(tabProduits[obj1]);
+                         addItemInventory(tabProduits[obj1]);
+
+                         addItemInventory(tabProduits[obj2]);
+                         addItemInventory(tabProduits[obj2]);
+                         addItemInventory(tabProduits[obj2]);
+
+                         addItemInventory(tabProduits[obj3]);
+                         addItemInventory(tabProduits[obj3]);
+                         addItemInventory(tabProduits[obj3]);
+
+                         addItemInventory(tabProduits[obj4]);
+                         addItemInventory(tabProduits[obj4]);
+                         addItemInventory(tabProduits[obj4]);
+                    end;
+                 end;
+  end;
+
+  pieces();
 
 end;
 
