@@ -7,11 +7,11 @@ var
   i : item;
 
 begin
-  //forge();
   //start();
   ParseFile('json/objets.json','objets');
   ParseFile('json/equipements.json','equipements');
   ParseFile('json/monstre.json','monstres');
+  //forge();
   chasser();
   {i.id := 1;
   i.count := 2;
