@@ -451,7 +451,7 @@ begin
         couleurs(15, 0);
         pos.x := 3;
         pos.y := 24;
-        ecrireEnPosition(pos, 'Utiliser/Equiper');
+        ecrireEnPosition(pos, 'Utiliser/Equiper/Desequiper');
         pos.x := 3;
         pos.y := 26;
         ecrireEnPosition(pos, 'Suprimer');
@@ -472,7 +472,7 @@ begin
         ecrireEnPosition(pos, 'Deplacer');
         pos.x := 3;
         pos.y := 24;
-        ecrireEnPosition(pos, 'Utiliser/Equiper');
+        ecrireEnPosition(pos, 'Utiliser/Equiper/Desequiper');
         pos.x := 3;
         pos.y := 27;
         ecrireEnPosition(pos, 'Anuler');
@@ -493,7 +493,7 @@ begin
         ecrireEnPosition(pos, 'Deplacer');
         pos.x := 3;
         pos.y := 24;
-        ecrireEnPosition(pos, 'Utiliser/Equiper');
+        ecrireEnPosition(pos, 'Utiliser/Equiper/Desequiper');
         deplacerCurseurXY(0, 0);
       end;
     end;
