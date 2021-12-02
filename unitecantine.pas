@@ -5,7 +5,7 @@ unit uniteCantine;
 interface
 
 uses
-  Classes, SysUtils,ihm,logique,personnage;
+  Classes, SysUtils,ihm,logique,personnage,outils,controle;
 
 procedure defense();
 procedure degats();
@@ -22,33 +22,166 @@ var
 // cette fonction montre ce que le joueur peut acheter et lui demande de choisir ce qu'il veut
 function menuCantine():Integer;
 var
-   f:Integer;
+   ch: char;
+   i: integer;
+   select: integer;
 begin
   effacerEcran();
-  dessinerCadreXY(30,5,85,25,simple,255,0);
+  couleurs(15, 0);
+  ascii('cantine', 0, 0);
   pos.x := 35;
   pos.y := 7;
-  ecrireEnPosition(pos, 'Que voulez-vous manger : ');
+  deplacerCurseurXY(pos.x, pos.y);
+  write('Que voulez-vous manger ', getpseudo);
+  couleurs(0, 15);
+  pos.x := pos.x;
+  pos.y := 10;
+  ecrireEnPosition(pos, 'BOOST defense : Risoto au champi vitalis : 15');
+  couleurs(15, 0);
   pos.x := pos.x;
   pos.y := pos.y+2;
-  ecrireEnPosition(pos, '1)BOOST defense : Risoto au champi vitalis : 15');
+  ecrireEnPosition(pos, 'BOOST degats : soupe de corne de dragon : 20');
   pos.x := pos.x;
   pos.y := pos.y+2;
-  ecrireEnPosition(pos, '2)BOOST degats : soupe de corne de dragon : 20');
+  ecrireEnPosition(pos, 'BOOST vie : viande grillee : 12');
   pos.x := pos.x;
   pos.y := pos.y+2;
-  ecrireEnPosition(pos, '3)BOOST vie : viande grillee : 12');
+  ecrireEnPosition(pos, 'BOOST vitesse : saute de pimants : 10');
   pos.x := pos.x;
-  pos.y := pos.y+2;
-  ecrireEnPosition(pos, '4)BOOST vitesse : saute de pimants : 10');
-  pos.x := pos.x;
-  pos.y := pos.y+2;
-  ecrireEnPosition(pos, '5)Retour a la ville : ');
-  pos.x := 50;
   pos.y := 24;
-  ecrireEnPosition(pos, 'Choix : ');
-  readln(f);
-  menuCantine:=f;
+  ecrireEnPosition(pos, 'Retour a la ville : ');
+  pos.x := 1;
+  pos.y := 28;
+  ecrireEnPosition(pos, 'appuyer sur entrer pour selectionner');
+  deplacerCurseurXY(0, 0);
+  select := 1;
+
+  repeat
+    ch := ReadKey;
+    case ch of
+      'P':
+      begin
+        select := select + 1;
+        if (select >= 6) then
+          select := 1;
+      end;
+      'H':
+      begin
+        select := select - 1;
+        if (select <= 0) then
+          select := 5;
+      end;
+    end;
+    case select of
+      1:
+      begin
+        couleurs(0, 15);
+        pos.x := 35;
+        pos.y := 10;
+        ecrireEnPosition(pos, 'BOOST defense : Risoto au champi vitalis : 15');
+        couleurs(15, 0);
+        pos.x := 35;
+        pos.y := 12;
+        ecrireEnPosition(pos, 'BOOST degats : soupe de corne de dragon : 20');
+        pos.x := 35;
+        pos.y := 14;
+        ecrireEnPosition(pos, 'BOOST vie : viande grillee : 12');
+        pos.x := 35;
+        pos.y := 16;
+        ecrireEnPosition(pos, 'BOOST vitesse : saute de pimants : 10');
+        pos.x := 35;
+        pos.y := 24;
+        ecrireEnPosition(pos, 'Retour a la ville : ');
+        deplacerCurseurXY(0, 0);
+      end;
+      2:
+      begin
+        couleurs(0, 15);
+        pos.x := 35;
+        pos.y := 12;
+        ecrireEnPosition(pos, 'BOOST degats : soupe de corne de dragon : 20');
+        couleurs(15, 0);
+        pos.x := 35;
+        pos.y := 14;
+        ecrireEnPosition(pos, 'BOOST vie : viande grillee : 12');
+        pos.x := 35;
+        pos.y := 16;
+        ecrireEnPosition(pos, 'BOOST vitesse : saute de pimants : 10');
+        pos.x := 35;
+        pos.y := 24;
+        ecrireEnPosition(pos, 'Retour a la ville : ');
+        pos.x := 35;
+        pos.y := 10;
+        ecrireEnPosition(pos, 'BOOST defense : Risoto au champi vitalis : 15');
+        deplacerCurseurXY(0, 0);
+      end;
+      3:
+      begin
+        couleurs(0, 15);
+        pos.x := 35;
+        pos.y := 14;
+        ecrireEnPosition(pos, 'BOOST vie : viande grillee : 12');
+        couleurs(15, 0);
+        pos.x := 35;
+        pos.y := 16;
+        ecrireEnPosition(pos, 'BOOST vitesse : saute de pimants : 10');
+        pos.x := 35;
+        pos.y := 24;
+        ecrireEnPosition(pos, 'Retour a la ville : ');
+        pos.x := 35;
+        pos.y := 10;
+        ecrireEnPosition(pos, 'BOOST defense : Risoto au champi vitalis : 15');
+        pos.x := 35;
+        pos.y := 12;
+        ecrireEnPosition(pos, 'BOOST degats : soupe de corne de dragon : 20');
+        deplacerCurseurXY(0, 0);
+      end;
+      4:
+      begin
+        couleurs(0, 15);
+        pos.x := 35;
+        pos.y := 16;
+        ecrireEnPosition(pos, 'BOOST vitesse : saute de pimants : 10');
+        couleurs(15, 0);
+        pos.x := 35;
+        pos.y := 24;
+        ecrireEnPosition(pos, 'Retour a la ville : ');
+        pos.x := 35;
+        pos.y := 10;
+        ecrireEnPosition(pos, 'BOOST defense : Risoto au champi vitalis : 15');
+        pos.x := 35;
+        pos.y := 12;
+        ecrireEnPosition(pos, 'BOOST degats : soupe de corne de dragon : 20');
+        pos.x := 35;
+        pos.y := 14;
+        ecrireEnPosition(pos, 'BOOST vie : viande grillee : 12');
+        deplacerCurseurXY(0, 0);
+      end;
+      5:
+      begin
+        couleurs(0, 15);
+        pos.x := 35;
+        pos.y := 24;
+        ecrireEnPosition(pos, 'Retour a la ville : ');
+        couleurs(15, 0);
+        pos.x := 35;
+        pos.y := 10;
+        ecrireEnPosition(pos, 'BOOST defense : Risoto au champi vitalis : 15');
+        pos.x := 35;
+        pos.y := 12;
+        ecrireEnPosition(pos, 'BOOST degats : soupe de corne de dragon : 20');
+        pos.x := 35;
+        pos.y := 14;
+        ecrireEnPosition(pos, 'BOOST vie : viande grillee : 12');
+        pos.x := 35;
+        pos.y := 16;
+        ecrireEnPosition(pos, 'BOOST vitesse : saute de pimants : 10');
+        deplacerCurseurXY(0, 0);
+      end;
+    end;
+  until ch = #13;
+  menuCantine := select;
+
 end;
 
 // cette procedure donne un boost au joueur et lui retire des sous si il les a

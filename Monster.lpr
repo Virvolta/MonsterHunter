@@ -7,8 +7,8 @@ var
   i : item;
 
 begin
-  //start();
-  ParseFile('json/objets.json','objets');
+  start();
+  {ParseFile('json/objets.json','objets');
   ParseFile('json/equipements.json','equipements');
   ParseFile('json/monstre.json','monstres');
   i.id := 1;
@@ -29,6 +29,6 @@ begin
   addItemArmoire(i);
   removeItemInventory(1,5);
   menuArmoire();
-  pieces();
+  pieces();}
   readln();
 end.

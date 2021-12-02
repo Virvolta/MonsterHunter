@@ -73,6 +73,7 @@ begin
   end;
 end;
 
+// c'est la cantine
 procedure cantine();
 begin
   case menuCantine() of
@@ -89,8 +90,8 @@ end;
 procedure marchand();
 begin
   case menuMarchand() of
-       1: vente(0);
-       2: achat;
+       1: achat;
+       2: vente(0);
        3: pieces();
   else marchand()
   end;
@@ -100,13 +101,13 @@ end;
 procedure achat();
 begin
   case menuAchat() of
-       1: validationAchat(0);
-       2: validationAchat(1);
-       3: validationAchat(2);
-       4: validationAchat(3);
-       5: validationAchat(4);
-       6: validationAchat(5);
-       7: validationAchat(6);
+       1: validationAchat(4);
+       2: validationAchat(5);
+       3: validationAchat(6);
+       4: validationAchat(7);
+       5: validationAchat(8);
+       6: validationAchat(9);
+       7: validationAchat(10);
        8: marchand();
   else achat()
   end;
@@ -126,9 +127,9 @@ end;
 procedure vente(index:integer);
 begin
   case menuVente() of
-       1: inventaire();
-       2: valideVente(index);
-       3: marchand();
+       2: inventaire();
+       3: valideVente(index);
+       1: marchand();
   else vente(index)
   end;
 end;

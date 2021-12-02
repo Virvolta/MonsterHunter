@@ -122,111 +122,551 @@ end;
 // cette fonction sert a afficher le menu vente
 function menuVente():Integer;
 var
-   h: integer;
+   ch: char;
+   i: integer;
+   select: integer;
 begin
   effacerEcran();
-  dessinerCadreXY(2,3,50,26,simple,255,0);
-  dessinerCadreXY(2,27,118,29,simple,255,0);
-  dessinerCadreXY(2,0,118,2,simple,255,0);
-  pos.x := 93;
-  pos.y := 1;
-  ecrireEnPosition(pos, '3)Retour au menu marchand');
+  couleurs(15, 0);
+  ascii('vente', 0, 0);
   pos.x := 4;
-  pos.y := 4;
-  ecrireEnPosition(pos, 'Deposer un objet (sauf arme et armure)');
-  dessinerCadreXY(16,12,35,18,simple,255,0);
-  pos.x := 17;
-  pos.y := 19;
-  ecrireEnPosition(pos, 'Appyuer sur 1 pour ');
-  pos.X := 14;
-  pos.y :=20;
-  ecrireEnPosition(pos, 'entrer dans l''inventaire ');
-  pos.x := 3;
   pos.y := 1;
-  ecrireEnPosition(pos, '2)Valider la vente');
-  pos.x := 56;
-  pos.y := 28;
-  ecrireEnPosition(pos, 'Choix : ');
-  readln(h);
-  menuVente := h;
+  ecrireEnPosition(pos, 'Deposer un objet (sauf arme et armure)');
+  couleurs(0, 15);
+  pos.x := 93;
+  pos.y := 27;
+  ecrireEnPosition(pos, 'Retour au menu marchand');
+  couleurs(15,0);
+  pos.x := 17;
+  pos.y := 10;
+  ecrireEnPosition(pos, 'Inventaire');
+  pos.x := 3;
+  pos.y := 27;
+  ecrireEnPosition(pos, 'Valider la vente');
+  deplacerCurseurXY(0, 0);
+  select := 1;
+
+  repeat
+    ch := ReadKey;
+    case ch of
+      'K':
+      begin
+        select := 3;
+      end;
+      'M':
+      begin
+        select := 1;
+      end;
+      'P':
+      begin
+        select := select + 1;
+        if (select = 2) then
+           select := 1;
+      end;
+      'H':
+      begin
+        select := select - 1;
+        if (select = 1) then
+           select := 2;
+      end;
+    end;
+    case select of
+      1:
+      begin
+        couleurs(0, 15);
+        pos.x := 93;
+        pos.y := 27;
+        ecrireEnPosition(pos, 'Retour au menu marchand');
+        couleurs(15,0);
+        pos.x := 17;
+        pos.y := 10;
+        ecrireEnPosition(pos, 'Inventaire');
+        pos.x := 3;
+        pos.y := 27;
+        ecrireEnPosition(pos, 'Valider la vente');
+        deplacerCurseurXY(0, 0);
+      end;
+      2:
+      begin
+        couleurs(0, 15);
+        pos.x := 17;
+        pos.y := 10;
+        ecrireEnPosition(pos, 'Inventaire');
+        couleurs(15,0);
+        pos.x := 3;
+        pos.y := 27;
+        ecrireEnPosition(pos, 'Valider la vente');
+        pos.x := 93;
+        pos.y := 27;
+        ecrireEnPosition(pos, 'Retour au menu marchand');
+        deplacerCurseurXY(0, 0);
+      end;
+      3:
+      begin
+        couleurs(0, 15);
+        pos.x := 3;
+        pos.y := 27;
+        ecrireEnPosition(pos, 'Valider la vente');
+        couleurs(15,0);
+        pos.x := 93;
+        pos.y := 27;
+        ecrireEnPosition(pos, 'Retour au menu marchand');
+        pos.x := 17;
+        pos.y := 10;
+        ecrireEnPosition(pos, 'Inventaire');
+        deplacerCurseurXY(0, 0);
+      end;
+    end;
+  until ch = #13;
+  menuVente := select;
+
 
 end;
 
 // cette fonction liste tout les objets que le joueur peux acheter
 function menuAchat():Integer;
 var
-   a:integer;
+   ch: char;
+   i: integer;
+   select: integer;
 begin
   effacerEcran();
-  dessinerCadreXY(20,3,100,26,simple,255,0);
-  dessinerCadreXY(2,27,118,29,simple,255,0);
-  dessinerCadreXY(2,0,118,2,simple,255,0);
-  pos.x := 50;
-  pos.y := 1;
-  ecrireEnPosition(pos, '8)Retour au menu marchand');
-  pos.x := 52;
-  pos.y := 4;
-  ecrireEnPosition(pos, 'Acheter des objets : ');
+  couleurs(15, 0);
+  ascii('marchand_achat', 0, 0);
+  pos.x := 46;
+  pos.y := 3;
+  deplacerCurseurXY(pos.x, pos.y);
+  write('Que voulez-vous acheter ', getpseudo);
+  couleurs(0, 15);
+  pos.x := 35;
+  pos.y := 7;
+  deplacerCurseur(pos);
+  write(tabProduits[4].nom,' : ', tabProduits[4].prixAchat);
+  couleurs(15, 0);
   pos.x := 35;
   pos.y := 9;
   deplacerCurseur(pos);
-  write(tabProduits[0].nom,' : ', tabProduits[0].prixAchat);
+  write(tabProduits[5].nom,' : ', tabProduits[5].prixAchat);
   pos.x := 35;
   pos.y := 11;
   deplacerCurseur(pos);
-  write(tabProduits[1].nom,' : ', tabProduits[1].prixAchat);
+  write(tabProduits[6].nom,' : ', tabProduits[6].prixAchat);
   pos.x := 35;
   pos.y := 13;
   deplacerCurseur(pos);
-  write(tabProduits[2].nom,' : ', tabProduits[2].prixAchat);
+  write(tabProduits[7].nom,' : ', tabProduits[7].prixAchat);
   pos.x := 35;
   pos.y := 15;
   deplacerCurseur(pos);
-  write(tabProduits[3].nom,' : ', tabProduits[3].prixAchat);
+  write(tabProduits[8].nom,' : ', tabProduits[8].prixAchat);
   pos.x := 35;
   pos.y := 17;
   deplacerCurseur(pos);
-  write(tabProduits[4].nom,' : ', tabProduits[4].prixAchat);
+  write(tabProduits[9].nom,' : ', tabProduits[9].prixAchat);
   pos.x := 35;
   pos.y := 19;
   deplacerCurseur(pos);
-  write(tabProduits[5].nom,' : ', tabProduits[5].prixAchat);
+  write(tabProduits[10].nom,' : ', tabProduits[10].prixAchat);
   pos.x := 35;
-  pos.y := 21;
-  deplacerCurseur(pos);
-  write(tabProduits[6].nom,' : ', tabProduits[6].prixAchat);
+  pos.y := 23;
+  ecrireEnPosition(pos, 'Retour au menu marchand');
+  deplacerCurseurXY(0, 0);
+  select := 1;
 
-  pos.x := 56;
-  pos.y := 28;
-  ecrireEnPosition(pos, 'Choix : ');
-  readln(a);
-  menuAchat := a;
+  repeat
+    ch := ReadKey;
+    case ch of
+      'P':
+      begin
+        select := select + 1;
+        if (select >= 9) then
+          select := 1;
+      end;
+      'H':
+      begin
+        select := select - 1;
+        if (select <= 0) then
+          select := 8;
+      end;
+    end;
+    case select of
+      1:
+      begin
+        couleurs(0, 15);
+        pos.x := 35;
+        pos.y := 7;
+        deplacerCurseur(pos);
+        write(tabProduits[4].nom,' : ', tabProduits[4].prixAchat);
+        couleurs(15, 0);
+        pos.x := 35;
+        pos.y := 9;
+        deplacerCurseur(pos);
+        write(tabProduits[5].nom,' : ', tabProduits[5].prixAchat);
+        pos.x := 35;
+        pos.y := 11;
+        deplacerCurseur(pos);
+        write(tabProduits[6].nom,' : ', tabProduits[6].prixAchat);
+        pos.x := 35;
+        pos.y := 13;
+        deplacerCurseur(pos);
+        write(tabProduits[7].nom,' : ', tabProduits[7].prixAchat);
+        pos.x := 35;
+        pos.y := 15;
+        deplacerCurseur(pos);
+        write(tabProduits[8].nom,' : ', tabProduits[8].prixAchat);
+        pos.x := 35;
+        pos.y := 17;
+        deplacerCurseur(pos);
+        write(tabProduits[9].nom,' : ', tabProduits[9].prixAchat);
+        pos.x := 35;
+        pos.y := 19;
+        deplacerCurseur(pos);
+        write(tabProduits[10].nom,' : ', tabProduits[10].prixAchat);
+        pos.x := 35;
+        pos.y := 23;
+        ecrireEnPosition(pos, 'Retour au menu marchand');
+        deplacerCurseurXY(0, 0);
+      end;
+      2:
+      begin
+        couleurs(0, 15);
+        pos.x := 35;
+        pos.y := 9;
+        deplacerCurseur(pos);
+        write(tabProduits[5].nom,' : ', tabProduits[5].prixAchat );
+        couleurs(15, 0);
+        pos.x := 35;
+        pos.y := 11;
+        deplacerCurseur(pos);
+        write(tabProduits[6].nom,' : ', tabProduits[6].prixAchat );
+        pos.x := 35;
+        pos.y := 13;
+        deplacerCurseur(pos);
+        write(tabProduits[7].nom,' : ', tabProduits[7].prixAchat);
+        pos.x := 35;
+        pos.y := 15;
+        deplacerCurseur(pos);
+        write(tabProduits[8].nom,' : ', tabProduits[8].prixAchat);
+        pos.x := 35;
+        pos.y := 17;
+        deplacerCurseur(pos);
+        write(tabProduits[9].nom,' : ', tabProduits[9].prixAchat);
+        pos.x := 35;
+        pos.y := 19;
+        deplacerCurseur(pos);
+        write(tabProduits[10].nom,' : ', tabProduits[10].prixAchat);
+        pos.x := 35;
+        pos.y := 23;
+        deplacerCurseur(pos);
+        write('Retour au menu marchand');
+        pos.x := 35;
+        pos.y := 7;
+        deplacerCurseur(pos);
+        write(tabProduits[4].nom,' : ', tabProduits[4].prixAchat);
+        deplacerCurseurXY(0, 0);
+      end;
+      3:
+      begin
+        couleurs(0, 15);
+        pos.x := 35;
+        pos.y := 11;
+        deplacerCurseur(pos);
+        write(tabProduits[6].nom,' : ', tabProduits[6].prixAchat );
+        couleurs(15, 0);
+        pos.x := 35;
+        pos.y := 13;
+        deplacerCurseur(pos);
+        write(tabProduits[7].nom,' : ', tabProduits[7].prixAchat );
+        pos.x := 35;
+        pos.y := 15;
+        deplacerCurseur(pos);
+        write(tabProduits[8].nom,' : ', tabProduits[8].prixAchat );
+        pos.x := 35;
+        pos.y := 17;
+        deplacerCurseur(pos);
+        write(tabProduits[9].nom,' : ', tabProduits[9].prixAchat );
+        pos.x := 35;
+        pos.y := 19;
+        deplacerCurseur(pos);
+        write(tabProduits[10].nom,' : ', tabProduits[10].prixAchat );
+        pos.x := 35;
+        pos.y := 23;
+        deplacerCurseur(pos);
+        write('Retour au menu marchand' );
+        pos.x := 35;
+        pos.y := 7;
+        deplacerCurseur(pos);
+        write(tabProduits[4].nom,' : ', tabProduits[4].prixAchat);
+        pos.x := 35;
+        pos.y := 9;
+        deplacerCurseur(pos);
+        write(tabProduits[5].nom,' : ', tabProduits[5].prixAchat );
+        deplacerCurseurXY(0, 0);
+      end;
+      4:
+      begin
+        couleurs(0, 15);
+        pos.x := 35;
+        pos.y := 13;
+        deplacerCurseur(pos);
+        write(tabProduits[7].nom,' : ', tabProduits[7].prixAchat );
+        couleurs(15, 0);
+        pos.x := 35;
+        pos.y := 15;
+        deplacerCurseur(pos);
+        write(tabProduits[8].nom,' : ', tabProduits[8].prixAchat );
+        pos.x := 35;
+        pos.y := 17;
+        deplacerCurseur(pos);
+        write(tabProduits[9].nom,' : ', tabProduits[9].prixAchat );
+        pos.x := 35;
+        pos.y := 19;
+        deplacerCurseur(pos);
+        write(tabProduits[10].nom,' : ', tabProduits[10].prixAchat );
+        pos.x := 35;
+        pos.y := 23;
+        deplacerCurseur(pos);
+        write('Retour au menu marchand' );
+        pos.x := 35;
+        pos.y := 7;
+        deplacerCurseur(pos);
+        write(tabProduits[4].nom,' : ', tabProduits[4].prixAchat );
+        pos.x := 35;
+        pos.y := 9;
+        deplacerCurseur(pos);
+        write(tabProduits[5].nom,' : ', tabProduits[5].prixAchat );
+        pos.x := 35;
+        pos.y := 11;
+        deplacerCurseur(pos);
+        write(tabProduits[6].nom,' : ', tabProduits[6].prixAchat );
+        deplacerCurseurXY(0, 0);
+      end;
+      5:
+      begin
+        couleurs(0, 15);
+        pos.x := 35;
+        pos.y := 15;
+        deplacerCurseur(pos);
+        write(tabProduits[8].nom,' : ', tabProduits[8].prixAchat );
+        couleurs(15, 0);
+        pos.x := 35;
+        pos.y := 17;
+        deplacerCurseur(pos);
+        write(tabProduits[9].nom,' : ', tabProduits[9].prixAchat );
+        pos.x := 35;
+        pos.y := 19;
+        deplacerCurseur(pos);
+        write(tabProduits[10].nom,' : ', tabProduits[10].prixAchat );
+        pos.x := 35;
+        pos.y := 23;
+        deplacerCurseur(pos);
+        write('Retour au menu marchand' );
+        pos.x := 35;
+        pos.y := 7;
+        deplacerCurseur(pos);
+        write(tabProduits[4].nom,' : ', tabProduits[4].prixAchat );
+        pos.x := 35;
+        pos.y := 9;
+        deplacerCurseur(pos);
+        write(tabProduits[5].nom,' : ', tabProduits[5].prixAchat );
+        pos.x := 35;
+        pos.y := 11;
+        deplacerCurseur(pos);
+        write(tabProduits[6].nom,' : ', tabProduits[6].prixAchat );
+        pos.x := 35;
+        pos.y := 13;
+        deplacerCurseur(pos);
+        write(tabProduits[7].nom,' : ', tabProduits[7].prixAchat );
+        deplacerCurseurXY(0, 0);
+      end;
+      6:
+      begin
+        couleurs(0, 15);
+        pos.x := 35;
+        pos.y := 17;
+        deplacerCurseur(pos);
+        write(tabProduits[9].nom,' : ', tabProduits[9].prixAchat );
+        couleurs(15, 0);
+        pos.x := 35;
+        pos.y := 19;
+        deplacerCurseur(pos);
+        write(tabProduits[10].nom,' : ', tabProduits[10].prixAchat );
+        pos.x := 35;
+        pos.y := 23;
+        deplacerCurseur(pos);
+        write('Retour au menu marchand' );
+        pos.x := 35;
+        pos.y := 7;
+        deplacerCurseur(pos);
+        write(tabProduits[4].nom,' : ', tabProduits[4].prixAchat );
+        pos.x := 35;
+        pos.y := 9;
+        deplacerCurseur(pos);
+        write(tabProduits[5].nom,' : ', tabProduits[5].prixAchat );
+        pos.x := 35;
+        pos.y := 11;
+        deplacerCurseur(pos);
+        write(tabProduits[6].nom,' : ', tabProduits[6].prixAchat );
+        pos.x := 35;
+        pos.y := 13;
+        deplacerCurseur(pos);
+        write(tabProduits[7].nom,' : ', tabProduits[7].prixAchat );
+        pos.x := 35;
+        pos.y := 15;
+        deplacerCurseur(pos);
+        write(tabProduits[8].nom,' : ', tabProduits[8].prixAchat );
+        deplacerCurseurXY(0, 0);
+    end;
+      7:
+      begin
+        couleurs(0, 15);
+        pos.x := 35;
+        pos.y := 19;
+        deplacerCurseur(pos);
+        write(tabProduits[10].nom,' : ', tabProduits[10].prixAchat );
+        couleurs(15, 0);
+        pos.x := 35;
+        pos.y := 23;
+        deplacerCurseur(pos);
+        write('Retour au menu marchand' );
+        pos.x := 35;
+        pos.y := 7;
+        deplacerCurseur(pos);
+        write(tabProduits[4].nom,' : ', tabProduits[4].prixAchat );
+        pos.x := 35;
+        pos.y := 9;
+        deplacerCurseur(pos);
+        write(tabProduits[5].nom,' : ', tabProduits[5].prixAchat );
+        pos.x := 35;
+        pos.y := 11;
+        deplacerCurseur(pos);
+        write(tabProduits[6].nom,' : ', tabProduits[6].prixAchat );
+        pos.x := 35;
+        pos.y := 13;
+        deplacerCurseur(pos);
+        write(tabProduits[7].nom,' : ', tabProduits[7].prixAchat );
+        pos.x := 35;
+        pos.y := 15;
+        deplacerCurseur(pos);
+        write(tabProduits[8].nom,' : ', tabProduits[8].prixAchat );
+        pos.x := 35;
+        pos.y := 17;
+        deplacerCurseur(pos);
+        write(tabProduits[9].nom,' : ', tabProduits[9].prixAchat );
+        deplacerCurseurXY(0, 0);
+    end;
+      8:
+      begin
+        couleurs(0, 15);
+        pos.x := 35;
+        pos.y := 23;
+        deplacerCurseur(pos);
+        write('Retour au menu marchand' );
+        couleurs(15, 0);
+        pos.x := 35;
+        pos.y := 7;
+        deplacerCurseur(pos);
+        write(tabProduits[4].nom,' : ', tabProduits[4].prixAchat );
+        pos.x := 35;
+        pos.y := 9;
+        deplacerCurseur(pos);
+        write(tabProduits[5].nom,' : ', tabProduits[5].prixAchat );
+        pos.x := 35;
+        pos.y := 11;
+        deplacerCurseur(pos);
+        write(tabProduits[6].nom,' : ', tabProduits[6].prixAchat );
+        pos.x := 35;
+        pos.y := 13;
+        deplacerCurseur(pos);
+        write(tabProduits[7].nom,' : ', tabProduits[7].prixAchat );
+        pos.x := 35;
+        pos.y := 15;
+        deplacerCurseur(pos);
+        write(tabProduits[8].nom,' : ', tabProduits[8].prixAchat );
+        pos.x := 35;
+        pos.y := 17;
+        deplacerCurseur(pos);
+        write(tabProduits[9].nom,' : ', tabProduits[9].prixAchat );
+        pos.x := 35;
+        pos.y := 19;
+        deplacerCurseur(pos);
+        write(tabProduits[10].nom,' : ', tabProduits[10].prixAchat );
+        deplacerCurseurXY(0, 0);
+    end;
+  end;
+  until ch = #13;
+  menuAchat := select;
 
 end;
 
 // cette fonction demande à l'utilisateur si il veut vraiment acheter l'objet
 function potion(index:integer) : Integer;
 var
-   p:Integer;
+   ch: char;
+   i: integer;
+   select: integer;
 begin
   effacerEcran();
-  dessinerCadreXY(2,14,118,16,simple,255,0);
-  dessinerCadreXY(2,27,118,29,simple,255,0);
+  dessinerCadreXY(2,14,118,16,double,255,0);
+  dessinerCadreXY(2,27,118,29,double,255,0);
   pos.x := 40;
   pos.y := 15;
   deplacerCurseur(pos);
   write('Voulez vous vraiment acheter cette ', tabProduits[index].nom);
   pos.x := 30;
   pos.y := 28;
-  ecrireEnPosition(pos, '1) Oui');
+  ecrireEnPosition(pos, 'Oui');
   pos.x := 80;
   pos.y := 28;
-  ecrireEnPosition(pos, '2) Non');
-  pos.x := 55;
-  pos.y := 28;
-  ecrireEnPosition(pos, 'choix : ');
-  readln(p);
-  potion := p;
+  ecrireEnPosition(pos, 'Non');
+  deplacerCurseurXY(0, 0);
+  select := 1;
+
+  repeat
+    ch := ReadKey;
+    case ch of
+      'K':
+      begin
+        select := select + 1;
+        if (select >= 2) then
+          select := 1;
+      end;
+      'M':
+      begin
+        select := select - 1;
+        if (select <= 0) then
+          select := 2;
+      end;
+    end;
+    case select of
+      1:
+      begin
+        couleurs(0, 15);
+        pos.x := 30;
+        pos.y := 28;
+        ecrireEnPosition(pos, 'Oui');
+        couleurs(15, 0);
+        pos.x := 80;
+        pos.y := 28;
+        ecrireEnPosition(pos, 'Non');
+        deplacerCurseurXY(0, 0);
+      end;
+      2:
+      begin
+        couleurs(0, 15);
+        pos.x := 80;
+        pos.y := 28;
+        ecrireEnPosition(pos, 'Non');
+        couleurs(15, 0);
+        pos.x := 30;
+        pos.y := 28;
+        ecrireEnPosition(pos, 'Oui');
+        deplacerCurseurXY(0, 0);
+      end;
+    end;
+  until ch = #13;
+  Potion := select;
+
 
 end;
 
@@ -263,54 +703,85 @@ end;
 // fonction qui sert à valider la vente de l'objet
 function validationVente(index:integer):Integer;
 var
-   v:Integer;
+   ch: char;
+   i: integer;
+   select: integer;
 begin
   effacerEcran();
-  dessinerCadreXY(2,3,50,26,simple,255,0);
-  dessinerCadreXY(2,27,118,29,simple,255,0);
-  dessinerCadreXY(2,0,118,2,simple,255,0);
-  pos.x := 93;
-  pos.y := 1;
-  ecrireEnPosition(pos, '3)Retour au menu marchand');
+  couleurs(15, 0);
+  ascii('vente_valid', 0, 0);
   pos.x := 4;
-  pos.y := 4;
-  ecrireEnPosition(pos, 'Deposer un objet (sauf arme et armure)');
-  dessinerCadreXY(16,12,35,18,simple,255,0);
-  pos.x := 17;
-  pos.y := 19;
-  ecrireEnPosition(pos, 'Appyuer sur 1 pour ');
-  pos.X := 14;
-  pos.y :=20;
-  ecrireEnPosition(pos, 'entrer dans l''inventaire ');
-  pos.x := 3;
   pos.y := 1;
-  ecrireEnPosition(pos, '2)Valider la vente');
+  ecrireEnPosition(pos, 'Deposer un objet (sauf arme et armure)');
+  couleurs(15, 0);
+  pos.x := 93;
+  pos.y := 27;
+  ecrireEnPosition(pos, 'Retour au menu marchand');
+  pos.x := 17;
+  pos.y := 10;
+  ecrireEnPosition(pos, 'Inventaire');
+  pos.x := 3;
+  pos.y := 27;
+  ecrireEnPosition(pos, 'Valider la vente');
+  deplacerCurseurXY(0, 0);
+  select := 4;
 
 
-  dessinerCadreXY(70,3,118,26,simple,255,0);
-  pos.x := 78;
-  pos.y := 4;
+  pos.x := 74;
+  pos.y := 1;
   deplacerCurseur(pos);
-  write('Voulez vous vraiment vendre cette ');
-  pos.x := 82;
-  pos.y := 5;
-  deplacerCurseur(pos);
-  write(tabProduits[index].nom);
-  pos.x := 85;
-  pos.y := 15;
-  deplacerCurseur(pos);
-  write('Son prix est de ', tabProduits[index].prixVente);
-  pos.x := 71;
-  pos.y := 25;
-  ecrireEnPosition(pos, '4)Oui');
-  pos.x := 112;
-  pos.y := 25;
-  ecrireEnPosition(pos, '5)Non');
-  pos.x := 56;
-  pos.y := 28;
-  ecrireEnPosition(pos, 'Choix : ');
-  readln(v);
-  validationVente := v;
+  write('Voulez vous vraiment vendre cette ', tabProduits[index].nom);
+  couleurs(0, 15);
+  pos.x := 70;
+  pos.y := 22;
+  ecrireEnPosition(pos, 'Oui');
+  couleurs(15, 0);
+  pos.x := 113;
+  pos.y := 22;
+  ecrireEnPosition(pos, 'Non');
+  deplacerCurseurXY(0, 0);
+  select := 4;
+
+  repeat
+    ch := ReadKey;
+    case ch of
+      'K':
+      begin
+          select := 4;
+      end;
+      'M':
+      begin
+          select := 5;
+      end;
+    end;
+    case select of
+      4:
+      begin
+        couleurs(0, 15);
+        pos.x := 70;
+        pos.y := 22;
+        ecrireEnPosition(pos, 'Oui');
+        couleurs(15, 0);
+        pos.x := 113;
+        pos.y := 22;
+        ecrireEnPosition(pos, 'Non');
+        deplacerCurseurXY(0, 0);
+      end;
+      5:
+      begin
+        couleurs(0, 15);
+        pos.x := 113;
+        pos.y := 22;
+        ecrireEnPosition(pos, 'Non');
+        couleurs(15, 0);
+        pos.x := 70;
+        pos.y := 22;
+        ecrireEnPosition(pos, 'Oui');
+        deplacerCurseurXY(0, 0);
+      end;
+    end;
+  until ch = #13;
+  validationVente := select;
 
 end;
 
@@ -320,10 +791,11 @@ var
    e:string;
 begin
   effacerEcran();
-  dessinerCadreXY(38,2,86,25,simple,255,0);
-  pos.x := 50;
+  ascii('marchand_achat', 0, 0);
+  pos.x := 46;
   pos.y := 13;
   ecrireEnPosition(pos, 'votre objet est bien vendu');
+  deplacerCurseurXY(0, 0);
   addMoney(tabProduits[index].prixVente);
   removeItemInventory(tabProduits[index].id, 1);
   readln(e);
