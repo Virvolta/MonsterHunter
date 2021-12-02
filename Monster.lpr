@@ -11,7 +11,7 @@ begin
   ParseFile('json/objets.json','objets');
   ParseFile('json/equipements.json','equipements');
   ParseFile('json/monstre.json','monstres');
-  {i.id := 1;
+  i.id := 1;
   i.count := 2;
   addItemInventory(i);
   i.id := 3;
@@ -26,8 +26,9 @@ begin
   i.id := 2;
   i.count := 3;
   addItemInventory(i);
+  addItemArmoire(i);
   removeItemInventory(1,5);
-  menuArmoire();}
+  menuArmoire();
   pieces();
   readln();
 end.
