@@ -5,7 +5,7 @@ unit uniteChasse;
 interface
 
 uses
-  Classes, SysUtils,ihm,logique,personnage,outils,menu;
+  Classes, SysUtils,ihm,logique,personnage,outils, menu, uniteforge;
 
 function chasser():Integer;
 procedure menucombat(monster:monstre);
@@ -323,143 +323,124 @@ procedure reward(monster:monstre);
 var
 
    nbobj:Integer;
-   obj1,obj2,obj3,obj4:Integer;
+   randomobj:Integer;
+   obj:item;
+   countobj:Integer;
+   randomMoney:Integer;
 
 begin
 
+  Randomize;
+
   if monster.niveau=1 then
      begin
-          obj1:=0;
-          obj2:=3;
+          nbobj:=random(2)+1;
+
+          if nbobj=1 then
+             begin
+                  randomobj:=random(2)+1;
+
+                  countobj:=random(3)+1;
+
+                  case randomobj of
+                       1:
+                         begin
+                             obj.id:=tabProduits[0].id;
+                             obj.count:=countobj;
+                             writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[0].nom);
+                         end;
+                       2:
+                         begin
+                             obj.id:=tabProduits[3].id;
+                             obj.count:=countobj;
+                             writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[1].nom);
+                         end;
+                  end;
+                  addItemInventory(obj);
+
+             end
+          else if nbobj=2 then
+             begin
+                  obj.id:=tabProduits[0].id;
+                  countobj:=random(3)+1;
+                  obj.count:=countobj;
+                  addItemInventory(obj);
+
+                  writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[0].nom);
+
+                  obj.id:=tabProduits[3].id;
+                  countobj:=random(3)+1;
+                  obj.count:=countobj;
+                  addItemInventory(obj);
+
+                  writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[3].nom);
+             end;
+          randomMoney:=random(7)+1;
+          addMoney(randomMoney);
+          writeln('Vous avez trouve ', randomMoney, ' sous sur le monstre.');
      end
   else if monster.niveau=2 then
      begin
-          obj1:=0;
-          obj2:=3;
-          obj3:=1;
+          obj.id:=tabProduits[0].id;
+          countobj:=random(3)+1;
+          obj.count:=countobj;
+          addItemInventory(obj);
+
+          writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[0].nom);
+
+          obj.id:=tabProduits[3].id;
+          countobj:=random(3)+1;
+          obj.count:=countobj;
+          addItemInventory(obj);
+
+          writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[3].nom);
+
+          obj.id:=tabProduits[1].id;
+          countobj:=random(3)+1;
+          obj.count:=countobj;
+          addItemInventory(obj);
+
+          writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[1].nom);
+
+          randomMoney:=random(14)+1;
+          addMoney(randomMoney);
+          writeln('Vous avez trouve ', randomMoney, ' sous sur le monstre.');
      end
   else
       begin
-        obj1:=0;
-        obj2:=3;
-        obj3:=1;
-        obj4:=2;
+          obj.id:=tabProduits[0].id;
+          countobj:=random(3)+1;
+          obj.count:=countobj;
+          addItemInventory(obj);
+
+          writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[0].nom);
+
+          obj.id:=tabProduits[3].id;
+          countobj:=random(3)+1;
+          obj.count:=countobj;
+          addItemInventory(obj);
+
+          writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[3].nom);
+
+          obj.id:=tabProduits[1].id;
+          countobj:=random(3)+1;
+          obj.count:=countobj;
+          addItemInventory(obj);
+
+          writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[1].nom);
+
+          obj.id:=tabProduits[2].id;
+          countobj:=random(3)+1;
+          obj.count:=countobj;
+          addItemInventory(obj);
+
+          writeln('Vous avez obtenu ', obj.count, ' ', tabProduits[2].nom);
+
+          randomMoney:=random(21)+1;
+          addMoney(randomMoney);
+          writeln('Vous avez trouve ', randomMoney, ' sous sur le monstre.');
       end;
-
-
-  Randomize;
-  nbobj:=random(3);
-
-  case nbobj of
-               0:
-                 begin
-                 if monster.niveau=1 then
-                    begin
-                         addItemInventory(tabProduits[obj1]);
-
-                         addItemInventory(tabProduits[obj2]);
-                    end;
-                 if monster.niveau=2 then
-                    begin
-                         addItemInventory(tabProduits[obj1]);
-
-                         addItemInventory(tabProduits[obj2]);
-
-                         addItemInventory(tabProduits[obj3]);
-                    end;
-                 if monster.niveau=3 then
-                    begin
-                         addItemInventory(tabProduits[obj1]);
-
-                         addItemInventory(tabProduits[obj2]);
-
-                         addItemInventory(tabProduits[obj3]);
-
-                         addItemInventory(tabProduits[obj4]);
-                    end;
-                 end;
-               1:
-                 begin
-                 if monster.niveau=1 then
-                    begin
-                         addItemInventory(tabProduits[obj1]);
-                         addItemInventory(tabProduits[obj1]);
-
-                         addItemInventory(tabProduits[obj2]);
-                         addItemInventory(tabProduits[obj2]);
-                    end;
-                 if monster.niveau=2 then
-                    begin
-                         addItemInventory(tabProduits[obj1]);
-                         addItemInventory(tabProduits[obj1]);
-
-                         addItemInventory(tabProduits[obj2]);
-                         addItemInventory(tabProduits[obj2]);
-
-                         addItemInventory(tabProduits[obj3]);
-                         addItemInventory(tabProduits[obj3]);
-                    end;
-                 else
-                    begin
-                         addItemInventory(tabProduits[obj1]);
-                         addItemInventory(tabProduits[obj1]);
-
-                         addItemInventory(tabProduits[obj2]);
-                         addItemInventory(tabProduits[obj2]);
-
-                         addItemInventory(tabProduits[obj3]);
-                         addItemInventory(tabProduits[obj3]);
-
-                         addItemInventory(tabProduits[obj4]);
-                         addItemInventory(tabProduits[obj4]);
-                    end;
-                 end;
-               2:
-                 begin
-                 if monster.niveau=1 then
-                    begin
-                         addItemInventory(tabProduits[obj1]);
-                         addItemInventory(tabProduits[obj1]);
-                         addItemInventory(tabProduits[obj1]);
-
-                         addItemInventory(tabProduits[obj2]);
-                         addItemInventory(tabProduits[obj2]);
-                         addItemInventory(tabProduits[obj2]);
-                    end
-                 else if monster.niveau=2 then
-                    begin
-                         addItemInventory(tabProduits[obj1]);
-                         addItemInventory(tabProduits[obj1]);
-                         addItemInventory(tabProduits[obj2]);
-
-                         addItemInventory(tabProduits[obj2]);
-                         addItemInventory(tabProduits[obj2]);
-                         addItemInventory(tabProduits[obj2]);
-
-                         addItemInventory(tabProduits[obj3]);
-                         addItemInventory(tabProduits[obj3]);
-                         addItemInventory(tabProduits[obj3]);
-                    end
-                 else
-                    begin
-                         addItemInventory(tabProduits[obj1])
-                         addItemInventory(tabProduits[obj1]);
-                         addItemInventory(tabProduits[obj1]);
-
-                         addItemInventory(tabProduits[obj2]);
-                         addItemInventory(tabProduits[obj2]);
-                         addItemInventory(tabProduits[obj2]);
-
-                         addItemInventory(tabProduits[obj3]);
-                         addItemInventory(tabProduits[obj3]);
-                         addItemInventory(tabProduits[obj3]);
-
-                         addItemInventory(tabProduits[obj4]);
-                         addItemInventory(tabProduits[obj4]);
-                         addItemInventory(tabProduits[obj4]);
-                    end;
-                 end;
-  end;
+  readln;
 
   pieces();
 
