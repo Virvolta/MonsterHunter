@@ -5,7 +5,7 @@ unit personnage;
 interface
 
 uses
-  Classes, SysUtils, uniteforge, outils;
+  Classes, SysUtils, outils;
 
 const
   NOMBRE_INV_JEU = 10;
@@ -292,7 +292,7 @@ begin
         n := 1;
         b := false;
         repeat
-           if ((inventaire[n].id = i.id) and (inventaire[n].unique = false))then
+           if ((inventaire[n].id = i.id))then
              begin
                   inventaire[n].count := inventaire[n].count + i.count;
                   b:= true;
