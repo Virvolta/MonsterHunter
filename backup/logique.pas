@@ -20,12 +20,14 @@ procedure valideVente(index:integer);
 implementation
 uses
   Classes, SysUtils, menu,uniteCantine,uniteChambre,uniteMarchand,uniteforge
-  ,uniteChasse;
+  ,uniteChasse, outils, personnage;
 
+// cette procedure fait marcher tout le jeu
 procedure start();
 begin
   ParseFile('json/objets.json','objets');
   ParseFile('json/equipements.json','equipements');
+  ParseFile('json/monstre.json','monstres');
   case menuPrincipal() of
        1: menuPerso();
        2:
@@ -38,8 +40,13 @@ begin
   end;
 end;
 
+// cette procedure permet de choir dans quel pieces ont veut aller
 procedure pieces();
 begin
+  setMaxHeart(200);
+  setHeart(200);
+  setDamage(5);
+  setShield(0);
   case menuJeu() of
        7: chambre();
        //2: forge();
@@ -50,6 +57,7 @@ begin
   end;
 end;
 
+// c'est la chambre
 procedure chambre();
 begin
   case menuChambre() of
@@ -60,13 +68,16 @@ begin
   end;
 end;
 
+// c'est l'armoire
 procedure armoire();
 begin
   case menuArmoire() of
        1: chambre();
+       2: armoire();
   end;
 end;
 
+// c'est la cantine
 procedure cantine();
 begin
   case menuCantine() of
@@ -79,6 +90,7 @@ begin
   end;
 end;
 
+// c'est le marchand
 procedure marchand();
 begin
   case menuMarchand() of
@@ -89,21 +101,23 @@ begin
   end;
 end;
 
+// permet d'acheter des objets
 procedure achat();
 begin
   case menuAchat() of
-       1: validationAchat(0);
-       2: validationAchat(1);
-       3: validationAchat(2);
-       4: validationAchat(3);
-       5: validationAchat(4);
-       6: validationAchat(5);
-       7: validationAchat(6);
+       1: validationAchat(4);
+       2: validationAchat(5);
+       3: validationAchat(6);
+       4: validationAchat(7);
+       5: validationAchat(8);
+       6: validationAchat(9);
+       7: validationAchat(10);
        8: marchand();
   else achat()
   end;
 end;
 
+// confirmer l'achat
 procedure validationAchat(index:integer);
 begin
   case potion(index) of
@@ -113,6 +127,7 @@ begin
   end;
 end;
 
+// vendre des objets
 procedure vente(index:integer);
 begin
   case menuVente() of
@@ -123,6 +138,7 @@ begin
   end;
 end;
 
+// confirmer la vente
 procedure valideVente(index:integer);
 begin
   case validationVente(index) of
@@ -132,6 +148,7 @@ begin
   end;
 end;
 
+// c'est l'inventaire
 procedure inventaire();
 begin
   case menuInventaire of
@@ -140,6 +157,7 @@ begin
   end;
 end;
 
+// c'est la forge
 procedure forge();
 var
 
@@ -151,7 +169,7 @@ var
 
 begin
 
-  for i:=1 to 4 do
+  {for i:=1 to 4 do
     for m:=1 to 4 do
       for j:=1 to 8 do
           for k:=1 to 8 do
@@ -161,18 +179,16 @@ begin
               item2.id:=m;
               item2.count:=k;
 
-              writeln(item1.id,' (',item1.count,')','  +  ',item2.id,' (',item2.count,') ',' = ', getCraftResult(item1,item2).id);
+              //writeln(item1.id,' (',item1.count,')','  +  ',item2.id,' (',item2.count,') ',' = ', getCraftResult(item1,item2).id);
 
-            end;
+            end;}
 
-  {item1.id:=1;
+  item1.id:=1;
   item1.count:=1;
   item2.id:=1;
   item2.count:=1;
 
-  res.id:=getCraftResult(item1,item2).id;
-  res.count:=getCraftResult(item1,item2).count;
-  writeln(getCraftResult(item1,item2).id);}
+  getCraftResult(item1,item2);
 
   {case menuForge() of
        1: menuInventaire();

@@ -47,6 +47,7 @@ begin
   setHeart(200);
   setDamage(5);
   setShield(0);
+  setMoney(20);
   case menuJeu() of
        7: chambre();
        //2: forge();

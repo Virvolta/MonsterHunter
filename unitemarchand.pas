@@ -613,9 +613,11 @@ begin
   pos.y := 15;
   deplacerCurseur(pos);
   write('Voulez vous vraiment acheter cette ', tabProduits[index].nom);
+  couleurs(0, 15);
   pos.x := 30;
   pos.y := 28;
   ecrireEnPosition(pos, 'Oui');
+  couleurs(15, 0);
   pos.x := 80;
   pos.y := 28;
   ecrireEnPosition(pos, 'Non');

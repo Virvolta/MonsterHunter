@@ -133,22 +133,21 @@ end;
 function menuArmoire() : Integer;
 var
    i:Integer;
-   inv : TypeInventaire;
-   arm : TypeArmoire;
+   inv,posinv : TypeInventaire;
+   arm,posarm  : TypeArmoire;
+   equ : TypeEquipement;
+   posequ : array[0..6] of Integer;
    pos : coordonnees;
    it : Item;
-   select,select2 : Integer;
+   select,select2,inventory : Integer;
    ch : char;
-   countmax, countmax2 : Integer;
+   countmax, countmax2, countmax3 : Integer;
 
-   posinv : TypeInventaire;
-   posarm : TypeArmoire;
-
-   inventory,stop : boolean;
+   stop : boolean;
 
 begin
   effacerEcran();
-  inventory := true;
+  inventory := 1;
   select := 1;
   couleurs(15, 0);
   ascii('armoire', 0, 0);
@@ -168,24 +167,45 @@ begin
               else
                  couleurs(15, 0)
               ;
-              ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
+              if (tabEquipments[tabIdEquipments[it.id]].id = it.id) then
+                 ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabEquipments[tabIdEquipments[it.id]].nom, ' x', InttoStr(it.count)))
+              else
+                 ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
               pos.y := 2 + countmax;
            end;
       end;
   couleurs(15, 0);
-  pos.x := 72;
+  pos.x := 40;
   pos.y := 2;
   countmax2 := 0;
+  equ := getEquipement();
+    for i := Low(equ) to High(equ) do
+      begin
+        it := getItemEquipement(i);
+        if ((it.id > 0)) then
+           begin
+              countmax2 := countmax2 + 1;
+              posequ[countmax2] := i;
+              ecrireEnPosition(pos, concat(InttoStr(countmax2) , ' ',tabEquipments[tabIdEquipments[it.id]].nom, ' x', InttoStr(it.count)));
+              pos.y := 2 + countmax2;
+           end;
+      end;
+  pos.x := 82;
+  pos.y := 2;
+  countmax3 := 0;
   arm := getArmoire();
     for i := Low(arm) to High(arm) do
       begin
         it := getItemArmoire(i);
         if ((it.id > 0)) then
            begin
-              countmax2 := countmax2 + 1;
-              posarm[countmax2] := it;
-              ecrireEnPosition(pos, concat(InttoStr(countmax2) , ' ',tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
-              pos.y := 2 + countmax2;
+              countmax3 := countmax3 + 1;
+              posarm[countmax3] := it;
+              if (tabEquipments[tabIdEquipments[it.id]].id = it.id) then
+                 ecrireEnPosition(pos, concat(InttoStr(countmax3) , ' ',tabEquipments[tabIdEquipments[it.id]].nom, ' x', InttoStr(it.count)))
+              else
+                 ecrireEnPosition(pos, concat(InttoStr(countmax3) , ' ',tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
+              pos.y := 2 + countmax3;
            end;
       end;
   pos.x := 58;
@@ -195,42 +215,60 @@ begin
   repeat
     ch := ReadKey;
     case ch of
-      'M','K':
+      'M' :
       begin
         select := 1;
-        if (inventory = true) then
-           inventory := false
-        else
-           inventory := true;
+        inventory := inventory + 1;
+        if (inventory > 3) then
+             inventory := 1;
+      end;
+      'K':
+      begin
+        select := 1;
+        inventory := inventory - 1;
+        if (inventory <= 0) then
+             inventory := 3;
       end;
       'P':
       begin
-        if (inventory = true) then
+        if (inventory = 1) then
           begin
              select := select + 1;
              if (select > countmax + 1) then
-             select := 1
+                 select := 1;
           end
-        else
+        else if (inventory = 2) then
           begin
              select := select + 1;
              if (select > countmax2 + 1) then
-             select := 1
+                 select := 1;
+          end
+        else if (inventory = 3) then
+          begin
+             select := select + 1;
+             if (select > countmax3 + 1) then
+                 select := 1;
           end;
       end;
       'H':
       begin
-        if (inventory = true) then
+        if (inventory = 1) then
           begin
            select := select - 1;
            if (select <= 0) then
               select := countmax + 1;
           end
-        else
+        else if (inventory = 2) then
           begin
            select := select - 1;
            if (select <= 0) then
               select := countmax2 + 1;
+          end
+        else if (inventory = 3) then
+          begin
+           select := select - 1;
+           if (select <= 0) then
+              select := countmax3 + 1;
           end;
       end;
     end;
@@ -245,37 +283,63 @@ begin
            begin
               countmax := countmax + 1;
               posinv[countmax] := it;
-              if ((select = countmax) and (inventory = true)) then
+              if ((select = countmax) and (inventory = 1)) then
                  couleurs(0, 15)
               else
                  couleurs(15, 0)
               ;
-              ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
+              if (tabEquipments[tabIdEquipments[it.id]].id = it.id) then
+                 ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabEquipments[tabIdEquipments[it.id]].nom, ' x', InttoStr(it.count)))
+              else
+                 ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
               pos.y := 2 + countmax;
            end;
       end;
   couleurs(15, 0);
-  pos.x := 72;
+  pos.x := 40;
   pos.y := 2;
   countmax2 := 0;
+  equ := getEquipement();
+    for i := Low(equ) to High(equ) do
+      begin
+        it := getItemEquipement(i);
+        if ((it.id > 0)) then
+           begin
+              countmax2 := countmax2 + 1;
+              posequ[countmax2] := i;
+              if ((select = countmax2) and (inventory = 2)) then
+                 couleurs(0, 15)
+              else
+                 couleurs(15, 0)
+              ;
+              ecrireEnPosition(pos, concat(InttoStr(countmax2) , ' ',tabEquipments[tabIdEquipments[it.id]].nom, ' x', InttoStr(it.count)));
+              pos.y := 2 + countmax2;
+           end;
+      end;
+  pos.x := 82;
+  pos.y := 2;
+  countmax3 := 0;
   arm := getArmoire();
     for i := Low(arm) to High(arm) do
       begin
         it := getItemArmoire(i);
         if ((it.id > 0)) then
            begin
-              countmax2 := countmax2 + 1;
-              posarm[countmax2] := it;
-              if ((select = countmax2) and (inventory = false)) then
+              countmax3 := countmax3 + 1;
+              posarm[countmax3] := it;
+              if ((select = countmax3) and (inventory = 3)) then
                  couleurs(0, 15)
               else
                  couleurs(15, 0)
               ;
-              ecrireEnPosition(pos, concat(InttoStr(countmax2) , ' ',tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
-              pos.y := 2 + countmax2;
+              if (tabEquipments[tabIdEquipments[it.id]].id = it.id) then
+                 ecrireEnPosition(pos, concat(InttoStr(countmax3) , ' ',tabEquipments[tabIdEquipments[it.id]].nom, ' x', InttoStr(it.count)))
+              else
+                 ecrireEnPosition(pos, concat(InttoStr(countmax3) , ' ',tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
+              pos.y := 2 + countmax3;
            end;
       end;
-    if (((select = countmax + 1) and (inventory = true)) or ((select = countmax2 + 1) and (inventory = false))) then
+    if (((select = countmax + 1) and (inventory = 1)) or ((select = countmax2 + 1) and (inventory = 2)) or ((select = countmax3 + 1) and (inventory = 3))) then
        begin
           couleurs(0, 15);
 
@@ -297,7 +361,7 @@ begin
     deplacerCurseurXY(0, 0);
   until ch = #13;
   stop := false;
-  if (inventory = true) then
+  if (inventory = 1) then
      begin
       if (select = countmax + 1) then
          begin
@@ -305,9 +369,17 @@ begin
              menuArmoire := 1;
          end
       end
-  else
+  else if (inventory = 2) then
+     begin
+      if (select = countmax2 + 1) then
+         begin
+             stop := true;
+             menuArmoire := 1;
+         end
+      end
+  else if (inventory = 3) then
       begin
-         if (select = countmax2 + 1) then
+         if (select = countmax3 + 1) then
              begin
                  stop := true;
                  menuArmoire := 1;
@@ -426,12 +498,12 @@ begin
       end;
     end;
   until ch = #13;
-  if (inventory = true) then
+  if (inventory = 1) then
     begin
       case select2 of
         1:
         begin
-            {if (tabIdEquipments[it.id] = 0) then
+            {if (tabEquipments[tabIdEquipments[it.id]].id = it.id) then
               ;}
         end;
         2:
@@ -451,7 +523,30 @@ begin
         end;
       end;
     end
-  else
+  else if (inventory = 2) then
+    begin
+      case select2 of
+        1:
+        begin
+            //UTILISER
+        end;
+        2:
+        begin
+           it := getItemEquipement(posequ[select]);
+           removeItemEquipement(posequ[select]);
+           addItemArmoire(it);
+        end;
+        3:
+        begin
+           removeItemEquipement(posequ[select]);
+        end;
+        4:
+        begin
+            //ANULER
+        end;
+      end;
+    end
+  else if (inventory = 3) then
     begin
       case select2 of
         1:

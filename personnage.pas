@@ -124,6 +124,29 @@ begin
   getItemEquipement := equipement[i];
 end;
 
+// cette procedure ajoute un item dans equipement
+procedure addItemEquipement(i : Item);
+
+var
+   slot : Integer;
+   itold : item;
+begin
+  slot := tabEquipments[tabIdEquipments[i.id]].slot;
+  itold := equipement[slot];
+  if (slot <> 6) then
+     if (itold.id > 0) then
+       begin
+         shield := shield - tabEquipments[tabIdEquipments[itold.id]].stat;
+         shield := shield + tabEquipments[tabIdEquipments[i.id]].stat;
+       end
+  else
+    begin
+         damage := damage - tabEquipments[tabIdEquipments[itold.id]].stat;
+         damage := damage + tabEquipments[tabIdEquipments[i.id]].stat;
+    end;
+  equipement[slot] := i;
+end;
+
 function getShield():Integer;
 
 begin
@@ -170,29 +193,6 @@ procedure setDamage(amount : Integer);
 
 begin
   damage := amount
-end;
-
-// cette procedure ajoute un item dans equipement
-procedure addItemEquipement(i : Item);
-
-var
-   slot : Integer;
-   itold : item;
-begin
-  slot := tabEquipments[tabIdEquipments[i.id]].slot;
-  itold := equipement[slot];
-  if (slot <> 6) then
-     if (itold.id > 0) then
-       begin
-         shield := shield - tabEquipments[tabIdEquipments[itold.id]].stat;
-         shield := shield + tabEquipments[tabIdEquipments[i.id]].stat;
-       end
-  else
-    begin
-         damage := damage - tabEquipments[tabIdEquipments[itold.id]].stat;
-         damage := damage + tabEquipments[tabIdEquipments[i.id]].stat;
-    end;
-  equipement[slot] := i;
 end;
 
 // cette procedure enleve un item de l'inventaire
