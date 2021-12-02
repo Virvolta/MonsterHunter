@@ -43,7 +43,10 @@ end;
 // cette procedure permet de choir dans quel pieces ont veut aller
 procedure pieces();
 begin
+  setMaxHeart(200);
   setHeart(200);
+  setDamage(5);
+  setShield(0);
   case menuJeu() of
        7: chambre();
        //2: forge();
@@ -70,6 +73,7 @@ procedure armoire();
 begin
   case menuArmoire() of
        1: chambre();
+       2: armoire();
   end;
 end;
 
@@ -127,9 +131,9 @@ end;
 procedure vente(index:integer);
 begin
   case menuVente() of
-       2: inventaire();
-       3: valideVente(index);
-       1: marchand();
+       1: inventaire();
+       2: valideVente(index);
+       3: marchand();
   else vente(index)
   end;
 end;

@@ -45,12 +45,32 @@ procedure removeItemEquipement(i : integer);
 function getItemEquipement(i : integer) : Item;
 procedure addItemEquipement(i : Item);
 
+function getShield() : Integer;
+procedure addShield(amount : Integer);
+procedure removeShield(amount : Integer);
+procedure setShield(amount : Integer);
+
+function getDamage() : Integer;
+procedure addDamage(amount : Integer);
+procedure removeDamage(amount : Integer);
+procedure setDamage(amount : Integer);
+
 procedure removeItemInventory(id,count : integer);
 function getSlotItemNullInventory() : Integer;
 function addItemInventory(i : Item) : boolean;
 procedure setItemInventory(slot : Integer; i : Item);
 function getItemInventory(slot : Integer) : Item;
 function hasItemInventory(id,count : integer) : boolean;
+
+procedure removeItemArmoire(id,count : integer);
+function getSlotItemNullArmoire() : Integer;
+function addItemArmoire(i : Item) : boolean;
+procedure setItemArmoire(slot : Integer; i : Item);
+function getItemArmoire(slot : Integer) : Item;
+function hasItemArmoire(id,count : integer) : boolean;
+
+procedure setMaxHeart(amount : Integer);
+function getMaxHeart():Integer;
 
 procedure addHeart(amount : Integer);
 procedure removeHeart(amount : Integer);
@@ -67,7 +87,9 @@ var
    equipement : TypeEquipement;
    inventaire : TypeInventaire;
    armoire : TypeArmoire;
-   heart : integer;
+   heart, maxheart : integer;
+   shield : Integer;
+   damage : Integer;
 
 // cette fonction montre l'equipement du joueur
 function getEquipement() : TypeEquipement;
@@ -102,13 +124,74 @@ begin
   getItemEquipement := equipement[i];
 end;
 
+function getShield():Integer;
+
+begin
+  getShield:=shield;
+end;
+
+procedure addShield(amount : Integer);
+
+begin
+  shield := shield + amount
+end;
+
+procedure removeShield(amount : Integer);
+
+begin
+  shield := shield - amount
+end;
+
+procedure setShield(amount : Integer);
+
+begin
+  shield := amount
+end;
+
+function getDamage():Integer;
+
+begin
+  getDamage:=damage;
+end;
+
+procedure addDamage(amount : Integer);
+
+begin
+  damage := damage + amount
+end;
+
+procedure removeDamage(amount : Integer);
+
+begin
+  damage := damage - amount
+end;
+
+procedure setDamage(amount : Integer);
+
+begin
+  damage := amount
+end;
+
 // cette procedure ajoute un item dans equipement
 procedure addItemEquipement(i : Item);
 
 var
    slot : Integer;
+   itold : item;
 begin
   slot := tabEquipments[tabIdEquipments[i.id]].slot;
+  itold := equipement[slot];
+  if (slot <> 6) then
+     if (itold.id > 0) then
+       begin
+         shield := shield - tabEquipments[tabIdEquipments[itold.id]].stat;
+         shield := shield + tabEquipments[tabIdEquipments[i.id]].stat;
+       end
+  else
+    begin
+         damage := damage - tabEquipments[tabIdEquipments[itold.id]].stat;
+         damage := damage + tabEquipments[tabIdEquipments[i.id]].stat;
+    end;
   equipement[slot] := i;
 end;
 
@@ -125,10 +208,15 @@ begin
   repeat
     if (inventaire[i].id = id) then
         begin
-          if (inventaire[i].count >= count) then
+          if (inventaire[i].count = count)then
+            begin
+              inventaire[i].count := 0;
+              inventaire[i].id := 0;
+              b := true;
+            end
+          else if (inventaire[i].count >= count) then
             begin
               inventaire[i].count := inventaire[i].count - count;
-              inventaire[i].id := 0;
               b := true;
             end
           else
@@ -239,6 +327,133 @@ begin
    getItemInventory := inventaire[slot];
 end;
 
+// cette procedure enleve un item de l'armoire
+procedure removeItemArmoire(id,count : integer);
+
+var
+   i : Integer;
+   b : boolean;
+
+begin
+  i := 1;
+  b := false;
+  repeat
+    if (armoire[i].id = id) then
+        begin
+          if (count - armoire[i].count <= 0) then
+            begin
+              armoire[i].count := armoire[i].count - count;
+              armoire[i].id := 0;
+              b := true;
+            end
+          else
+              begin
+                 count := count - armoire[i].count;
+                 armoire[i].count := 0;
+                 armoire[i].id := 0;
+              end
+          ;
+        end;
+    i := i +1;
+  until (b = true) or (i >= length(armoire));
+end;
+
+// cette fonction verifie si vous avez l'objet dans votre armoire ou non
+function hasItemArmoire(id,count : integer) : boolean;
+
+var
+   i : Integer;
+   b : boolean;
+
+begin
+  i := 1;
+  b := false;
+  repeat
+    if ((armoire[i].id = id)) then
+        begin
+          if (armoire[i].count >= count) then
+            begin
+              b := true;
+            end;
+        end;
+    i := i +1;
+  until (b = true) or (i >= length(armoire));
+  hasItemArmoire := b;
+end;
+
+// cette fonction permet de regarder quel slot est libre dans l'armoire
+function getSlotItemNullArmoire() : Integer;
+
+var
+   i : Integer;
+   c : Integer;
+   b : boolean;
+begin
+  i := 1;
+  c := -1;
+  b := false;
+  repeat
+   if ((armoire[i].id <= 0) or (armoire[i].count <= 0)) then
+           begin
+             c := i;
+             b := true;
+           end;
+    i := i +1;
+  until (b = true) or (i >= length(armoire));
+  getSlotItemNullArmoire := c;
+end;
+
+// cette fonction ajoute un item dans l'armoire
+function addItemArmoire(i : Item) : boolean;
+
+var
+   n : Integer;
+   b : boolean;
+
+begin
+  b := true;
+  if ((i.id <= 0) or (i.count <= 0)) then
+     b := false
+  else
+     begin
+        n := 1;
+        b := false;
+        repeat
+           if ((armoire[n].id = i.id) and (armoire[n].unique = false))then
+             begin
+                  armoire[n].count := armoire[n].count + i.count;
+                  b:= true;
+             end;
+            n := n + 1;
+        until (b = true) or (n > high(armoire))
+     end;
+  if (b = false) then
+    begin
+     n := getSlotItemNullArmoire();
+     if (getSlotItemNullArmoire() > 0) then
+       begin
+          armoire[n] := i;
+          b := true;
+       end
+     else
+         b:= false
+     ;
+    end;
+  addItemArmoire := b;
+end;
+
+// cette procedure permet de mettre de force un objet dans l'armoire
+procedure setItemArmoire(slot : Integer; i : Item);
+begin
+   armoire[slot] := i;
+end;
+
+// cette fonction permet de vous donnez un item en fonction d'un slot dans l'armoire
+function getItemArmoire(slot : Integer) : Item;
+begin
+   getItemArmoire := armoire[slot];
+end;
+
 // cette fonction permet d'afficher la money disponible par le joueur
 function getMoney() : Integer;
 
@@ -340,6 +555,20 @@ begin
    poid := n;
 end;
 
+// cette procedure defini le maximum de HP du joueur
+procedure setMaxHeart(amount : Integer);
+
+begin
+  maxheart := amount;
+end;
+
+// cette fonction permet de montre le maximum HP du joueur
+function getMaxHeart():Integer;
+
+begin
+  getMaxHeart:=maxheart;
+end;
+
 // cette procedure defini les HP du joueur
 procedure setHeart(amount : Integer);
 
@@ -352,8 +581,8 @@ end;
 procedure addHeart(amount : Integer);
 
 begin
-  if (heart + amount > MAX_HEART) then
-     heart := MAX_HEART
+  if (heart + amount > getMaxHeart()) then
+     heart := getMaxHeart()
   else
       heart := heart + amount
   ;
