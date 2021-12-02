@@ -189,8 +189,8 @@ begin
   deplacerCurseurXY(68,1);
   WriteLn('HP : ');
 
+  dessinerCadreXY(6,22,23,24,simple,Black,White);
   couleurs(0, 15);
-  dessinerCadreXY(6,22,23,24,simple,White,Black);
   pos.x:=11;
   pos.y:=23;
   ecrireEnPosition(pos,'Attaquer');
@@ -301,8 +301,8 @@ begin
               'M':
               begin
                 select := select + 1;
-                if (select < 2) then
-                  select := 2;
+                if (select > 4) then
+                  select := 1;
               end;
               'P':
               begin

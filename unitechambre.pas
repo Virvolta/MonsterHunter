@@ -175,7 +175,7 @@ begin
            end;
       end;
   couleurs(15, 0);
-  pos.x := 40;
+  pos.x := 43;
   pos.y := 2;
   countmax2 := 0;
   equ := getEquipement();
@@ -190,7 +190,7 @@ begin
               pos.y := 2 + countmax2;
            end;
       end;
-  pos.x := 82;
+  pos.x := 83;
   pos.y := 2;
   countmax3 := 0;
   arm := getArmoire();
@@ -296,7 +296,7 @@ begin
            end;
       end;
   couleurs(15, 0);
-  pos.x := 40;
+  pos.x := 43;
   pos.y := 2;
   countmax2 := 0;
   equ := getEquipement();
@@ -316,7 +316,7 @@ begin
               pos.y := 2 + countmax2;
            end;
       end;
-  pos.x := 82;
+  pos.x := 83;
   pos.y := 2;
   countmax3 := 0;
   arm := getArmoire();
@@ -393,7 +393,7 @@ begin
        couleurs(0, 15);
   pos.x := 3;
   pos.y := 24;
-  ecrireEnPosition(pos, 'Utiliser/Equiper');
+  ecrireEnPosition(pos, 'Utiliser/Equiper/Desequiper');
   couleurs(15, 0);
   pos.x := 3;
   pos.y := 25;
@@ -429,7 +429,7 @@ begin
         couleurs(0, 15);
         pos.x := 3;
         pos.y := 24;
-        ecrireEnPosition(pos, 'Utiliser/Equiper');
+        ecrireEnPosition(pos, 'Utiliser/Equiper/Desequiper');
         couleurs(15, 0);
         pos.x := 3;
         pos.y := 25;
@@ -503,8 +503,17 @@ begin
       case select2 of
         1:
         begin
-            {if (tabEquipments[tabIdEquipments[it.id]].id = it.id) then
-              ;}
+            it := posinv[select];
+            removeItemInventory(it.id, it.count);
+            if (tabEquipments[tabIdEquipments[it.id]].id = it.id) then
+              begin
+                  addItemInventory(getItemEquipement(tabEquipments[tabIdEquipments[it.id]].slot));
+                  addItemEquipement(it);
+              end
+            else
+              begin
+
+              end;
         end;
         2:
         begin
@@ -551,7 +560,17 @@ begin
       case select2 of
         1:
         begin
-            //UTILISER
+            it := posarm[select];
+            removeItemArmoire(it.id, it.count);
+            if (tabEquipments[tabIdEquipments[it.id]].id = it.id) then
+              begin
+                  addItemArmoire(getItemEquipement(tabEquipments[tabIdEquipments[it.id]].slot));
+                  addItemEquipement(it);
+              end
+            else
+              begin
+
+              end;
         end;
         2:
         begin
