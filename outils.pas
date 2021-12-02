@@ -32,6 +32,12 @@ type
     defensemax:Integer;
   end;
 
+  item=record
+    id: Integer;
+    count:Integer;
+    unique:Boolean;
+  end;
+
 var
 
   tabProduits : array [0..12] of produit;

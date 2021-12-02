@@ -5,14 +5,7 @@ unit uniteforge;
 interface
 
 uses
-  Classes, SysUtils, outils;
-
-type
-  item=record
-    id: Integer;
-    count:Integer;
-    unique:Boolean;
-  end;
+  Classes, SysUtils, outils, personnage;
 
 procedure getCraftResult(item1,item2:item);
 
@@ -203,7 +196,10 @@ begin
             itemResult.count:=1;
           end
      end;
-  //addItemInventory(itemResult);
+  addItemEquipement(itemResult);
+  writeLn(itemResult.id);
+  writeln(itemResult.count);
+  readln;
 end;
 
 end.

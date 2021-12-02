@@ -7,6 +7,7 @@ var
   i : item;
 
 begin
+  //forge();
   //start();
   ParseFile('json/objets.json','objets');
   ParseFile('json/equipements.json','equipements');

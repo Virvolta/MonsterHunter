@@ -169,7 +169,7 @@ var
 
 begin
 
-  for i:=1 to 4 do
+  {for i:=1 to 4 do
     for m:=1 to 4 do
       for j:=1 to 8 do
           for k:=1 to 8 do
@@ -181,16 +181,14 @@ begin
 
               //writeln(item1.id,' (',item1.count,')','  +  ',item2.id,' (',item2.count,') ',' = ', getCraftResult(item1,item2).id);
 
-            end;
+            end;}
 
-  {item1.id:=1;
+  item1.id:=1;
   item1.count:=1;
   item2.id:=1;
   item2.count:=1;
 
-  res.id:=getCraftResult(item1,item2).id;
-  res.count:=getCraftResult(item1,item2).count;
-  writeln(getCraftResult(item1,item2).id);}
+  getCraftResult(item1,item2);
 
   {case menuForge() of
        1: menuInventaire();
