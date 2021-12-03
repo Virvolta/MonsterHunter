@@ -20,22 +20,38 @@ procedure valideVente(index:integer);
 implementation
 uses
   Classes, SysUtils, menu,uniteCantine,uniteChambre,uniteMarchand,uniteforge
-  ,uniteChasse, outils, personnage;
+  ,uniteChasse, outils, personnage,ihm;
 
 // cette procedure fait marcher tout le jeu
 procedure start();
 begin
+  couleurs(15,0);
   ParseFile('json/objets.json','objets');
   ParseFile('json/equipements.json','equipements');
   ParseFile('json/monstre.json','monstres');
   case menuPrincipal() of
        1: menuPerso();
        2:
-         begin
+       begin
+           if getPseudo = '' then
+       begin
+           nulSauvgarde();
+           start();
+       end
+
+           else
+               pieces();
+       end;
+
+       3:
+       begin
            menuHistoire();
            start();
-         end;
-       3: menuQuitter();
+       end;
+       4:
+       begin
+           menuQuitter();
+       end
   else start()
   end;
 end;
@@ -54,6 +70,7 @@ begin
        4: marchand();
        3: cantine();
        6: chasser();
+       8: start();
   else pieces()
   end;
 end;
