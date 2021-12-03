@@ -12,6 +12,7 @@ procedure menuLauncher();
 function menuJeu(): integer;
 function menuInventaire(): integer;
 function menuForge():integer;
+procedure nulSauvgarde();
 
 
 implementation
@@ -29,16 +30,18 @@ var
   i: integer;
   select: integer;
 begin
-  ;
   effacerEcran();
   ascii('start', 0, 0);
   couleurs(0, 15);
   pos.x := 54;
-  pos.y := 19;
+  pos.y := 20;
   ecrireEnPosition(pos, 'Nouvelle partie');
   couleurs(15, 0);
   pos.x := 54;
-  pos.y := 23;
+  pos.y := 22;
+  ecrireEnPosition(pos, 'Charger partie');
+  pos.x := 54;
+  pos.y := 24;
   ecrireEnPosition(pos, 'Histoire du jeu');
   pos.x := 54;
   pos.y := 26;
@@ -54,14 +57,14 @@ begin
       'P':
       begin
         select := select + 1;
-        if (select >= 4) then
+        if (select >= 5) then
           select := 1;
       end;
       'H':
       begin
         select := select - 1;
         if (select <= 0) then
-          select := 3;
+          select := 4;
       end;
     end;
     case select of
@@ -69,11 +72,14 @@ begin
       begin
         couleurs(0, 15);
         pos.x := 54;
-        pos.y := 19;
+        pos.y := 20;
         ecrireEnPosition(pos, 'Nouvelle partie');
         couleurs(15, 0);
         pos.x := 54;
-        pos.y := 23;
+        pos.y := 22;
+        ecrireEnPosition(pos, 'Charger partie');
+        pos.x := 54;
+        pos.y := 24;
         ecrireEnPosition(pos, 'Histoire du jeu');
         pos.x := 54;
         pos.y := 26;
@@ -84,18 +90,39 @@ begin
       begin
         couleurs(0, 15);
         pos.x := 54;
-        pos.y := 23;
-        ecrireEnPosition(pos, 'Histoire du jeu');
+        pos.y := 22;
+        ecrireEnPosition(pos, 'Charger partie');
         couleurs(15, 0);
         pos.x := 54;
-        pos.y := 19;
-        ecrireEnPosition(pos, 'Nouvelle partie');
+        pos.y := 24;
+        ecrireEnPosition(pos, 'Histoire du jeu');
         pos.x := 54;
         pos.y := 26;
         ecrireEnPosition(pos, 'Quitter');
+        pos.x := 54;
+        pos.y := 20;
+        ecrireEnPosition(pos, 'Nouvelle partie');
         deplacerCurseurXY(0, 0);
       end;
       3:
+      begin
+        couleurs(0, 15);
+        pos.x := 54;
+        pos.y := 24;
+        ecrireEnPosition(pos, 'Histoire du jeu');
+        couleurs(15, 0);
+        pos.x := 54;
+        pos.y := 26;
+        ecrireEnPosition(pos, 'Quitter');
+        pos.x := 54;
+        pos.y := 20;
+        ecrireEnPosition(pos, 'Nouvelle partie');
+        pos.x := 54;
+        pos.y := 22;
+        ecrireEnPosition(pos, 'Charger partie');
+        deplacerCurseurXY(0, 0);
+      end;
+      4:
       begin
         couleurs(0, 15);
         pos.x := 54;
@@ -103,11 +130,14 @@ begin
         ecrireEnPosition(pos, 'Quitter');
         couleurs(15, 0);
         pos.x := 54;
-        pos.y := 23;
-        ecrireEnPosition(pos, 'Histoire du jeu');
-        pos.x := 54;
-        pos.y := 19;
+        pos.y := 20;
         ecrireEnPosition(pos, 'Nouvelle partie');
+        pos.x := 54;
+        pos.y := 22;
+        ecrireEnPosition(pos, 'Charger partie');
+        pos.x := 54;
+        pos.y := 24;
+        ecrireEnPosition(pos, 'Histoire du jeu');
         deplacerCurseurXY(0, 0);
       end;
     end;
@@ -357,10 +387,11 @@ end;
 procedure menuQuitter();
 begin
   effacerEcran();
-  dessinerCadreXY(28, 13, 90, 15, simple, 255, 0);
+  ascii('marchand_achat',0,0);
   pos.x := 52;
-  pos.y := 14;
+  pos.y := 12;
   ecrireEnPosition(pos, 'Bonne journee');
+  deplacerCurseurXY(0, 0);
 end;
 
 // cette fonction nous permet de lancer la ville
@@ -386,7 +417,7 @@ begin
   couleurs(3, 0);
   write(char(219),char(219));
   couleurs(15, 0);
-  // 1 = menu 2 = forge 3 = cantine 4 = shop 5 = interchassechambre 6 = chasse 7 = chambre
+  // 1 = menu 2 = forge 3 = cantine 4 = shop 5 = interchassechambre 6 = chasse 7 = chambre 8 = quitter
   select := 1;
   repeat
     ch := ReadKey;
@@ -429,6 +460,12 @@ begin
              animationdeplacement(pos.x, pos.y, 0, 2);
              pos.y := pos.y + 4;
              end;
+             5:
+             begin
+             select := 8;
+             animationdeplacement(pos.x, pos.y, 0, 2);
+             pos.y := pos.y + 4;
+             end;
         end;
         deplacerCurseurXY(0, 0);
       end;
@@ -453,6 +490,12 @@ begin
              5:
              begin
              select := 6;
+             animationdeplacement(pos.x, pos.y, 0, -2);
+             pos.y := pos.y - 4;
+             end;
+             8:
+             begin
+             select := 5;
              animationdeplacement(pos.x, pos.y, 0, -2);
              pos.y := pos.y - 4;
              end;
@@ -572,7 +615,7 @@ begin
   menuInventaire := j;
 end;
 
-//cette fonction permet de lancer la forme
+//cette fonction permet de lancer la forge
 function menuForge():integer;
 
 var
@@ -799,6 +842,17 @@ begin
   else
       pieces();
 
+procedure nulSauvgarde();
+
+begin
+  effacerEcran;
+  couleurs(15,0);
+  ascii('marchand_achat',0,0);
+  pos.x := 40;
+  pos.y := 12;
+  ecrireEnPosition(pos,'Vous n''avez pas de partie sauvgarder');
+  deplacerCurseurXY(0,0);
+  readln();
 end;
 
 end.
