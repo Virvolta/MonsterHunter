@@ -842,6 +842,8 @@ begin
   else
       pieces();
 
+end;
+
 procedure nulSauvgarde();
 
 begin
