@@ -7,12 +7,12 @@ interface
 uses
   Classes, SysUtils, outils, personnage;
 
-procedure getCraftResult(item1,item2:item);
+function getCraftResult(item1: item; item2: item):item;
 
 implementation
 
 // cette fonction donne tout les crafts possible
-procedure getCraftResult(item1,item2:item);
+function getCraftResult(item1: item; item2: item):item;
 
 var
 
@@ -195,12 +195,14 @@ begin
             itemResult.id:=13;
             itemResult.count:=1;
           end
-     end;
-  addItemEquipement(itemResult);
-  writeLn(itemResult.id);
-  writeln(itemResult.count);
-  readln;
-end;
+     end
+  else
+      begin
+        itemResult.id:=0;
+        itemResult.count:=0;
+      end;
+  getCraftResult:=itemResult;
+  end;
 
 end.
 

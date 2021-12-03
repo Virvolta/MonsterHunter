@@ -296,7 +296,7 @@ begin
               begin
                 select := select - 1;
                 if (select <= 0) then
-                  select := 1;
+                  select := 4;
               end;
               'M':
               begin
@@ -609,7 +609,7 @@ begin
                              obj.id:=tabProduits[3].id;
                              obj.count:=countobj;
                              deplacerCurseurXY(40,13);
-                             write('Vous avez obtenu ', obj.count, ' ', tabProduits[1].nom);
+                             write('Vous avez obtenu ', obj.count, ' ', tabProduits[3].nom);
                              deplacerCurseurXY(0,0);
                          end;
                   end;
