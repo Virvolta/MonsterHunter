@@ -7,7 +7,7 @@ var
   i : item;
 
 begin
-  ParseFile('json/objets.json','objets');
+  {ParseFile('json/objets.json','objets');
   ParseFile('json/equipements.json','equipements');
   ParseFile('json/monstre.json','monstres');
   ParseFile('json/cantine.json','cantines');
@@ -27,12 +27,12 @@ begin
   i.count := 3;
   addItemInventory(i);
   removeItemInventory(1,5);
-  vente();
+  vente();}
   //start();
 
 
   //cantine();
-  //forge();
+  forge();
   //chasser();
   {i.id := 1;
   i.count := 2;

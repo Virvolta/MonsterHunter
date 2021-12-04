@@ -176,16 +176,6 @@ begin
   end;
 end;
 
-{// confirmer la vente
-procedure valideVente(index:integer);
-begin
-  case validationVente(index) of
-       4: UI(index);
-       5: vente(index);
-  else valideVente(index)
-  end;
-end;}
-
 // c'est l'inventaire
 procedure inventaireChasse();
 begin
@@ -200,10 +190,11 @@ end;
 procedure forge();
 
 begin
-
-  menuForge();
-
-
+  case menuForge() of
+      1: pieces();
+      2: forge();
+  else forge();
+  end;
 end;
 
 end.

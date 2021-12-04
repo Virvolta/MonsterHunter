@@ -10,7 +10,6 @@ procedure menuHistoire();
 procedure menuPerso();
 procedure menuLauncher();
 function menuJeu(): integer;
-function menuInventaire(): integer;
 function menuForge():integer;
 procedure menuNoSave();
 
@@ -172,7 +171,6 @@ begin
   pos.x := 13;
   pos.y := 5;
   ecrireEnPosition(pos, 'Entrer votre taille(cm) : ');
-  deplacerCurseurXY(0, 0);
   readln(taille);
   b := False;
   repeat
@@ -379,13 +377,19 @@ end;
 
 // cette procedure permet de quitter
 procedure menuQuitter();
+var
+  ch : char;
 begin
   effacerEcran();
-  ascii('marchand_achat',0,0);
+  //ascii('marchand_achat',0,0);
   pos.x := 52;
   pos.y := 12;
   ecrireEnPosition(pos, 'Bonne journee');
   deplacerCurseurXY(0, 0);
+  deplacerCurseurXY(0, 0);
+  repeat
+    ch := ReadKey;
+  until ch = #13;
 end;
 
 // cette fonction nous permet de lancer la ville
@@ -553,60 +557,8 @@ begin
 
     end;
   until ((ch = #13) and (b = true));
+  couleurs(15, 0);
   menuJeu := select;
-end;
-
-// cette fonction permet de lancer l'inventaire
-function menuInventaire(): integer;
-var
-  j: integer;
-begin
-  effacerEcran();
-  dessinerCadreXY(30, 1, 100, 30, simple, 255, 0);
-  pos.x := 38;
-  pos.y := 5;
-  ecrireEnPosition(pos, '1');
-  dessinerCadreXY(40, 3, 50, 7, simple, 255, 0);
-  dessinerCadreXY(51, 3, 61, 7, simple, 255, 0);
-  dessinerCadreXY(62, 3, 72, 7, simple, 255, 0);
-  dessinerCadreXY(73, 3, 83, 7, simple, 255, 0);
-  dessinerCadreXY(84, 3, 94, 7, simple, 255, 0);
-
-  pos.x := 38;
-  pos.y := 15;
-  ecrireEnPosition(pos, '6');
-  dessinerCadreXY(40, 13, 50, 17, simple, 255, 0);
-  dessinerCadreXY(51, 13, 61, 17, simple, 255, 0);
-  dessinerCadreXY(62, 13, 72, 17, simple, 255, 0);
-  dessinerCadreXY(73, 13, 83, 17, simple, 255, 0);
-  dessinerCadreXY(84, 13, 94, 17, simple, 255, 0);
-
-  pos.x := 38;
-  pos.y := 20;
-  ecrireEnPosition(pos, '11');
-  dessinerCadreXY(40, 18, 50, 22, simple, 255, 0);
-  dessinerCadreXY(51, 18, 61, 22, simple, 255, 0);
-  dessinerCadreXY(62, 18, 72, 22, simple, 255, 0);
-  dessinerCadreXY(73, 18, 83, 22, simple, 255, 0);
-  dessinerCadreXY(84, 18, 94, 22, simple, 255, 0);
-
-  pos.x := 38;
-  pos.y := 25;
-  ecrireEnPosition(pos, '16');
-  dessinerCadreXY(40, 23, 50, 27, simple, 255, 0);
-  dessinerCadreXY(51, 23, 61, 27, simple, 255, 0);
-  dessinerCadreXY(62, 23, 72, 27, simple, 255, 0);
-  dessinerCadreXY(73, 23, 83, 27, simple, 255, 0);
-  dessinerCadreXY(84, 23, 94, 27, simple, 255, 0);
-
-  pos.x := 31;
-  pos.y := 29;
-  ecrireEnPosition(pos, '21)Retourner au menu vente');
-  pos.x := 31;
-  pos.y := 2;
-  ecrireEnPosition(pos, 'choix : ');
-  readln(j);
-  menuInventaire := j;
 end;
 
 //cette fonction permet de lancer la forge
@@ -623,15 +575,18 @@ var
   item1,item2:Item;
   itemResult:Item;
   ch : char;
+  stop : boolean;
 
 begin
 
   effacerEcran;
-  dessinerCadreXY(11, 1, 51, 30, simple, 255, 0);
-  dessinerCadreXY(70, 1, 110, 14, simple, 255, 0);
-
-  pos.x:=71;
+  couleurs(15, 0);
+  ascii('forge', 0, 0);
+  pos.x:=60;
   pos.y:=2;
+  ecrireEnPosition(pos, 'Choisir le 1er item ');
+  pos.x:=3;
+  pos.y:=1;
   ecrireEnPosition(pos, 'Aide creation : ');
   pos.y:=pos.y+1;
   ecrireEnPosition(pos, 'Epee = 2 (Bois/Fer/Aeter) + 1 Bois)');
@@ -645,20 +600,10 @@ begin
   ecrireEnPosition(pos, 'Bottes = 4 (Cuir/Fer/Aeter)');
   pos.y:=pos.y+1;
   ecrireEnPosition(pos, 'Gants= 2 (Cuir/Fer/Aeter)');
-  pos.y:=pos.y+1;
-  ecrireEnPosition(pos, '---------------------------------------');
-
-  deplacerCurseurXY(60,25);
-  deplacerCurseurXY(71,2);
-
+  stop := false;
   select := 1;
-  couleurs(15, 0);
-  countmax := 0;
-
-  repeat
-
-    pos.x := 12;
-    pos.y := 2;
+  pos.x := 58;
+    pos.y := 6;
     countmax := 0;
     inv := getInventory();
     for i := Low(inv) to High(inv) do
@@ -675,7 +620,51 @@ begin
               ;
               if (tabProduits[tabIdProduits[it.id]].id = it.id) then
                 ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
-              pos.y := 2 + countmax;
+              pos.y := 6 + countmax;
+           end;
+      end;
+  couleurs(15, 0);
+  pos.x := 58;
+  pos.y := 27;
+  ecrireEnPosition(pos, 'Menu');
+  deplacerCurseurXY(0, 0);
+  countmax := 0;
+
+  repeat
+    ch := ReadKey;
+    case ch of
+      'P':
+      begin
+        select := select + 1;
+        if (select > countmax + 1) then
+          select := 1;
+      end;
+      'H':
+      begin
+        select := select - 1;
+        if (select <= 0) then
+          select := countmax + 1;
+      end;
+    end;
+    pos.x := 58;
+    pos.y := 6;
+    countmax := 0;
+    inv := getInventory();
+    for i := Low(inv) to High(inv) do
+    begin
+      it := getItemInventory(i);
+      if ((it.id > 0)) then
+        begin
+              countmax := countmax + 1;
+              posinv[countmax] := it;
+              if ((select = countmax)) then
+                 couleurs(0, 15)
+              else
+                 couleurs(15, 0)
+              ;
+              if (tabProduits[tabIdProduits[it.id]].id = it.id) then
+                ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
+              pos.y := 6 + countmax;
            end;
       end;
   couleurs(15, 0);
@@ -700,42 +689,75 @@ begin
 
     ;
     couleurs(15, 0);
-    deplacerCurseurXY(60, 25);
-
-    ch := ReadKey;
-    case ch of
-      'P':
-      begin
-        select := select + 1;
-        if (select > countmax + 1) then
-          select := 1;
-      end;
-      'H':
-      begin
-        select := select - 1;
-        if (select <= 0) then
-          select := countmax + 1;
-      end;
-    end;
+    deplacerCurseurXY(0, 0);
   until ch = #13;
 
-  if select<>countmax+1 then
+  if (select = countmax + 1) then
+    stop := true
+  ;
+
+  if (stop = false) then
     begin
         item1 := posinv[select];
         max:=posinv[select].count;
-        deplacerCurseurXY(71,15);
-        writeln('Quelle quantite de cet item voulez vous ');
-        deplacerCurseurXY(71,16);
-        writeln('prendre afin de forger un nouvel equipement ?');
-        deplacerCurseurXY(71,17);
-        writeln('(Vous pouvez rentrer 0)');
+        pos.x:=58;
+        pos.y:=26;
+        ecrireEnPosition(pos, 'Quelle quantite de cet item voulez vous ');
+        pos.x:=58;
+        pos.y:=27;
+        ecrireEnPosition(pos, 'prendre afin de forger un nouvel equipement ?');
+        pos.x:=58;
+        pos.y:=28;
+        ecrireEnPosition(pos, '(Vous pouvez rentrer 0) : ');
         readln(j);
         item1.count:=j;
 
-        repeat
+        pos.x:=58;
+        pos.y:=26;
+        ecrireEnPosition(pos, '                                        ');
+        pos.x:=58;
+        pos.y:=27;
+        ecrireEnPosition(pos, '                                             ');
+        pos.x:=58;
+        pos.y:=28;
+        ecrireEnPosition(pos, '                               ');
+        if (select = countmax + 1) then
+             begin
+                couleurs(0, 15);
 
-          pos.x := 12;
-          pos.y := 2;
+                pos.x := 58;
+                pos.y := 27;
+                ecrireEnPosition(pos, 'Menu')
+             end
+          else
+              begin
+                couleurs(15, 0);
+
+                pos.x := 58;
+                pos.y := 27;
+                ecrireEnPosition(pos, 'Menu')
+              end;
+
+          ;
+  deplacerCurseurXY(0, 0);
+        repeat
+          ch := ReadKey;
+          case ch of
+            'P':
+            begin
+              select := select + 1;
+              if (select > countmax + 1) then
+                select := 1;
+            end;
+            'H':
+            begin
+              select := select - 1;
+              if (select <= 0) then
+                select := countmax + 1;
+            end;
+          end;
+          pos.x := 58;
+          pos.y := 6;
           countmax := 0;
           inv := getInventory();
           for i := Low(inv) to High(inv) do
@@ -752,7 +774,7 @@ begin
                     ;
                     if (tabProduits[tabIdProduits[it.id]].id = it.id) then
                       ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
-                    pos.y := 2 + countmax;
+                    pos.y := 6 + countmax;
                  end;
             end;
         couleurs(15, 0);
@@ -777,64 +799,108 @@ begin
 
           ;
           couleurs(15, 0);
-          deplacerCurseurXY(60, 25);
-
-          ch := ReadKey;
-          case ch of
-            'P':
-            begin
-              select := select + 1;
-              if (select > countmax + 1) then
-                select := 1;
-            end;
-            'H':
-            begin
-              select := select - 1;
-              if (select <= 0) then
-                select := countmax + 1;
-            end;
-          end;
+          deplacerCurseurXY(0, 0);
         until ch = #13;
 
-        item2:=posinv2[select];
+        if (select = countmax + 1) then
+            stop := true
+        ;
 
-        deplacerCurseurXY(71,15);
-        writeln('Quelle quantite de cet item voulez vous ');
-        deplacerCurseurXY(71,16);
-        writeln('prendre afin de forger un nouvel equipement ?');
-        deplacerCurseurXY(71,17);
-        writeln('(Vous pouvez rentrer 0)');
-        readln(j);
-        item2.count:=j;
+        if (stop = false) then
+            begin
+               item2:=posinv2[select];
+
+               pos.x:=58;
+               pos.y:=26;
+               ecrireEnPosition(pos, 'Quelle quantite de cet item voulez vous ');
+               pos.x:=58;
+               pos.y:=27;
+               ecrireEnPosition(pos, 'prendre afin de forger un nouvel equipement ?');
+               pos.x:=58;
+               pos.y:=28;
+               ecrireEnPosition(pos, '(Vous pouvez rentrer 0) : ');
+               readln(j);
+
+
+               pos.x:=58;
+               pos.y:=26;
+               ecrireEnPosition(pos, '                                        ');
+               pos.x:=58;
+               pos.y:=27;
+               ecrireEnPosition(pos, '                                             ');
+               pos.x:=58;
+               pos.y:=28;
+               ecrireEnPosition(pos, '                               ');
+               item2.count:=j;
+               if (select = countmax + 1) then
+             begin
+                couleurs(0, 15);
+
+                pos.x := 58;
+                pos.y := 27;
+                ecrireEnPosition(pos, 'Menu')
+             end
+          else
+              begin
+                couleurs(15, 0);
+
+                pos.x := 58;
+                pos.y := 27;
+                ecrireEnPosition(pos, 'Menu')
+              end;
+
+          ;
+  deplacerCurseurXY(0, 0);
+             pos.x := 1;
+             pos.y := 28;
+             ecrireEnPosition(pos, 'appuyer sur entrer pour valider');
 
         if (item1.id=item2.id) and (max<item1.count+item2.count) then
           begin
-             writeln('Vous n''avez pas assez');
-             readln;
-             pieces();
-          end;
+             pos.x:=58;
+             pos.y:=27;
+             ecrireEnPosition(pos, 'Vous n''avez pas assez');
+             repeat
+                ch := ReadKey;
+             until ch = #13;
+             menuForge := 2;
+          end
+        else
+          begin
 
-        pos.x:=71;
-        pos.y:=10;
-
-        itemResult:=getCraftResult(item1,item2);
+            itemResult:=getCraftResult(item1,item2);
 
         if itemResult.id<>0 then
           begin
-             ecrireEnPosition(pos, 'Vous pouvez creer un(e)');
-             pos.y:=pos.y+1;
-             ecrireEnPosition(pos, Concat(tabEquipments[tabIdEquipments[itemResult.id]].nom));
+             pos.x:=58;
+             pos.y:=27;
+             ecrireEnPosition(pos, Concat('Vous avez cree un', tabEquipments[tabIdEquipments[itemResult.id]].nom));
              addItemInventory(itemResult);
              removeItemInventory(item1.id,item1.count);
              removeItemInventory(item2.id,item2.count);
+             repeat
+                ch := ReadKey;
+             until ch = #13;
+             menuForge := 2;
           end
         else
+          begin
+             pos.x:=58;
+             pos.y:=27;
             ecrireEnPosition(pos,'Aucun item n''a ce craft');
-            readln;
-            forge();
+             menuForge := 2;
+          end;
+          repeat
+                ch := ReadKey;
+             until ch = #13;
+            end
+          end
+        else
+            menuForge := 1
+        ;
     end
   else
-      pieces();
+    menuForge := 1;
 
 end;
 
@@ -844,7 +910,7 @@ var
 begin
   effacerEcran;
   couleurs(15,0);
-  ascii('marchand_achat',0,0);
+  //ascii('marchand_achat',0,0);
   pos.x := 40;
   pos.y := 12;
   ecrireEnPosition(pos,'Vous n''avez pas de partie sauvgarder');
