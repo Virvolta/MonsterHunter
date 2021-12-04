@@ -1057,8 +1057,8 @@ begin
             //ANULER
         end;
      end;
-      menuInventoryChasse:=monster;
     end;
+  menuInventoryChasse:=monster;
 end;
 
 end.
