@@ -8,13 +8,13 @@ uses
   Classes, SysUtils,GestionEcran,logique,personnage,outils,controle;
 
 function menuChasser():integer;
-function menucombat(monster:monstre):integer;
+procedure combat(monster:monstre);
 function quiAttaque(monster:monstre):monstre;
 procedure drawHP(monster:monstre);
 procedure drawHPBar(monster:monstre);
 procedure drawTour(monster:monstre);
 function aleaDegat(monster:monstre):Integer;
-procedure reward(monster:monstre);
+function menuReward(monster:monstre) : Integer;
 function menuInventoryChasse(monster:monstre):monstre;
 
 implementation
@@ -31,7 +31,6 @@ function menuChasser():integer;
 var
    select:Integer;
    ch: char;
-   i: integer;
 
 begin
   effacerEcran();
@@ -154,14 +153,12 @@ begin
   menuChasser := select;
 end;
 
-// cette fonction permet au joueur de combatre
-function menucombat(monster:monstre):integer;
+// cette procedure permet au joueur de combatre
+procedure combat(monster:monstre);
 
 var
 
    first:byte;
-   select:Integer;
-   ch:Char;
 
 begin
   damagelive := 0;
@@ -306,7 +303,6 @@ var
    fuir:Integer;
    select: integer;
    ch: char;
-   i: integer;
 
 begin
 
@@ -656,8 +652,8 @@ begin
 
 end;
 
-// cette procedure permet de donner des recompenses au joueur
-procedure reward(monster:monstre);
+// cette fonction permet de donner des recompenses au joueur
+function menuReward(monster:monstre) : Integer;
 
 var
 
@@ -666,7 +662,6 @@ var
    obj:item;
    countobj:Integer;
    randomMoney:Integer;
-   fin:integer;
    select: integer;
    ch: char;
 
@@ -858,14 +853,7 @@ begin
       end;
     end;
   until ch = #13;
-  fin := select;
-
-  case fin of
-    1 : chasse();
-    2 : pieces();
-  end;
-
-
+  menuReward := select;
 end;
 
 // cette fonction permet a l'utilisateur d'utiliser son inventaire dans la chasse
