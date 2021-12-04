@@ -5,7 +5,7 @@ unit uniteChasse;
 interface
 
 uses
-  Classes, SysUtils,ihm,logique,personnage,outils,menu,controle,uniteforge;
+  Classes, SysUtils,ihm,logique,personnage,outils,controle,uniteChambre;
 
 function menuChasser():integer;
 function menucombat(monster:monstre):integer;
@@ -257,8 +257,16 @@ begin
   if getHeart()=0 then
      begin
           ecrireEnPosition(pos,'Vous avez perdu');
+          pos.x:=pos.x-12;
+          pos.y:=pos.y+1;
+          ecrireEnPosition(pos,'Un chasseur vous a trouve inconscient.');
+          pos.y:=pos.y+1;
+          ecrireEnPosition(pos,'Il vous a ramene chez vous. Vous vous');
+          pos.y:=pos.y+1;
+          ecrireEnPosition(pos,'reveille apres plusieurs jours de sommeil');
           readln;
-          pieces();
+          setHeart(MAX_HEART);
+          chambre();
      end
   else if monster.hp=0 then
      begin
