@@ -17,7 +17,7 @@ function avantageinttostring(c : integer) : string;
 implementation
 
 var
-   pos : coordonnees;
+   pos : coordonnees; // variable qui nous permet de definir des coordonées
 
 
 // cette fonction montre ce que le joueur peut acheter et lui demande de choisir ce qu'il veut
@@ -276,6 +276,7 @@ begin
   until ch = #13;
 end;
 
+// cette fonction permet de donner des avantages au joueur
 function avantageinttostring(c : integer) : string;
 var
    avantage : string;

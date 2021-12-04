@@ -14,7 +14,7 @@ function menuArmoire() : Integer;
 implementation
 
 var
-   pos : coordonnees;
+   pos : coordonnees; // variable qui nous permet de definir des coordonées
 
 // cette fonction sert a afficher la chambre
 function menuChambre():Integer;

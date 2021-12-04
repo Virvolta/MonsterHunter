@@ -20,7 +20,8 @@ procedure menuValidationAchat(index:integer);
 implementation
 
 var
-   pos : coordonnees;
+   pos : coordonnees; // variable qui nous permet de definr des coordonées
+
 
 // cette fonction affiche le menu marchand et nous permet de choisir entre vendre et acheter
 function menuMarchand(): Integer;
@@ -275,6 +276,7 @@ begin
     end;
 end;
 
+// cette procedre nous permet d'afficher le menu vente
 procedure menuAffichageVente(id,count : integer);
 var
    ch: char;
@@ -354,6 +356,7 @@ begin
      vente();
 end;
 
+// cette procedure affiche un message demandant au joueur si il est sur d'acheter un objets
 procedure menuValidationVente(id,count : integer);
 var
    e : string;
@@ -601,109 +604,6 @@ begin
     ch := ReadKey;
   until ch = #13;
 end;
-
-// fonction qui sert à valider la vente de l'objet
-{function validationVente(index:integer):Integer;
-var
-   ch: char;
-   i: integer;
-   select: integer;
-begin
-  effacerEcran();
-  couleurs(15, 0);
-  ascii('vente_valid', 0, 0);
-  pos.x := 4;
-  pos.y := 1;
-  ecrireEnPosition(pos, 'Deposer un objet (sauf arme et armure)');
-  couleurs(15, 0);
-  pos.x := 93;
-  pos.y := 27;
-  ecrireEnPosition(pos, 'Retour au menu marchand');
-  pos.x := 17;
-  pos.y := 10;
-  ecrireEnPosition(pos, 'Inventaire');
-  pos.x := 3;
-  pos.y := 27;
-  ecrireEnPosition(pos, 'Valider la vente');
-  deplacerCurseurXY(0, 0);
-  select := 4;
-
-
-  pos.x := 74;
-  pos.y := 1;
-  deplacerCurseur(pos);
-  write('Voulez vous vraiment vendre cette ', tabProduits[index].nom);
-  couleurs(0, 15);
-  pos.x := 70;
-  pos.y := 22;
-  ecrireEnPosition(pos, 'Oui');
-  couleurs(15, 0);
-  pos.x := 113;
-  pos.y := 22;
-  ecrireEnPosition(pos, 'Non');
-  deplacerCurseurXY(0, 0);
-  select := 4;
-
-  repeat
-    ch := ReadKey;
-    case ch of
-      'K':
-      begin
-          select := 4;
-      end;
-      'M':
-      begin
-          select := 5;
-      end;
-    end;
-    case select of
-      4:
-      begin
-        couleurs(0, 15);
-        pos.x := 70;
-        pos.y := 22;
-        ecrireEnPosition(pos, 'Oui');
-        couleurs(15, 0);
-        pos.x := 113;
-        pos.y := 22;
-        ecrireEnPosition(pos, 'Non');
-        deplacerCurseurXY(0, 0);
-      end;
-      5:
-      begin
-        couleurs(0, 15);
-        pos.x := 113;
-        pos.y := 22;
-        ecrireEnPosition(pos, 'Non');
-        couleurs(15, 0);
-        pos.x := 70;
-        pos.y := 22;
-        ecrireEnPosition(pos, 'Oui');
-        deplacerCurseurXY(0, 0);
-      end;
-    end;
-  until ch = #13;
-  validationVente := select;
-
-end;
-
-// procedure qui retourne que l'objet est vendu et le retire de l'inventaire
-procedure UI(index:integer);
-var
-   e:string;
-begin
-  effacerEcran();
-  ascii('marchand_achat', 0, 0);
-  pos.x := 46;
-  pos.y := 13;
-  ecrireEnPosition(pos, 'votre objet est bien vendu');
-  deplacerCurseurXY(0, 0);
-  addMoney(tabProduits[index].prixVente);
-  removeItemInventory(tabProduits[index].id, 1);
-  readln(e);
-  if (e = '')then //vente(index)
-  else UI(index);
-end;}
 
 end.
 

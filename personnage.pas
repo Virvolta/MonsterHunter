@@ -13,6 +13,7 @@ const
   NOMBRE_EQUIPEMENT_JEU = 6;
   MAX_HEART = 200;
 
+// ce type nous permet de stocker les informations du joueur dans differents tableaux
 type
   TypeSexe = (m, f);
   TypeEquipement = Array[1..NOMBRE_EQUIPEMENT_JEU] of Item;
@@ -81,16 +82,17 @@ function getHeart():Integer;
 implementation
 
 var
-   pseudo : String;
-   sexe : TypeSexe;
-   taille, poid :Integer;
-   money : Integer;
-   equipement : TypeEquipement;
-   inventaire : TypeInventaire;
-   armoire : TypeArmoire;
-   heart, maxheart : integer;
-   shield : Integer;
-   damage : Integer;
+   pseudo : String; // le pseudo du joueur
+   sexe : TypeSexe; // le sexe du joueur
+   taille, poid :Integer; // la taille du joueur
+   money : Integer; // l'argent du joueur
+   equipement : TypeEquipement; // les equipements du joueur
+   inventaire : TypeInventaire; // l' inventaire du joueur
+   armoire : TypeArmoire; // l'armoir du joueur du joueur
+   heart, maxheart : integer; // les HP du joueur
+   shield : Integer; // la defense du joueur
+   damage : Integer; // les degats du joueur
+
 
 // cette fonction montre l'equipement du joueur
 function getEquipement() : TypeEquipement;
@@ -148,48 +150,56 @@ begin
   equipement[slot] := i;
 end;
 
+// cette fonction nous permet de connaitre la defense du joueur
 function getShield():Integer;
 
 begin
   getShield:=shield;
 end;
 
+// cette procedure nous permet d'ajouter de la defense au joueur
 procedure addShield(amount : Integer);
 
 begin
   shield := shield + amount
 end;
 
+// cette procedure nous permet d'enlever de la defense au joueur
 procedure removeShield(amount : Integer);
 
 begin
   shield := shield - amount
 end;
 
+// cette procedure nous permet de definir le noombre de defense que le joueur à
 procedure setShield(amount : Integer);
 
 begin
   shield := amount
 end;
 
+// cette function defini les degats
 function getDamage():Integer;
 
 begin
   getDamage:=damage;
 end;
 
+// cette procedure nous permet d'ajouter des degats
 procedure addDamage(amount : Integer);
 
 begin
   damage := damage + amount
 end;
 
+// procedure nous permet d'enlever des degats
 procedure removeDamage(amount : Integer);
 
 begin
   damage := damage - amount
 end;
 
+// cette procedure nous permet de definir le nombre de degats
 procedure setDamage(amount : Integer);
 
 begin
