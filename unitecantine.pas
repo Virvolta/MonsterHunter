@@ -36,8 +36,11 @@ begin
   pos.y := 28;
   ecrireEnPosition(pos, 'appuyer sur entrer pour selectionner');
   pos.x := 74;
-  pos.y := 3;
+  pos.y := 2;
   ecrireEnPosition(pos, concat('Que voulez-vous manger ', getpseudo));
+  pos.x := 74;
+  pos.y := 3;
+  ecrireEnPosition(pos, concat('Vous avez ', Inttostr(getMoney()), ' d''argent'));
   select := 1;
   pos.x := 58;
   pos.y := 6;
