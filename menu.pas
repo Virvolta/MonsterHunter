@@ -13,22 +13,22 @@ function menuJeu(): integer;
 function menuForge():integer;
 procedure menuNoSave();
 
-
 implementation
 
 uses
   Classes, SysUtils, GestionEcran, logique, personnage, controle, outils, uniteforge;
 
-var
-  pos: coordonnees; // variable qui nous permets de definir des coordonées
-
 // cette fonction affiche le menu principal et demande a l'utilisateur de choisir ce qu'il veut faire
 function menuPrincipal(): integer;
+
 var
+
   ch: char;
-  i: integer;
   select: integer;
+  pos: coordonnees;
+
 begin
+
   effacerEcran();
   ascii('start', 0, 0);
   couleurs(0, 15);
@@ -50,8 +50,11 @@ begin
   ecrireEnPosition(pos, 'appuyer sur entrer pour selectionner');
   deplacerCurseurXY(0, 0);
   select := 1;
+
   repeat
+
     ch := ReadKey;
+
     case ch of
       'P':
       begin
@@ -66,6 +69,7 @@ begin
           select := 4;
       end;
     end;
+
     case select of
       1:
       begin
@@ -141,15 +145,17 @@ begin
       end;
     end;
   until ch = #13;
+
   menuPrincipal := select;
+
 end;
 
 // cette procedure lance la personalisation du perso
 procedure menuPerso();
 
 var
+
   nom: string;
-  selectsexe: string;
   taille: string;
   poids: string;
   pos: coordonnees;
@@ -158,6 +164,7 @@ var
   ch: char;
 
 begin
+
   effacerEcran();
   ascii('personnage', 0, 0);
   pos.x := 1;
@@ -172,7 +179,9 @@ begin
   pos.y := 5;
   ecrireEnPosition(pos, 'Entrer votre taille(cm) : ');
   readln(taille);
+
   b := False;
+
   repeat
     try
       setTaille(StrToInt(taille));
@@ -180,6 +189,7 @@ begin
     except
       on Exception: EConvertError do
       begin
+
         couleurs(4, 0);
         pos.x := 13;
         pos.y := 9;
@@ -192,22 +202,29 @@ begin
           'Entrer votre taille(cm) :                             ');
         ecrireEnPosition(pos, 'Entrer votre taille(cm) : ');
         readln(taille);
+
       end;
 
     end;
   until b;
+
   pos.x := 13;
   pos.y := 7;
   ecrireEnPosition(pos, 'Entrer votre poid(kg) : ');
   readln(poids);
+
   b := False;
+
   repeat
     try
+
       setPoid(StrToInt(poids));
       b := True;
+
     except
       on Exception: EConvertError do
       begin
+
         couleurs(4, 0);
         pos.x := 13;
         pos.y := 9;
@@ -220,17 +237,23 @@ begin
           'Entrer votre poid(kg) :                               ');
         ecrireEnPosition(pos, 'Entrer votre poid(kg) : ');
         readln(poids);
+
       end;
     end;
   until b;
+
   ascii('boy', 89, 3);
   pos.x := 13;
   pos.y := 9;
   ecrireEnPosition(pos, 'Pour change le personnage(les fleches directionnelle)');
   deplacerCurseurXY(0, 0);
+
   select := 1;
+
   repeat
+
     ch := ReadKey;
+
     case ch of
       'M':
       begin
@@ -245,6 +268,7 @@ begin
           select := 2;
       end;
     end;
+
     case select of
       1:
       begin
@@ -257,28 +281,39 @@ begin
         deplacerCurseurXY(0, 0);
       end;
     end;
+
   until ch = #13;
+
   if (select = 1) then
     setSexe(m)
   else
-    setSexe(f);
+    setSexe(f)
+  ;
+
   menuLauncher();
+
 end;
 
 // cette procedure afiiche les caracteristiques du perso et lui demande si il veut entrer dans la ville
 procedure menuLauncher();
+
 var
-  p: string;
+
   pos: coordonnees;
   ch: char;
   select: integer;
+
 begin
+
   effacerEcran();
   ascii('personnage2', 0, 0);
+
   if (getSexe() = m) then
     ascii('boy', 1, 2)
   else
-    ascii('girl', 1, 2);
+    ascii('girl', 1, 2)
+  ;
+
   pos.x := 30;
   pos.y := 1;
   ecrireEnPosition(pos, concat('Votre sexe : ', getSexeString()));
@@ -306,9 +341,13 @@ begin
   pos.y := 28;
   ecrireEnPosition(pos, 'appuyer sur entrer pour selectionner');
   deplacerCurseurXY(0, 0);
+
   select := 1;
+
   repeat
+
     ch := ReadKey;
+
     case ch of
       'M':
       begin
@@ -323,6 +362,7 @@ begin
           select := 2;
       end;
     end;
+
     case select of
       1:
       begin
@@ -349,55 +389,72 @@ begin
         deplacerCurseurXY(0, 0);
       end;
     end;
+
   until ch = #13;
+
   if (select = 1) then
     menuPerso()
   else
-    pieces();
+    pieces()
+  ;
+
 end;
 
 // cette procedure affiche le prelude du jeu
 procedure menuHistoire();
+
 var
-  a: integer;
-  i: integer;
-  c: integer;
+
   ch: char;
+  pos: coordonnees;
+
 begin
+
   effacerEcran();
   ascii('prelude', 0, 0);
   pos.x := 1;
   pos.y := 28;
   ecrireEnPosition(pos, 'appuyer sur entrer pour revenir au menu principale');
   deplacerCurseurXY(0, 0);
+
   repeat
     ch := ReadKey;
   until ch = #13;
+
 end;
 
 // cette procedure permet de quitter
 procedure menuQuitter();
+
 var
+
   ch : char;
+
 begin
+
   effacerEcran();
   ascii('byebye',0,0);
   deplacerCurseurXY(0, 0);
+
   repeat
     ch := ReadKey;
   until ch = #13;
+
 end;
 
 // cette fonction nous permet de lancer la ville
 function menuJeu(): integer;
+
 var
-  c: integer;
+
   ch: char;
   select : Integer;
   pos: coordonnees; 
   pos2: coordonnees;
   b : boolean;
+
 begin
+
   effacerEcran();
   b := false;
   couleurs(15, 0);
@@ -411,58 +468,76 @@ begin
   couleurs(3, 0);
   write(char(219),char(219));
   couleurs(15, 0);
-  // 1 = menu 2 = forge 3 = cantine 4 = shop 5 = interchassechambre 6 = chasse 7 = chambre 8 = quitter
+
   select := 1;
+
   repeat
+
     ch := ReadKey;
+
     case ch of
       #13:
-      begin
-        if ((select = 1) or (select = 5)) then
-          begin
-          couleurs(4, 0);
-          pos2.x := 77;
-          pos2.y := 28;
-          ecrireEnPosition(pos2, 'Veuillez selectionner un emplacement valide');
-          couleurs(15,0);
-          end
-        else
-            b := true;
-        deplacerCurseurXY(0, 0);
-      end;
+       begin
+
+           if ((select = 1) or (select = 5)) then
+               begin
+
+                   couleurs(4, 0);
+                   pos2.x := 77;
+                   pos2.y := 28;
+                   ecrireEnPosition(pos2, 'Veuillez selectionner un emplacement valide');
+                   couleurs(15,0);
+
+               end
+           else
+               b := true
+           ;
+           deplacerCurseurXY(0, 0);
+
+       end;
       'P':
-      begin
-        pos2.x := 77;
-        pos2.y := 28;
-        ecrireEnPosition(pos2, '                                           ');
-        case select of
-             1:
-             begin
-             select := 3;
-             animationdeplacement(pos.x, pos.y, 0, 2);
-             pos.y := pos.y + 4;
-             end;
-             4:
-             begin
-             select := 1;
-             animationdeplacement(pos.x, pos.y, 0, 2);
-             pos.y := pos.y + 4;
-             end;
-             6:
-             begin
-             select := 5;
-             animationdeplacement(pos.x, pos.y, 0, 2);
-             pos.y := pos.y + 4;
-             end;
-             5:
-             begin
-             select := 8;
-             animationdeplacement(pos.x, pos.y, 0, 2);
-             pos.y := pos.y + 4;
-             end;
-        end;
-        deplacerCurseurXY(0, 0);
+       begin
+
+           pos2.x := 77;
+           pos2.y := 28;
+           ecrireEnPosition(pos2, '                                           ');
+
+           case select of
+               1:
+                begin
+
+                    select := 3;
+                    animationdeplacement(pos.x, pos.y, 0, 2);
+                    pos.y := pos.y + 4;
+
+                end;
+               4:
+                begin
+
+                    select := 1;
+                    animationdeplacement(pos.x, pos.y, 0, 2);
+                    pos.y := pos.y + 4;
+                end;
+               6:
+                begin
+
+                    select := 5;
+                    animationdeplacement(pos.x, pos.y, 0, 2);
+                    pos.y := pos.y + 4;
+                end;
+               5:
+                begin
+
+                    select := 8;
+                    animationdeplacement(pos.x, pos.y, 0, 2);
+                    pos.y := pos.y + 4;
+
+                end;
+           end;
+
+           deplacerCurseurXY(0, 0);
       end;
+
       'H':
       begin
         pos2.x := 77;
@@ -572,6 +647,7 @@ var
   itemResult:Item;
   ch : char;
   stop : boolean;
+  pos: coordonnees;
 
 begin
 
