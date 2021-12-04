@@ -139,7 +139,7 @@ var
   select : integer;
 begin
   select := menuAchat();
-  if (select = (NOMBRE_PRODUIT_ARRAY - NOMBRE_PRODUIT_NOPRICE_ARRAY) - 1) then
+  if (select = (NOMBRE_PRODUIT_ARRAY - NOMBRE_PRODUIT_NOPRICE_ARRAY)) then
       marchand()
   else if (select > 0) then
       affichageachat(select + NOMBRE_PRODUIT_NOPRICE_ARRAY)
