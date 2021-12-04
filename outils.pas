@@ -48,7 +48,7 @@ const
 
   NOMBRE_PRODUIT_NOPRICE_ARRAY = 3;
   NOMBRE_PRODUIT_ARRAY = 12;
-  NOMBRE_EQUIPEMENT_ARRAY = 17;
+  NOMBRE_EQUIPEMENT_ARRAY = 18;
   NOMBRE_MONSTRE_ARRAY = 2;
   NOMBRE_CANTINE_ARRAY = 3;
 
@@ -256,7 +256,7 @@ begin
     tabMonstre[i].nom:=obj.Strings['nom'];
     tabMonstre[i].hp:=StrToInt(obj.Strings['HP']);
     tabMonstre[i].degatmin:=StrToInt(obj.Strings['degatmin']);
-    tabMonstre[i].degatmax:=StrToInt(obj.Strings['degatmin']);
+    tabMonstre[i].degatmax:=StrToInt(obj.Strings['degatmax']);
     tabMonstre[i].defensemin:=StrToInt(obj.Strings['defensemin']);
     tabMonstre[i].defensemax:=StrToInt(obj.Strings['defensemax']);
   end;

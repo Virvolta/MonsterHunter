@@ -1,5 +1,6 @@
 {
    "equipements" :[
+      {"id" : 0, "nom" : "", "stat" : 0, "slot" : 0},
       {"id" : 14, "nom" : "Epee en bois", "stat" : 10, "slot" : 6},
       {"id" : 12, "nom" : "Epee en fer", "stat" : 20, "slot" : 6},
       {"id" : 13, "nom" : "Epee en Aeter", "stat" : 30, "slot" : 6},

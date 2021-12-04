@@ -134,16 +134,18 @@ var
 begin
   slot := tabEquipments[tabIdEquipments[i.id]].slot;
   itold := equipement[slot];
-  if (slot <> 6) then
-     if ((itold.id > 0) and (tabEquipments[tabIdEquipments[i.id]].id = i.id)) then
+  if (tabEquipments[tabIdEquipments[i.id]].id = i.id) then
+    begin
+     if (slot <> 6) then
        begin
          shield := shield - tabEquipments[tabIdEquipments[itold.id]].stat;
          shield := shield + tabEquipments[tabIdEquipments[i.id]].stat;
        end
-  else
-    begin
-         damage := damage - tabEquipments[tabIdEquipments[itold.id]].stat;
-         damage := damage + tabEquipments[tabIdEquipments[i.id]].stat;
+     else
+     begin
+        damage := damage - tabEquipments[tabIdEquipments[itold.id]].stat;
+        damage := damage + tabEquipments[tabIdEquipments[i.id]].stat;
+     end;
     end;
   equipement[slot] := i;
 end;

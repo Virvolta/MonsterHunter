@@ -23,6 +23,7 @@ uses
 
 // cette procedure fait marcher tout le jeu
 procedure start();
+
 begin
   ParseFile('json/objets.json','objets');
   ParseFile('json/equipements.json','equipements');

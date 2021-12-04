@@ -482,7 +482,9 @@ begin
                  ecrireEnPosition(pos,'Fuir');
                  deplacerCurseurXY(0, 0);
 
-                 drawHP(monster);
+                 atk:=0;
+                 quiAttaque:=monster;
+
             end
           else if select=4 then
              begin
@@ -571,11 +573,27 @@ begin
 
   randomize;
 
-  alea:=Random(2);
+  alea:=random(2);
 
   case alea of
-       0:aleaDegat:=monster.degatmin;
-       1:aleaDegat:=monster.degatmax;
+       0:
+       begin
+         if getShield=0 then
+           aleaDegat:=monster.degatmin
+         else
+           begin
+                aleaDegat:=round(monster.degatmin*(1-(getShield/100)));
+           end;
+       end;
+       1:
+       begin
+         if getShield=0 then
+           aleaDegat:=monster.degatmax
+         else
+           begin
+                aleaDegat:=round(monster.degatmax*(1-(getShield/100)));
+           end;
+       end;
   end;
 
 end;
@@ -1060,7 +1078,7 @@ begin
         end;
      end;
       menuInventoryChasse();
-    end
+    end;
 end;
 
 end.
