@@ -17,6 +17,7 @@ procedure achat();
 procedure affichageachat(index:integer);
 procedure vente();
 procedure forge();
+procedure lit();
 procedure chasse();
 procedure reward(monster:monstre);
 
@@ -39,7 +40,7 @@ begin
   case menuPrincipal() of
       1:
        begin
-          setMaxHeart(250);
+          setMaxHeart(MAX_HEART);
           setHeart(MAX_HEART);
           setDamage(5);
           setShield(0);
@@ -93,7 +94,7 @@ procedure chambre();
 begin
 
   case menuChambre() of
-      1: menuLit();
+      1: lit();
       2: armoire();
       3: pieces();
   else chambre()
@@ -237,6 +238,7 @@ begin
 
 end;
 
+// c'est les loot des monstres
 procedure reward(monster:monstre);
 
 begin
@@ -247,6 +249,15 @@ begin
   else reward(monster);
   end;
 
+end;
+
+// c'est le lit
+procedure lit();
+
+begin
+  if (menuLit() = 1) then
+     chambre()
+  else lit();
 end;
 
 end.

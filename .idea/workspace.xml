@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="37f0a924-4b95-4944-be89-1876300d2f99" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Monster.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Monster.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Monster.lps" beforeDir="false" afterPath="$PROJECT_DIR$/Monster.lps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backup/Monster.lpr" beforeDir="false" afterPath="$PROJECT_DIR$/backup/Monster.lpr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backup/Monster.lps" beforeDir="false" afterPath="$PROJECT_DIR$/backup/Monster.lps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backup/logique.pas" beforeDir="false" afterPath="$PROJECT_DIR$/backup/logique.pas" afterDir="false" />
@@ -17,7 +23,11 @@
       <change beforePath="$PROJECT_DIR$/lib/x86_64-win64/unitechambre.ppu" beforeDir="false" afterPath="$PROJECT_DIR$/lib/x86_64-win64/unitechambre.ppu" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/x86_64-win64/unitemarchand.o" beforeDir="false" afterPath="$PROJECT_DIR$/lib/x86_64-win64/unitemarchand.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/x86_64-win64/unitemarchand.ppu" beforeDir="false" afterPath="$PROJECT_DIR$/lib/x86_64-win64/unitemarchand.ppu" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logique.pas" beforeDir="false" afterPath="$PROJECT_DIR$/logique.pas" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/menu.pas" beforeDir="false" afterPath="$PROJECT_DIR$/menu.pas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unitecantine.pas" beforeDir="false" afterPath="$PROJECT_DIR$/unitecantine.pas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unitechambre.pas" beforeDir="false" afterPath="$PROJECT_DIR$/unitechambre.pas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniteforge.pas" beforeDir="false" afterPath="$PROJECT_DIR$/uniteforge.pas" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +49,10 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -49,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1638648220599</updated>
-      <workItem from="1638648225073" duration="649000" />
+      <workItem from="1638648225073" duration="667000" />
     </task>
     <servers />
   </component>

@@ -13,22 +13,22 @@ function menuJeu(): integer;
 function menuForge():integer;
 procedure menuNoSave();
 
-
 implementation
 
 uses
-  Classes, SysUtils, ihm, logique, personnage, controle, outils, uniteforge;
-
-var
-  pos: coordonnees;
+  Classes, SysUtils, GestionEcran, logique, personnage, controle, outils, uniteforge;
 
 // cette fonction affiche le menu principal et demande a l'utilisateur de choisir ce qu'il veut faire
 function menuPrincipal(): integer;
+
 var
+
   ch: char;
-  i: integer;
   select: integer;
+  pos: coordonnees;
+
 begin
+
   effacerEcran();
   ascii('start', 0, 0);
   couleurs(0, 15);
@@ -50,8 +50,11 @@ begin
   ecrireEnPosition(pos, 'appuyer sur entrer pour selectionner');
   deplacerCurseurXY(0, 0);
   select := 1;
+
   repeat
+
     ch := ReadKey;
+
     case ch of
       'P':
       begin
@@ -66,6 +69,7 @@ begin
           select := 4;
       end;
     end;
+
     case select of
       1:
       begin
@@ -141,15 +145,17 @@ begin
       end;
     end;
   until ch = #13;
+
   menuPrincipal := select;
+
 end;
 
 // cette procedure lance la personalisation du perso
 procedure menuPerso();
 
 var
+
   nom: string;
-  selectsexe: string;
   taille: string;
   poids: string;
   pos: coordonnees;
@@ -158,6 +164,7 @@ var
   ch: char;
 
 begin
+
   effacerEcran();
   ascii('personnage', 0, 0);
   pos.x := 1;
@@ -172,7 +179,9 @@ begin
   pos.y := 5;
   ecrireEnPosition(pos, 'Entrer votre taille(cm) : ');
   readln(taille);
+
   b := False;
+
   repeat
     try
       setTaille(StrToInt(taille));
@@ -180,6 +189,7 @@ begin
     except
       on Exception: EConvertError do
       begin
+
         couleurs(4, 0);
         pos.x := 13;
         pos.y := 9;
@@ -192,22 +202,29 @@ begin
           'Entrer votre taille(cm) :                             ');
         ecrireEnPosition(pos, 'Entrer votre taille(cm) : ');
         readln(taille);
+
       end;
 
     end;
   until b;
+
   pos.x := 13;
   pos.y := 7;
   ecrireEnPosition(pos, 'Entrer votre poid(kg) : ');
   readln(poids);
+
   b := False;
+
   repeat
     try
+
       setPoid(StrToInt(poids));
       b := True;
+
     except
       on Exception: EConvertError do
       begin
+
         couleurs(4, 0);
         pos.x := 13;
         pos.y := 9;
@@ -220,17 +237,23 @@ begin
           'Entrer votre poid(kg) :                               ');
         ecrireEnPosition(pos, 'Entrer votre poid(kg) : ');
         readln(poids);
+
       end;
     end;
   until b;
+
   ascii('boy', 89, 3);
   pos.x := 13;
   pos.y := 9;
   ecrireEnPosition(pos, 'Pour change le personnage(les fleches directionnelle)');
   deplacerCurseurXY(0, 0);
+
   select := 1;
+
   repeat
+
     ch := ReadKey;
+
     case ch of
       'M':
       begin
@@ -245,6 +268,7 @@ begin
           select := 2;
       end;
     end;
+
     case select of
       1:
       begin
@@ -257,28 +281,39 @@ begin
         deplacerCurseurXY(0, 0);
       end;
     end;
+
   until ch = #13;
+
   if (select = 1) then
     setSexe(m)
   else
-    setSexe(f);
+    setSexe(f)
+  ;
+
   menuLauncher();
+
 end;
 
 // cette procedure afiiche les caracteristiques du perso et lui demande si il veut entrer dans la ville
 procedure menuLauncher();
+
 var
-  p: string;
+
   pos: coordonnees;
   ch: char;
   select: integer;
+
 begin
+
   effacerEcran();
   ascii('personnage2', 0, 0);
+
   if (getSexe() = m) then
     ascii('boy', 1, 2)
   else
-    ascii('girl', 1, 2);
+    ascii('girl', 1, 2)
+  ;
+
   pos.x := 30;
   pos.y := 1;
   ecrireEnPosition(pos, concat('Votre sexe : ', getSexeString()));
@@ -293,7 +328,7 @@ begin
   ecrireEnPosition(pos, concat('Votre Poid : ', IntToStr(getPoid()), ' kg'));
   pos.x := 30;
   pos.y := 19;
-  ecrireEnPosition(pos, 'Etes vous sure de vos choix');
+  ecrireEnPosition(pos, 'Etes-vous sur de vos choix');
   pos.x := 30;
   pos.y := 21;
   ecrireEnPosition(pos, 'Oui');
@@ -306,9 +341,13 @@ begin
   pos.y := 28;
   ecrireEnPosition(pos, 'appuyer sur entrer pour selectionner');
   deplacerCurseurXY(0, 0);
+
   select := 1;
+
   repeat
+
     ch := ReadKey;
+
     case ch of
       'M':
       begin
@@ -323,6 +362,7 @@ begin
           select := 2;
       end;
     end;
+
     case select of
       1:
       begin
@@ -349,55 +389,72 @@ begin
         deplacerCurseurXY(0, 0);
       end;
     end;
+
   until ch = #13;
+
   if (select = 1) then
     menuPerso()
   else
-    pieces();
+    pieces()
+  ;
+
 end;
 
 // cette procedure affiche le prelude du jeu
 procedure menuHistoire();
+
 var
-  a: integer;
-  i: integer;
-  c: integer;
+
   ch: char;
+  pos: coordonnees;
+
 begin
+
   effacerEcran();
   ascii('prelude', 0, 0);
   pos.x := 1;
   pos.y := 28;
   ecrireEnPosition(pos, 'appuyer sur entrer pour revenir au menu principale');
   deplacerCurseurXY(0, 0);
+
   repeat
     ch := ReadKey;
   until ch = #13;
+
 end;
 
 // cette procedure permet de quitter
 procedure menuQuitter();
+
 var
+
   ch : char;
+
 begin
+
   effacerEcran();
   ascii('byebye',0,0);
   deplacerCurseurXY(0, 0);
+
   repeat
     ch := ReadKey;
   until ch = #13;
+
 end;
 
 // cette fonction nous permet de lancer la ville
 function menuJeu(): integer;
+
 var
-  c: integer;
+
   ch: char;
   select : Integer;
   pos: coordonnees; 
   pos2: coordonnees;
   b : boolean;
+
 begin
+
   effacerEcran();
   b := false;
   couleurs(15, 0);
@@ -411,58 +468,76 @@ begin
   couleurs(3, 0);
   write(char(219),char(219));
   couleurs(15, 0);
-  // 1 = menu 2 = forge 3 = cantine 4 = shop 5 = interchassechambre 6 = chasse 7 = chambre 8 = quitter
+
   select := 1;
+
   repeat
+
     ch := ReadKey;
+
     case ch of
       #13:
-      begin
-        if ((select = 1) or (select = 5)) then
-          begin
-          couleurs(4, 0);
-          pos2.x := 77;
-          pos2.y := 28;
-          ecrireEnPosition(pos2, 'Veuillez selectionner un emplacement valide');
-          couleurs(15,0);
-          end
-        else
-            b := true;
-        deplacerCurseurXY(0, 0);
-      end;
+       begin
+
+           if ((select = 1) or (select = 5)) then
+               begin
+
+                   couleurs(4, 0);
+                   pos2.x := 77;
+                   pos2.y := 28;
+                   ecrireEnPosition(pos2, 'Veuillez selectionner un emplacement valide');
+                   couleurs(15,0);
+
+               end
+           else
+               b := true
+           ;
+           deplacerCurseurXY(0, 0);
+
+       end;
       'P':
-      begin
-        pos2.x := 77;
-        pos2.y := 28;
-        ecrireEnPosition(pos2, '                                           ');
-        case select of
-             1:
-             begin
-             select := 3;
-             animationdeplacement(pos.x, pos.y, 0, 2);
-             pos.y := pos.y + 4;
-             end;
-             4:
-             begin
-             select := 1;
-             animationdeplacement(pos.x, pos.y, 0, 2);
-             pos.y := pos.y + 4;
-             end;
-             6:
-             begin
-             select := 5;
-             animationdeplacement(pos.x, pos.y, 0, 2);
-             pos.y := pos.y + 4;
-             end;
-             5:
-             begin
-             select := 8;
-             animationdeplacement(pos.x, pos.y, 0, 2);
-             pos.y := pos.y + 4;
-             end;
-        end;
-        deplacerCurseurXY(0, 0);
+       begin
+
+           pos2.x := 77;
+           pos2.y := 28;
+           ecrireEnPosition(pos2, '                                           ');
+
+           case select of
+               1:
+                begin
+
+                    select := 3;
+                    animationdeplacement(pos.x, pos.y, 0, 2);
+                    pos.y := pos.y + 4;
+
+                end;
+               4:
+                begin
+
+                    select := 1;
+                    animationdeplacement(pos.x, pos.y, 0, 2);
+                    pos.y := pos.y + 4;
+                end;
+               6:
+                begin
+
+                    select := 5;
+                    animationdeplacement(pos.x, pos.y, 0, 2);
+                    pos.y := pos.y + 4;
+                end;
+               5:
+                begin
+
+                    select := 8;
+                    animationdeplacement(pos.x, pos.y, 0, 2);
+                    pos.y := pos.y + 4;
+
+                end;
+           end;
+
+           deplacerCurseurXY(0, 0);
       end;
+
       'H':
       begin
         pos2.x := 77;
@@ -572,6 +647,7 @@ var
   itemResult:Item;
   ch : char;
   stop : boolean;
+  pos: coordonnees;
 
 begin
 
@@ -585,7 +661,7 @@ begin
   pos.y:=1;
   ecrireEnPosition(pos, 'Aide creation : ');
   pos.y:=pos.y+1;
-  ecrireEnPosition(pos, 'Epee = 2 (Bois/Fer/Aeter) + 1 Bois)');
+  ecrireEnPosition(pos, 'Epee = 2 (Bois/Fer/Aeter) + 1 (Bois)');
   pos.y:=pos.y+1;
   ecrireEnPosition(pos, 'Casque = 5 (Cuir/Fer/Aeter)');
   pos.y:=pos.y+1;
@@ -596,96 +672,123 @@ begin
   ecrireEnPosition(pos, 'Bottes = 4 (Cuir/Fer/Aeter)');
   pos.y:=pos.y+1;
   ecrireEnPosition(pos, 'Gants= 2 (Cuir/Fer/Aeter)');
+
+  pos.x := 58;
+  pos.y := 6;
+
   stop := false;
   select := 1;
-  pos.x := 58;
-    pos.y := 6;
-    countmax := 0;
-    inv := getInventory();
-    for i := Low(inv) to High(inv) do
+  countmax := 0;
+  inv := getInventory();
+
+  for i := Low(inv) to High(inv) do
     begin
+
       it := getItemInventory(i);
+
       if ((it.id > 0)) then
         begin
-              countmax := countmax + 1;
-              posinv[countmax] := it;
-              if ((select = countmax)) then
-                 couleurs(0, 15)
-              else
-                 couleurs(15, 0)
-              ;
-              if (tabProduits[tabIdProduits[it.id]].id = it.id) then
-                ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
-              pos.y := 6 + countmax;
-           end;
+
+           countmax := countmax + 1;
+           posinv[countmax] := it;
+
+           if ((select = countmax)) then
+               couleurs(0, 15)
+           else
+               couleurs(15, 0)
+           ;
+
+           if (tabProduits[tabIdProduits[it.id]].id = it.id) then
+               ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
+
+           pos.y := 6 + countmax;
+
+        end;
       end;
+
   couleurs(15, 0);
   pos.x := 58;
   pos.y := 27;
   ecrireEnPosition(pos, 'Menu');
   deplacerCurseurXY(0, 0);
+
   countmax := 0;
 
   repeat
+
     ch := ReadKey;
+
     case ch of
       'P':
-      begin
-        select := select + 1;
-        if (select > countmax + 1) then
-          select := 1;
-      end;
+       begin
+
+           select := select + 1;
+           if (select > countmax + 1) then
+               select := 1;
+       end;
       'H':
-      begin
-        select := select - 1;
-        if (select <= 0) then
-          select := countmax + 1;
-      end;
+       begin
+           select := select - 1;
+           if (select <= 0) then
+               select := countmax + 1;
+       end;
     end;
+
     pos.x := 58;
     pos.y := 6;
     countmax := 0;
     inv := getInventory();
+
     for i := Low(inv) to High(inv) do
-    begin
-      it := getItemInventory(i);
-      if ((it.id > 0)) then
         begin
-              countmax := countmax + 1;
-              posinv[countmax] := it;
-              if ((select = countmax)) then
-                 couleurs(0, 15)
-              else
-                 couleurs(15, 0)
-              ;
-              if (tabProduits[tabIdProduits[it.id]].id = it.id) then
-                ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
-              pos.y := 6 + countmax;
-           end;
-      end;
+
+           it := getItemInventory(i);
+
+           if ((it.id > 0)) then
+               begin
+
+                   countmax := countmax + 1;
+                   posinv[countmax] := it;
+                   if ((select = countmax)) then
+                       couleurs(0, 15)
+                   else
+                       couleurs(15, 0)
+                   ;
+
+                   if (tabProduits[tabIdProduits[it.id]].id = it.id) then
+                       ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
+
+                   pos.y := 6 + countmax;
+                end;
+        end;
+
   couleurs(15, 0);
   pos.x := 71;
   pos.y := 2;
-    if (select = countmax + 1) then
-       begin
+  if (select = countmax + 1) then
+      begin
+
           couleurs(0, 15);
 
           pos.x := 58;
           pos.y := 27;
           ecrireEnPosition(pos, 'Menu')
-       end
+
+      end
     else
-        begin
+      begin
+
           couleurs(15, 0);
 
           pos.x := 58;
           pos.y := 27;
           ecrireEnPosition(pos, 'Menu')
-        end;
-
+      end;
     ;
+
     couleurs(15, 0);
     deplacerCurseurXY(0, 0);
+
   until ch = #13;
 
   if (select = countmax + 1) then
@@ -694,6 +797,7 @@ begin
 
   if (stop = false) then
     begin
+
         item1 := posinv[select];
         max:=posinv[select].count;
         pos.x:=58;
@@ -717,194 +821,228 @@ begin
         pos.x:=58;
         pos.y:=28;
         ecrireEnPosition(pos, '                               ');
+
         if (select = countmax + 1) then
              begin
+
                 couleurs(0, 15);
 
                 pos.x := 58;
                 pos.y := 27;
                 ecrireEnPosition(pos, 'Menu')
              end
-          else
-              begin
+        else
+             begin
+
                 couleurs(15, 0);
 
                 pos.x := 58;
                 pos.y := 27;
                 ecrireEnPosition(pos, 'Menu')
-              end;
-
-          ;
+              end
+        ;
 
   pos.x:=60;
   pos.y:=2;
   ecrireEnPosition(pos, 'Choisir le 2eme item ');
   deplacerCurseurXY(0, 0);
-        repeat
-          ch := ReadKey;
-          case ch of
-            'P':
-            begin
-              select := select + 1;
-              if (select > countmax + 1) then
-                select := 1;
-            end;
-            'H':
-            begin
-              select := select - 1;
-              if (select <= 0) then
-                select := countmax + 1;
-            end;
-          end;
-          pos.x := 58;
-          pos.y := 6;
-          countmax := 0;
-          inv := getInventory();
-          for i := Low(inv) to High(inv) do
-          begin
+
+  repeat
+
+    ch := ReadKey;
+
+    case ch of
+      'P':
+       begin
+
+           select := select + 1;
+
+           if (select > countmax + 1) then
+               select := 1;
+       end;
+      'H':
+       begin
+           select := select - 1;
+
+           if (select <= 0) then
+               select := countmax + 1
+           ;
+       end;
+
+    end;
+
+    pos.x := 58;
+    pos.y := 6;
+    countmax := 0;
+    inv := getInventory();
+
+    for i := Low(inv) to High(inv) do
+        begin
+
             it := getItemInventory(i);
+
             if ((it.id > 0)) then
               begin
-                    countmax := countmax + 1;
-                    posinv2[countmax] := it;
-                    if ((select = countmax)) then
-                       couleurs(0, 15)
-                    else
-                       couleurs(15, 0)
-                    ;
-                    if (tabProduits[tabIdProduits[it.id]].id = it.id) then
+
+                  countmax := countmax + 1;
+                  posinv2[countmax] := it;
+
+                  if ((select = countmax)) then
+                      couleurs(0, 15)
+                  else
+                      couleurs(15, 0)
+                  ;
+
+                  if (tabProduits[tabIdProduits[it.id]].id = it.id) then
                       ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
-                    pos.y := 6 + countmax;
-                 end;
-            end;
-        couleurs(15, 0);
-        pos.x := 71;
-        pos.y := 2;
+                  pos.y := 6 + countmax;
+              end;
+        end;
+
+    couleurs(15, 0);
+    pos.x := 71;
+    pos.y := 2;
+
+    if (select = countmax + 1) then
+      begin
+
+          couleurs(0, 15);
+
+          pos.x := 58;
+          pos.y := 27;
+          ecrireEnPosition(pos, 'Menu')
+      end
+    else
+      begin
+
+          couleurs(15, 0);
+
+          pos.x := 58;
+          pos.y := 27;
+          ecrireEnPosition(pos, 'Menu')
+      end
+    ;
+
+    couleurs(15, 0);
+    deplacerCurseurXY(0, 0);
+  until ch = #13;
+
+  if (select = countmax + 1) then
+      stop := true
+  ;
+
+  if (stop = false) then
+      begin
+
+          item2:=posinv2[select];
+
+          pos.x:=58;
+          pos.y:=26;
+          ecrireEnPosition(pos, 'Quelle quantite de cet item voulez vous ');
+          pos.x:=58;
+          pos.y:=27;
+          ecrireEnPosition(pos, 'prendre afin de forger un nouvel equipement ?');
+          pos.x:=58;
+          pos.y:=28;
+          ecrireEnPosition(pos, '(Vous pouvez rentrer 0) : ');
+          readln(j);
+
+          pos.x:=58;
+          pos.y:=26;
+          ecrireEnPosition(pos, '                                        ');
+          pos.x:=58;
+          pos.y:=27;
+          ecrireEnPosition(pos, '                                             ');
+          pos.x:=58;
+          pos.y:=28;
+          ecrireEnPosition(pos, '                               ');
+          item2.count:=j;
+
           if (select = countmax + 1) then
              begin
-                couleurs(0, 15);
 
-                pos.x := 58;
-                pos.y := 27;
-                ecrireEnPosition(pos, 'Menu')
+                 couleurs(0, 15);
+
+                 pos.x := 58;
+                 pos.y := 27;
+                 ecrireEnPosition(pos, 'Menu')
+
              end
           else
               begin
-                couleurs(15, 0);
 
-                pos.x := 58;
-                pos.y := 27;
-                ecrireEnPosition(pos, 'Menu')
-              end;
+                 couleurs(15, 0);
 
+                 pos.x := 58;
+                 pos.y := 27;
+                 ecrireEnPosition(pos, 'Menu')
+
+              end
           ;
-          couleurs(15, 0);
+
           deplacerCurseurXY(0, 0);
-        until ch = #13;
+          pos.x := 1;
+          pos.y := 28;
+          ecrireEnPosition(pos, 'appuyer sur entrer pour valider');
 
-        if (select = countmax + 1) then
-            stop := true
-        ;
-
-        if (stop = false) then
+          if (item1.id=item2.id) and (max<item1.count+item2.count) then
             begin
-               item2:=posinv2[select];
 
-               pos.x:=58;
-               pos.y:=26;
-               ecrireEnPosition(pos, 'Quelle quantite de cet item voulez vous ');
-               pos.x:=58;
-               pos.y:=27;
-               ecrireEnPosition(pos, 'prendre afin de forger un nouvel equipement ?');
-               pos.x:=58;
-               pos.y:=28;
-               ecrireEnPosition(pos, '(Vous pouvez rentrer 0) : ');
-               readln(j);
-
-
-               pos.x:=58;
-               pos.y:=26;
-               ecrireEnPosition(pos, '                                        ');
-               pos.x:=58;
-               pos.y:=27;
-               ecrireEnPosition(pos, '                                             ');
-               pos.x:=58;
-               pos.y:=28;
-               ecrireEnPosition(pos, '                               ');
-               item2.count:=j;
-               if (select = countmax + 1) then
-             begin
-                couleurs(0, 15);
-
-                pos.x := 58;
-                pos.y := 27;
-                ecrireEnPosition(pos, 'Menu')
-             end
-          else
-              begin
-                couleurs(15, 0);
-
-                pos.x := 58;
-                pos.y := 27;
-                ecrireEnPosition(pos, 'Menu')
-              end;
-
-          ;
-  deplacerCurseurXY(0, 0);
-             pos.x := 1;
-             pos.y := 28;
-             ecrireEnPosition(pos, 'appuyer sur entrer pour valider');
-
-        if (item1.id=item2.id) and (max<item1.count+item2.count) then
-          begin
-             pos.x:=58;
-             pos.y:=27;
-             ecrireEnPosition(pos, 'Vous n''avez pas assez');
-             menuForge := 2;
-          end
-        else
-          begin
-
-            itemResult:=getCraftResult(item1,item2);
-
-        if itemResult.id<>0 then
-          begin
-             pos.x:=58;
-             pos.y:=27;
-             ecrireEnPosition(pos, Concat('Vous avez cree un ', tabEquipments[tabIdEquipments[itemResult.id]].nom));
-             addItemInventory(itemResult);
-             removeItemInventory(item1.id,item1.count);
-             removeItemInventory(item2.id,item2.count);
-             menuForge := 2;
-          end
-        else
-          begin
-             pos.x:=58;
-             pos.y:=27;
-            ecrireEnPosition(pos,'Aucun item n''a ce craft');
-             menuForge := 2;
-          end;
-          repeat
-                ch := ReadKey;
-             until ch = #13;
+                pos.x:=58;
+                pos.y:=27;
+                ecrireEnPosition(pos, 'Vous n''avez pas assez');
+                menuForge := 2;
             end
-          end
-        else
-            menuForge := 1
-        ;
+          else
+            begin
+
+                itemResult:=getCraftResult(item1,item2);
+
+                if itemResult.id<>0 then
+                    begin
+
+                        pos.x:=58;
+                        pos.y:=27;
+                        ecrireEnPosition(pos, Concat('Vous avez cree un ', tabEquipments[tabIdEquipments[itemResult.id]].nom));
+                        addItemInventory(itemResult);
+                        removeItemInventory(item1.id,item1.count);
+                        removeItemInventory(item2.id,item2.count);
+
+                        menuForge := 2;
+
+                    end
+                 else
+                    begin
+
+                        pos.x:=58;
+                        pos.y:=27;
+                        ecrireEnPosition(pos,'Aucun item n''a ce craft');
+                        menuForge := 2;
+                    end
+                 ;
+
+                 repeat
+                     ch := ReadKey;
+                 until ch = #13;
+             end
+        end
+    else
+      menuForge := 1
+    ;
     end
   else
     menuForge := 1;
 
 end;
 
+// cette procedure affiche que le joueur n'as pas de partie sauvgarder
 procedure menuNoSave();
 var
   ch : Char;
 begin
   effacerEcran;
   couleurs(15,0);
-  //ascii('nosave',0,0);
+  ascii('nosave',0,0);
   deplacerCurseurXY(0,0);
   repeat
     ch := ReadKey;
