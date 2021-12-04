@@ -887,9 +887,8 @@ begin
               else
                  couleurs(15, 0)
               ;
-              if (tabEquipments[tabIdEquipments[it.id]].id = it.id) then
-                 ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabEquipments[tabIdEquipments[it.id]].nom, ' x', InttoStr(it.count)))
-              else
+
+              if ((tabProduits[tabIdProduits[it.id]].id = it.id) and (99 < it.id)) then
                  ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
               pos.y := 2 + countmax;
            end;
