@@ -38,15 +38,31 @@ type
     unique:Boolean;
   end;
 
+  cantineobj=record
+    nom:String;
+    prixAchat:Integer;
+    avantage:Integer;
+  end;
+
+const
+
+  NOMBRE_PRODUIT_NOPRICE_ARRAY = 3;
+  NOMBRE_PRODUIT_ARRAY = 12;
+  NOMBRE_EQUIPEMENT_ARRAY = 17;
+  NOMBRE_MONSTRE_ARRAY = 2;
+  NOMBRE_CANTINE_ARRAY = 3;
+
 var
 
-  tabProduits : array [0..12] of produit;
-  tabEquipments : array [0..17] of equipment;
+  tabProduits : array [0..NOMBRE_PRODUIT_ARRAY] of produit;
+  tabEquipments : array [0..NOMBRE_EQUIPEMENT_ARRAY] of equipment;
 
-  tabMonstre : array [0..2] of monstre;
+  tabCantines : array [0..NOMBRE_CANTINE_ARRAY] of cantineobj;
 
-  tabIdProduits : array [0..12] of integer;
-  tabIdEquipments : array [0..17] of integer;
+  tabMonstre : array [0..NOMBRE_MONSTRE_ARRAY] of monstre;
+
+  tabIdProduits : array [0..NOMBRE_PRODUIT_ARRAY] of integer;
+  tabIdEquipments : array [0..NOMBRE_EQUIPEMENT_ARRAY] of integer;
 
 procedure importObjData(data : TJSONData; ObjName : String);
 procedure importMonsterData(data : TJSONData; ObjName : String);
@@ -192,6 +208,28 @@ begin
        writeln('slot : ',tabEquipments[i].slot);
      end;}
   end
+  else if ObjName='cantines' then
+  begin
+     tab:=obj.Arrays['cantines'];
+     for i:=0 to tab.Count-1 do
+     begin
+       obj:= tab.Objects[i];
+       tabCantines[i].nom:=obj.Strings['nom'];
+       tabCantines[i].prixAchat:=StrToInt(obj.Strings['prixAchat']);
+       tabCantines[i].avantage:=StrToInt(obj.Strings['avantage']);
+     end;
+
+     {for i:=0 to tab.Count-1 do
+     begin
+       write('id : ',tabEquipments[i].id);
+       write(' / ');
+       write('nom : ',tabEquipments[i].nom);
+       write(' / ');
+       write('stat : ',tabEquipments[i].stat);
+       write(' / ');
+       writeln('slot : ',tabEquipments[i].slot);
+     end;}
+  end
   else
       writeln('Aucun objet de ce type dans le fichier JSON');
   //writeln('---------------------------------------');
@@ -248,7 +286,7 @@ Var
   js : TJSONData;
 begin
   js:=parseur.Parse;
-  if (ObjName='objets') or (ObjName='equipements') then
+  if (ObjName='objets') or (ObjName='equipements') or (ObjName='cantines') then
      importObjData(js,ObjName)
   else
       importMonsterData(js,ObjName);

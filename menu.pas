@@ -12,7 +12,7 @@ procedure menuLauncher();
 function menuJeu(): integer;
 function menuInventaire(): integer;
 function menuForge():integer;
-procedure nulSauvgarde();
+procedure menuNoSave();
 
 
 implementation
@@ -161,11 +161,9 @@ var
 begin
   effacerEcran();
   ascii('personnage', 0, 0);
-  pos.x := 13;
-  pos.y := 9;
+  pos.x := 1;
+  pos.y := 28;
   ecrireEnPosition(pos, 'appuyer sur entrer pour valider');
-
-  deplacerCurseurXY(0, 0);
   pos.x := 13;
   pos.y := 3;
   ecrireEnPosition(pos, 'Entrer votre pseudo : ');
@@ -200,9 +198,6 @@ begin
     end;
   until b;
   pos.x := 13;
-  pos.y := 9;
-  ecrireEnPosition(pos, 'appuyer sur entrer pour valider                       ');
-  pos.x := 13;
   pos.y := 7;
   ecrireEnPosition(pos, 'Entrer votre poid(kg) : ');
   readln(poids);
@@ -233,9 +228,7 @@ begin
   pos.x := 13;
   pos.y := 9;
   ecrireEnPosition(pos, 'Pour change le personnage(les fleches directionnelle)');
-  pos.x := 1;
-  pos.y := 28;
-  ecrireEnPosition(pos, 'appuyer sur entrer pour selectionner');
+  deplacerCurseurXY(0, 0);
   select := 1;
   repeat
     ch := ReadKey;
@@ -844,8 +837,9 @@ begin
 
 end;
 
-procedure nulSauvgarde();
-
+procedure menuNoSave();
+var
+  ch : Char;
 begin
   effacerEcran;
   couleurs(15,0);
@@ -854,7 +848,9 @@ begin
   pos.y := 12;
   ecrireEnPosition(pos,'Vous n''avez pas de partie sauvgarder');
   deplacerCurseurXY(0,0);
-  readln();
+  repeat
+    ch := ReadKey;
+  until ch = #13;
 end;
 
 end.

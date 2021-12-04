@@ -9,13 +9,12 @@ procedure pieces();
 procedure chambre();
 procedure cantine();
 procedure marchand();
-procedure vente(index:integer);
 procedure armoire();
-procedure inventaire();
 procedure achat();
-procedure validationAchat(index:integer);
+procedure affichageachat(index:integer);
+procedure vente();
 procedure forge();
-procedure valideVente(index:integer);
+procedure inventaireChasse();
 
 implementation
 uses
@@ -25,24 +24,30 @@ uses
 // cette procedure fait marcher tout le jeu
 procedure start();
 begin
-  couleurs(15,0);
   ParseFile('json/objets.json','objets');
   ParseFile('json/equipements.json','equipements');
   ParseFile('json/monstre.json','monstres');
+  ParseFile('json/cantine.json','cantines');
   case menuPrincipal() of
-       1: menuPerso();
+       1:
+       begin
+          setMaxHeart(200);
+          setHeart(200);
+          setDamage(5);
+          setShield(0);
+          setMoney(20);
+          menuPerso();
+       end;
        2:
        begin
            if getPseudo = '' then
-       begin
-           nulSauvgarde();
-           start();
-       end
-
+              begin
+                   menuNoSave();
+                   start();
+              end
            else
                pieces();
        end;
-
        3:
        begin
            menuHistoire();
@@ -52,19 +57,18 @@ begin
        begin
            menuQuitter();
        end
-  else start()
+  else start();
   end;
 end;
 
 // cette procedure permet de choir dans quel pieces ont veut aller
 procedure pieces();
+var
+  test : integer;
 begin
-  setMaxHeart(200);
-  setHeart(200);
-  setDamage(5);
-  setShield(0);
-  setMoney(20);
-  case menuJeu() of
+  test := menuJeu();
+  writeln(test);
+  case test of
        7: chambre();
        2: forge();
        4: marchand();
@@ -73,6 +77,7 @@ begin
        8: start();
   else pieces()
   end;
+  readln();
 end;
 
 // c'est la chambre
@@ -97,15 +102,28 @@ end;
 
 // c'est la cantine
 procedure cantine();
+var
+  select : integer;
 begin
-  case menuCantine() of
-       1: defense;
-       2: degats;
-       3: vie;
-       4: vitesse;
-       5: pieces();
-  else cantine();
-  end;
+  select := menuCantine();
+
+  if (select = NOMBRE_CANTINE_ARRAY + 2) then
+      pieces()
+  else if (select > 0) then
+      begin
+           select := tabCantines[select-1].avantage;
+           writeln(select);
+           case select of
+              1: defenseAvantage();
+              2: degatsAvantage();
+              3: vieAvantage();
+              4: vitesseAvantage();
+           end;
+           cantine;
+      end
+  else
+      cantine();
+    ;
 end;
 
 // c'est le marchand
@@ -113,7 +131,7 @@ procedure marchand();
 begin
   case menuMarchand() of
        1: achat;
-       2: vente(0);
+       2: vente();
        3: pieces();
   else marchand()
   end;
@@ -121,42 +139,44 @@ end;
 
 // permet d'acheter des objets
 procedure achat();
+var
+  select : integer;
 begin
-  case menuAchat() of
-       1: validationAchat(4);
-       2: validationAchat(5);
-       3: validationAchat(6);
-       4: validationAchat(7);
-       5: validationAchat(8);
-       6: validationAchat(9);
-       7: validationAchat(10);
-       8: marchand();
-  else achat()
-  end;
+  select := menuAchat();
+  if (select = (NOMBRE_PRODUIT_ARRAY - NOMBRE_PRODUIT_NOPRICE_ARRAY) - 1) then
+      marchand()
+  else if (select > 0) then
+      affichageachat(select + NOMBRE_PRODUIT_NOPRICE_ARRAY)
+  else
+    achat()
+  ;
 end;
 
 // confirmer l'achat
-procedure validationAchat(index:integer);
+procedure affichageachat(index:integer);
 begin
-  case potion(index) of
-       1: Oui(index);
+  case menuAffichageAchat(index) of
+       1:
+       begin
+           menuValidationAchat(index);
+           achat();
+       end;
        2: achat();
-  else validationAchat(index)
+  else affichageachat(index);
   end;
 end;
 
 // vendre des objets
-procedure vente(index:integer);
+procedure vente();
 begin
   case menuVente() of
        1: marchand();
-       2: inventaire();
-       3: valideVente(index);
-  else vente(index)
+       2: vente();
+       //3: auto;
   end;
 end;
 
-// confirmer la vente
+{// confirmer la vente
 procedure valideVente(index:integer);
 begin
   case validationVente(index) of
@@ -164,14 +184,15 @@ begin
        5: vente(index);
   else valideVente(index)
   end;
-end;
+end;}
 
 // c'est l'inventaire
-procedure inventaire();
+procedure inventaireChasse();
 begin
-  case menuInventaire of
-       21: vente(0);
-  else inventaire()
+  case menuInventoryChasse() of
+      //1: return to chasse;
+      2: inventaireChasse();
+  else inventaireChasse();
   end;
 end;
 

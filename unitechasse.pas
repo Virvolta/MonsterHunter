@@ -15,6 +15,7 @@ procedure drawHPBar(monster:monstre);
 procedure drawTour(monster:monstre);
 function aleaDegat(monster:monstre):Integer;
 procedure reward(monster:monstre);
+function menuInventoryChasse() : Integer;
 
 implementation
 
@@ -35,7 +36,6 @@ begin
   setHeart(200);
   effacerEcran();
   couleurs(15, 0);
-  ascii('marchand_achat',0, 0);
   pos.x := 43;
   pos.y := 5;
   deplacerCurseurXY(pos.x, pos.y);
@@ -445,7 +445,7 @@ begin
                   quiAttaque:=monster;
              end
           else if select=3 then
-            inventaire()
+            inventaireChasse()
           else if select=4 then
              begin
                   Randomize;
@@ -774,6 +774,259 @@ begin
   end;
 
 
+end;
+
+function menuInventoryChasse() : Integer;
+var
+   i:Integer;
+   inv,posinv : TypeInventaire;
+   posequ : array[0..NOMBRE_EQUIPEMENT_JEU] of Integer;
+   pos : coordonnees;
+   it : Item;
+   select,select2 : Integer;
+   ch : char;
+   countmax : Integer;
+
+begin
+  effacerEcran();
+  select := 1;
+  couleurs(15, 0);
+  ascii('armoire', 0, 0);
+  pos.x := 4;
+  pos.y := 2;
+  countmax := 0;
+  inv := getInventory();
+  for i := Low(inv) to High(inv) do
+      begin
+        it := getItemInventory(i);
+        if ((it.id > 0)) then
+           begin
+              countmax := countmax + 1;
+              posinv[countmax] := it;
+              if (select = countmax) then
+                 couleurs(0, 15)
+              else
+                 couleurs(15, 0)
+              ;
+              if (tabEquipments[tabIdEquipments[it.id]].id = it.id) then
+                 ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabEquipments[tabIdEquipments[it.id]].nom, ' x', InttoStr(it.count)))
+              else
+                 ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
+              pos.y := 2 + countmax;
+           end;
+      end;
+  couleurs(15, 0);
+  pos.x := 58;
+  pos.y := 27;
+  ecrireEnPosition(pos, 'Menu');
+  deplacerCurseurXY(0, 0);
+  repeat
+    ch := ReadKey;
+    case ch of
+      'P':
+      begin
+        select := select + 1;
+        if (select > countmax + 1) then
+            select := 1;
+      end;
+      'H':
+      begin
+        select := select - 1;
+        if (select <= 0) then
+            select := countmax + 1;
+      end;
+    end;
+    pos.x := 4;
+    pos.y := 2;
+    countmax := 0;
+    inv := getInventory();
+    for i := Low(inv) to High(inv) do
+      begin
+        it := getItemInventory(i);
+        if ((it.id > 0)) then
+           begin
+              countmax := countmax + 1;
+              posinv[countmax] := it;
+              if (select = countmax) then
+                 couleurs(0, 15)
+              else
+                 couleurs(15, 0)
+              ;
+              if (tabEquipments[tabIdEquipments[it.id]].id = it.id) then
+                 ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabEquipments[tabIdEquipments[it.id]].nom, ' x', InttoStr(it.count)))
+              else
+                 ecrireEnPosition(pos, concat(InttoStr(countmax) , ' ',tabProduits[tabIdProduits[it.id]].nom, ' x', InttoStr(it.count)));
+              pos.y := 2 + countmax;
+           end;
+      end;
+    couleurs(15, 0);
+    if (select = countmax + 1) then
+       begin
+          couleurs(0, 15);
+
+          pos.x := 58;
+          pos.y := 27;
+          ecrireEnPosition(pos, 'Menu')
+       end
+    else
+        begin
+          couleurs(15, 0);
+
+          pos.x := 58;
+          pos.y := 27;
+          ecrireEnPosition(pos, 'Menu')
+        end
+    ;
+    couleurs(15, 0);
+    deplacerCurseurXY(0, 0);
+  until ch = #13;
+  if (select = countmax + 1) then
+      begin
+          menuInventoryChasse := 1;
+      end
+  else
+      begin
+          menuInventoryChasse := 2;
+          couleurs(0, 15);
+          pos.x := 3;
+          pos.y := 24;
+          ecrireEnPosition(pos, 'Utiliser/Equiper/Desequiper');
+          couleurs(15, 0);
+          pos.x := 3;
+          pos.y := 25;
+          ecrireEnPosition(pos, 'Deplacer');
+          pos.x := 3;
+          pos.y := 26;
+          ecrireEnPosition(pos, 'Suprimer');
+          pos.x := 3;
+          pos.y := 27;
+          ecrireEnPosition(pos, 'Anuler');
+          deplacerCurseurXY(0, 0);
+          select2 := 1;
+          repeat
+              ch := ReadKey;
+              case ch of
+                  'P':
+                  begin
+                      select2 := select2 + 1;
+                      if (select2 > 4) then
+                          select2 := 1;
+                  end;
+                  'H':
+                  begin
+                      select2 := select2 - 1;
+                      if (select2 <= 0) then
+                          select2 := 4;
+                  end;
+               end;
+
+               case select2 of
+                   1:
+                   begin
+                       couleurs(0, 15);
+                       pos.x := 3;
+                       pos.y := 24;
+                       ecrireEnPosition(pos, 'Utiliser/Equiper/Desequiper');
+                       couleurs(15, 0);
+                       pos.x := 3;
+                       pos.y := 25;
+                       ecrireEnPosition(pos, 'Deplacer');
+                       pos.x := 3;
+                       pos.y := 26;
+                       ecrireEnPosition(pos, 'Suprimer');
+                       pos.x := 3;
+                       pos.y := 27;
+                       ecrireEnPosition(pos, 'Anuler');
+                       deplacerCurseurXY(0, 0);
+                   end;
+                   2:
+                   begin
+                       couleurs(0, 15);
+                       pos.x := 3;
+                       pos.y := 25;
+                       ecrireEnPosition(pos, 'Deplacer');
+                       couleurs(15, 0);
+                       pos.x := 3;
+                       pos.y := 24;
+                       ecrireEnPosition(pos, 'Utiliser/Equiper/Desequiper');
+                       pos.x := 3;
+                       pos.y := 26;
+                       ecrireEnPosition(pos, 'Suprimer');
+                       pos.x := 3;
+                       pos.y := 27;
+                       ecrireEnPosition(pos, 'Anuler');
+                       deplacerCurseurXY(0, 0);
+                   end;
+                   3:
+                   begin
+                       couleurs(0, 15);
+                       pos.x := 3;
+                       pos.y := 26;
+                       ecrireEnPosition(pos, 'Suprimer');
+                       couleurs(15, 0);
+                       pos.x := 3;
+                       pos.y := 25;
+                       ecrireEnPosition(pos, 'Deplacer');
+                       pos.x := 3;
+                       pos.y := 24;
+                       ecrireEnPosition(pos, 'Utiliser/Equiper/Desequiper');
+                       pos.x := 3;
+                       pos.y := 27;
+                       ecrireEnPosition(pos, 'Anuler');
+                       deplacerCurseurXY(0, 0);
+                   end;
+                   4:
+                   begin
+                       couleurs(0, 15);
+                       pos.x := 3;
+                       pos.y := 27;
+                       ecrireEnPosition(pos, 'Anuler');
+                       couleurs(15, 0);
+                       pos.x := 3;
+                       pos.y := 26;
+                       ecrireEnPosition(pos, 'Suprimer');
+                       pos.x := 3;
+                       pos.y := 25;
+                       ecrireEnPosition(pos, 'Deplacer');
+                       pos.x := 3;
+                       pos.y := 24;
+                       ecrireEnPosition(pos, 'Utiliser/Equiper/Desequiper');
+                       deplacerCurseurXY(0, 0);
+                   end;
+               end;
+      until ch = #13;
+      case select2 of
+        1:
+        begin
+            it := posinv[select];
+            removeItemInventory(it.id, it.count);
+            if (tabEquipments[tabIdEquipments[it.id]].id = it.id) then
+              begin
+                  addItemInventory(getItemEquipement(tabEquipments[tabIdEquipments[it.id]].slot));
+                  addItemEquipement(it);
+              end
+            else
+              begin
+
+              end;
+        end;
+        2:
+        begin
+           it := posinv[select];
+           removeItemInventory(it.id, it.count);
+           addItemArmoire(it);
+        end;
+        3:
+        begin
+           it := posinv[select];
+           removeItemInventory(it.id, it.count);
+        end;
+        4:
+        begin
+            //ANULER
+        end;
+     end;
+    end
 end;
 
 end.

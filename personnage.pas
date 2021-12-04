@@ -10,11 +10,12 @@ uses
 const
   NOMBRE_INV_JEU = 10;
   NOMBRE_ARMOIRE_JEU = 10;
+  NOMBRE_EQUIPEMENT_JEU = 6;
   MAX_HEART = 200;
 
 type
   TypeSexe = (m, f);
-  TypeEquipement = Array[1..6] of Item;
+  TypeEquipement = Array[1..NOMBRE_EQUIPEMENT_JEU] of Item;
   TypeInventaire = Array[1..NOMBRE_INV_JEU] of Item;
   TypeArmoire = Array[1..NOMBRE_ARMOIRE_JEU] of Item;
 
