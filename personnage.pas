@@ -11,7 +11,7 @@ const
   NOMBRE_INV_JEU = 10;
   NOMBRE_ARMOIRE_JEU = 10;
   NOMBRE_EQUIPEMENT_JEU = 6;
-  MAX_HEART = 200;
+  MAX_HEART = 250;
 
 // ce type nous permet de stocker les informations du joueur dans differents tableaux
 type

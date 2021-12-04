@@ -17,7 +17,7 @@ procedure menuNoSave();
 implementation
 
 uses
-  Classes, SysUtils, ihm, logique, personnage, controle, outils, uniteforge;
+  Classes, SysUtils, GestionEcran, logique, personnage, controle, outils, uniteforge;
 
 var
   pos: coordonnees; // variable qui nous permets de definir des coordonées

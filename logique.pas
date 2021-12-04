@@ -19,7 +19,7 @@ procedure chasse();
 implementation
 uses
   Classes, SysUtils, menu,uniteCantine,uniteChambre,uniteMarchand,uniteforge
-  ,uniteChasse, outils, personnage,ihm;
+  ,uniteChasse, outils, personnage,GestionEcran;
 
 // cette procedure fait marcher tout le jeu
 procedure start();
@@ -32,8 +32,8 @@ begin
   case menuPrincipal() of
        1:
        begin
-          setMaxHeart(200);
-          setHeart(200);
+          setMaxHeart(250);
+          setHeart(MAX_HEART);
           setDamage(5);
           setShield(0);
           setMoney(20);

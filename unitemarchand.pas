@@ -5,7 +5,7 @@ unit uniteMarchand;
 interface
 
 uses
-  Classes, SysUtils,ihm,logique,uniteObjets,outils,personnage, controle,uniteforge;
+  Classes, SysUtils,GestionEcran,logique,uniteObjets,outils,personnage, controle,uniteforge;
 
 function menuMarchand(): Integer;
 

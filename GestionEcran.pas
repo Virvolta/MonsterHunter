@@ -1,11 +1,9 @@
-unit ihm;
-
-{$mode objfpc}{$H+}
+unit GestionEcran;
 
 interface
     uses SysUtils, Windows;
 
-    // reprÃ©sente une coordonnÃ©e Ã  l'Ã©cran (0,0 = coin haut-gauche)
+    // représente une coordonnée à l'écran (0,0 = coin haut-gauche)
     type coordonnees = record
       x : integer;
       y : integer;
@@ -15,22 +13,22 @@ interface
     // pour les cadres
     type typeBordure = (simple, double);
 
-    // supprime tous les caractÃ¨res de l'Ã©cran mais ne change pas les couleurs
+    // supprime tous les caractères de l'écran mais ne change pas les couleurs
     // de fond
     procedure effacerEcran;
 
     // Change la taille de la fenetre
     procedure changerTailleConsole(largeur,hauteur : Integer);
 
-    // supprime tous les caractÃ¨res de l'Ã©cran et colorie le fond dans la couleur
-    // dÃ©sirÃ©e (cette couleur est gardÃ©e comme couleur de fond par dÃ©faut et la
-    // couleur du texte est conservÃ©e)
+    // supprime tous les caractères de l'écran et colorie le fond dans la couleur
+    // désirée (cette couleur est gardée comme couleur de fond par défaut et la
+    // couleur du texte est conservée)
     procedure effacerEtColorierEcran(couleur : Byte);
 
-    // dÃ©place le curseur Ã  la position donnÃ©e
+    // déplace le curseur à la position donnée
     procedure deplacerCurseur(position : coordonnees);
 
-    // dÃ©place le curseur aux coordonnÃ©es X, Y
+    // déplace le curseur aux coordonnées X, Y
     procedure deplacerCurseurXY(x, y : integer);
 
     // retourne la position actuelle du curseur
@@ -42,16 +40,16 @@ interface
     // change la colonne du curseur sans changer la ligne
     procedure changerColonneCurseur(position : integer);
 
-    // affiche le texte Ã  la position donnÃ©e
+    // affiche le texte à la position donnée
     procedure ecrireEnPosition(position : coordonnees; texte: string);
 
-    // dessine un cadre Ã  partir des coordonnÃ©es des points haut-gauche
+    // dessine un cadre à partir des coordonnées des points haut-gauche
     // et bas-droite, du type de bordure, de la couleur de trait et de
     // la couleur de fond
     procedure dessinerCadreXY(x,y,x2,y2 : integer; t : typeBordure; coulTrait, coulFond : byte);
     procedure dessinerCadre(c1, c2 : coordonnees; t : typeBordure; ct, cf : byte);
 
-    // attends le nombre de ms indiquÃ©
+    // attends le nombre de ms indiqué
     procedure attendre(millisecondes : integer);
 
     // change la couleur de fond actuelle
@@ -131,7 +129,7 @@ implementation
         Rect.Bottom := Size.Y-11;
         SetConsoleWindowInfo(Con, True, Rect);
 
-        Wnd := GetConsoleWindow;
+        Wnd := GetConsoleWindow;               
 
         SetWindowPos(Wnd, 0, 0, 0, 0, 0, SWP_NOSIZE);
     end;
@@ -270,7 +268,7 @@ implementation
         write(bords[H]);
       write(bords[CHD]);
 
-      // on dessine les lignes intermÃ©diaires
+      // on dessine les lignes intermédiaires
       for i := c1.y+1 to c2.y-1 do
       begin
         deplacerCurseurXY(c1.x, i);
@@ -332,3 +330,4 @@ implementation
       SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), TextAttr);
     end;
 end.
+

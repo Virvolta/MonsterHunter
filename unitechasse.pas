@@ -5,7 +5,7 @@ unit uniteChasse;
 interface
 
 uses
-  Classes, SysUtils,ihm,logique,personnage,outils,controle,uniteChambre;
+  Classes, SysUtils,GestionEcran,logique,personnage,outils,controle;
 
 function menuChasser():integer;
 function menucombat(monster:monstre):integer;
@@ -738,28 +738,28 @@ begin
   else
       begin
           obj.id:=tabProduits[0].id;
-          countobj:=random(3)+1;
+          countobj:=random(3)+2;
           obj.count:=countobj;
           addItemInventory(obj);
           deplacerCurseurXY(40,9);
           write('Vous avez obtenu ', obj.count, ' ', tabProduits[0].nom);
 
           obj.id:=tabProduits[3].id;
-          countobj:=random(3)+1;
+          countobj:=random(3)+2;
           obj.count:=countobj;
           addItemInventory(obj);
           deplacerCurseurXY(40,11);
           write('Vous avez obtenu ', obj.count, ' ', tabProduits[3].nom);
 
           obj.id:=tabProduits[1].id;
-          countobj:=random(3)+1;
+          countobj:=random(3)+2;
           obj.count:=countobj;
           addItemInventory(obj);
           deplacerCurseurXY(40,13);
           write('Vous avez obtenu ', obj.count, ' ', tabProduits[1].nom);
 
           obj.id:=tabProduits[2].id;
-          countobj:=random(3)+1;
+          countobj:=random(3)+2;
           obj.count:=countobj;
           addItemInventory(obj);
           deplacerCurseurXY(40,15);

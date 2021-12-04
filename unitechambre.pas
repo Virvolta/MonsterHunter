@@ -5,7 +5,7 @@ unit uniteChambre;
 interface
 
 uses
-  Classes, SysUtils,ihm,logique, outils, controle, personnage, uniteforge;
+  Classes, SysUtils,GestionEcran,logique, outils, controle, personnage, uniteforge;
 
 function menuChambre():Integer;
 procedure menuLit();

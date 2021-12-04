@@ -74,7 +74,7 @@ procedure animationdeplacement(x, y, x2, y2 : integer);
 
 implementation
 uses
-  Classes, SysUtils, ihm;
+  Classes, SysUtils, GestionEcran;
 
 // cette procedure nous permet d'utiliser les fichers ascii
 procedure ascii(nom : string; x, y : integer);
