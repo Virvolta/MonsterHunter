@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="37f0a924-4b95-4944-be89-1876300d2f99" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/backup/Monster.lpr" beforeDir="false" afterPath="$PROJECT_DIR$/backup/Monster.lpr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/Monster.lps" beforeDir="false" afterPath="$PROJECT_DIR$/backup/Monster.lps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/logique.pas" beforeDir="false" afterPath="$PROJECT_DIR$/backup/logique.pas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/menu.pas" beforeDir="false" afterPath="$PROJECT_DIR$/backup/menu.pas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/x86_64-win64/Monster.o" beforeDir="false" afterPath="$PROJECT_DIR$/lib/x86_64-win64/Monster.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/x86_64-win64/logique.o" beforeDir="false" afterPath="$PROJECT_DIR$/lib/x86_64-win64/logique.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/x86_64-win64/logique.ppu" beforeDir="false" afterPath="$PROJECT_DIR$/lib/x86_64-win64/logique.ppu" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/x86_64-win64/menu.o" beforeDir="false" afterPath="$PROJECT_DIR$/lib/x86_64-win64/menu.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/x86_64-win64/menu.ppu" beforeDir="false" afterPath="$PROJECT_DIR$/lib/x86_64-win64/menu.ppu" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/x86_64-win64/unitecantine.o" beforeDir="false" afterPath="$PROJECT_DIR$/lib/x86_64-win64/unitecantine.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/x86_64-win64/unitecantine.ppu" beforeDir="false" afterPath="$PROJECT_DIR$/lib/x86_64-win64/unitecantine.ppu" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/x86_64-win64/unitechambre.o" beforeDir="false" afterPath="$PROJECT_DIR$/lib/x86_64-win64/unitechambre.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/x86_64-win64/unitechambre.ppu" beforeDir="false" afterPath="$PROJECT_DIR$/lib/x86_64-win64/unitechambre.ppu" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/x86_64-win64/unitemarchand.o" beforeDir="false" afterPath="$PROJECT_DIR$/lib/x86_64-win64/unitemarchand.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/x86_64-win64/unitemarchand.ppu" beforeDir="false" afterPath="$PROJECT_DIR$/lib/x86_64-win64/unitemarchand.ppu" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/menu.pas" beforeDir="false" afterPath="$PROJECT_DIR$/menu.pas" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="21pq6GYgEODzDX5mNSTT7v3Ne8f" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="37f0a924-4b95-4944-be89-1876300d2f99" name="Changes" comment="" />
+      <created>1638648220599</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1638648220599</updated>
+      <workItem from="1638648225073" duration="649000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
