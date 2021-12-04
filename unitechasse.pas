@@ -20,8 +20,8 @@ procedure menuInventoryChasse();
 implementation
 
 var
-   pos : coordonnees;
-   atk: Integer;
+   pos : coordonnees; // variable qui nous permet de donner de coordoner pour placer differente chose
+   atk: Integer; // variable qui nous sert a set les degats
 
 // cette fonction demande au joueur de choisir quel monstre il veut combattre
 function menuChasser():integer;
@@ -532,6 +532,7 @@ begin
 
 end;
 
+// cette procedure dessine la barre d'hp du monstre et du joueur
 procedure drawHPBar(monster:monstre);
 
 var
@@ -621,6 +622,7 @@ begin
 
 end;
 
+// cette procedure permet de donner des recompenses au joueur
 procedure reward(monster:monstre);
 
 var
@@ -832,6 +834,7 @@ begin
 
 end;
 
+// cette procedure permet a l'utilisateur d'utiliser son inventaire dans la chasse
 procedure menuInventoryChasse();
 var
    i:Integer;

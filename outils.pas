@@ -7,7 +7,7 @@ interface
 uses
   fpjson, jsonparser;
 
-type
+type // type qui nous permet d'enregistrer les caractéristique des produits, des équipements, des monstres, des items et de la cantines
   produit=record
     id:Integer;
     nom:String;
@@ -54,15 +54,15 @@ const
 
 var
 
-  tabProduits : array [0..NOMBRE_PRODUIT_ARRAY] of produit;
-  tabEquipments : array [0..NOMBRE_EQUIPEMENT_ARRAY] of equipment;
+  tabProduits : array [0..NOMBRE_PRODUIT_ARRAY] of produit; // stockage des produits
+  tabEquipments : array [0..NOMBRE_EQUIPEMENT_ARRAY] of equipment; // stockage des equipements
 
-  tabCantines : array [0..NOMBRE_CANTINE_ARRAY] of cantineobj;
+  tabCantines : array [0..NOMBRE_CANTINE_ARRAY] of cantineobj; // stockage des objets disponible dans la cantine
 
-  tabMonstre : array [0..NOMBRE_MONSTRE_ARRAY] of monstre;
+  tabMonstre : array [0..NOMBRE_MONSTRE_ARRAY] of monstre; // stockage des informations des monstres
 
-  tabIdProduits : array [0..NOMBRE_PRODUIT_ARRAY] of integer;
-  tabIdEquipments : array [0..NOMBRE_EQUIPEMENT_ARRAY] of integer;
+  tabIdProduits : array [0..NOMBRE_PRODUIT_ARRAY] of integer;  // stockage des produits
+  tabIdEquipments : array [0..NOMBRE_EQUIPEMENT_ARRAY] of integer; // stockage des equipements
 
 procedure importObjData(data : TJSONData; ObjName : String);
 procedure importMonsterData(data : TJSONData; ObjName : String);
@@ -235,6 +235,7 @@ begin
   //writeln('---------------------------------------');
 end;
 
+// cette procedure nous permet d'importer les montres depuis un fichier json
 procedure importMonsterData(data : TJSONData; ObjName : String);
 
 var

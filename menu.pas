@@ -20,7 +20,7 @@ uses
   Classes, SysUtils, ihm, logique, personnage, controle, outils, uniteforge;
 
 var
-  pos: coordonnees;
+  pos: coordonnees; // variable qui nous permets de definir des coordonées
 
 // cette fonction affiche le menu principal et demande a l'utilisateur de choisir ce qu'il veut faire
 function menuPrincipal(): integer;
@@ -898,6 +898,7 @@ begin
 
 end;
 
+// cette procedure affiche que le joueur n'as pas de partie sauvgarder
 procedure menuNoSave();
 var
   ch : Char;
