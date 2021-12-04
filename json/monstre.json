@@ -1,6 +1,6 @@
 {
    "monstres" :[
-      {"niveau" : 1,"nom" : "Poulpe", "HP" : 150, "degatmin" : 7, "degatmax" : 10, "defensemin" : 1, "defensemax" : 6},
+      {"niveau" : 1,"nom" : "Araignée", "HP" : 150, "degatmin" : 7, "degatmax" : 10, "defensemin" : 1, "defensemax" : 6},
       {"niveau" : 2,"nom" : "Centaure", "HP" : 275, "degatmin" : 16, "degatmax" : 21, "defensemin" : 11, "defensemax" : 16},
       {"niveau" : 3,"nom" : "Dragon", "HP" : 400, "degatmin" : 25, "degatmax" : 32, "defensemin" : 21, "defensemax" : 26}
    ]

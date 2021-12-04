@@ -154,7 +154,7 @@ begin
   menuChasser := select;
 end;
 
-// cette procedure permet au joueur de combatre
+// cette fonction permet au joueur de combatre
 function menucombat(monster:monstre):integer;
 
 var
@@ -180,6 +180,13 @@ begin
     ascii('boy', 6, 2)
   else
     ascii('girl', 6, 2);
+
+  if monster.niveau=1 then
+    ascii('araignee', 52,8)
+  else if monster.niveau=2 then
+    ascii('centaure', 60,4)
+  else
+    ascii('dragon',49,8);
 
   dessinerCadreXY(2,19,46,28,simple,White,Black);
 
@@ -472,6 +479,13 @@ begin
                    ascii('boy', 6, 2)
                  else
                    ascii('girl', 6, 2);
+
+                 if monster.niveau=1 then
+                   ascii('araignee', 52,8)
+                 else if monster.niveau=2 then
+                   ascii('centaure', 60,4)
+                 else
+                   ascii('dragon',49,8);
                  dessinerCadreXY(2,19,46,28,simple,White,Black);
 
                  deplacerCurseurXY(4,20);
