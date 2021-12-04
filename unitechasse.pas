@@ -632,21 +632,42 @@ end;
 // cette procedure affiche qui doit jouer
 procedure drawTour(monster:monstre);
 
+var
+
+   pos:coordonnees;
+
 begin
 
-  deplacerCurseurXY(0,0);
+  pos.x:=100;
+  pos.y:=24;
 
   if atk=0 then
      begin
-          writeln('Tour de ', getPseudo(),'                ');
-          writeln('Choisissez : ');
-          writeln('              ');
+          ecrireEnPosition(pos,Concat('Tour de'));
+          pos.y:=pos.y+1;
+          ecrireEnPosition(pos, Concat(getPseudo(),'         '));
+          pos.y:=pos.y+1;
+          ecrireEnPosition(pos,'Choisissez : ');
      end
   else if atk=1 then
      begin
-          writeln('Tour du ', monster.nom,'                 ');
-          writeln('               ');
-          writeln('              ');
+          if monster.niveau=1 then
+            begin
+                ecrireEnPosition(pos,Concat('Tour de'));
+                pos.y:=pos.y+1;
+                ecrireEnPosition(pos,Concat('l''',monster.nom));
+                pos.y:=pos.y+1;
+                ecrireEnPosition(pos,'               ');
+
+            end
+          else
+            begin
+              ecrireEnPosition(pos, Concat('Tour du'));
+              pos.y:=pos.y+1;
+              ecrireEnPosition(pos, monster.nom);
+              pos.y:=pos.y+1;
+              ecrireEnPosition(pos,'               ');
+            end;
           attendre(300);
      end;
 
