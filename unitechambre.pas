@@ -558,10 +558,10 @@ begin
         ecrireEnPosition(pos, 'Deplacer');
         pos.x := 3;
         pos.y := 26;
-        ecrireEnPosition(pos, 'Suprimer');
+        ecrireEnPosition(pos, 'Supprimer');
         pos.x := 3;
         pos.y := 27;
-        ecrireEnPosition(pos, 'Anuler');
+        ecrireEnPosition(pos, 'Annuler');
         deplacerCurseurXY(0, 0);
 
         select2 := 1;
@@ -601,10 +601,10 @@ begin
                    ecrireEnPosition(pos, 'Deplacer');
                    pos.x := 3;
                    pos.y := 26;
-                   ecrireEnPosition(pos, 'Suprimer');
+                   ecrireEnPosition(pos, 'Supprimer');
                    pos.x := 3;
                    pos.y := 27;
-                   ecrireEnPosition(pos, 'Anuler');
+                   ecrireEnPosition(pos, 'Annuler');
                    deplacerCurseurXY(0, 0);
                end;
               2:
@@ -619,10 +619,10 @@ begin
                    ecrireEnPosition(pos, 'Utiliser/Equiper/Desequiper');
                    pos.x := 3;
                    pos.y := 26;
-                   ecrireEnPosition(pos, 'Suprimer');
+                   ecrireEnPosition(pos, 'Supprimer');
                    pos.x := 3;
                    pos.y := 27;
-                   ecrireEnPosition(pos, 'Anuler');
+                   ecrireEnPosition(pos, 'Annuler');
                    deplacerCurseurXY(0, 0);
                end;
               3:
@@ -630,7 +630,7 @@ begin
                    couleurs(0, 15);
                    pos.x := 3;
                    pos.y := 26;
-                   ecrireEnPosition(pos, 'Suprimer');
+                   ecrireEnPosition(pos, 'Supprimer');
                    couleurs(15, 0);
                    pos.x := 3;
                    pos.y := 25;
@@ -640,7 +640,7 @@ begin
                    ecrireEnPosition(pos, 'Utiliser/Equiper/Desequiper');
                    pos.x := 3;
                    pos.y := 27;
-                   ecrireEnPosition(pos, 'Anuler');
+                   ecrireEnPosition(pos, 'Annuler');
                    deplacerCurseurXY(0, 0);
                end;
               4:
@@ -648,11 +648,11 @@ begin
                    couleurs(0, 15);
                    pos.x := 3;
                    pos.y := 27;
-                   ecrireEnPosition(pos, 'Anuler');
+                   ecrireEnPosition(pos, 'Annuler');
                    couleurs(15, 0);
                    pos.x := 3;
                    pos.y := 26;
-                   ecrireEnPosition(pos, 'Suprimer');
+                   ecrireEnPosition(pos, 'Supprimer');
                    pos.x := 3;
                    pos.y := 25;
                    ecrireEnPosition(pos, 'Deplacer');
