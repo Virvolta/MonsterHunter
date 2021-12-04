@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils,ihm,logique,personnage,outils,menu,controle,uniteforge;
 
-function chasser():integer;
+function menuChasser():integer;
 function menucombat(monster:monstre):integer;
 function quiAttaque(monster:monstre):monstre;
 procedure drawHP(monster:monstre);
@@ -15,7 +15,7 @@ procedure drawHPBar(monster:monstre);
 procedure drawTour(monster:monstre);
 function aleaDegat(monster:monstre):Integer;
 procedure reward(monster:monstre);
-function menuInventoryChasse() : Integer;
+procedure menuInventoryChasse();
 
 implementation
 
@@ -24,7 +24,7 @@ var
    atk: Integer;
 
 // cette fonction demande au joueur de choisir quel monstre il veut combattre
-function chasser():integer;
+function menuChasser():integer;
 
 var
 
@@ -33,25 +33,27 @@ var
    i: integer;
 
 begin
+  setHeart(200);
   effacerEcran();
+  ascii('chasse',0, 0);
   couleurs(15, 0);
-  pos.x := 43;
-  pos.y := 5;
+  pos.x := 75;
+  pos.y := 2;
   deplacerCurseurXY(pos.x, pos.y);
   write('Bonne chance pour cette chasse ', getpseudo);
   couleurs(0, 15);
-  pos.x := 45;
-  pos.y := 12;
+  pos.x := 75;
+  pos.y := 6;
   ecrireEnPosition(pos, 'Niveau de difficulte : *');
   couleurs(15, 0);
-  pos.x := 45;
-  pos.y := 14;
+  pos.x := 75;
+  pos.y := 8;
   ecrireEnPosition(pos, 'Niveau de difficulte : **');
-  pos.x := 45;
-  pos.y := 16;
+  pos.x := 75;
+  pos.y := 10;
   ecrireEnPosition(pos, 'Niveau de difficulte : BOSS');
-  pos.x := 45;
-  pos.y := 18;
+  pos.x := 75;
+  pos.y := 12;
   ecrireEnPosition(pos, 'Retour a la ville ');
   deplacerCurseurXY(0, 0);
   select := 1;
@@ -76,88 +78,81 @@ begin
       1 :
       begin
         couleurs(0, 15);
-        pos.x := 45;
-        pos.y := 12;
+        pos.x := 75;
+        pos.y := 6;
         ecrireEnPosition(pos, 'Niveau de difficulte : *');
         couleurs(15, 0);
-        pos.x := 45;
-        pos.y := 14;
+        pos.x := 75;
+        pos.y := 8;
         ecrireEnPosition(pos, 'Niveau de difficulte : **');
-        pos.x := 45;
-        pos.y := 16;
+        pos.x := 75;
+        pos.y := 10;
         ecrireEnPosition(pos, 'Niveau de difficulte : BOSS');
-        pos.x := 45;
-        pos.y := 18;
+        pos.x := 75;
+        pos.y := 12;
         ecrireEnPosition(pos, 'Retour a la ville ');
         deplacerCurseurXY(0, 0);
       end;
       2 :
       begin
         couleurs(0, 15);
-        pos.x := 45;
-        pos.y := 14;
+        pos.x := 75;
+        pos.y := 8;
         ecrireEnPosition(pos, 'Niveau de difficulte : **');
         couleurs(15, 0);
-        pos.x := 45;
-        pos.y := 16;
+        pos.x := 75;
+        pos.y := 10;
         ecrireEnPosition(pos, 'Niveau de difficulte : BOSS');
-        pos.x := 45;
-        pos.y := 18;
-        ecrireEnPosition(pos, 'Retour a la ville');
-        pos.x := 45;
+        pos.x := 75;
         pos.y := 12;
+        ecrireEnPosition(pos, 'Retour a la ville');
+        pos.x := 75;
+        pos.y := 6;
         ecrireEnPosition(pos, 'Niveau de difficulte : *');
         deplacerCurseurXY(0, 0);
       end;
       3 :
       begin
         couleurs(0, 15);
-        pos.x := 45;
-        pos.y := 16;
+        pos.x := 75;
+        pos.y := 10;
         ecrireEnPosition(pos, 'Niveau de difficulte : BOSS');
         couleurs(15, 0);
-        pos.x := 45;
-        pos.y := 18;
-        ecrireEnPosition(pos, 'Retour a la ville');
-        pos.x := 45;
+        pos.x := 75;
         pos.y := 12;
+        ecrireEnPosition(pos, 'Retour a la ville');
+        pos.x := 75;
+        pos.y := 6;
         ecrireEnPosition(pos, 'Niveau de difficulte : *');
-        pos.x := 45;
-        pos.y := 14;
+        pos.x := 75;
+        pos.y := 8;
         ecrireEnPosition(pos, 'Niveau de difficulte : **');
         deplacerCurseurXY(0, 0);
       end;
       4 :
       begin
         couleurs(0, 15);
-        pos.x := 45;
-        pos.y := 18;
+        pos.x := 75;
+        pos.y := 12;
         ecrireEnPosition(pos, 'Retour a la ville');
         couleurs(15, 0);
-        pos.x := 45;
-        pos.y := 12;
+        pos.x := 75;
+        pos.y := 6;
         ecrireEnPosition(pos, 'Niveau de difficulte : *');
-        pos.x := 45;
-        pos.y := 14;
+        pos.x := 75;
+        pos.y := 8;
         ecrireEnPosition(pos, 'Niveau de difficulte : **');
-        pos.x := 45;
-        pos.y := 16;
+        pos.x := 75;
+        pos.y := 10;
         ecrireEnPosition(pos, 'Niveau de difficulte : BOSS');
         deplacerCurseurXY(0, 0);
       end;
     end;
 
   until ch = #13;
-  chasser := select;
 
-  case chasser of
-    1 : menucombat(tabmonstre[0]);
-    2 : menucombat(tabmonstre[1]);
-    3 : menucombat(tabmonstre[2]);
-    4 : pieces;
-  end;
-
-  end;
+  menuChasser := select;
+end;
 
 // cette procedure permet au joueur de combatre
 function menucombat(monster:monstre):integer;
@@ -180,6 +175,11 @@ begin
   ReadLn;
 
   effacerEcran();
+  if (getSexe() = m) then
+    ascii('boy', 6, 2)
+  else
+    ascii('girl', 6, 2);
+
   dessinerCadreXY(2,19,46,28,simple,White,Black);
 
   deplacerCurseurXY(4,20);
@@ -250,9 +250,9 @@ begin
 
   effacerEcran;
   couleurs(15,0);
-  ascii('bonne_chance',0, 0);
+   ascii('bonne_chance',0, 0);
 
-  pos.x:=52;
+  pos.x:=48;
   pos.y:=12;
 
   if getHeart()=0 then
@@ -444,7 +444,46 @@ begin
                   quiAttaque:=monster;
              end
           else if select=3 then
-            inventaireChasse()
+            begin
+                 menuInventoryChasse();
+                 effacerEcran();
+                 if (getSexe() = m) then
+                   ascii('boy', 6, 2)
+                 else
+                   ascii('girl', 6, 2);
+                 dessinerCadreXY(2,19,46,28,simple,White,Black);
+
+                 deplacerCurseurXY(4,20);
+                 WriteLn('HP : ');
+
+                 deplacerCurseurXY(68,1);
+                 WriteLn('HP : ');
+                 select := 1;
+                 dessinerCadreXY(6,22,23,24,simple,Black,White);
+                 couleurs(0, 15);
+                 pos.x:=11;
+                 pos.y:=23;
+                 ecrireEnPosition(pos,'Attaquer');
+
+                 couleurs(15, 0);
+                 dessinerCadreXY(25,22,42,24,simple,White,Black);
+                 pos.x:=30;
+                 pos.y:=23;
+                 ecrireEnPosition(pos,'Defendre');
+
+                 dessinerCadreXY(6,25,23,27,simple,White,Black);
+                 pos.x:=10;
+                 pos.y:=26;
+                 ecrireEnPosition(pos,'Inventaire');
+
+                 dessinerCadreXY(25,25,42,27,simple,White,Black);
+                 pos.x:=32;
+                 pos.y:=26;
+                 ecrireEnPosition(pos,'Fuir');
+                 deplacerCurseurXY(0, 0);
+
+                 drawHP(monster);
+            end
           else if select=4 then
              begin
                   Randomize;
@@ -768,14 +807,14 @@ begin
   fin := select;
 
   case fin of
-    1 : chasser();
+    1 : chasse();
     2 : pieces();
   end;
 
 
 end;
 
-function menuInventoryChasse() : Integer;
+procedure menuInventoryChasse();
 var
    i:Integer;
    inv,posinv : TypeInventaire;
@@ -879,13 +918,8 @@ begin
     couleurs(15, 0);
     deplacerCurseurXY(0, 0);
   until ch = #13;
-  if (select = countmax + 1) then
+  if (select < countmax + 1) then
       begin
-          menuInventoryChasse := 1;
-      end
-  else
-      begin
-          menuInventoryChasse := 2;
           couleurs(0, 15);
           pos.x := 3;
           pos.y := 24;
@@ -1025,6 +1059,7 @@ begin
             //ANULER
         end;
      end;
+      menuInventoryChasse();
     end
 end;
 

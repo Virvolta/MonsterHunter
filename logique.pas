@@ -14,7 +14,7 @@ procedure achat();
 procedure affichageachat(index:integer);
 procedure vente();
 procedure forge();
-procedure inventaireChasse();
+procedure chasse();
 
 implementation
 uses
@@ -73,7 +73,7 @@ begin
        2: forge();
        4: marchand();
        3: cantine();
-       6: chasser();
+       6: chasse();
        8: start();
   else pieces()
   end;
@@ -176,13 +176,14 @@ begin
   end;
 end;
 
-// c'est l'inventaire
-procedure inventaireChasse();
+// c'est la chasse
+procedure chasse();
 begin
-  case menuInventoryChasse() of
-      //1: return to chasse;
-      2: inventaireChasse();
-  else inventaireChasse();
+  case menuChasser() of
+       1 : menucombat(tabmonstre[0]);
+       2 : menucombat(tabmonstre[1]);
+       3 : menucombat(tabmonstre[2]);
+       4 : pieces;
   end;
 end;
 
