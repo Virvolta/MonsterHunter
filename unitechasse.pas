@@ -904,7 +904,7 @@ begin
   effacerEcran();
   select := 1;
   couleurs(15, 0);
-  ascii('armoire', 0, 0);
+  ascii('inventaire', 0, 0);
   pos.x := 4;
   pos.y := 2;
   countmax := 0;
