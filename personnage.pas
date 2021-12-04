@@ -339,7 +339,7 @@ begin
 
   repeat
 
-   if ((inventaire[i].id <= 0) or (inventaire[i].count <= 0)) then
+   if ((inventaire[i].id <= 0)) then
            begin
              c := i;
              b := true;

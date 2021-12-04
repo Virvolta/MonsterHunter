@@ -1,6 +1,6 @@
 program Monster;
 
-uses logique;
+uses logique, uniteCantine,uniteChambre,uniteChasse,uniteforge,uniteMarchand,personnage,outils,menu,GestionEcran,controle;
 
 begin
   start();

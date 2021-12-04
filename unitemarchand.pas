@@ -5,7 +5,7 @@ unit uniteMarchand;
 interface
 
 uses
-  Classes, SysUtils,GestionEcran,logique,uniteObjets,outils,personnage, controle,uniteforge;
+  Classes, SysUtils,GestionEcran,logique,outils,personnage, controle;
 
 function menuMarchand(): Integer;
 
@@ -142,7 +142,6 @@ var
    n : integer;
    select: integer;
    inv,posinv : TypeInventaire;
-   prod : produit;
    count: Integer;
    it : item;
 
@@ -310,7 +309,6 @@ procedure menuAffichageVente(id,count : integer);
 var
 
    ch: char;
-   i: integer;
    select: integer;
 
 begin
@@ -396,8 +394,6 @@ end;
 procedure menuValidationVente(id,count : integer);
 
 var
-
-   e : string;
    ch : char;
    prix : integer;
 
@@ -554,7 +550,6 @@ function menuAffichageAchat(index:integer) : Integer;
 var
 
    ch: char;
-   i: integer;
    select: integer;
 
 begin
@@ -640,7 +635,6 @@ procedure menuValidationAchat(index:integer);
 
 var
 
-   e : string;
    i : item;
    ch : char;
 

@@ -1,10 +1,8 @@
 program Monster;
 
-uses menu, GestionEcran, logique, uniteCantine, uniteChambre, uniteMarchand,
-  controle, uniteforge, personnage, uniteChasse, outils;
+uses logique;
 
 begin
   start();
-
   readln();
 end.
