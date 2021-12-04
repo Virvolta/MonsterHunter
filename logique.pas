@@ -64,12 +64,8 @@ end;
 
 // cette procedure permet de choir dans quel pieces ont veut aller
 procedure pieces();
-var
-  test : integer;
 begin
-  test := menuJeu();
-  writeln(test);
-  case test of
+  case menuJeu() of
        7: chambre();
        2: forge();
        4: marchand();
