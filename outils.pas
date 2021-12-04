@@ -47,7 +47,7 @@ type // type qui nous permet d'enregistrer les caractéristique des produits, de
 const
 
   NOMBRE_PRODUIT_NOPRICE_ARRAY = 3;
-  NOMBRE_PRODUIT_ARRAY = 11;
+  NOMBRE_PRODUIT_ARRAY = 10;
   NOMBRE_EQUIPEMENT_ARRAY = 18;
   NOMBRE_MONSTRE_ARRAY = 2;
   NOMBRE_CANTINE_ARRAY = 2;

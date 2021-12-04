@@ -140,12 +140,14 @@ begin
     begin
      if (slot <> 6) then
        begin
-         shield := shield - tabEquipments[tabIdEquipments[itold.id]].stat;
-         shield := shield + tabEquipments[tabIdEquipments[i.id]].stat;
+        if (itold.id <> 0) then
+          shield := shield - tabEquipments[tabIdEquipments[itold.id]].stat;
+        shield := shield + tabEquipments[tabIdEquipments[i.id]].stat;
        end
      else
      begin
-        damage := damage - tabEquipments[tabIdEquipments[itold.id]].stat;
+        if (itold.id <> 0) then
+          damage := damage - tabEquipments[tabIdEquipments[itold.id]].stat;
         damage := damage + tabEquipments[tabIdEquipments[i.id]].stat;
      end;
     end;
