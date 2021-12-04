@@ -118,7 +118,6 @@ begin
               1: defenseAvantage();
               2: degatsAvantage();
               3: vieAvantage();
-              4: vitesseAvantage();
            end;
            cantine;
       end

@@ -2,7 +2,6 @@
    "cantines" :[
       {"nom" : "Risoto au champi vitalis", "prixAchat" : 15, "avantage" : 1},
       {"nom" : "Soupe de corne de dragon", "prixAchat" : 20, "avantage" : 2},
-      {"nom" : "Viande grillee", "prixAchat" : 12, "avantage" : 3},
-      {"nom" : "Saute de pimants", "prixAchat" : 10, "avantage" : 4}
+      {"nom" : "Viande grillee", "prixAchat" : 12, "avantage" : 3}
    ]
 }
