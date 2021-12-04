@@ -381,11 +381,7 @@ var
   ch : char;
 begin
   effacerEcran();
-  //ascii('marchand_achat',0,0);
-  pos.x := 52;
-  pos.y := 12;
-  ecrireEnPosition(pos, 'Bonne journee');
-  deplacerCurseurXY(0, 0);
+  ascii('byebye',0,0);
   deplacerCurseurXY(0, 0);
   repeat
     ch := ReadKey;
@@ -908,10 +904,7 @@ var
 begin
   effacerEcran;
   couleurs(15,0);
-  //ascii('marchand_achat',0,0);
-  pos.x := 40;
-  pos.y := 12;
-  ecrireEnPosition(pos,'Vous n''avez pas de partie sauvgarder');
+  ascii('nosave',0,0);
   deplacerCurseurXY(0,0);
   repeat
     ch := ReadKey;

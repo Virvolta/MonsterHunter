@@ -208,9 +208,26 @@ begin
               pos.y := 2 + countmax3;
            end;
       end;
-  pos.x := 58;
-  pos.y := 27;
-  ecrireEnPosition(pos, 'Menu');
+
+  if (((select = countmax + 1) and (inventory = 1)) or ((select = countmax2 + 1) and (inventory = 2)) or ((select = countmax3 + 1) and (inventory = 3))) then
+       begin
+          couleurs(0, 15);
+
+          pos.x := 58;
+          pos.y := 27;
+          ecrireEnPosition(pos, 'Menu')
+       end
+    else
+        begin
+          couleurs(15, 0);
+
+          pos.x := 58;
+          pos.y := 27;
+          ecrireEnPosition(pos, 'Menu')
+        end;
+
+    ;
+    couleurs(15, 0);
   deplacerCurseurXY(0, 0);
   repeat
     ch := ReadKey;

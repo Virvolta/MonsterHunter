@@ -170,10 +170,15 @@ begin
               pos.y := 12 + count;
            end;
       end;
-  couleurs(15, 0);
+  if (select = count + 1) then
+                 couleurs(0, 15)
+              else
+                 couleurs(15, 0)
+              ;
   pos.x := 35;
   pos.y := 27;
   ecrireEnPosition(pos, 'Retour au menu marchand');
+  couleurs(15, 0);
   deplacerCurseurXY(0, 0);
   repeat
     ch := ReadKey;
