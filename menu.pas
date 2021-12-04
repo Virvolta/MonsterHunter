@@ -293,7 +293,7 @@ begin
   ecrireEnPosition(pos, concat('Votre Poid : ', IntToStr(getPoid()), ' kg'));
   pos.x := 30;
   pos.y := 19;
-  ecrireEnPosition(pos, 'Etes vous sure de vos choix');
+  ecrireEnPosition(pos, 'Etes-vous sur de vos choix');
   pos.x := 30;
   pos.y := 21;
   ecrireEnPosition(pos, 'Oui');
@@ -585,7 +585,7 @@ begin
   pos.y:=1;
   ecrireEnPosition(pos, 'Aide creation : ');
   pos.y:=pos.y+1;
-  ecrireEnPosition(pos, 'Epee = 2 (Bois/Fer/Aeter) + 1 Bois)');
+  ecrireEnPosition(pos, 'Epee = 2 (Bois/Fer/Aeter) + 1 (Bois)');
   pos.y:=pos.y+1;
   ecrireEnPosition(pos, 'Casque = 5 (Cuir/Fer/Aeter)');
   pos.y:=pos.y+1;

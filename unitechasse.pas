@@ -33,7 +33,6 @@ var
    i: integer;
 
 begin
-  setHeart(200);
   effacerEcran();
   ascii('chasse',0, 0);
   couleurs(15, 0);
@@ -250,9 +249,9 @@ begin
 
   effacerEcran;
   couleurs(15,0);
-   ascii('bonne_chance',0, 0);
+  ascii('bonne_chance',0, 0);
 
-  pos.x:=48;
+  pos.x:=54;
   pos.y:=12;
 
   if getHeart()=0 then
@@ -264,6 +263,9 @@ begin
   else if monster.hp=0 then
      begin
           ecrireEnPosition(pos,'Vous avez gagne');
+          pos.x:=pos.x-12;
+          pos.y:=pos.y+1;
+          ecrireEnPosition(pos, 'Vous devriez vous reposer dans votre lit');
           readln;
           reward(monster);
      end;

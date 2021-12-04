@@ -120,7 +120,7 @@ var
    e:string;
 begin
   effacerEcran();
-  setHeart(200);
+  setHeart(MAX_HEART);
   ascii('lit', 0, 0);
   pos.x := 52;
   pos.y := 3;
