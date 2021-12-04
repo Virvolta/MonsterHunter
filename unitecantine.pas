@@ -5,7 +5,7 @@ unit uniteCantine;
 interface
 
 uses
-  Classes, SysUtils,ihm,logique,personnage,outils,controle;
+  Classes, SysUtils,ihm,personnage,outils,controle;
 
 procedure defenseAvantage();
 procedure degatsAvantage();

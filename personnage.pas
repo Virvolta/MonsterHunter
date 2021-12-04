@@ -135,7 +135,7 @@ begin
   slot := tabEquipments[tabIdEquipments[i.id]].slot;
   itold := equipement[slot];
   if (slot <> 6) then
-     if (itold.id > 0) then
+     if ((itold.id > 0) and (tabEquipments[tabIdEquipments[i.id]].id = i.id)) then
        begin
          shield := shield - tabEquipments[tabIdEquipments[itold.id]].stat;
          shield := shield + tabEquipments[tabIdEquipments[i.id]].stat;
