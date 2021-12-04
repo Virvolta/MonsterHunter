@@ -1,7 +1,7 @@
 {
    "monstres" :[
-      {"niveau" : 1,"nom" : "Poulpe", "HP" : 150, "degatmin" : 5, "degatmax" : 10, "defensemin" : 5, "defensemax" : 15},
-      {"niveau" : 2,"nom" : "Centaure", "HP" : 275, "degatmin" : 15, "degatmax" : 20, "defensemin" : 15, "defensemax" : 25},
-      {"niveau" : 3,"nom" : "Dragon", "HP" : 400, "degatmin" : 25, "degatmax" : 30, "defensemin" : 20, "defensemax" : 30}
+      {"niveau" : 1,"nom" : "Poulpe", "HP" : 150, "degatmin" : 5, "degatmax" : 10, "defensemin" : 1, "defensemax" : 6},
+      {"niveau" : 2,"nom" : "Centaure", "HP" : 275, "degatmin" : 15, "degatmax" : 20, "defensemin" : 11, "defensemax" : 16},
+      {"niveau" : 3,"nom" : "Dragon", "HP" : 400, "degatmin" : 25, "degatmax" : 30, "defensemin" : 21, "defensemax" : 26}
    ]
 }

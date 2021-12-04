@@ -543,23 +543,22 @@ begin
 
   i:= round((getHeart / MAX_HEART) * 40)+4;
   j := round((monster.hp/tabMonstre[monster.niveau-1].hp)*50)+50;
-  if getHeart=MAX_HEART then
-     ColorierZone(Green,Black,4,44,21)
-  else if getHeart<=(MAX_HEART/2) then
+  ColorierZone(Green,Black,4,44,21);
+  ColorierZone(Magenta,Black,50,100,2);
+  if getHeart<=(MAX_HEART/2) then
      begin
           ColorierZone(Red,Black,4,23,21);
           ColorierZone(LightGray,Black,i, 44,21);
      end
-  else
-      ColorierZone(LightGray,Black,i, 44,21);
-  if monster.hp=tabMonstre[monster.niveau-1].hp then
-     ColorierZone(Magenta,Black,50,100,2)
-  else if monster.hp<=(tabMonstre[monster.niveau-1].hp/2) then
+  else if getHeart<>MAX_HEART then
+    ColorierZone(LightGray,Black,i, 44,21);
+
+  if monster.hp<=(tabMonstre[monster.niveau-1].hp/2) then
      begin
           ColorierZone(LightMagenta,Black, 50, 76,2);
           ColorierZone(LightGray,Black,j, 100,2);
      end
-  else
+  else if (monster.hp<>tabMonstre[monster.niveau-1].hp) then
     ColorierZone(LightGray,Black,j, 100,2);
 end;
 
