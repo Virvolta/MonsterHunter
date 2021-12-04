@@ -33,7 +33,6 @@ var
    i: integer;
 
 begin
-  setHeart(200);
   effacerEcran();
   couleurs(15, 0);
   pos.x := 43;
@@ -173,7 +172,7 @@ begin
 
   effacerEcran();
   couleurs(15, 0);
-  ascii('marchand_achat',0, 0);
+  ascii('bonne_chance',0,0);
   deplacerCurseurXY(45,12);
   couleurs(15,0);
   writeln('Vous rencontrez un ',monster.nom,' sauvage.');
@@ -251,9 +250,9 @@ begin
 
   effacerEcran;
   couleurs(15,0);
-  ascii('marchand_achat',0, 0);
+  ascii('bonne_chance',0, 0);
 
-  pos.x:=48;
+  pos.x:=52;
   pos.y:=12;
 
   if getHeart()=0 then
@@ -432,7 +431,7 @@ begin
 
           if select=1 then
              begin
-                  monster.hp:=monster.hp-50;
+                  monster.hp:=monster.hp-getDamage();
                   atk:=1;
                   quiAttaque:=monster;
              end
@@ -583,7 +582,7 @@ begin
   Randomize;
   effacerEcran;
   couleurs(15,0);
-  ascii('marchand_achat',0,0);
+  ascii('bonne_chance',0,0);
 
   if monster.niveau=1 then
      begin
@@ -708,7 +707,7 @@ begin
 
   effacerEcran;
   couleurs(15,0);
-  ascii('marchand_achat',0,0);
+  ascii('bonne_chance',0,0);
   pos.x := 40;
   pos.y := 2 ;
   ecrireEnPosition(pos, 'Voulez-vous refaire une chasse ?');
@@ -897,10 +896,10 @@ begin
           ecrireEnPosition(pos, 'Deplacer');
           pos.x := 3;
           pos.y := 26;
-          ecrireEnPosition(pos, 'Suprimer');
+          ecrireEnPosition(pos, 'Supprimer');
           pos.x := 3;
           pos.y := 27;
-          ecrireEnPosition(pos, 'Anuler');
+          ecrireEnPosition(pos, 'Annuler');
           deplacerCurseurXY(0, 0);
           select2 := 1;
           repeat
@@ -933,10 +932,10 @@ begin
                        ecrireEnPosition(pos, 'Deplacer');
                        pos.x := 3;
                        pos.y := 26;
-                       ecrireEnPosition(pos, 'Suprimer');
+                       ecrireEnPosition(pos, 'Supprimer');
                        pos.x := 3;
                        pos.y := 27;
-                       ecrireEnPosition(pos, 'Anuler');
+                       ecrireEnPosition(pos, 'Annuler');
                        deplacerCurseurXY(0, 0);
                    end;
                    2:
@@ -951,10 +950,10 @@ begin
                        ecrireEnPosition(pos, 'Utiliser/Equiper/Desequiper');
                        pos.x := 3;
                        pos.y := 26;
-                       ecrireEnPosition(pos, 'Suprimer');
+                       ecrireEnPosition(pos, 'Supprimer');
                        pos.x := 3;
                        pos.y := 27;
-                       ecrireEnPosition(pos, 'Anuler');
+                       ecrireEnPosition(pos, 'Annuler');
                        deplacerCurseurXY(0, 0);
                    end;
                    3:
@@ -962,7 +961,7 @@ begin
                        couleurs(0, 15);
                        pos.x := 3;
                        pos.y := 26;
-                       ecrireEnPosition(pos, 'Suprimer');
+                       ecrireEnPosition(pos, 'Supprimer');
                        couleurs(15, 0);
                        pos.x := 3;
                        pos.y := 25;
@@ -972,7 +971,7 @@ begin
                        ecrireEnPosition(pos, 'Utiliser/Equiper/Desequiper');
                        pos.x := 3;
                        pos.y := 27;
-                       ecrireEnPosition(pos, 'Anuler');
+                       ecrireEnPosition(pos, 'Annuler');
                        deplacerCurseurXY(0, 0);
                    end;
                    4:
@@ -980,11 +979,11 @@ begin
                        couleurs(0, 15);
                        pos.x := 3;
                        pos.y := 27;
-                       ecrireEnPosition(pos, 'Anuler');
+                       ecrireEnPosition(pos, 'Annuler');
                        couleurs(15, 0);
                        pos.x := 3;
                        pos.y := 26;
-                       ecrireEnPosition(pos, 'Suprimer');
+                       ecrireEnPosition(pos, 'Supprimer');
                        pos.x := 3;
                        pos.y := 25;
                        ecrireEnPosition(pos, 'Deplacer');
