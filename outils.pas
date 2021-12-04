@@ -157,9 +157,6 @@ procedure importObjData(data : TJSONData ; ObjName : String);
 
 begin
   obj :=TJSONObject(data);
-  {writeln('Les caracteristiques du langage : '+obj.Strings['langage']);
-  writeln('Date de creation : ',lang.Integers['annee_creation']);}
-  //writeln('------------- Les objets disponibles ---------------- ');
   if ObjName='objets' then
   begin
      tab:=obj.Arrays[ObjName];
@@ -172,17 +169,6 @@ begin
        tabProduits[i].prixVente:=StrToInt(obj.Strings['prixVente']);
        tabIdProduits[StrToInt(obj.Strings['id'])] := i;
      end;
-
-     {for i:=0 to tab.Count-1 do
-     begin
-       write('id : ',tabProduits[i].id);
-       write(' / ');
-       write('nom : ',tabProduits[i].nom);
-       write(' / ');
-       write('prixAchat : ',tabProduits[i].prixAchat);
-       write(' / ');
-       writeln('prixVente : ',tabProduits[i].prixVente);
-     end;}
   end
   else if ObjName='equipements' then
   begin
@@ -196,17 +182,6 @@ begin
        tabEquipments[i].slot:=StrToInt(obj.Strings['slot']);
        tabIdEquipments[StrToInt(obj.Strings['id'])] := i;
      end;
-
-     {for i:=0 to tab.Count-1 do
-     begin
-       write('id : ',tabEquipments[i].id);
-       write(' / ');
-       write('nom : ',tabEquipments[i].nom);
-       write(' / ');
-       write('stat : ',tabEquipments[i].stat);
-       write(' / ');
-       writeln('slot : ',tabEquipments[i].slot);
-     end;}
   end
   else if ObjName='cantines' then
   begin
@@ -218,21 +193,9 @@ begin
        tabCantines[i].prixAchat:=StrToInt(obj.Strings['prixAchat']);
        tabCantines[i].avantage:=StrToInt(obj.Strings['avantage']);
      end;
-
-     {for i:=0 to tab.Count-1 do
-     begin
-       write('id : ',tabEquipments[i].id);
-       write(' / ');
-       write('nom : ',tabEquipments[i].nom);
-       write(' / ');
-       write('stat : ',tabEquipments[i].stat);
-       write(' / ');
-       writeln('slot : ',tabEquipments[i].slot);
-     end;}
   end
   else
       writeln('Aucun objet de ce type dans le fichier JSON');
-  //writeln('---------------------------------------');
 end;
 
 // cette procedure nous permet d'importer les montres depuis un fichier json
@@ -246,9 +209,6 @@ var
 
 begin
   obj :=TJSONObject(data);
-  {writeln('Les caracteristiques du langage : '+obj.Strings['langage']);
-  writeln('Date de creation : ',lang.Integers['annee_creation']);}
-  //writeln('------------- Les monstres disponibles ---------------- ');
   tab:=obj.Arrays[ObjName];
   for i:=0 to tab.Count-1 do
   begin
@@ -261,24 +221,6 @@ begin
     tabMonstre[i].defensemin:=StrToInt(obj.Strings['defensemin']);
     tabMonstre[i].defensemax:=StrToInt(obj.Strings['defensemax']);
   end;
-
-  {for i:=0 to tab.Count-1 do
-  begin
-    write('niveau : ',tabMonstre[i].niveau);
-    write(' / ');
-    write('nom : ',tabMonstre[i].nom);
-    write(' / ');
-    write('HP : ',tabMonstre[i].hp);
-    write(' / ');
-    write('degatmin : ',tabMonstre[i].degatmin);
-    write(' / ');
-    write('degatmax : ',tabMonstre[i].degatmax);
-    write(' / ');
-    write('defensemin : ',tabMonstre[i].defensemin);
-    write(' / ');
-    writeln('defensemax : ',tabMonstre[i].defensemax);
-  end;
-  //writeln('---------------------------------------');}
 end;
 
 // cette procedure affiche les données json
