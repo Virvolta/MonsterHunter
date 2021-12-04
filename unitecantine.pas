@@ -213,6 +213,7 @@ begin
     ecrireEnPosition(pos, 'Vous avez un boost de 3 en vie');
     delMoney(15);
     setMaxHeart(getMaxHeart() + 3);
+    setHeart(getMaxHeart())
   end
   else
   begin

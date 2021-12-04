@@ -22,8 +22,8 @@ implementation
 var
    pos : coordonnees; // variable qui nous permet de donner de coordoner pour placer differente chose
    atk: Integer; // variable qui nous sert a set les degats
-   damagelive : integer;
-   shieldlive : integer;
+   damagelive : integer; //variable qui permet de rajouter des degats en fonction d'une potion
+   shieldlive : integer; //variable qui permet de rajouter du shield en fonction d'une potion
 
 // cette fonction demande au joueur de choisir quel monstre il veut combattre
 function menuChasser():integer;
@@ -562,16 +562,16 @@ var
 
 begin
 
-  i:= round((getHeart / MAX_HEART) * 40)+4;
+  i:= round((getHeart / getMaxHeart) * 40)+4;
   j := round((monster.hp/tabMonstre[monster.niveau-1].hp)*50)+50;
   ColorierZone(Green,Black,4,44,21);
   ColorierZone(Magenta,Black,50,100,2);
-  if getHeart<=(MAX_HEART/2) then
+  if getHeart<=(getMaxHeart/2) then
      begin
           ColorierZone(Red,Black,4,23,21);
           ColorierZone(LightGray,Black,i, 44,21);
      end
-  else if getHeart<>MAX_HEART then
+  else if getHeart<>getMaxHeart then
     ColorierZone(LightGray,Black,i, 44,21);
 
   if monster.hp<=(tabMonstre[monster.niveau-1].hp/2) then
