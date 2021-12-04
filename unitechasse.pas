@@ -15,7 +15,7 @@ procedure drawHPBar(monster:monstre);
 procedure drawTour(monster:monstre);
 function aleaDegat(monster:monstre):Integer;
 procedure reward(monster:monstre);
-procedure menuInventoryChasse();
+procedure menuInventoryChasse(monster:monstre);
 
 implementation
 
@@ -466,7 +466,7 @@ begin
              end
           else if select=3 then
             begin
-                 menuInventoryChasse();
+                 menuInventoryChasse(monster);
                  effacerEcran();
                  if (getSexe() = m) then
                    ascii('boy', 6, 2)
@@ -855,7 +855,7 @@ begin
 end;
 
 // cette procedure permet a l'utilisateur d'utiliser son inventaire dans la chasse
-procedure menuInventoryChasse();
+procedure menuInventoryChasse(monster:monstre);
 var
    i:Integer;
    inv,posinv : TypeInventaire;
@@ -1021,7 +1021,7 @@ begin
             if (99 < it.id) then
               begin
                   removeItemInventory(it.id, 1);
-                  case it.id then
+                  case it.id of
                        100 :
                        begin
                        addHeart(50);
@@ -1042,8 +1042,8 @@ begin
                        end;
                        104 :
                        begin
-                       monster.attackmin:=round(monster.attackmin * 0.7);
-                       monster.attackmax:=round(monster.attackmax * 0.7);
+                       monster.degatmin := round(monster.degatmin * 0.7);
+                       monster.degatmax := round(monster.degatmax * 0.7);
                        end;
                        105 :
                        begin
@@ -1052,12 +1052,13 @@ begin
               end
             ;
         end;
-        4:
+        end;
+        2:
         begin
             //ANULER
         end;
      end;
-      menuInventoryChasse();
+      menuInventoryChasse(monster);
     end;
 end;
 
