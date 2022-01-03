@@ -5,7 +5,7 @@ unit UnitMenuPrincipal;
 
 interface
 uses
-  UnitLieu;
+  UnitLieu, unitCantine;
 
 //----- FONCTIONS ET PROCEDURES -----
 //Fonction exécutée à l'arrivée dans le menu principale
@@ -70,6 +70,7 @@ begin
      initialisationCoffre();
      initialisationObjets();
      initialisationMonstres();
+     initialisationCantine();
 
      afficherInterfaceSimple();
      afficherLieuSimple('Création du personnage');
