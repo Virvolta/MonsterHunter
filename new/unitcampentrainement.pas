@@ -17,6 +17,9 @@ uses
 
 var
   pos : coordonnees ;
+  i: integer = 0;
+  j: integer = 0;
+  k: integer = 0;
 
 function campHub(): typeLieu;
 var choix : string;
@@ -69,62 +72,88 @@ choix := '';
 end;
 
 function grosDegats() : typeLieu;
-var
-  i:integer;
 begin
-     effacerEcran();
-     perso.argent := perso.argent - 600;
-     if (perso.argent <= 0 )then
+     effacerEcran;
+     if (perso.argent - 600 < 0 )then
         begin
         deplacerCurseurXY(30,17);
         write('vous ne pouvez pas acquerir cette competence')
         end
      else
-     i:=1;
-     if i<4 then
-        i:=i+1
-     else
-       deplacerCurseurXY(30,17); write('vous avez acquis la competence');
+     begin
+       if (i = 0) then
+          perso.argent:= perso.argent-600;
+       if i<3 then
+          begin
+          i:=i+1;
+          deplacerCurseurXY(30,17);
+          write('il vous reste ',4-i,' entrainement');
+          end
+       else
+       begin
+         deplacerCurseurXY(30,17); write('vous avez acquis la competence');
+       end;
+
+     end;
+     readln;
+     grosDegats:=campHub;
+
 end;
 
 function bouclier():typeLieu;
-var
-  i:integer;
 begin
   effacerEcran();
-  perso.argent:= perso.argent - 600;
-     if perso.argent - 500 <= 0 then
+     if perso.argent - 500 < 0 then
         begin
         deplacerCurseurXY(30,17);
         write('vous ne pouvez pas acquerir cette competence');
         end
      else
-     i:=1;
-     if i<3 then
-        i:=i+1
+     begin
+       if (j = 0) then
+          perso.argent:= perso.argent-500;
+     if j<2 then
+        begin
+        j:=j+1;
+        deplacerCurseurXY(30,17);
+        write('il vous reste ',3-j,' entrainement');
+        end
      else
+       begin
        pos.x:=30;
        pos.y:=17;
        ecrireEnPosition(pos, 'vous avez acquis la competence');
+       end;
+     end;
+     readln;
+     bouclier:=campHub;
 end;
 
 function louteur():typeLieu;
-var
-  i:integer;
 begin
   effacerEcran();
-  perso.argent:= perso.argent - 600;
-     if perso.argent - 750 <= 0 then
+     if perso.argent - 750 < 0 then
         begin
         deplacerCurseurXY(30,17);
         write('vous ne pouvez pas acquerir cette competence');
         end
      else
-     i:=1;
-     if i<5 then
-        i:=i+1
+     begin
+     if (k = 0) then
+          perso.argent:= perso.argent-750;
+     if k<4 then
+        begin
+        k:=k+1;
+        deplacerCurseurXY(30,17);
+        write('il vous reste ',5-k,' entrainement');
+        end
      else
+       begin
        deplacerCurseurXY(30,17); write('vous avez acquis la competence');
+       end;
+     end;
+     readln;
+     louteur:=campHub;
 end;
 
 

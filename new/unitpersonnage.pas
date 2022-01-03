@@ -156,7 +156,7 @@ begin
   //Pas d'armure
   for i := 0 to 4 do perso.armures[i] := aucun; 
   //Ajouter 200 PO
-  perso.argent:=200;
+  perso.argent:=2000;
 end;
 
 //Renvoie le personnage (lecture seul)
