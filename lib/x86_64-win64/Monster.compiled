@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CONFIG>
-  <Compiler Value="C:\lazarus\fpc\3.0.4\bin\x86_64-win64\fpc.exe" Date="1351327143"/>
-  <Params Value=" -MObjFPC -Scghi -O1 -gw2 -godwarfsets -gl -l -vewnhibq &quot;-FiC:\Users\VirVo\Desktop\Jeu_PECNIK_VUILLAMIER_ROSIER\code source\lib\x86_64-win64&quot; &quot;-FuC:\Users\VirVo\Desktop\Jeu_PECNIK_VUILLAMIER_ROSIER\code source\&quot; &quot;-FUC:\Users\VirVo\Desktop\Jeu_PECNIK_VUILLAMIER_ROSIER\code source\lib\x86_64-win64\&quot; &quot;-FEC:\Users\VirVo\Desktop\Jeu_PECNIK_VUILLAMIER_ROSIER\code source\&quot; &quot;-oC:\Users\VirVo\Desktop\Jeu_PECNIK_VUILLAMIER_ROSIER\code source\Monster.exe&quot; Monster.lpr"/>
-</CONFIG>
