@@ -156,7 +156,7 @@ begin
   //Pas d'armure
   for i := 0 to 4 do perso.armures[i] := aucun; 
   //Ajouter 200 PO
-  perso.argent:=2000;
+  perso.argent:=200;
 end;
 
 //Renvoie le personnage (lecture seul)
@@ -300,11 +300,12 @@ function peuxForger(mat : materiaux) : boolean;
 begin
      //Test de l'argent
      peuxForger := (perso.argent >= 500);
-     //Test des matériaux
+     //Test des matériaux et de l'XP
      case mat of
-          os : peuxForger := peuxForger AND (perso.parties[0]>4);
-          Ecaille : peuxForger := peuxForger AND (perso.parties[1]>4);
+          os : peuxForger := peuxForger AND (perso.parties[0]>4) AND hasXp(160);
+          Ecaille : peuxForger := peuxForger AND (perso.parties[1]>4) AND hasXp(640);
      end;
+
 end;
 
 //Forge une arme du matériaux donné
@@ -429,36 +430,34 @@ begin
            2:
            begin
              perso.sante := perso.sante + 30;
-             perso.argent := perso.argent + 20;
            end;
            3:
            begin
-             //armeToString.os
+             perso.argent := perso.argent + 20;
            end;
            4:
            begin
-             perso.argent := perso.argent + 100;
+             perso.inventaire[1] += 1;
            end;
            5:
            begin
-             //armureToString.os
+             perso.argent := perso.argent + 100;
            end;
            6:
            begin
              perso.sante := perso.sante + 50;
-             perso.argent := perso.argent + 30;
            end;
            7:
            begin
-             //armeToString.evaille
+             perso.argent := perso.argent + 30;
            end;
            8:
            begin
-             perso.argent := perso.argent + 200;
+             perso.inventaire[2] += 1;
            end;
            9:
            begin
-             //armureToString.evaille
+             perso.argent := perso.argent + 200;
            end;
       end;
     end;

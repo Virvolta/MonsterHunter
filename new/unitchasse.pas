@@ -8,6 +8,7 @@ uses
     unitLieu;
 //----- FONCTIONS ET PROCEDURES -----
 function chasseHub() : typeLieu;
+function competences():string;
 
 
 
@@ -31,7 +32,7 @@ var
 begin
   choix := '';
   effacerEcran;
-   afficherInterfacePrincipale();
+  afficherInterfacePrincipale();
   deplacerCurseurZoneAction(1);write('Quelle competences souhaiter vous utiliser ?');
   deplacerCurseurZoneAction(3);write('     1/ Gros degat');
   deplacerCurseurZoneAction(4);write('     2/ Bouclier');
@@ -162,7 +163,7 @@ begin
              //competences
              else if(choix = '5') then
              begin
-               case competences of
+               case choix of
                     '1':
                       degatPerso := 20   ;
                     '2':
