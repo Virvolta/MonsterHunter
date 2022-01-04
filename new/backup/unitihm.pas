@@ -19,6 +19,15 @@ procedure deplacerCurseurZoneAction(numLigne : integer);
 //Positionne le curseur à la n-ième ligne de la zone d'action
 procedure deplacerCurseurZoneResponse();
 
+
+
+
+
+
+
+
+
+
 implementation
 uses
     unitMonstre,unitObjet,unitPersonnage,unitEquipement,GestionEcran;

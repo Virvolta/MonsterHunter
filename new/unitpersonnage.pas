@@ -21,6 +21,7 @@ type
     arme : materiaux;                       //Arme utilisée
     armures : TArmures;                     //Armures
     sante : integer;                        //Vie du personnage
+    santemax : integer;                      //Vie max du personnage
     argent : integer;                       //Argent du personnage
     buff : bonus;                           //Buff du joueur
     Xp : integer;                           //Xp du joueur
@@ -153,6 +154,7 @@ begin
   for i := 0 to ord(high(TypeMonstre)) do perso.parties[i] := 0;
   //En pleine forme
   perso.sante:=100;
+  perso.santemax:=100;
   //Pas d'arme
   perso.arme := aucun;
   //Pas d'armure
@@ -163,6 +165,8 @@ begin
   perso.degatBase:=0;
   //Défense de base (augmente avec les niveaux)
   perso.defenseBase:=1;
+  //Xp
+  addXp(10);
 end;
 
 //Renvoie le personnage (lecture seul)
@@ -215,7 +219,7 @@ end;
 //Dormir dans son lit
 procedure dormir();
 begin
-  perso.sante:=100;
+  perso.sante:=perso.santemax;
 end;
 
 //Change l'arme du joueur
@@ -307,11 +311,12 @@ function peuxForger(mat : materiaux) : boolean;
 begin
      //Test de l'argent
      peuxForger := (perso.argent >= 500);
-     //Test des matériaux
+     //Test des matériaux et de l'XP
      case mat of
-          os : peuxForger := peuxForger AND (perso.parties[0]>4);
-          Ecaille : peuxForger := peuxForger AND (perso.parties[1]>4);
+          os : peuxForger := peuxForger AND (perso.parties[0]>4) AND hasXp(160);
+          Ecaille : peuxForger := peuxForger AND (perso.parties[1]>4) AND hasXp(640);
      end;
+
 end;
 
 //Forge une arme du matériaux donné
@@ -435,37 +440,35 @@ begin
       case i of
            2:
            begin
-             perso.sante := perso.sante + 30;
-             perso.argent := perso.argent + 20;
+             perso.santemax := perso.santemax + 10;
            end;
            3:
            begin
-             //armeToString.os
+             perso.argent := perso.argent + 20;
            end;
            4:
            begin
-             perso.argent := perso.argent + 100;
+             perso.inventaire[1] += 1;
            end;
            5:
            begin
-             //armureToString.os
+             perso.argent := perso.argent + 100;
            end;
            6:
            begin
              perso.sante := perso.sante + 50;
-             perso.argent := perso.argent + 30;
            end;
            7:
            begin
-             //armeToString.evaille
+             perso.argent := perso.argent + 30;
            end;
            8:
            begin
-             perso.argent := perso.argent + 200;
+             perso.inventaire[2] += 1;
            end;
            9:
            begin
-             //armureToString.evaille
+             perso.argent := perso.argent + 200;
            end;
       end;
     end;

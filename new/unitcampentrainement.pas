@@ -99,6 +99,7 @@ begin
        begin
          deplacerCurseurXY(30,17); write('vous avez acquis la competence');
          deg := true;
+         addXp(30);
        end;
 
      end;
@@ -132,6 +133,7 @@ begin
        pos.y:=17;
        ecrireEnPosition(pos, 'vous avez acquis la competence');
        bouc := true;
+       addXp(20);
        end;
      end;
      readln;
@@ -161,6 +163,7 @@ begin
        begin
        deplacerCurseurXY(30,17); write('vous avez acquis la competence');
        lout := true;
+       addXp(40);
        end;
      end;
      readln;
