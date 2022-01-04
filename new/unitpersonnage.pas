@@ -23,7 +23,9 @@ type
     sante : integer;                        //Vie du personnage
     argent : integer;                       //Argent du personnage
     buff : bonus;                           //Buff du joueur
-    Xp : integer                            //Xp du joueur
+    Xp : integer;                           //Xp du joueur
+    degatBase : integer;                    //Dégats de base du personnage
+    defenseBase : integer;                  //Défense de base du personnage
   end;
 
   //Type représentant un coffre d'équipement
@@ -157,6 +159,10 @@ begin
   for i := 0 to 4 do perso.armures[i] := aucun; 
   //Ajouter 200 PO
   perso.argent:=2000;
+  //Dégats de base (augmente avec les niveaux)
+  perso.degatBase:=0;
+  //Défense de base (augmente avec les niveaux)
+  perso.defenseBase:=1;
 end;
 
 //Renvoie le personnage (lecture seul)
@@ -252,13 +258,14 @@ end;
 //Renvoie le montant de dégats d'une attaque
 function degatsAttaque() : integer;
 begin
-  degatsAttaque := (4+Random(5))*multiplicateurDegatsArme(perso.arme);
+  degatsAttaque := (4+Random(5))*multiplicateurDegatsArme(perso.arme)+perso.degatBase;
 end;
 
 //Renvoie le montant de dégats recu
 function degatsRecu() : integer;
 begin
   degatsRecu := (2+Random(10))-encaissement(perso.armures);
+  if degatsRecu - perso.defenseBase >= 0 then degatsRecu -= perso.defenseBase;
   perso.sante -= degatsRecu;
   if perso.sante < 0 then perso.sante := 0;
 end;
