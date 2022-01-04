@@ -21,6 +21,7 @@ type
     arme : materiaux;                       //Arme utilisée
     armures : TArmures;                     //Armures
     sante : integer;                        //Vie du personnage
+    santemax : integer;                      //Vie max du personnage
     argent : integer;                       //Argent du personnage
     buff : bonus;                           //Buff du joueur
     Xp : integer                            //Xp du joueur
@@ -151,12 +152,15 @@ begin
   for i := 0 to ord(high(TypeMonstre)) do perso.parties[i] := 0;
   //En pleine forme
   perso.sante:=100;
+  perso.santemax:=100;
   //Pas d'arme
   perso.arme := aucun;
   //Pas d'armure
   for i := 0 to 4 do perso.armures[i] := aucun; 
   //Ajouter 200 PO
   perso.argent:=200;
+  //Xp
+  addXp(10);
 end;
 
 //Renvoie le personnage (lecture seul)
@@ -209,7 +213,7 @@ end;
 //Dormir dans son lit
 procedure dormir();
 begin
-  perso.sante:=100;
+  perso.sante:=perso.santemax;
 end;
 
 //Change l'arme du joueur
@@ -429,7 +433,7 @@ begin
       case i of
            2:
            begin
-             perso.sante := perso.sante + 30;
+             perso.santemax := perso.santemax + 10;
            end;
            3:
            begin

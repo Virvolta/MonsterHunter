@@ -98,6 +98,7 @@ begin
 
     deplacerCurseurXY(155,13); write('     Santé : ',getPersonnage().sante);
     deplacerCurseurXY(155,14); write('    Argent : ',getPersonnage().argent);
+    deplacerCurseurXY(155,15); write('    niveau : ',getLevel());
 
 
     deplacerCurseurXY(164,16);Write('   -------------   ');

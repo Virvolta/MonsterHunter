@@ -30,21 +30,25 @@ function competences():string;
 var
   choix : string;
 begin
-  choix := '';
+  competences := '-1';
   effacerEcran;
   afficherInterfacePrincipale();
+  afficherLieu('Competences ');
   deplacerCurseurZoneAction(1);write('Quelle competences souhaiter vous utiliser ?');
   deplacerCurseurZoneAction(3);write('     1/ Gros degat');
   deplacerCurseurZoneAction(4);write('     2/ Bouclier');
   deplacerCurseurZoneAction(5);write('     3/ Louteur');
+  deplacerCurseurZoneResponse();
+  readln(choix);
 
-  if (choix = '1') or (choix = '2') and (choix = '3') then
+  if (choix = '1') or (choix = '2') or (choix = '3') then
   begin
     if (choix ='1') then
     begin
       if (deg = true) then
       begin
       deplacerCurseurXY(30,7);write('Vous avez utilser cette competence');
+      competences := choix;
       end
       else
       begin
@@ -56,6 +60,7 @@ begin
       if (bouc = true) then
       begin
       deplacerCurseurXY(30,7);write('Vous avez utilser cette competence');
+      competences := choix;
       end
       else
       begin
@@ -67,6 +72,7 @@ begin
       if (lout = true) then
       begin
       deplacerCurseurXY(30,7);write('Vous avez utilser cette competence');
+      competences := choix;
       end
       else
       begin
@@ -75,7 +81,7 @@ begin
     end;
   end;
   readln;
-  competences := choix;
+
 end;
 
 function combat(numMonstre : integer) : typeLieu;
@@ -87,10 +93,11 @@ var
   nbPartie : integer;        //Nb de parties récupérées sur le monstre
   lancerBombe : integer;     //Etat du lancé de bombe (-1 pas fait, 0 échoué, 1 réussi)
   boirePotion : integer;     //Etat de l'utilisateur de potion (-1 pas fait, 0 échoué, 1 réussi)
+  APasserSonTour : boolean = false;   //Si le joueur n'as pas utiliser ça competence
 begin
    //On récupère une copie du monstre
    monstre := getMonstre(numMonstre);
-   choix := ''; 
+   choix := '';
 
    //Affichage initial
    afficherInterfacePrincipale();
@@ -112,7 +119,7 @@ begin
         lancerBombe := -1;
         boirePotion := -1;
 
-        if (choix = '1') or (choix = '2') or (choix = '3') or (choix = '4') and (choix = '5') then
+        if (choix = '1') or (choix = '2') or (choix = '3') or (choix = '4') or (choix = '5') then
         begin
              //Attaque classique
              if (choix = '1') then
@@ -163,114 +170,131 @@ begin
              //competences
              else if(choix = '5') then
              begin
-               case choix of
+               case competences of
+                    '-1':
+                    begin
+                         APasserSonTour := true;
+                    end;
                     '1':
-                      degatPerso := 20   ;
+                      begin
+                      degatPerso := 20;
+                      APasserSonTour := false;
+                      end;
                     '2':
+                      begin
                       degatMonstre := degatsRecu mod 2;
+                      APasserSonTour := false;
+                      end;
                     '3':
-                      nbPartie := 4;
+                      begin
+                      perso.parties[numMonstre] += 3;
+                      APasserSonTour := false;
+                      end;
 
                end;
              end;
              //Contre attaque du monstre
-             if(monstre.pv > 0) and (monstre.stun = 0) then
+             if  (APasserSonTour = false)then
              begin
-                  degatMonstre := degatsRecu();
-             end
-             //réduit le stun de 1
-             else if(monstre.pv > 0) then monstre.stun -= 1;
-             //Regenration du joueur
-             if(getPersonnage.sante>0) and (getPersonnage.buff = Regeneration) then regen();
+               if(monstre.pv > 0) and (monstre.stun = 0) then
+               begin
+                    degatMonstre := degatsRecu();
+               end
+               //réduit le stun de 1
+               else if(monstre.pv > 0) then monstre.stun -= 1;
+               //Regenration du joueur
+               if(getPersonnage.sante>0) and (getPersonnage.buff = Regeneration) then regen();
 
-            afficherInterfacePrincipale();
-            afficherLieu('Combat contre un '+nomMonstre(monstre.typeM));
+              afficherInterfacePrincipale();
+              afficherLieu('Combat contre un '+nomMonstre(monstre.typeM));
 
-            deplacerCurseurXY(30,7);write('Un monstre apparait devant vous ! C''est un '+nomMonstre(monstre.typeM));
-            deplacerCurseurXY(30,8);write('Vous vous mettez en position pour le combattre !');
+              deplacerCurseurXY(30,7);write('Un monstre apparait devant vous ! C''est un '+nomMonstre(monstre.typeM));
+              deplacerCurseurXY(30,8);write('Vous vous mettez en position pour le combattre !');
 
-            deplacerCurseurXY(30,10);write('  Nom du monstre : ' +nomMonstre(monstre.typeM));
-            deplacerCurseurXY(30,11);write('Santé du monstre : ',monstre.pv);
-            if(monstre.stun > 0) then write(' (étourdi)');
-
-
+              deplacerCurseurXY(30,10);write('  Nom du monstre : ' +nomMonstre(monstre.typeM));
+              deplacerCurseurXY(30,11);write('Santé du monstre : ',monstre.pv);
+              if(monstre.stun > 0) then write(' (étourdi)');
 
 
-            //Affichage des dégats du joueurs
-            if(degatPerso>-1) then
-            begin
-              couleurTexte(cyan);
-              if(getPersonnage.buff = Force) then
+
+
+              //Affichage des dégats du joueurs
+              if(degatPerso>-1) then
               begin
-                 deplacerCurseurXY(30,15);write('Vous attaquez le monstre avec ',armeToString(getPersonnage().arme)+' et lui faites ',degatPerso,' point(s) de dégats (dont 1 point bonus)');
-              end
-              else
-              begin
-                  deplacerCurseurXY(30,15);write('Vous attaquez le monstre avec ',armeToString(getPersonnage().arme)+' et lui faites ',degatPerso,' point(s) de dégats');
-              end;
-              if(nbPartie > 0) and (degatPerso > 0) then
-              begin
-                   deplacerCurseurXY(30,16);write('Vous avez réussi à récupérer une partie du monstre.');
-              end
-              else if(nbPartie = 0) then
-              begin
-                   deplacerCurseurXY(30,16);write('Vous n''avez pas réussi à récupérer une partie du monstre.');
-              end;
-              if(monstre.pv = 0) then
-              begin
-                   deplacerCurseurXY(30,17);write('Le monstre s''effondre ! Félicitations, vous l''avez vaincu !');
-              end;
-            end;
-            //Boire potion
-            if(boirePotion>-1) then
-            begin     
                 couleurTexte(cyan);
-                if(boirePotion = 0) then
+                if(getPersonnage.buff = Force) then
                 begin
-                     deplacerCurseurXY(30,15);write('Vous essayez de boire une potion mais vous n''en avez plus !');
+                   deplacerCurseurXY(30,15);write('Vous attaquez le monstre avec ',armeToString(getPersonnage().arme)+' et lui faites ',degatPerso,' point(s) de dégats (dont 1 point bonus)');
                 end
-                else if(boirePotion = 1) then
+                else
                 begin
-                     deplacerCurseurXY(30,15);write('Vous buvez une potion qui vous soigne de 50 points de vie.');
+                    deplacerCurseurXY(30,15);write('Vous attaquez le monstre avec ',armeToString(getPersonnage().arme)+' et lui faites ',degatPerso,' point(s) de dégats');
                 end;
-            end;
-            //Lancer une bombe
-            if(lancerBombe>-1) then
-            begin  
-                couleurTexte(cyan);
-                if(lancerBombe = 0) then
+                if(nbPartie > 0) and (degatPerso > 0) then
                 begin
-                     deplacerCurseurXY(30,15);write('Vous essayez de lancer une bombe mais vous n''en avez plus !');
+                     deplacerCurseurXY(30,16);write('Vous avez réussi à récupérer une partie du monstre.');
                 end
-                else if(lancerBombe = 1) then
+                else if(nbPartie = 0) then
                 begin
-                     deplacerCurseurXY(30,15);write('Vous lanvez une bombe sur le monstre qui est étourdi !');
+                     deplacerCurseurXY(30,16);write('Vous n''avez pas réussi à récupérer une partie du monstre.');
                 end;
-            end;
-            //Affichage des dégats du monstres
-            if(degatMonstre > -1) then
-            begin
+                if(monstre.pv = 0) then
+                begin
+                     deplacerCurseurXY(30,17);write('Le monstre s''effondre ! Félicitations, vous l''avez vaincu !');
+                end;
+              end;
+              //Boire potion
+              if(boirePotion>-1) then
+              begin
+                  couleurTexte(cyan);
+                  if(boirePotion = 0) then
+                  begin
+                       deplacerCurseurXY(30,15);write('Vous essayez de boire une potion mais vous n''en avez plus !');
+                  end
+                  else if(boirePotion = 1) then
+                  begin
+                       deplacerCurseurXY(30,15);write('Vous buvez une potion qui vous soigne de 50 points de vie.');
+                  end;
+              end;
+              //Lancer une bombe
+              if(lancerBombe>-1) then
+              begin
+                  couleurTexte(cyan);
+                  if(lancerBombe = 0) then
+                  begin
+                       deplacerCurseurXY(30,15);write('Vous essayez de lancer une bombe mais vous n''en avez plus !');
+                  end
+                  else if(lancerBombe = 1) then
+                  begin
+                       deplacerCurseurXY(30,15);write('Vous lanvez une bombe sur le monstre qui est étourdi !');
+                  end;
+              end;
+              //Affichage des dégats du monstres
+              if(degatMonstre > -1) then
+              begin
+                   couleurTexte(lightred);
+                   deplacerCurseurXY(30,19);write('Le monstre vous attaque et vous fait ',degatMonstre,' point(s) de dégats');
+                   if(getPersonnage().sante = 0) then
+                   begin
+                        deplacerCurseurXY(30,20);write('Vous vous effondrez... Le monstre a eu raison de vous...');
+                   end
+                   //Buff de regénération
+                   else if(getPersonnage().buff = Regeneration) then
+                   begin
+                        couleurTexte(green);
+                        deplacerCurseurXY(30,21);write('Vous vous regénérez de 1 PV.');
+                   end;
+              end;
+              if(monstre.pv > 0) and (monstre.stun > 0) then
+              begin
                  couleurTexte(lightred);
-                 deplacerCurseurXY(30,19);write('Le monstre vous attaque et vous fait ',degatMonstre,' point(s) de dégats');
-                 if(getPersonnage().sante = 0) then
-                 begin
-                      deplacerCurseurXY(30,20);write('Vous vous effondrez... Le monstre a eu raison de vous...');
-                 end  
-                 //Buff de regénération
-                 else if(getPersonnage().buff = Regeneration) then
-                 begin
-                      couleurTexte(green);
-                      deplacerCurseurXY(30,21);write('Vous vous regénérez de 1 PV.');
-                 end;
-            end;
-            if(monstre.pv > 0) and (monstre.stun > 0) then
-            begin
-               couleurTexte(lightred);
-               deplacerCurseurXY(30,19);write('Le monstre essaye de reprendre ses esprits...');
-            end;
+                 deplacerCurseurXY(30,19);write('Le monstre essaye de reprendre ses esprits...');
+              end;
 
 
-            couleurTexte(White);
+              couleurTexte(White);
+          end;
+
         end;
 
         //Choix d'action
@@ -284,6 +308,7 @@ begin
           deplacerCurseurZoneAction(7);write('     5/ Utiliser une competence');
         end;
         deplacerCurseurZoneResponse();
+        APasserSonTour:=false;
         readln(choix);
    end;
    //Victoire
@@ -291,6 +316,7 @@ begin
    begin
          recupererPrime(monstre.prime);
          setBuff(AucunB);
+         addXp(30*(numMonstre+1));
          combat := expedition;
    end
    //Mort
