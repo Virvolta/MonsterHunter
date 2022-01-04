@@ -8,7 +8,7 @@ uses
     unitObjet,unitEquipement;
 //----- TYPES -----
 type
-  bonus = (AucunB,Force,Regeneration);       //Bonus de la cantinue
+  bonus = (AucunB,Force,Regeneration,Critique);       //Bonus de la cantinue
   genre = (Masculin,Feminin,Autre);          //Genre du personnage
 
   //Type représentant le personnage
@@ -160,11 +160,11 @@ begin
   //Pas d'armure
   for i := 0 to 4 do perso.armures[i] := aucun; 
   //Ajouter 200 PO
-  perso.argent:=2000;
+  perso.argent:=200;
   //Dégats de base (augmente avec les niveaux)
   perso.degatBase:=0;
   //Défense de base (augmente avec les niveaux)
-  perso.defenseBase:=1;
+  perso.defenseBase:=0;
   //Xp
   addXp(10);
 end;
@@ -261,8 +261,18 @@ end;
 
 //Renvoie le montant de dégats d'une attaque
 function degatsAttaque() : integer;
+var
+   coeff:integer;
+   seuilProba:integer;
 begin
-  degatsAttaque := (4+Random(5))*multiplicateurDegatsArme(perso.arme)+perso.degatBase;
+randomize;
+ coeff:=1;
+ seuilProba:=0;
+  if (perso.buff=Critique) then
+    seuilProba:=1;
+  if (Random(10)<=seuilProba) then
+    coeff:=2;
+  degatsAttaque := coeff*(4+Random(5))*multiplicateurDegatsArme(perso.arme)+perso.degatBase;
 end;
 
 //Renvoie le montant de dégats recu
@@ -358,6 +368,7 @@ begin
        AucunB:bonusToString:='Aucun';
        Force:bonusToString:='Force';
        Regeneration:bonusToString:='Regénération';
+       Critique:bonusToString:='Critique';
   end;
 end;
 
