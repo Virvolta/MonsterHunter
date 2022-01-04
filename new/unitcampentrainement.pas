@@ -5,6 +5,11 @@ unit unitCampEntrainement;
 interface
 uses unitLieu,unitPersonnage;
 
+var
+  deg : boolean;
+  bouc : boolean;
+  lout : boolean;
+
 function campHub(): typeLieu;
 function grosDegats():typeLieu;
 function bouclier():typeLieu;
@@ -74,6 +79,7 @@ end;
 function grosDegats() : typeLieu;
 begin
      effacerEcran;
+     deg := false;
      if (perso.argent - 600 < 0 )then
         begin
         deplacerCurseurXY(30,17);
@@ -92,6 +98,7 @@ begin
        else
        begin
          deplacerCurseurXY(30,17); write('vous avez acquis la competence');
+         deg := true;
        end;
 
      end;
@@ -103,6 +110,7 @@ end;
 function bouclier():typeLieu;
 begin
   effacerEcran();
+  bouc := false;
      if perso.argent - 500 < 0 then
         begin
         deplacerCurseurXY(30,17);
@@ -123,6 +131,7 @@ begin
        pos.x:=30;
        pos.y:=17;
        ecrireEnPosition(pos, 'vous avez acquis la competence');
+       bouc := true;
        end;
      end;
      readln;
@@ -132,6 +141,7 @@ end;
 function louteur():typeLieu;
 begin
   effacerEcran();
+  lout := false;
      if perso.argent - 750 < 0 then
         begin
         deplacerCurseurXY(30,17);
@@ -150,6 +160,7 @@ begin
      else
        begin
        deplacerCurseurXY(30,17); write('vous avez acquis la competence');
+       lout := true;
        end;
      end;
      readln;

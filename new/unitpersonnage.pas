@@ -428,23 +428,37 @@ begin
       case i of
            2:
            begin
-
+             perso.sante := perso.sante + 30;
+             perso.argent := perso.argent + 20;
            end;
            3:
            begin
-
+             //armeToString.os
            end;
            4:
            begin
-
+             perso.argent := perso.argent + 100;
            end;
            5:
            begin
-
+             //armureToString.os
            end;
            6:
            begin
-
+             perso.sante := perso.sante + 50;
+             perso.argent := perso.argent + 30;
+           end;
+           7:
+           begin
+             //armeToString.evaille
+           end;
+           8:
+           begin
+             perso.argent := perso.argent + 200;
+           end;
+           9:
+           begin
+             //armureToString.evaille
            end;
       end;
     end;

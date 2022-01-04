@@ -22,9 +22,61 @@ function chasseHub() : typeLieu;
 
 implementation
 uses
-    unitEquipement,unitPersonnage,unitMonstre,unitIHM,GestionEcran;
+    unitEquipement,unitPersonnage,unitMonstre,unitIHM,GestionEcran,unitCampEntrainement;
 
 //Fonction gérant le combat contre un monstre
+function competences():string;
+var
+  choix : string;
+begin
+  choix := '';
+  effacerEcran;
+   afficherInterfacePrincipale();
+  deplacerCurseurZoneAction(1);write('Quelle competences souhaiter vous utiliser ?');
+  deplacerCurseurZoneAction(3);write('     1/ Gros degat');
+  deplacerCurseurZoneAction(4);write('     2/ Bouclier');
+  deplacerCurseurZoneAction(5);write('     3/ Louteur');
+
+  if (choix = '1') or (choix = '2') and (choix = '3') then
+  begin
+    if (choix ='1') then
+    begin
+      if (deg = true) then
+      begin
+      deplacerCurseurXY(30,7);write('Vous avez utilser cette competence');
+      end
+      else
+      begin
+      deplacerCurseurXY(30,7);write('Vous ne pouvez pas utilser cette competence');
+      end;
+    end;
+    if (choix = '2') then
+    begin
+      if (bouc = true) then
+      begin
+      deplacerCurseurXY(30,7);write('Vous avez utilser cette competence');
+      end
+      else
+      begin
+      deplacerCurseurXY(30,7);write('Vous ne pouvez pas utilser cette competence');
+      end;
+    end;
+    if (choix = '3') then
+    begin
+      if (lout = true) then
+      begin
+      deplacerCurseurXY(30,7);write('Vous avez utilser cette competence');
+      end
+      else
+      begin
+      deplacerCurseurXY(30,7);write('Vous ne pouvez pas utilser cette competence');
+      end;
+    end;
+  end;
+  readln;
+  competences := choix;
+end;
+
 function combat(numMonstre : integer) : typeLieu;
 var
   monstre : TMonstre;        //Le monstre
@@ -59,7 +111,7 @@ begin
         lancerBombe := -1;
         boirePotion := -1;
 
-        if (choix = '1') or (choix = '2') or (choix = '3') or (choix = '4') then
+        if (choix = '1') or (choix = '2') or (choix = '3') or (choix = '4') and (choix = '5') then
         begin
              //Attaque classique
              if (choix = '1') then
@@ -106,8 +158,20 @@ begin
                        utiliserObjet(1);
                   end
                   else lancerBombe := 0;           //Echec
-             end;
+             end
+             //competences
+             else if(choix = '5') then
+             begin
+               case competences of
+                    '1':
+                      degatPerso := 20   ;
+                    '2':
+                      degatMonstre := degatsRecu mod 2;
+                    '3':
+                      nbPartie := 4;
 
+               end;
+             end;
              //Contre attaque du monstre
              if(monstre.pv > 0) and (monstre.stun = 0) then
              begin
@@ -216,6 +280,7 @@ begin
           deplacerCurseurZoneAction(4);write('     2/ Essayer de récupérer une partie du monstre');
           deplacerCurseurZoneAction(5);write('     3/ Utiliser une potion');
           deplacerCurseurZoneAction(6);write('     4/ Utiliser une bombe');
+          deplacerCurseurZoneAction(7);write('     5/ Utiliser une competence');
         end;
         deplacerCurseurZoneResponse();
         readln(choix);
@@ -236,6 +301,7 @@ end;
 
 //Fonction exécutée à l'arrivée à la porte principale de la ville
 //Renvoie le prochain lieu à visiter
+
 function chasseHub() : typeLieu;
 var choix : string;
 begin

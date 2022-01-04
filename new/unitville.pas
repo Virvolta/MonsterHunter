@@ -62,7 +62,7 @@ begin
     deplacerCurseurZoneAction(5);write('     3/ Se rendre à la forge'); 
     deplacerCurseurZoneAction(6);write('     4/ Se rendre à la cantine');
     deplacerCurseurZoneAction(7);write('     5/ Se rendre à la porte');
-    deplacerCurseurZoneAction(8);write('     6/ Se rendre à la porte');
+    deplacerCurseurZoneAction(8);write('     6/ Se rendre au camp');
 
     deplacerCurseurZoneResponse();
     readln(choix);
