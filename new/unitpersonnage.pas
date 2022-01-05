@@ -5,7 +5,7 @@ unit unitpersonnage;
 
 interface
 uses
-    unitObjet,unitEquipement;
+    unitObjet,unitEquipement, GestionEcran;
 //----- TYPES -----
 type
   bonus = (AucunB,Force,Regeneration,Critique);       //Bonus de la cantinue
@@ -41,6 +41,10 @@ const
 
 var
   coffre : TCoffre;                        //Le coffre de la chambre
+
+  deg : boolean = False;
+  bouc : boolean = False;
+  lout : boolean = False;
    
 //----- FONCTIONS ET PROCEDURES -----  
 //Initialisation du joueur
@@ -159,7 +163,7 @@ begin
   for i := 0 to ord(high(TypeMonstre)) do perso.parties[i] := 0;
   //En pleine forme
   perso.sante:=100;
-  perso.santemax:=100;
+  perso.santemax:=150;
   //Pas d'arme
   perso.arme := aucun;
   //Pas d'armure
@@ -171,7 +175,7 @@ begin
   //Défense de base (augmente avec les niveaux)
   perso.defenseBase:=0;
   //Xp
-  addXp(10);
+  setXP(10);
 end;
 
 //Renvoie le personnage (lecture seul)
@@ -200,6 +204,12 @@ end;
 procedure setNomPersonnage(nom : string);
 begin
   perso.nom:=nom;
+  if nom='Alice' then
+     begin
+       perso.argent:=5000;
+       coffre.armures[1][4]:= True;
+       coffre.armes[4]:= True;
+     end;
 end;
 
 //Change le genre du joueur
@@ -275,7 +285,7 @@ randomize;
  coeff:=1;
  seuilProba:=0;
   if (perso.buff=Critique) then
-    seuilProba:=1;
+    seuilProba:=2;
   if (Random(10)<=seuilProba) then
     coeff:=2;
   degatsAttaque := coeff*(4+Random(5))*multiplicateurDegatsArme(perso.arme)+perso.degatBase;
@@ -331,6 +341,7 @@ begin
      case mat of
           os : peuxForger := peuxForger AND (perso.parties[0]>4) AND hasXp(160);
           Ecaille : peuxForger := peuxForger AND (perso.parties[1]>4) AND hasXp(640);
+          Obsidienne : peuxForger := peuxForger AND (perso.parties[0]>49) AND hasXp(1000);
      end;
 
 end;
@@ -345,6 +356,7 @@ begin
      case mat of
           os : perso.parties[0] -= 5;
           Ecaille : perso.parties[1] -= 5;
+          Obsidienne : perso.parties[2] -= 50;
      end;
 
      //Ajoute l'arme dans le coffre
@@ -361,6 +373,7 @@ begin
      case mat of
           os : perso.parties[0] -= 5;
           Ecaille : perso.parties[1] -= 5;
+          Obsidienne : perso.parties[2] -= 50;
      end;
 
      //Ajoute l'armure dans le coffre
@@ -457,38 +470,125 @@ begin
       case i of
            2:
            begin
+             effacerEcran;
+             dessinerCadreXY(30,10,100,30,double,White,Black);
+             deplacerCurseurXY(58,12);
+             write('Vous avez obtenu :');
+             deplacerCurseurXY(60,15);
+             write('10 hp en plus');
              perso.santemax := perso.santemax + 10;
            end;
            3:
            begin
+             effacerEcran;
+             dessinerCadreXY(30,10,100,30,double,White,Black);
+             deplacerCurseurXY(58,12);
+             write('Vous avez obtenu :');
+             deplacerCurseurXY(58,15);
+             write('20 pièces d''argent');
              perso.argent := perso.argent + 20;
            end;
            4:
            begin
+             effacerEcran;
+             dessinerCadreXY(30,10,100,30,double,White,Black);
+             deplacerCurseurXY(58,12);
+             write('Vous avez obtenu :');
+             deplacerCurseurXY(61,15);
+             write('Une potion');
+             deplacerCurseurXY(56,17);
+             couleurTexte(Green);
+             write('Debloque le matériaux Os');
+             couleurTexte(White);
              perso.inventaire[1] += 1;
            end;
            5:
            begin
+             effacerEcran;
+             dessinerCadreXY(30,10,100,30,double,White,Black);
+             deplacerCurseurXY(58,12);
+             write('Vous avez obtenu :');
+             deplacerCurseurXY(58,15);
+             write('100 pièces d''argent');
              perso.argent := perso.argent + 100;
+             deplacerCurseurXY(59,17);
+             write('1 point d''attaque');
+             perso.degatBase+=1;
            end;
            6:
            begin
+             effacerEcran;
+             dessinerCadreXY(30,10,100,30,double,White,Black);
+             deplacerCurseurXY(58,12);
+             write('Vous avez obtenu :');
+             deplacerCurseurXY(60,15);
+             write('50 hp en plus');
              perso.sante := perso.sante + 50;
+             deplacerCurseurXY(58,17);
+             write('1 point de defense');
+             perso.defenseBase+=1;
            end;
            7:
            begin
+             effacerEcran;
+             dessinerCadreXY(30,10,100,30,double,White,Black);
+             deplacerCurseurXY(58,12);
+             write('Vous avez obtenu :');
+             deplacerCurseurXY(58,15);
+             write('30 pièces d''argent');
              perso.argent := perso.argent + 30;
+             deplacerCurseurXY(58,17);
+             write('1 point de defense');
+             perso.defenseBase+=1;
            end;
            8:
            begin
+             effacerEcran;
+             dessinerCadreXY(30,10,100,30,double,White,Black);
+             deplacerCurseurXY(58,12);
+             write('Vous avez obtenu :');
+             deplacerCurseurXY(62,15);
+             write('Une bombe');
+             deplacerCurseurXY(56,17);
+             couleurTexte(Cyan);
+             writeln('Debloque le matériaux Ecaille');
+             couleurTexte(White);
              perso.inventaire[2] += 1;
+             deplacerCurseurXY(59,17);
+             write('1 point d''attaque');
+             perso.degatBase+=1;
            end;
            9:
            begin
+             effacerEcran;
+             dessinerCadreXY(30,10,100,30,double,White,Black);
+             deplacerCurseurXY(58,12);
+             write('Vous avez obtenu :');
+             deplacerCurseurXY(60,15);
+             write('200 pièces d''argent');
              perso.argent := perso.argent + 200;
+             deplacerCurseurXY(60,17);
+             write('1 point d''attaque');
+             perso.degatBase+=1;
+           end;
+           10:
+           begin
+             effacerEcran;
+             dessinerCadreXY(30,10,100,30,double,White,Black);
+             deplacerCurseurXY(58,12);
+             write('Vous avez obtenu :');
+             perso.defenseBase += 1;
+             deplacerCurseurXY(60,15);
+             couleurTexte(Magenta);
+             write('Debloque le matériaux Obsidienne');
+             couleurTexte(White);
+             deplacerCurseurXY(60,17);
+             write('1 point d''attaque');
+             perso.degatBase+=1;
            end;
       end;
     end;
+  readln;
 end;
 
 function sqrt(x:real):real;
@@ -565,6 +665,7 @@ begin
     writeln(SFile, Perso.armures[1]);
     writeln(SFile, Perso.armures[2]);
     writeln(SFile, Perso.armures[3]);
+    writeln(SFile, Perso.armures[4]);
     writeln(SFile, Perso.sante);
     writeln(SFile, Perso.santemax);
     writeln(SFile, Perso.argent);
@@ -573,10 +674,13 @@ begin
     writeln(SFile, Perso.degatBase);
     writeln(SFile, Perso.defenseBase);
     for i:=0 to 4 do
-      for j:=1 to 3 do
+      for j:=1 to 4 do
         writeln(SFile, getCoffre.armures[i,j]);
-    for i:=1 to 3 do
+    for i:=1 to 4 do
       writeln(SFile, getCoffre.armes[i]);
+    writeln(SFile, deg);
+    writeln(SFile, bouc);
+    writeln(SFile, lout);
   finally
     CloseFile(SFile);
   end;

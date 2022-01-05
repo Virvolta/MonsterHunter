@@ -3,12 +3,7 @@ unit unitCampEntrainement;
 {$mode ObjFPC}{$H+}
 
 interface
-uses unitLieu,unitPersonnage;
-
-var
-  deg : boolean;
-  bouc : boolean;
-  lout : boolean;
+uses unitLieu, unitPersonnage;
 
 function campHub(): typeLieu;
 function grosDegats():typeLieu;
@@ -79,11 +74,11 @@ end;
 function grosDegats() : typeLieu;
 begin
      effacerEcran;
-     deg := false;
-     if (perso.argent - 600 < 0 )then
+     if (perso.argent - 600 < 0 ) or (deg=True) then
         begin
         deplacerCurseurXY(30,17);
-        write('vous ne pouvez pas acquerir cette competence')
+        write('vous ne pouvez pas acquerir cette competence');
+        readln;
         end
      else
      begin
@@ -94,16 +89,17 @@ begin
           i:=i+1;
           deplacerCurseurXY(30,17);
           write('il vous reste ',4-i,' entrainement');
+          readln;
           end
        else
        begin
          deplacerCurseurXY(30,17); write('vous avez acquis la competence');
-         deg := true;
+         readln;
+         deg := True;
          addXp(30);
        end;
 
      end;
-     readln;
      grosDegats:=campHub;
 
 end;
@@ -111,62 +107,64 @@ end;
 function bouclier():typeLieu;
 begin
   effacerEcran();
-  bouc := false;
-     if perso.argent - 500 < 0 then
+     if (perso.argent - 500 < 0) or (bouc=True) then
         begin
         deplacerCurseurXY(30,17);
         write('vous ne pouvez pas acquerir cette competence');
+        readln;
         end
      else
      begin
        if (j = 0) then
           perso.argent:= perso.argent-500;
-     if j<2 then
-        begin
-        j:=j+1;
-        deplacerCurseurXY(30,17);
-        write('il vous reste ',3-j,' entrainement');
-        end
-     else
-       begin
-       pos.x:=30;
-       pos.y:=17;
-       ecrireEnPosition(pos, 'vous avez acquis la competence');
-       bouc := true;
-       addXp(20);
-       end;
+       if j<2 then
+          begin
+          j:=j+1;
+          deplacerCurseurXY(30,17);
+          write('il vous reste ',3-j,' entrainement');
+          readln;
+          end
+       else
+         begin
+         pos.x:=30;
+         pos.y:=17;
+         ecrireEnPosition(pos, 'vous avez acquis la competence');
+         readln;
+         bouc := True;
+         addXp(20);
+         end;
      end;
-     readln;
      bouclier:=campHub;
 end;
 
 function louteur():typeLieu;
 begin
   effacerEcran();
-  lout := false;
-     if perso.argent - 750 < 0 then
+     if (perso.argent - 750 < 0) or (lout=True) then
         begin
         deplacerCurseurXY(30,17);
         write('vous ne pouvez pas acquerir cette competence');
+        readln;
         end
      else
      begin
-     if (k = 0) then
-          perso.argent:= perso.argent-750;
-     if k<4 then
-        begin
-        k:=k+1;
-        deplacerCurseurXY(30,17);
-        write('il vous reste ',5-k,' entrainement');
-        end
-     else
-       begin
-       deplacerCurseurXY(30,17); write('vous avez acquis la competence');
-       lout := true;
-       addXp(40);
-       end;
+       if (k = 0) then
+            perso.argent:= perso.argent-750;
+       if k<4 then
+          begin
+          k:=k+1;
+          deplacerCurseurXY(30,17);
+          write('il vous reste ',5-k,' entrainement');
+          readln;
+          end
+       else
+         begin
+         deplacerCurseurXY(30,17); write('vous avez acquis la competence');
+         readln;
+         lout := True;
+         addXp(40);
+         end;
      end;
-     readln;
      louteur:=campHub;
 end;
 
