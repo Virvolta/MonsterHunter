@@ -136,11 +136,12 @@ var
    CFile: TextFile;
    Str:String;
    i:Integer = 0;
+   j:Integer;
 begin
   if not FileExists(SaveFile) then
   begin
      effacerEcran;
-     deplacerCurseurZoneAction(0);write('Vous n''avez pas de sauvegarde');
+     deplacerCurseurXY(61,20);write('Vous n''avez pas de sauvegarde');
      ReadLn;
      chargerPartie:=quitter;
   end
@@ -219,6 +220,19 @@ begin
 
       Readln(CFile, Str);
       Perso.defenseBase:=StrToInt(str);
+
+      for i:=0 to 4 do
+          for j:=1 to 3 do
+               begin
+                 ReadLn(CFile, Str);
+                 coffre.armures[i,j]:=StrToBool(Str);
+               end;
+
+      for i:=1 to 3 do
+          begin
+            ReadLn(CFile, Str);
+            coffre.armes[i]:=StrToBool(Str);
+          end;
 
       CloseFile(CFile);
       chargerPartie:=ville;

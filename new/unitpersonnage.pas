@@ -38,6 +38,9 @@ type
 //Constantes
 const
   SaveFile='Sauvegarde.txt';
+
+var
+  coffre : TCoffre;                        //Le coffre de la chambre
    
 //----- FONCTIONS ET PROCEDURES -----  
 //Initialisation du joueur
@@ -126,9 +129,6 @@ procedure Sauvegarde(Perso:Personnage);
 implementation
 uses
     unitMonstre;
-var
-  coffre : TCoffre;                        //Le coffre de la chambre
-
    
 //Initialisation du coffre de la chambre
 procedure initialisationCoffre();
@@ -546,6 +546,7 @@ end;
 procedure Sauvegarde(Perso:Personnage);
 var
  SFile: TextFile;
+ i,j:Integer;
 
 begin
   AssignFile(SFile, SaveFile);
@@ -571,6 +572,11 @@ begin
     writeln(SFile, Perso.Xp);
     writeln(SFile, Perso.degatBase);
     writeln(SFile, Perso.defenseBase);
+    for i:=0 to 4 do
+      for j:=1 to 3 do
+        writeln(SFile, getCoffre.armures[i,j]);
+    for i:=1 to 3 do
+      writeln(SFile, getCoffre.armes[i]);
   finally
     CloseFile(SFile);
   end;
