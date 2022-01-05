@@ -5,7 +5,7 @@ unit UnitMenuPrincipal;
 
 interface
 uses
-  UnitLieu, unitCantine;
+  UnitLieu, unitCantine, Sysutils, unitEquipement;
 
 //----- FONCTIONS ET PROCEDURES -----
 //Fonction exécutée à l'arrivée dans le menu principale
@@ -14,6 +14,8 @@ function menuPrincipalHub() : typeLieu;
 //Fonction exécutée à l'arrivée dans l'écran de création du personnage
 //Renoive le prochain lieu à visiter
 function creationPersonnageHub() : typeLieu;
+//Fonction chargerPartie
+function chargerPartie():typeLieu;
 
 
 
@@ -48,11 +50,13 @@ begin
    afficherTitreMenuPrincipal();
    afficherLieu('Menu Principal');
    deplacerCurseurZoneAction(2);write('1/ Débuter une nouvelle partie');
-   deplacerCurseurZoneAction(4);write('2/ Quitter');
+   deplacerCurseurZoneAction(3);write('2/ Charger une sauvegarde');
+   deplacerCurseurZoneAction(4);write('3/ Quitter');
    deplacerCurseurZoneResponse();
    readln(choix);
    case choix of
         '1': menuPrincipalHub:=creationPersonnage;
+        '2': menuPrincipalHub:=chargerPartie;
         else menuPrincipalHub:=quitter;
    end;
 end;
@@ -125,6 +129,106 @@ begin
      readln;
 
      creationPersonnageHub:=chambreArrivee;
+end;
+
+function chargerPartie():typeLieu;
+var
+   CFile: TextFile;
+   Str:String;
+   i:Integer = 0;
+begin
+  if not FileExists(SaveFile) then
+  begin
+     effacerEcran;
+     deplacerCurseurZoneAction(0);write('Vous n''avez pas de sauvegarde');
+     ReadLn;
+     chargerPartie:=quitter;
+  end
+  else
+  begin
+    AssignFile(CFile, SaveFile);
+    try
+      Reset(CFile);
+
+      Readln(CFile, Str);
+      Perso.nom:=Str;
+
+      Readln(CFile, Str);
+      case Str of
+             'Masculin':Perso.sexe:=Masculin;
+             'Feminim':Perso.sexe:=Feminin;
+             'Autre':Perso.sexe:=Autre;
+        end;
+
+      Readln(CFile, Str);
+      Perso.taille:=StrToInt(Str);
+
+      Readln(CFile, Str);
+      Perso.inventaire[1]:=StrToInt(Str);
+
+      Readln(CFile, Str);
+      Perso.inventaire[2]:=StrToInt(Str);
+
+      Readln(CFile, Str);
+      Perso.parties[0]:=StrToInt(Str);
+
+      Readln(CFile, Str);
+      Perso.parties[1]:=StrToInt(Str);
+
+      Readln(CFile, Str);
+      case Str of
+             'aucun':Perso.arme:=Aucun;
+             'fer':Perso.arme:=Fer;
+             'os':Perso.arme:=Os;
+             'ecaille':Perso.arme:=Ecaille;
+        end;
+
+      repeat
+        Readln(CFile, Str);
+        case Str of
+             'aucun':Perso.armures[i]:=Aucun;
+             'fer':Perso.armures[i]:=Fer;
+             'os':Perso.armures[i]:=Os;
+             'ecaille':Perso.armures[i]:=Ecaille;
+        end;
+        i+=1;
+      until i=4;
+
+      Readln(CFile, Str);
+      Perso.sante:=StrToInt(str);
+
+      Readln(CFile, Str);
+      Perso.santemax:=StrToInt(str);
+
+      Readln(CFile, Str);
+      Perso.argent:=StrToInt(str);
+
+      Readln(CFile, Str);
+      case Str of
+             'AucunB':Perso.buff:=AucunB;
+             'Force':Perso.buff:=Force;
+             'Regeneration':Perso.buff:=Regeneration;
+             'Critique':Perso.buff:=Critique;
+        end;
+
+      Readln(CFile, Str);
+      Perso.Xp:=StrToInt(str);
+
+      Readln(CFile, Str);
+      Perso.degatBase:=StrToInt(str);
+
+      Readln(CFile, Str);
+      Perso.defenseBase:=StrToInt(str);
+
+      CloseFile(CFile);
+      chargerPartie:=ville;
+    except
+      on E: EInOutError do
+      begin
+       Writeln('File handling error occurred. Details: '+E.ClassName+'/'+E.Message);
+      end;
+    end;
+  end;
 end;
 
 end.

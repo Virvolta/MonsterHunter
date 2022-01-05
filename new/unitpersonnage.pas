@@ -35,6 +35,9 @@ type
     armes : TCoffreArmes;                   //Armes présentes dans le coffre
   end;
 
+//Constantes
+const
+  SaveFile='Sauvegarde.txt';
    
 //----- FONCTIONS ET PROCEDURES -----  
 //Initialisation du joueur
@@ -106,6 +109,8 @@ procedure addLevelGift(preclevel, nextlevel : Integer);
 function sqrt(x:real):real;
 function getMinXpInLevel(level :integer) : integer;
 function getMaxXpInLevel(level :integer) : integer;
+//Procedure sauvegarde
+procedure Sauvegarde(Perso:Personnage);
 
 
 
@@ -220,6 +225,7 @@ end;
 procedure dormir();
 begin
   perso.sante:=perso.santemax;
+  Sauvegarde(perso);
 end;
 
 //Change l'arme du joueur
@@ -536,6 +542,39 @@ begin
   getMaxXpInLevel := ((level - 1 * level - 1) * palier) ;
 end;
 
+//Procedure sauvegarde
+procedure Sauvegarde(Perso:Personnage);
+var
+ SFile: TextFile;
+
+begin
+  AssignFile(SFile, SaveFile);
+  Rewrite(SFile);
+
+  try
+    writeln(SFile, Perso.nom);
+    writeln(SFile, Perso.sexe);
+    writeln(SFile, Perso.taille);
+    writeln(SFile, Perso.inventaire[1]);
+    writeln(SFile, Perso.inventaire[2]);
+    writeln(SFile, Perso.parties[0]);
+    writeln(SFile, Perso.parties[1]);
+    writeln(SFile, Perso.arme);
+    writeln(SFile, Perso.armures[0]);
+    writeln(SFile, Perso.armures[1]);
+    writeln(SFile, Perso.armures[2]);
+    writeln(SFile, Perso.armures[3]);
+    writeln(SFile, Perso.sante);
+    writeln(SFile, Perso.santemax);
+    writeln(SFile, Perso.argent);
+    writeln(SFile, Perso.buff);
+    writeln(SFile, Perso.Xp);
+    writeln(SFile, Perso.degatBase);
+    writeln(SFile, Perso.defenseBase);
+  finally
+    CloseFile(SFile);
+  end;
+end;
 
 
 end.

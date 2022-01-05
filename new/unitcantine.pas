@@ -52,10 +52,8 @@ var
  indexBonus: Integer;
  Separateur, ParentheseFin : Integer;
  i: Integer;
- pos:Integer;
 
 begin
-  pos:=0;
   if not FileExists(Fichier) then exit;
   AssignFile(File1, Fichier);
   Reset(File1);
