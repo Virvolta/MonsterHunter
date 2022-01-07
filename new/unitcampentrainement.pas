@@ -1,3 +1,5 @@
+//Unité en charge de la gestion des entreinements
+//Unit en charge de la gestion des lieux
 unit unitCampEntrainement;
 
 {$mode ObjFPC}{$H+}
@@ -26,6 +28,7 @@ var
   j: integer = 0;
   k: integer = 0;
 
+//fonction executer lors de l'arriver dans le camp
 function campHub(): typeLieu;
 var choix : string;
 begin
@@ -76,6 +79,7 @@ choix := '';
 
 end;
 
+// fonction de la premiere competence
 function grosDegats() : typeLieu;
 begin
      effacerEcran;
@@ -108,6 +112,7 @@ begin
 
 end;
 
+// fonction de la deuxieme competence
 function bouclier():typeLieu;
 begin
   effacerEcran();
@@ -140,6 +145,7 @@ begin
      bouclier:=campHub;
 end;
 
+// fonction de la troisieme competence
 function louteur():typeLieu;
 begin
   effacerEcran();

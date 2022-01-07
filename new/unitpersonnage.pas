@@ -447,7 +447,7 @@ begin
 
 end;
 
-
+//procedure qui permet de donner des recompense au joueur quand il a atteint un certain niveau
 procedure addLevelGift(preclevel, nextlevel : Integer);
 var
    i : Integer;
@@ -491,6 +491,7 @@ begin
     end;
 end;
 
+//fonction racine carré
 function sqrt(x:real):real;
 var
  a,b,m,xn:Real;
@@ -527,16 +528,18 @@ End;
 const
   palier = 10;
 
+  // fonction permetant de connaitre le niveau du joueur
 function getLevel() : integer;
 begin
   getLevel := round((sqrt(getXP)) / (sqrt(palier)));
 end;
 
+// fonction permettan de connaitre le niveau d'xp min dans un niveau
 function getMinXpInLevel(level :integer) : integer;
 begin
   getMinXpInLevel := (level * level) * palier;
 end;
-
+// fonction permettan de connaitre le niveau d'xp max dans un niveau
 function getMaxXpInLevel(level :integer) : integer;
 begin
   getMaxXpInLevel := ((level - 1 * level - 1) * palier) ;

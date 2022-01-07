@@ -25,7 +25,7 @@ implementation
 uses
     unitEquipement,unitPersonnage,unitMonstre,unitIHM,GestionEcran,unitCampEntrainement;
 
-//Fonction gérant le combat contre un monstre
+// fonction permettant de verifier si le joueur a bien debloquer une competence
 function competences():string;
 var
   choix : string;
@@ -41,6 +41,7 @@ begin
   deplacerCurseurZoneResponse();
   readln(choix);
 
+  //boucle permetant de verifier si la competence est bien déverouiller
   if (choix = '1') or (choix = '2') or (choix = '3') then
   begin
     if (choix ='1') then
@@ -84,6 +85,7 @@ begin
 
 end;
 
+//Fonction gérant le combat contre un monstre
 function combat(numMonstre : integer) : typeLieu;
 var
   monstre : TMonstre;        //Le monstre
