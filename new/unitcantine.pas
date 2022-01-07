@@ -101,55 +101,109 @@ begin
 end;
 
 //Tri la liste de A..Z
-procedure triInsertionNom(var t:TcatalogueRecette);
+procedure fusionnerNom(var M:TcatalogueRecette;d,mil,f:integer);
 var
-  i,j,k : integer ; //Entier pour la boucle
-  temp : recette ; //Variable temporaire qui stocke une recette
+ P:TcatalogueRecette;
+ i,j,k,l:integer;
 begin
-     for i := 1 to length(t)-1 do
+    i:=d;
+    j:=mil+1;
+    k:=d;
+    while (i<=mil) and (j<=f) do
+      begin
+        if M[i].nom<M[j].nom then
+           begin
+                P[k]:=M[i];
+                i:=i+1;
+           end
+        else
+        begin
+          P[k]:=M[j];
+          j:=j+1;
+        end;
+        k:=k+1;
+      end;
+
+     if (i>mil) then
+        for l:=j to f do
          begin
-              if (t[i+1].nom<t[i].nom) then
-                begin
-                  j:=1;
-                  while (t[j].nom < t[i+1].nom) do
-                        begin
-                          j:=j+1;
-                        end;
-                  temp:= t[i+1];
-                  //Decale Ã  partir de la fin
-                  for k := i+1 downto j+1 do
-                      begin
-                        t[k]:= t[k-1];
-                      end;
-                  t[j] := temp;
-                end;
-         end;
+           P[k]:=M[l];
+           k:=k+1;
+         end
+     else for l:=i to mil do
+      begin
+        P[k]:=M[l];
+        k:=k+1;
+      end;
+     for l:=d to f do
+      begin
+        M[l]:=P[l];
+      end;
 end;
 
-//Tri la liste par bonus de A..Z
-procedure triInsertionBonus(var t:TcatalogueRecette);
-var
-  i,j,k : integer ; //Entier pour la boucle
-  temp : recette ; //Variable temporaire qui stocke une recette
+//Tri la liste par bonus
+procedure tri_fusionNom(var M:TcatalogueRecette;d,f:integer);
+var mil:integer;
 begin
-     for i := 1 to length(t)-1 do
+     if (d<f) then
+        begin
+          mil:=(d+f) div 2;
+          tri_fusionNom(M,d,mil);
+          tri_fusionNom(M,mil+1,f);
+          fusionnerNom(M,d,mil,f);
+        end;
+end;
+
+procedure fusionnerBonus(var M:TcatalogueRecette;d,mil,f:integer);
+var
+ P:TcatalogueRecette;
+ i,j,k,l:integer;
+begin
+    i:=d;
+    j:=mil+1;
+    k:=d;
+    while (i<=mil) and (j<=f) do
+      begin
+        if M[i].idBonus<M[j].idBonus then
+           begin
+                P[k]:=M[i];
+                i:=i+1;
+           end
+        else
+        begin
+          P[k]:=M[j];
+          j:=j+1;
+        end;
+        k:=k+1;
+      end;
+
+     if (i>mil) then
+        for l:=j to f do
          begin
-              if (t[i+1].idBonus<t[i].idBonus) then
-                begin
-                  j:=1;
-                  while (t[j].idBonus < t[i+1].idBonus) do
-                        begin
-                          j:=j+1;
-                        end;
-                  temp:= t[i+1];
-                  //Decale Ã  partir de la fin
-                  for k := i+1 downto j+1 do
-                      begin
-                        t[k]:= t[k-1];
-                      end;
-                  t[j] := temp;
-                end;
-         end;
+           P[k]:=M[l];
+           k:=k+1;
+         end
+     else for l:=i to mil do
+      begin
+        P[k]:=M[l];
+        k:=k+1;
+      end;
+     for l:=d to f do
+      begin
+        M[l]:=P[l];
+      end;
+end;
+
+procedure tri_fusionBonus(var M:TcatalogueRecette;d,f:integer);
+var mil:integer;
+begin
+     if (d<f) then
+        begin
+          mil:=(d+f) div 2;
+          tri_fusionBonus(M,d,mil);
+          tri_fusionBonus(M,mil+1,f);
+          fusionnerBonus(M,d,mil,f);
+        end;
 end;
 
 //Mange le plat et applique le bonus
@@ -215,9 +269,9 @@ begin
         page:=choixpage;
       end
     else if (choix= 'a') then
-      triInsertionNom(CatalogueRecette)
+      tri_fusionNom(CatalogueRecette,1,Length(CatalogueRecette))
     else if (choix= 'b') then
-      triInsertionBonus(CatalogueRecette)
+      tri_fusionBonus(CatalogueRecette,1,Length(CatalogueRecette))
     else if(TryStrToInt(choix,choixNumber)) then
     begin
          //Si la recette existe, la manger
