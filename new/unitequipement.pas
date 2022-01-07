@@ -6,7 +6,7 @@ unit unitEquipement;
 interface        
 //----- TYPES -----
 type
-  materiaux = (aucun,fer,Os,Ecaille);                                   //Matériaux pour les armes et armures
+  materiaux = (aucun,fer,Os,Ecaille,Obsidienne);                        //Matériaux pour les armes et armures
   emplacementArmure = (Casque,Torse,Gants,Jambieres,Bottes);            //liste des emplacements d'armures
   TArmures = array[0..4] of materiaux;                                  //Armure (5 slots)
   TCoffreArmures = array[0..4,1..ord(high(materiaux))] of boolean;      //Coffres - armures (pour chaque couple matériaux, slots, un booléen représentant si le joueur possède cet objet dans son coffre)
@@ -50,7 +50,8 @@ begin
     case mat of
         fer : armureToString += ' en fer';
         Os : armureToString += ' en os';
-        Ecaille : armureToString += ' en évaille';
+        Ecaille : armureToString += ' en écailles';
+        Obsidienne : armureToString += ' en Obsidienne';
     end;
   end;
 end;
@@ -63,6 +64,7 @@ begin
        fer : armeToString := 'Grande épée en fer';
        Os : armeToString := 'Grande épée en os'; 
        Ecaille : armeToString := 'Grande épée en écailles';
+       Obsidienne : armeToString :='Grande épée en Obsidienne';
    end;
 end;
 
@@ -74,6 +76,7 @@ begin
        fer : multiplicateurDegatsArme := 1;
        Os : multiplicateurDegatsArme := 2;
        Ecaille : multiplicateurDegatsArme := 3;
+       Obsidienne : multiplicateurDegatsArme := 6;
    end;
 end;
 
@@ -96,6 +99,7 @@ begin
       fer : recetteToString:='(500 po)';
       os : recetteToString:='(500 po, 5 morceaux de Grand Jagras)';
       Ecaille : recetteToString:='(500 po, 5 morceaux de Pukei-Pukei)';
+      Obsidienne : recetteToString:='(500 po, 50 morceaux de Pukei-Pukei)';
   end;
 end;
 

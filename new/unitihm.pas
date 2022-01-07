@@ -19,6 +19,10 @@ procedure deplacerCurseurZoneAction(numLigne : integer);
 //Positionne le curseur à la n-ième ligne de la zone d'action
 procedure deplacerCurseurZoneResponse();
 
+procedure afficherInterfaceForge();
+
+procedure afficherCadreActionForge();
+
 
 
 
@@ -165,5 +169,24 @@ begin
   afficherCadreLieuEcranSimple();
 end;
 
+procedure afficherInterfaceForge();
+begin
+  effacerEcran;
+  afficherCadreExterieur();
+  afficherCadreActionForge();
+  afficherCadreResponse();
+  afficherMenuLateralPersonnage();
+  afficherCadreLieuEcranSplit();
+end;
+
+procedure afficherCadreActionForge();
+begin
+  dessinerCadreXY(1,29,74,39,simple,white,black);
+  dessinerCadreXY(74,35,198,37,simple,white,black);
+  deplacerCurseurXY(74,36) ;write(' ') ;
+  deplacerCurseurXY(74,37) ;write(' ') ;
+  deplacerCurseurXY(74,38) ;write(' ') ;
+  deplacerCurseurXY(74,39) ;write(#196) ;
+end;
 end.
 

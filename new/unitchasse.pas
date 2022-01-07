@@ -48,7 +48,7 @@ begin
     begin
       if (deg = true) then
       begin
-      deplacerCurseurXY(30,7);write('Vous avez utilser cette competence');
+      deplacerCurseurXY(30,7);write('Vous avez utiliser cette competence');
       competences := choix;
       end
       else
@@ -319,6 +319,7 @@ begin
          recupererPrime(monstre.prime);
          setBuff(AucunB);
          addXp(30*(numMonstre+1));
+         initialisationMonstres();
          combat := expedition;
    end
    //Mort

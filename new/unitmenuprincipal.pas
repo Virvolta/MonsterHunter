@@ -5,7 +5,7 @@ unit UnitMenuPrincipal;
 
 interface
 uses
-  UnitLieu, unitCantine, Sysutils, unitEquipement;
+  UnitLieu, unitCantine, Sysutils, unitEquipement, unitCampEntrainement;
 
 //----- FONCTIONS ET PROCEDURES -----
 //Fonction exécutée à l'arrivée dans le menu principale
@@ -147,6 +147,8 @@ begin
   end
   else
   begin
+    initialisationMonstres();
+    initialisationCantine();
     AssignFile(CFile, SaveFile);
     try
       Reset(CFile);
@@ -157,7 +159,7 @@ begin
       Readln(CFile, Str);
       case Str of
              'Masculin':Perso.sexe:=Masculin;
-             'Feminim':Perso.sexe:=Feminin;
+             'Feminin':Perso.sexe:=Feminin;
              'Autre':Perso.sexe:=Autre;
         end;
 
@@ -177,23 +179,27 @@ begin
       Perso.parties[1]:=StrToInt(Str);
 
       Readln(CFile, Str);
+      Str:=LowerCase(Str);
       case Str of
              'aucun':Perso.arme:=Aucun;
              'fer':Perso.arme:=Fer;
              'os':Perso.arme:=Os;
              'ecaille':Perso.arme:=Ecaille;
+             'obsidienne':Perso.arme:=Obsidienne;
         end;
 
       repeat
         Readln(CFile, Str);
+        Str:=LowerCase(Str);
         case Str of
              'aucun':Perso.armures[i]:=Aucun;
              'fer':Perso.armures[i]:=Fer;
              'os':Perso.armures[i]:=Os;
              'ecaille':Perso.armures[i]:=Ecaille;
+             'obsidienne':Perso.armures[i]:=Obsidienne;
         end;
         i+=1;
-      until i=4;
+      until i=5;
 
       Readln(CFile, Str);
       Perso.sante:=StrToInt(str);
@@ -222,17 +228,26 @@ begin
       Perso.defenseBase:=StrToInt(str);
 
       for i:=0 to 4 do
-          for j:=1 to 3 do
+          for j:=1 to 4 do
                begin
                  ReadLn(CFile, Str);
                  coffre.armures[i,j]:=StrToBool(Str);
                end;
 
-      for i:=1 to 3 do
+      for i:=1 to 4 do
           begin
             ReadLn(CFile, Str);
             coffre.armes[i]:=StrToBool(Str);
           end;
+
+      Readln(CFile, Str);
+      deg:=StrToBool(Str);
+
+      Readln(CFile, Str);
+      bouc:=StrToBool(Str);
+
+      Readln(CFile, Str);
+      lout:=StrToBool(Str);
 
       CloseFile(CFile);
       chargerPartie:=ville;
