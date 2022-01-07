@@ -147,6 +147,7 @@ begin
   end
   else
   begin
+    initialisationObjets();
     initialisationMonstres();
     initialisationCantine();
     AssignFile(CFile, SaveFile);
